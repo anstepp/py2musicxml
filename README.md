@@ -1,9 +1,6 @@
 # Py2MusicXML
-Convert Python to Notation via MusicXML.
+Convert Python Algorithms to Notation via MusicXML.
 
-To test:
+This program allows for a user to write a python algorithm that can be converted into 
+MusicXML. It can then be imported into music notation software.
 
-$> python3 score1.py
-
-This will create a "score1.xml" file. You can then import this into any MusicXML reading software
-(given it can parse my terrible XML) i.e. Finale, Sibelius, LilyPond, etc.
