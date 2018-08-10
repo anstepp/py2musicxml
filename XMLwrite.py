@@ -2,7 +2,6 @@ import pitchMath
 #convertToXML: [list, scale], file name
 import noteList
 # noteList: variance, seed
-# noteList.getList:type, starting octave, starting note, generations, tonic
 import random
 
 random.seed(2)
@@ -22,7 +21,27 @@ for item in array:
 	tonic note,
 	Remainders "EU" or Bjorklund "ES",
 	max feed to the rhythm machine or list """
-	thing = item.getList("SG", 2, 8, 7, 8, "EU", 45)
+	
+	grammar = "SG" # stochastic grammar
+	starting_octave = 2
+	starting_note = 8
+	generations = 1
+	starting_pitch = 8
+	rtype = "EU"
+	rhythm = 45
+
+
+	thing = item.getList(
+		grammar,
+		starting_octave,
+		starting_note,
+		generations, 
+		starting_pitch,
+		rtype, 
+		rhythm
+	)
+
+
 	choices = [2]
 	scale = random.choice(choices)
 	appendMe = [thing, scale]
