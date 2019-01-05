@@ -76,6 +76,21 @@ class grammar:
 		else:
 			return inNote	
 
+<<<<<<< HEAD
+=======
+	def overflowTest(self, inNote):
+		if inNote.pc > 11:
+			fixedPC = inNote.pc - 12
+			fixedNote = notePC(inNote.octave, fixedPC)
+			return fixedNote
+		elif inNote.pc < 0:
+			fixedPC = inNote.pc + 12
+			fixedNote = notePC(inNote.octave, fixedPC)
+			return fixedNote
+		else:
+			return inNote
+
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 	def getAbsPitch(self, current, motion):
 		if motion >= 0:
 			step = motion
@@ -109,77 +124,147 @@ class grammar:
 				#print current.pc, self.target1
 				if flip > self.testVal:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A1R1)
+<<<<<<< HEAD
 					newNote = notePC(current.octave + octaveFlag, thePC)
 					newGeneration += [current, newNote, current]
 				else:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A1R2)
 					newNote = notePC(current.octave + octaveFlag, thePC)
+=======
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+					newGeneration += [current, newNote, current]
+				else:
+					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A1R2)
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 					newGeneration += [current, newNote]
 			if current.pc == self.target2:
 				flip = self.R2.random()
 				#print current.pc, self.target2
 				if flip > self.testVal:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A2R1)
+<<<<<<< HEAD
 					newNote = notePC(current.octave + octaveFlag, thePC)
 					newGeneration += [current, newNote, current]
 				else:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A2R2)
 					newNote = notePC(current.octave + octaveFlag, thePC)
+=======
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+					newGeneration += [current, newNote, current]
+				else:
+					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A2R2)
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 					newGeneration += [current, newNote]				
 			if current.pc == self.target3:
 				flip = self.R3.random()
 				#print current.pc, self.target3
 				if flip > self.testVal:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A3R1)
+<<<<<<< HEAD
 					newNote = notePC(current.octave + octaveFlag, thePC)
 					newGeneration += [current, newNote, current]
 				else:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A3R2)
 					newNote = notePC(current.octave + octaveFlag, thePC)
+=======
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+					newGeneration += [current, newNote, current]
+				else:
+					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A3R2)
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 					newGeneration += [current, newNote]
 			if current.pc == self.target4:
 				flip = self.R4.random()
 				#print current.pc, self.target4
 				if flip > self.testVal:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A4R1)
+<<<<<<< HEAD
 					newNote = notePC(current.octave + octaveFlag, thePC)
 					newGeneration += [current, newNote, current]
 				else:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A4R2)
 					newNote = notePC(current.octave + octaveFlag, thePC)
+=======
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+					newGeneration += [current, newNote, current]
+				else:
+					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A4R2)
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 					newGeneration += [current, newNote]
 			if current.pc == self.target5:
 				flip = self.R5.random()
 				#print current.pc, self.target5
 				if flip > self.testVal:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A5R1)
+<<<<<<< HEAD
 					newNote = notePC(current.octave + octaveFlag, thePC)
 					newGeneration += [current, newNote, current]
 				else:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A5R2)
 					newNote = notePC(current.octave + octaveFlag, thePC)
+=======
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+					newGeneration += [current, newNote, current]
+				else:
+					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A5R2)
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 					newGeneration += [current, newNote]
 			if current.pc == self.target6:
 				flip = self.R6.random()
 				#print current.pc, self.target6
 				if flip > self.testVal:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A6R1)
+<<<<<<< HEAD
 					newNote = notePC(current.octave + octaveFlag, thePC)
 					newGeneration += [current, newNote, current]
 				else:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A6R2)
 					newNote = notePC(current.octave + octaveFlag, thePC)
+=======
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+					newGeneration += [current, newNote, current]
+				else:
+					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A6R2)
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 					newGeneration += [current, newNote]
 			if current.pc == self.target7:
 				flip = self.R7.random()
 				#print current.pc, self.target7
 				if flip > self.testVal:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A7R1)
+<<<<<<< HEAD
 					newNote = notePC(current.octave + octaveFlag, thePC)
 					newGeneration += [current, newNote, current]
 				else:
 					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A7R2)
 					newNote = notePC(current.octave + octaveFlag, thePC)
+=======
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+					newGeneration += [current, newNote, current]
+				else:
+					octaveFlag, thePC = self.getAbsPitch(current.pc, self.A7R2)
+					stage1 = notePC(current.octave + octaveFlag, thePC)
+					newNote = self.overflowTest(stage1)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 					newGeneration += [current, newNote]
 		return newGeneration
 					

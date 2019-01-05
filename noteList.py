@@ -5,6 +5,7 @@ import note
 import random
 
 class noteList:
+<<<<<<< HEAD
 	def __init__(self, test, seed):
 		self.test = test
 		self.seed = seed
@@ -20,6 +21,33 @@ class noteList:
 			pitches = SG.makeSystem(startingList, generations)
 		elif type is "PF":
 			pass	
+=======
+	def __init__(self, updownfactor, grammarseed):
+		self.updownfactor = updownfactor # decimal from 0 to 1, percentage
+							# higher percentange, each repetition of the grammar more likely to go down
+							# dictates movement of each repetition of grammar - up or down
+		self.grammarseed = grammarseed # seed for the grammar
+		self.B = bangleize.bangleize()
+
+	def getList(self, grammarType, startingOctave, startingNote, generations, startingPitch, rType, rhythm):
+		startingList = [note.notePC(startingOctave,startingNote), ]
+		
+		# swg - stepwise grammer (stochastic stepwise grammar)
+		# functions on scale degrees instead of pitches
+
+		grammar = None
+
+		if grammarType is "SWG":
+			grammar = stepwise.grammar(self.updownfactor, self.grammarseed, startingPitch)
+		elif grammarType is "SG":
+			grammar = stochasticGrammar.grammar(self.updownfactor, self.grammarseed)
+		else:
+			raise Exception('Your grammar is unacceptable.')
+
+		pitches = grammar.makeSystem(startingList, generations)
+
+
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 		rhythmList = list()	
 		if isinstance(rhythm, int):	
 			passMe = [random.randint(1, rhythm) for x in range(0, 100000)]    

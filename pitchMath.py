@@ -1,6 +1,7 @@
 from lxml import etree
 
 def convertToXML(list, fname):
+	partNumber = 0
 	root = etree.Element("score-partwise")
 	root.attrib["version"] = "3.0"
 	partList = etree.SubElement(root, "part-list")
@@ -71,7 +72,7 @@ def convertToXML(list, fname):
 				theOctave = etree.SubElement(thePitch, "octave")
 				theOctave.text = str(thing.octave)
 				theDur = etree.SubElement(theNote, "duration")
-				theDur.text = str(thing.dur)
+				theDur.text = str(thing.duration)
 				if thing.alter:
 					accidental = etree.SubElement(theNote, "accidental")
 					accidental.text = thing.accidental
@@ -81,7 +82,7 @@ def convertToXML(list, fname):
 				measure = etree.SubElement(part, "measure")
 				subList = []
 				#break up things into sub parts?
-				counter = thing.dur - subdivisionCount
+				counter = thing.duration - subdivisionCount
 				while counter > 0:
 					newVal = counter - measureMax
 					subList.append(newVal)

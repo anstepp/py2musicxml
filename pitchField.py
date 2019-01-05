@@ -15,6 +15,20 @@ class pitchField:
 		pc = (inNote % 1) * 100
 		return octave, pc
 
+<<<<<<< HEAD
+=======
+	def overflowTest(self, inNote):
+		octave, noteToFix = self.stripNote(inNote)
+		if noteToFix > 11:
+			fixedNote = noteToFix - 12
+			return (octave + 1) + (fixedNote / 100)
+		elif noteToFix < 0:
+			fixedNote = noteToFix + 12
+			return (octave - 1) + (fixedNote / 100)
+		else:
+			return inNote
+
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 	def makeField(self):
 		pitchField = list()
 		if isinstance(self.rule, list):
@@ -23,7 +37,11 @@ class pitchField:
 			while currentPitch < 10.12:
 				pitchField.append(currentPitch)
 				currentPitch += next(cycleMe) * 0.01
+<<<<<<< HEAD
 				currentPitch.overflowTest()
+=======
+				currentPitch = self.overflowTest(currentPitch)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 		elif isinstance(self.rule, str):
 			theRule = list()
 			for item in self.rule:
@@ -37,7 +55,11 @@ class pitchField:
 			while currentPitch < 12.12:
 				pitchField.append(currentPitch)
 				currentPitch += next(cycleMe) * 0.01
+<<<<<<< HEAD
 				currentPitch.overflowTest()
+=======
+				currentPitch = self.overflowTest(currentPitch)
+>>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 		return pitchField
 
 	def makeRules(self, fieldRules):
