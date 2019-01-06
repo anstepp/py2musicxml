@@ -4,24 +4,8 @@ import bangleize
 import note
 import random
 
-class noteList:
-<<<<<<< HEAD
-	def __init__(self, test, seed):
-		self.test = test
-		self.seed = seed
-		self.B = bangleize.bangleize()
+class noteList:	
 
-	def getList(self, type, startingOctave, startingNote, generations, startingPitch, rType, rhythm):
-		startingList = [note.notePC(startingOctave,startingNote), ]
-		if type is "SWG":
-			SWG = stepwise.grammar(self.test, self.seed, startingPitch)
-			pitches = SWG.makeSystem(startingList, generations)
-		elif type is "SG":
-			SG = stochasticGrammar.grammar(self.test, self.seed)
-			pitches = SG.makeSystem(startingList, generations)
-		elif type is "PF":
-			pass	
-=======
 	def __init__(self, updownfactor, grammarseed):
 		self.updownfactor = updownfactor # decimal from 0 to 1, percentage
 							# higher percentange, each repetition of the grammar more likely to go down
@@ -47,7 +31,6 @@ class noteList:
 		pitches = grammar.makeSystem(startingList, generations)
 
 
->>>>>>> 01c53147638d5f1eb4f7342e3d44bfe98c556e9c
 		rhythmList = list()	
 		if isinstance(rhythm, int):	
 			passMe = [random.randint(1, rhythm) for x in range(0, 100000)]    

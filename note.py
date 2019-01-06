@@ -19,14 +19,20 @@ class note(noteRhythm, notePC):
 		self.tupletEnd = False
 		self.overflowTest()
 
+	@classmethod
+	def initFromList(cls, r, octave, pc):
+		self.dur = r
+		self.octave = octave
+		self.pitch = pc
+		self.overflowTest()
+
 	def overflowTest(self):
-		if self.pc > 11:
-			self.pc = self.pc - 12
-			self.octave = self.octave + 1
+		if self.pc > 0:
+			self.pc = self.pc % 12
+			self.octave = self.octave + self.pc // 12
 		elif self.pc < 0:
-			self.pc = self.pc + 12
-			self.octave = self.octave - 1
-		else:
+			self.pc = 12 - self.pc % 12
+			self.octave = self.octave - self.pc // 12
 			pass
 
 # the life of a note
@@ -70,6 +76,7 @@ class note(noteRhythm, notePC):
 		self.duration = duration
 		self.octave = octave
 		self.pitch = pitch
+
 
 	def makeOctavePC(self):
 		octave = int(self.pitch)
