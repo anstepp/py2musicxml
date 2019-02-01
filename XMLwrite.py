@@ -5,10 +5,10 @@ import noteList
 # noteList.getList:type, starting octave, starting note, generations, tonic
 import random
 
-random.seed(20)
+random.seed(2)
 
 array = list()
-for x in range(0, 2):
+for x in range(0, 12):
 	array.append(noteList.noteList(0.8, x))
 
 listList = list()
@@ -22,9 +22,25 @@ for item in array:
 	tonic note,
 	Remainders "EU" or Bjorklund "ES",
 	max feed to the rhythm machine or list """
-	generations = 12 # 12 before
-	# 8 is octave A flat
-	thing = item.getList("SWG", 6, 8, generations, 8, "ES", 45)
+	
+	grammar = "SG" # stochastic grammar
+	starting_octave = 2
+	starting_note = 8
+	generations = 1
+	starting_pitch = 8
+	rtype = "EU"
+	rhythm = 45
+
+
+	thing = item.getList(
+		grammar,
+		starting_octave,
+		starting_note,
+		generations, 
+		starting_pitch,
+		rtype, 
+		rhythm
+	)
 	choices = [2]
 	scale = random.choice(choices)
 	appendMe = [thing, scale]
