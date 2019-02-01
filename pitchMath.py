@@ -1,11 +1,11 @@
 from lxml import etree
 
-def convertToXML(list, fname):
+def convertToXML(theList, fname):
 	root = etree.Element("score-partwise")
 	root.attrib["version"] = "3.0"
 	partList = etree.SubElement(root, "part-list")
 	partNumber = 0
-	for item in list:
+	for item in theList:
 		partNumber += 1
 		scorePart = etree.SubElement(partList, "score-part")
 		scorePart.attrib["id"] = "P" + str(partNumber)

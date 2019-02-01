@@ -44,8 +44,15 @@ class bangleize:
 		return returnList[0]
 
 
-	def eSpaced(self, theNoteList):
-		last = None
+	def eSpaced(self, attacks, size, count):
+		shortList = self.bjorklund(attacks, size)
+		longList = shortList
+		[longList + shortList for x in range(0, count)]
+		for location, attack in enumerate(longList):
+			if attack is 0:
+				longList[location - 1] += 1
+		longList = [x for x in longList if x > 0]
+		return longList
 		
 	
 	def euclid(self, u, v):

@@ -26,14 +26,14 @@ class noteList:
 			for x in passMe:
 				rhythmList.append(note.noteRhythm(dur=x))
 			if rType is "ES":
-				rhythms = self.B.eSpaced(rhythmList)
+				rhythms = self.B.eSpaced(rhythm[0], rhythm[1], rhythm[2])
 			elif rType is "EU":
 				rhythms = self.B.euclidize(rhythmList)
 		elif isinstance(rhythm, list):
 			for x in rhythm:
 				rhythmList.append(note.noteRhythm(dur=x))
 			if rType is "ES":
-				rhythms = self.B.eSpaced(rhythmList)
+				rhythms = self.B.eSpaced(rhythm[0], rhythm[1], rhythm[2])
 			elif rType is "EU":
 				rhythms = self.B.euclidize(rhythmList)
 		noteList = list()
