@@ -18,8 +18,9 @@ generations = 10
 first = one.getList("SWG", 5, 5, generations, 5, "ES", [7, 20, 10])
 second = two.getList("SWG", 3, 10, generations, 10, "ES", [9, 22, 10])
 
-scale = 0.5
+print(first)
+print(second)
 
-listList = [[first, scale], [second, scale]]
+listList = [[first, 1], [second, 2]]
 
 pitchMath.convertToXML(listList, "score2.xml")

@@ -3,6 +3,7 @@ import stepwise, stochasticGrammar
 import bangleize
 import note
 import random
+import copy
 
 class noteList:	
 
@@ -13,10 +14,37 @@ class noteList:
 		self.grammarseed = grammarseed # seed for the grammar
 		self.B = bangleize.bangleize()
 
+
+	#this works, but I don't know if it's wise to actually adjust the list while it's being read
+	#maybe some research
+	#also, sometimes finale misreads by a 64th note. Not sure about that.
+	def groupList(self, theList):
+		currentList = theList
+		#for now, assume 4/4 at a factor of 1
+		measureFactor = 1
+		measureBeats = 4
+		currentCount = 0
+		for location, item in enumerate(currentList):
+			currentCount += item.dur
+			if currentCount > measureBeats * measureFactor:
+				#print("making copies")
+				overflow = currentCount % measureBeats
+				currentList[location].dur = currentList[location].dur - overflow
+				currentList[location].tieStart = True
+				tiedNote = copy.copy(currentList[location])
+				tiedNote.dur = overflow
+				tiedNote.tieEnd = True
+				currentList.insert(location + 1, tiedNote)
+				currentCount = 0
+			else:
+				#print("no change")
+				pass
+		return currentList
+
 	def getList(self, grammarType, startingOctave, startingNote, generations, startingPitch, rType, rhythm):
 		startingList = [note.notePC(startingOctave,startingNote), ]
 		
-		# swg - stepwise grammer (stochastic stepwise grammar)
+		# swg - stepwise grammar (stochastic stepwise grammar)
 		# functions on scale degrees instead of pitches
 
 		grammar = None
@@ -51,4 +79,7 @@ class noteList:
 			x = note.note(r,p.octave,p.pc)
 			x.stepName, x.alter, x.accidental = x.getNoteName(startingPitch)
 			noteList.append(x)
+		print("before", noteList)
+		noteList = self.groupList(noteList)	
+		print("after", noteList)
 		return noteList
