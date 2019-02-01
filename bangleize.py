@@ -1,4 +1,4 @@
-
+import itertools
 import random
 from note import *
 
@@ -47,8 +47,9 @@ class bangleize:
 
 	def eSpaced(self, attacks, size, count):
 		shortList = self.bjorklund(attacks, size)
-		longList = shortList
-		[longList + shortList for x in range(0, count)]
+		longList = []
+		for x in range(0, count):
+			longList += shortList
 		for location, attack in enumerate(longList):
 			if attack is 0:
 				longList[location - 1] += 1

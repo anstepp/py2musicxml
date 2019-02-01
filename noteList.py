@@ -30,7 +30,6 @@ class noteList:
 
 		pitches = grammar.makeSystem(startingList, generations)
 
-
 		rhythmList = list()	
 		if isinstance(rhythm, int):	
 			passMe = [random.randint(1, rhythm) for x in range(0, 100000)]    

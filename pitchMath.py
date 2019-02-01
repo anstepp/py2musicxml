@@ -1,11 +1,12 @@
 from lxml import etree
 
-def convertToXML(list, fname):
+def convertToXML(theList, fname):
 	partNumber = 0
 	root = etree.Element("score-partwise")
 	root.attrib["version"] = "3.0"
 	partList = etree.SubElement(root, "part-list")
 	partNumber = 0
+	print(theList)
 	for item in theList:
 		partNumber += 1
 		scorePart = etree.SubElement(partList, "score-part")
@@ -37,7 +38,9 @@ def convertToXML(list, fname):
 		sign.text = "G"
 		line = etree.SubElement(clef, "line")
 		line.text = "2"
+		print(item)
 		for thing in item[0]:
+			print(thing)
 			measure.attrib["number"] = str(currentMeasure)
 			if thing.pc is not True:	
 				thing.makeOctavePC()

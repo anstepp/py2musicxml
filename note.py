@@ -19,6 +19,7 @@ class note(noteRhythm, notePC):
         self.tupletContinue = False
         self.tupletEnd = False
         self.overflowTest()
+        self.measureFactor = 1
 
     @classmethod
     def initFromList(cls, r, octave, pc):
@@ -36,6 +37,11 @@ class note(noteRhythm, notePC):
             self.octave = self.octave - self.pc // 12
             pass
 
+    def makeOctavePC(self):
+        octave = int(self.pitch)
+        floatPC = self.pitch % 1
+        pc = int(round(floatPC, 2) * 100)
+        return octave, pc
 
 # the life of a note
 
@@ -54,33 +60,29 @@ class note(noteRhythm, notePC):
 # pc - pitch class
 
 
-class note(noteRhythm, notePC):
-    duration = None
-    octave = None
-    pitch = None
+# class note(noteRhythm, notePC):
+#     duration = None
+#     octave = None
+#     pitch = None
 
-    # flags for ties
-    tieStart = False
-    tieContinue = False
-    tieEnd = False
+#     # flags for ties
+#     tieStart = False
+#     tieContinue = False
+#     tieEnd = False
 
-    # flags for tuplets
-    tupletStart = False
-    tupletContinue = False
-    tupletEnd = False
+#     # flags for tuplets
+#     tupletStart = False
+#     tupletContinue = False
+#     tupletEnd = False
 
-    def __init__(self, duration, octave, pitch):
+#     def __init__(self, duration, octave, pitch):
 
-        notePC.__init__(self, octave, pitch)
+#         notePC.__init__(self, octave, pitch)
 
-        noteRhythm.__init__(self, dur=duration)
+#         noteRhythm.__init__(self, dur=duration)
 
-        self.duration = duration
-        self.octave = octave
-        self.pitch = pitch
+#         self.duration = duration
+#         self.octave = octave
+#         self.pitch = pitch
 
-    def makeOctavePC(self):
-        octave = int(self.pitch)
-        floatPC = self.pitch % 1
-        pc = int(round(floatPC, 2) * 100)
-        return octave, pc
+
