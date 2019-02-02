@@ -20,6 +20,7 @@ class note(noteRhythm, notePC):
         self.tupletEnd = False
         self.overflowTest()
         self.measureFactor = 1
+        self.measureFlag = False
 
     @classmethod
     def initFromList(cls, r, octave, pc):
@@ -42,6 +43,7 @@ class note(noteRhythm, notePC):
         floatPC = self.pitch % 1
         pc = int(round(floatPC, 2) * 100)
         return octave, pc
+
 
 # the life of a note
 
@@ -84,5 +86,3 @@ class note(noteRhythm, notePC):
 #         self.duration = duration
 #         self.octave = octave
 #         self.pitch = pitch
-
-
