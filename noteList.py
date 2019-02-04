@@ -16,36 +16,31 @@ class noteList:
 
     def groupList(self, theList):
         currentList = theList
-        # for now, assume 4/4 at a factor of 1 (zero-indexing!)
+        # for now, assume 4/4 at a factor of quarter notes
         measureFactor = 1
-        measureBeats = 3
+        measureBeats = 4
         currentCount = 0
         returnList = []
         for location, item in enumerate(currentList):
             currentCount += item.dur
-            # print("currentCount", currentCount)
             if currentCount > measureBeats:
-                # print("making copies", currentCount)
                 overflow = currentCount % measureBeats
-                if location != len(currentList) - 1:
-                    currentList[location + 1].measureFlag = True
-                currentNote = copy.copy(currentList[location])
+                currentNote = copy.deepcopy(currentList[location])
                 currentNote.dur = currentList[location].dur - overflow
-                currentList[location].tieStart = True
+                currentNote.tieStart = True
                 returnList.append(currentNote)
-                tiedNote = copy.copy(currentList[location])
+                tiedNote = copy.deepcopy(currentList[location])
                 tiedNote.dur = overflow
                 tiedNote.tieEnd = True
-                currentList.insert(location + 1, tiedNote)
-                currentCount = overflow
+                tiedNote.measureFlag = True
                 returnList.append(tiedNote)
+                currentCount = overflow
             elif currentCount == measureBeats:
-                # print("new measure")
                 if location != len(currentList) - 1:
                     currentList[location + 1].measureFlag = True
+                returnList.append(item)
                 currentCount = 0
             else:
-                # print("no change")
                 returnList.append(item)
         return returnList
 

@@ -1,18 +1,700 @@
-[[1], [1], [1], [1], [1], [0], [0], [0]]
-0 [1]
-1 [1]
-2 [1]
-3 [1]
-4 [1]
-5 [0]
-6 [0]
-7 [0]
-[[1, 0], [1, 0], [1, 0], [1], [1]]
-remainder is 5
-[[1, 0, 1], [1, 0, 1], [1, 0]]
-remainder is 3
-[[1, 0, 1, 1, 0], [1, 0, 1]]
-remainder is 2
-[[1, 0, 1, 1, 0, 1, 0, 1]]
-remainder is 1
-[[1, 0, 1, 1, 0, 1, 0, 1]]
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 3
+no change
+currentCount 4
+new measure
+currentCount 2
+no change
+currentCount 4
+new measure
+currentCount 1
+no change
+currentCount 3
+no change
+currentCount 5
+making copies 5
+new measure, flagged 5
+currentNote fixed dur: 1
+tiedNote fixed dur: 1
+currentCount 1
+currentCount 2
+no change
+currentCount 4
+new measure
