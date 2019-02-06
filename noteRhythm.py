@@ -2,7 +2,11 @@
 
 
 class noteRhythm:
-    def __init__(self, *args, **kwargs):
+    def __init__(self, dur):
+        self.dur = dur
+
+    @classmethod
+    def oldInit(self, *args, **kwargs):
         for key, value in kwargs.items():
             if key is "samps":
                 self.numSamps = value

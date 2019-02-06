@@ -1,700 +1,4040 @@
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 13
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. -1
+Note out of bounds - this could be a problem. 16
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 15
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. -2
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. 12
+Note out of bounds - this could be a problem. 14
+Note out of bounds - this could be a problem. -2
+2.0
 currentCount 2
-no change
+currentCount 1
 currentCount 3
-no change
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 3.0
+logic for ties 3.0 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+currentCount 2
+currentCount 1
+currentCount 3
+logic for ties 3 2.0
+overflow 1.0
+pre-tie 1.0
+currentCount 2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+4.0
+2.0
+2.0
+2.0
+2.0
+12
+currentCount 2
+currentCount 3
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 7
+currentCount 9
+currentCount 10
+currentCount 12
 currentCount 2
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
+currentCount 10
+currentCount 12
 currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
+currentCount 10
+currentCount 12
 currentCount 1
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
+currentCount 6
+currentCount 8
+currentCount 10
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 6
+currentCount 8
+currentCount 10
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
 currentCount 4
-new measure
-currentCount 2
-no change
+currentCount 6
+currentCount 8
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 8
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 12
+currentCount 2
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 12
 currentCount 2
-no change
 currentCount 4
-new measure
-currentCount 1
-no change
-currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 7
+currentCount 9
+currentCount 10
+currentCount 12
 currentCount 2
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 9
+currentCount 10
+currentCount 12
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
+currentCount 10
+currentCount 12
 currentCount 1
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
+currentCount 10
+currentCount 12
 currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 6
+currentCount 8
+currentCount 10
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
+currentCount 6
+currentCount 8
+currentCount 10
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
 currentCount 4
-new measure
-currentCount 2
-no change
+currentCount 6
+currentCount 8
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 8
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 12
+currentCount 2
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 12
 currentCount 2
-no change
-currentCount 3
-no change
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 9
+currentCount 10
+currentCount 12
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 7
+currentCount 9
+currentCount 10
+currentCount 12
 currentCount 2
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
+currentCount 10
+currentCount 12
 currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
+currentCount 10
+currentCount 12
 currentCount 1
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
+currentCount 6
+currentCount 8
+currentCount 10
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 6
+currentCount 8
+currentCount 10
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
 currentCount 4
-new measure
-currentCount 2
-no change
+currentCount 6
+currentCount 8
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 8
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 13
+logic for ties 13 12
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 12
+currentCount 2
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 9
+currentCount 11
+currentCount 12
 currentCount 2
-no change
 currentCount 4
-new measure
-currentCount 1
-no change
-currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 9
+currentCount 10
+currentCount 12
+currentCount 2
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 9
+currentCount 10
+currentCount 12
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
+currentCount 10
+currentCount 12
 currentCount 1
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
+currentCount 10
+currentCount 12
 currentCount 1
 currentCount 3
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 6
+currentCount 8
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.3333333333333333
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+0.6666666666666666
+0.3333333333333333
+0.6666666666666666
+8
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 8
+currentCount 2
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 3
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
 currentCount 3
-no change
 currentCount 4
-new measure
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
 currentCount 2
-no change
 currentCount 4
-new measure
-currentCount 1
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 7
+currentCount 8
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
 currentCount 2
-no change
 currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 8
+currentCount 2
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 7
+currentCount 8
 currentCount 1
 currentCount 3
-no change
 currentCount 4
-new measure
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
 currentCount 2
-no change
 currentCount 4
-new measure
-currentCount 1
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 7
+currentCount 8
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 8
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
 currentCount 2
-no change
 currentCount 4
-new measure
-currentCount 1
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 7
+currentCount 8
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
 currentCount 3
-no change
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
+currentCount 7
+currentCount 8
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 2
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
 currentCount 1
 currentCount 3
-no change
 currentCount 4
-new measure
-currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
-currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
-currentCount 1
-currentCount 3
-no change
-currentCount 4
-new measure
+currentCount 7
+currentCount 8
 currentCount 2
-no change
-currentCount 4
-new measure
-currentCount 1
-no change
 currentCount 3
-no change
 currentCount 5
-making copies 5
-new measure, flagged 5
-currentNote fixed dur: 1
-tiedNote fixed dur: 1
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
 currentCount 1
 currentCount 2
-no change
 currentCount 4
-new measure
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+currentCount 6
+currentCount 7
+currentCount 9
+logic for ties 9 8
+overflow 1
+pre-tie 1
+currentCount 2
+currentCount 4
+currentCount 5
+currentCount 7
+currentCount 8
+currentCount 2
+currentCount 3
+currentCount 5
+currentCount 6
+currentCount 8
+currentCount 1
+currentCount 3
+currentCount 4
+1.0
+0.5
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+0.5
+0.5
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+1.0
+0.5
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 4.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+2.0 2.0
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+12 0.6666666666666666
+12 0.3333333333333333
+12 0.6666666666666666
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 0.5
+8 0.5
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5
+8 1.0
+8 0.5

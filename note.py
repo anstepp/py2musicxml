@@ -18,6 +18,8 @@ class note(noteRhythm, notePC):
         self.tupletStart = False
         self.tupletContinue = False
         self.tupletEnd = False
+        #run overflow test on instantiation to check
+        #for pc over or under 12 from calculations
         self.overflowTest()
         self.measureFactor = 1
         self.measureFlag = False
