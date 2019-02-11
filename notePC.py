@@ -2,7 +2,10 @@ class notePC:
     def __init__(self, octave, pc):
         self.octave = octave
         self.pc = pc
+        self.overflowTest()
         self.stepName, self.alter, self.accidental = self.getNoteName(0)
+        print(self.octave, self.pc)
+
 
     """turn into oct.pc format for rtcmix"""
 
@@ -98,3 +101,11 @@ class notePC:
             else:
                 print("Note out of bounds - this could be a problem.")
                 return [None, None, None]
+
+    def overflowTest(self):
+        if self.pc > 0:
+            self.pc = self.pc % 12
+            self.octave = self.octave + self.pc // 12
+        elif self.pc < 0:
+            self.pc = self.pc % 12
+            self.octave = self.octave - self.pc // 12

@@ -17,7 +17,7 @@ generations = 10
 # first = one.getList("SWG", 5, 5, generations, 5, "ES", [random.uniform(10, 20) for x in range(20)])
 # second = two.getList("SWG", 4, 10, generations, 10, "ES", [random.uniform(10, 20) for x in range(20)])
 
-factor1 = 0.5
+factor1 = 1
 factor2 = 3
 factor3 = 2
 beats = 4
