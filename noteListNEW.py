@@ -10,11 +10,11 @@ class noteList:
         self.finalList = None
 
     # is this redundant with the cleanList(), or do we make that default beahvior?
-    def getList(self, inputList, factor, beats, how):
+    def getList(self, inputList, factor, beats, noteSortMethod):
         self.measureFactor = factor
         self.measureBeats = beats
         self.currentList = inputList
-        cleanList(how)
+        cleanList(noteSortMethod)
 
     def cleanList(self, how):
         if how is "Implied":
@@ -98,9 +98,10 @@ class noteList:
                     # print("overflow", overflow)
                     preTie = self.currentList[location].dur - overflow
                     # print("pre-tie", preTie)
-                    currentNote.dur = preTie / self.measureFactor
+                    currentNote.dur = preTie / currentMultiplier
                     currentNote.tieStart = True
                     returnList.append(currentNote)
+                    # there should probably be a "no accidental" flag, too
                     tiedNote = copy.deepcopy(self.currentList[location])
                     tiedNote.dur = overflow / measureFactor
                     tiedNote.tieEnd = True
