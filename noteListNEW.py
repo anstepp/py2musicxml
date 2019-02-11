@@ -9,20 +9,30 @@ class noteList:
         self.currentList = None
         self.finalList = None
 
-    def getList(self, inputList, factor, beats):
+    # is this redundant with the cleanList(), or do we make that default beahvior?
+    def getList(self, inputList, factor, beats, how):
         self.measureFactor = factor
         self.measureBeats = beats
         self.currentList = inputList
-        self.finalList = groupList()
+        cleanList(how)
+
+    def cleanList(self, how):
+        if how is "Implied":
+            self.finalList = groupByImpliedMeter()
+        if how is "Map":
+            self.finalList = groupByMap()
+        # default to 4/4
+        else:
+            self.finalList = groupList()
 
     def groupList(self):
         currentCount = 0
         returnList = []
         subdivisions = self.measureFactor * self.measureBeats
-        print(subdivisions)
+        # print(subdivisions)
         for location, item in enumerate(self.currentList):
             currentCount += item.dur
-            print("currentCount", currentCount)
+            # print("currentCount", currentCount)
             if currentCount == subdivisions:
                 if location != len(currentList) - 1:
                     self.currentList[location + 1].measureFlag = True
@@ -32,11 +42,11 @@ class noteList:
                 currentCount = 0
             elif currentCount > subdivisions:
                 currentNote = copy.deepcopy(self.currentList[location])
-                print("logic for ties", currentCount, subdivisions)
+                # print("logic for ties", currentCount, subdivisions)
                 overflow = currentCount - subdivisions
-                print("overflow", overflow)
+                # print("overflow", overflow)
                 preTie = self.currentList[location].dur - overflow
-                print("pre-tie", preTie)
+                # print("pre-tie", preTie)
                 currentNote.dur = preTie / self.measureFactor
                 currentNote.tieStart = True
                 returnList.append(currentNote)
@@ -50,4 +60,55 @@ class noteList:
                 alteredDuration = copy.deepcopy(self.currentList[location])
                 alteredDuration.dur = alteredDuration.dur / self.measureFactor
                 returnList.append(alteredDuration)
+        return returnList
+
+    def groupByImpliedMeter(self):
+        pass
+        """eventually, group measures by emphasis of rhythm and pitch
+        this might have to find a way to work between two different
+        pitch class objects to create a list of interactions. Not
+        sure what to do yet. There also needs to be a way to pass
+        the measure information onto the XML parser."""
+
+    """this method is designed to take an input map to allow
+    for various time signatures being user defined, or to 
+    have different proportions per measure.
+    It may not work yet."""
+
+    def groupByMap(self, inputMap):
+        mapToGroup = Map
+        for mapValue in mapToGroup:
+            currentBeats = mapValue[0]
+            currentMultiplier = mapValue[1]
+            subdivisions = currentBeats * currentMultiplier
+            for location, item in enumerate(self.currentList):
+                currentCount += item.dur
+                # print("currentCount", currentCount)
+                if currentCount == subdivisions:
+                    if location != len(currentList) - 1:
+                        self.currentList[location + 1].measureFlag = True
+                    alteredDuration = copy.deepcopy(self.currentList[location])
+                    alteredDuration.dur = alteredDuration.dur / currentMultiplier
+                    returnList.append(alteredDuration)
+                    currentCount = 0
+                elif currentCount > subdivisions:
+                    currentNote = copy.deepcopy(self.currentList[location])
+                    # print("logic for ties", currentCount, subdivisions)
+                    overflow = currentCount - subdivisions
+                    # print("overflow", overflow)
+                    preTie = self.currentList[location].dur - overflow
+                    # print("pre-tie", preTie)
+                    currentNote.dur = preTie / self.measureFactor
+                    currentNote.tieStart = True
+                    returnList.append(currentNote)
+                    tiedNote = copy.deepcopy(self.currentList[location])
+                    tiedNote.dur = overflow / measureFactor
+                    tiedNote.tieEnd = True
+                    tiedNote.measureFlag = True
+                    returnList.append(tiedNote)
+                    currentCount = overflow
+                else:
+                    alteredDuration = copy.deepcopy(self.currentList[location])
+                    alteredDuration.dur = alteredDuration.dur / currentMultiplier
+                    returnList.append(alteredDuration)
         return returnList
