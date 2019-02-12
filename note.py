@@ -5,8 +5,6 @@ from math import ceil
 
 class note(noteRhythm, notePC):
     def __init__(self, r, octave, pc):
-        # notePC.__init__(self, octave, pc)
-        # noteRhythm.__init__(self, dur=r)
         self.dur = r
         self.octave = octave
         self.pc = pc
@@ -20,7 +18,9 @@ class note(noteRhythm, notePC):
         self.tupletEnd = False
         self.measureFactor = 1
         self.measureFlag = False
+        # called to correct any errant pitch classes
         self.overflowTest()
+        # get these variables upon instantiation in the case the list is acted upon
         self.stepName, self.alter, self.accidental = self.getNoteName(0)
 
     @classmethod
