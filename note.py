@@ -5,8 +5,8 @@ from math import ceil
 
 class note(noteRhythm, notePC):
     def __init__(self, r, octave, pc):
-        #notePC.__init__(self, octave, pc)
-        #noteRhythm.__init__(self, dur=r)
+        # notePC.__init__(self, octave, pc)
+        # noteRhythm.__init__(self, dur=r)
         self.dur = r
         self.octave = octave
         self.pc = pc
@@ -30,23 +30,100 @@ class note(noteRhythm, notePC):
         pc = notePC.pc
         return cls(dur, octave, pc)
 
-    # def overflowTest(self):
-    #     if self.pc > 11:
-    #         print("over", self.pc)
-    #         self.pc = self.pc % 12
-    #         self.octave = self.octave + self.pc // 12
-    #         print("modified", self.pc)
-    #     elif self.pc < 0:
-    #         print("under", self.pc)
-    #         self.pc = 12 - self.pc % 12
-    #         self.octave = self.octave - self.pc // 12
-    #         print("modified", self.pc)
+    def getNoteName(self, startingPitch):
+        flatKeys = [1, 3, 5, 8, 10]
+        sharpKeys = [2, 4, 6, 7, 9, 11]
+        if startingPitch is 0:
+            if self.pc == 0:
+                return ["C", "0", "natural"]
+            elif self.pc == 1:
+                return ["C", "1", "sharp"]
+            elif self.pc == 2:
+                return ["D", "0", "natural"]
+            elif self.pc == 3:
+                return ["E", "-1", "flat"]
+            elif self.pc == 4:
+                return ["E", "0", "natural"]
+            elif self.pc == 5:
+                return ["F", "0", "natural"]
+            elif self.pc == 6:
+                return ["F", "1", "sharp"]
+            elif self.pc == 7:
+                return ["G", "0", "natural"]
+            elif self.pc == 8:
+                return ["A", "-1", "flat"]
+            elif self.pc == 9:
+                return ["A", "0", "natural"]
+            elif self.pc == 10:
+                return ["B", "-1", "flat"]
+            elif self.pc == 11:
+                return ["B", "0", "natural"]
+            else:
+                print("Note out of bounds - this could be a problem.", self.pc)
+                return [None, None, None]
+        if startingPitch in flatKeys:
+            if self.pc == 0:
+                return ["C", "0", "natural"]
+            elif self.pc == 1:
+                return ["D", "-1", "flat"]
+            elif self.pc == 2:
+                return ["D", "0", "natural"]
+            elif self.pc == 3:
+                return ["E", "-1", "flat"]
+            elif self.pc == 4:
+                return ["E", "0", "natural"]
+            elif self.pc == 5:
+                return ["F", "0", "natural"]
+            elif self.pc == 6:
+                return ["G", "-1", "flat"]
+            elif self.pc == 7:
+                return ["G", "0", "natural"]
+            elif self.pc == 8:
+                return ["A", "-1", "flat"]
+            elif self.pc == 9:
+                return ["A", "0", "natural"]
+            elif self.pc == 10:
+                return ["B", "-1", "flat"]
+            elif self.pc == 11:
+                return ["B", "0", "natural"]
+            else:
+                print("Note out of bounds - this could be a problem.")
+                return [None, None, None]
+        if startingPitch in sharpKeys:
+            if self.pc == 0:
+                return ["C", "0", "natural"]
+            elif self.pc == 1:
+                return ["C", "1", "sharp"]
+            elif self.pc == 2:
+                return ["D", "0", "natural"]
+            elif self.pc == 3:
+                return ["D", "1", "sharp"]
+            elif self.pc == 4:
+                return ["E", "0", "natural"]
+            elif self.pc == 5:
+                return ["F", "0", "natural"]
+            elif self.pc == 6:
+                return ["F", "1", "sharp"]
+            elif self.pc == 7:
+                return ["G", "0", "natural"]
+            elif self.pc == 8:
+                return ["G", "1", "sharp"]
+            elif self.pc == 9:
+                return ["A", "0", "natural"]
+            elif self.pc == 10:
+                return ["A", "1", "sharp"]
+            elif self.pc == 11:
+                return ["B", "0", "natural"]
+            else:
+                print("Note out of bounds - this could be a problem.")
+                return [None, None, None]
 
     def makeOctavePC(self):
         octave = int(self.pitch)
         floatPC = self.pitch % 1
         pc = int(round(floatPC, 2) * 100)
         return octave, pc
+
 
 # the life of a note
 
@@ -59,35 +136,3 @@ class note(noteRhythm, notePC):
 # when beat is divided by 2, subdivisions are in groups of 2 - simple time
 # by 3, compound
 # 4 is outgrowth of 2, can be reduced into 2
-#
-
-
-# pc - pitch class
-
-
-# class note(noteRhythm, notePC):
-#     duration = None
-#     octave = None
-#     pitch = None
-
-#     # flags for ties
-#     tieStart = False
-#     tieContinue = False
-#     tieEnd = False
-
-#     # flags for tuplets
-#     tupletStart = False
-#     tupletContinue = False
-#     tupletEnd = False
-
-#     def __init__(self, duration, octave, pitch):
-
-#         notePC.__init__(self, octave, pitch)
-
-#         noteRhythm.__init__(self, dur=duration)
-
-#         self.duration = duration
-#         self.octave = octave
-#         self.pitch = pitch
-
-
