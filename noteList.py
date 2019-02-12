@@ -2,18 +2,25 @@ import note
 
 
 class noteList:
-    def __init__(self):
+    def __init__(self, theList):
         self.initalList = None
         self.measureFactor = None
         self.measureBeats = None
-        self.currentList = None
+        self.currentList = theList
         self.finalList = None
 
     # is this redundant with the cleanList(), or do we make that default beahvior?
-    def getList(self, inputList, factor, beats, noteSortMethod):
-        self.measureFactor = factor
-        self.measureBeats = beats
-        self.currentList = inputList
+    """default behavior is to simply clean an input list to 4/4
+       it's also an option to feed extra arguments with keywords to 
+       modify behavior for optional cleaning methods or user choices
+       for measure groupings of factors"""
+    def getList(self, **kwargs):
+        self.measureFactor = kwargs.get("factor")
+        self.measureBeats = kwargs.get("beats")
+        if kwargs.get("how"):
+            noteSortMethod = kwargs.get("how")
+        else:
+            noteSortMethod = "Default"
         cleanList(noteSortMethod)
 
     def cleanList(self, how):
@@ -22,8 +29,11 @@ class noteList:
         if how is "Map":
             self.finalList = groupByMap()
         # default to 4/4
+        if how is "Default":
+            self.finalList = groupList()
         else:
             self.finalList = groupList()
+
 
     def groupList(self):
         currentCount = 0
