@@ -1,5 +1,7 @@
 import note
-
+from pitchMath import convertToXML
+from lxml import etree
+import copy
 
 class noteList:
     def __init__(self, theList):
@@ -15,24 +17,30 @@ class noteList:
        modify behavior for optional cleaning methods or user choices
        for measure groupings of factors"""
     def getList(self, **kwargs):
-        self.measureFactor = kwargs.get("factor")
-        self.measureBeats = kwargs.get("beats")
+        if kwargs.get("factor"):
+            self.measureFactor = kwargs.get("factor")
+        else:
+            self.measureFactor = 1
+        if kwargs.get("beats"):
+            self.measureBeats = kwargs.get("beats")
+        else:
+            self.measureBeats = 4
         if kwargs.get("how"):
             noteSortMethod = kwargs.get("how")
         else:
             noteSortMethod = "Default"
-        cleanList(noteSortMethod)
+        self.cleanList(noteSortMethod)
 
     def cleanList(self, how):
         if how is "Implied":
-            self.finalList = groupByImpliedMeter()
+            self.finalList = self.groupByImpliedMeter()
         if how is "Map":
-            self.finalList = groupByMap()
+            self.finalList = self.groupByMap()
         # default to 4/4
         if how is "Default":
-            self.finalList = groupList()
+            self.finalList = self.groupList()
         else:
-            self.finalList = groupList()
+            self.finalList = self.groupList()
 
 
     def groupList(self):
@@ -44,7 +52,7 @@ class noteList:
             currentCount += item.dur
             # print("currentCount", currentCount)
             if currentCount == subdivisions:
-                if location != len(currentList) - 1:
+                if location != len(self.currentList) - 1:
                     self.currentList[location + 1].measureFlag = True
                 alteredDuration = copy.deepcopy(self.currentList[location])
                 alteredDuration.dur = alteredDuration.dur / self.measureFactor

@@ -1,4 +1,6 @@
-from notePC import notePC
+from note import note
+from noteList import noteList
+from score import Score
 
 aaronPitches = [9,9,2,0,7]
 morganPitches = [4,0,2,7,9,7]
@@ -21,5 +23,10 @@ def fractalNames(generations, list1, list2):
 	return returnList
 
 
-iterateme = fractalNames(3, aaronPitches, morganPitches)
-noteList = [notePC(4, x) for x in iterateme]
+iterateme = fractalNames(4, aaronPitches, morganPitches)
+notes = [note(1, 2, x) for x in iterateme]
+theList = noteList(notes)
+theList.getList(factor=4)
+theScore = Score(theList)
+
+theScore.convertToXML("fractal.xml")
