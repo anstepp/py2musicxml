@@ -69,7 +69,7 @@ class noteList:
                 currentNote.tieStart = True
                 returnList.append(currentNote)
                 tiedNote = copy.deepcopy(self.currentList[location])
-                tiedNote.dur = overflow / measureFactor
+                tiedNote.dur = overflow / self.measureFactor
                 tiedNote.tieEnd = True
                 tiedNote.measureFlag = True
                 returnList.append(tiedNote)
