@@ -2,6 +2,9 @@ import note
 from pitchMath import convertToXML
 from lxml import etree
 import copy
+from functools import reduce
+import fractions
+
 
 class noteList:
     def __init__(self, theList):
@@ -16,6 +19,7 @@ class noteList:
        it's also an option to feed extra arguments with keywords to 
        modify behavior for optional cleaning methods or user choices
        for measure groupings of factors"""
+
     def getList(self, **kwargs):
         if kwargs.get("factor"):
             self.measureFactor = kwargs.get("factor")
@@ -42,10 +46,36 @@ class noteList:
         else:
             self.finalList = self.groupList()
 
+    def gcd(self, a, b):
+        if type(a) and type(b) is int:
+            while b:
+                a, b = b, a % b
+            return a
+        else:
+            #convert float to fraction by approximating denominator then gcd
+            return fractions.gcd(
+                fractions.fraction(a).limit_denominator(),
+                fractions.fraction(b).limit_denominator(),
+            )
+
+    def lcm(self, a, b):
+        return a * b // self.gcd(a, b)
+
+    def getUniques(self):
+        uniques = []
+        for item in self.currentList:
+            if item.dur not in uniques:
+                uniques.append(item.dur)
+            else:
+                pass
+        return uniques
 
     def groupList(self):
         currentCount = 0
         returnList = []
+        uniqueDurations = self.getUniques()
+        lcmOfDurations = reduce(self.lcm, uniqueDurations)
+
         subdivisions = self.measureFactor * self.measureBeats
         # print(subdivisions)
         for location, item in enumerate(self.currentList):
