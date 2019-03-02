@@ -55,7 +55,6 @@ def convertToXML(theList, fname):
             theStep = etree.SubElement(thePitch, "step")
             theStep.text = currentNote.stepName
             theDur = etree.SubElement(theNote, "duration")
-            print(beatDivisions, currentNote.dur)
             theDur.text = str(currentNote.dur * currentBeatFactor)
             if currentNote.alter:
                 accidental = etree.SubElement(theNote, "accidental")

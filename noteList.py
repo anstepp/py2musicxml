@@ -61,9 +61,9 @@ class noteList:
     def lcm(self, a, b):
         return a * b // self.gcd(a, b)
 
-    def getUniques(self):
+    def getUniques(self, theList):
         uniques = []
-        for item in self.currentList:
+        for item in theList:
             if item.dur not in uniques:
                 uniques.append(item.dur)
             else:
@@ -72,42 +72,62 @@ class noteList:
 
     def groupList(self):
         currentCount = 0
+        middleList = []
         returnList = []
-        uniqueDurations = self.getUniques()
-        lcmOfDurations = reduce(self.lcm, uniqueDurations)
-
-        subdivisions = self.measureFactor * self.measureBeats
-        # print(subdivisions)
+        subdivisions = self.measureBeats
         for location, item in enumerate(self.currentList):
             currentCount += item.dur
-            # print("currentCount", currentCount)
-            if currentCount == subdivisions:
+            if currentCount % subdivisions is 0:
                 if location != len(self.currentList) - 1:
                     self.currentList[location + 1].measureFlag = True
                 alteredDuration = copy.deepcopy(self.currentList[location])
-                alteredDuration.dur = alteredDuration.dur / self.measureFactor
-                returnList.append(alteredDuration)
+                print("currentCount = subdivisions", currentCount, subdivisions)
+                middleList.append(alteredDuration)
                 currentCount = 0
-            elif currentCount > subdivisions:
+            elif currentCount % subdivisions > 0:
                 currentNote = copy.deepcopy(self.currentList[location])
                 # print("logic for ties", currentCount, subdivisions)
                 overflow = currentCount - subdivisions
-                # print("overflow", overflow)
-                preTie = self.currentList[location].dur - overflow
-                # print("pre-tie", preTie)
-                currentNote.dur = preTie / self.measureFactor
-                currentNote.tieStart = True
-                returnList.append(currentNote)
-                tiedNote = copy.deepcopy(self.currentList[location])
-                tiedNote.dur = overflow / self.measureFactor
-                tiedNote.tieEnd = True
-                tiedNote.measureFlag = True
-                returnList.append(tiedNote)
-                currentCount = overflow
+                if overflow // subdivisions > 1:
+                    print("overflow", overflow, "currentCount", currentCount, "subdivisions", subdivisions)
+                    newDur = subdivisions
+                    currentNote.dur = newDur
+                    currentNote.tieStart = True
+                    middleList.append(currentNote)
+                    tiedNote = copy.deepcopy(self.currentList[location])
+                    tiedDur = overflow % subdivisions
+                    tiedNote.dur = newDur
+                    tiedNote.tieEnd = True
+                    tiedNote.measureFlag = True
+                    middleList.append(tiedNote)
+                    currentCount = overflow % currentCount
+                    print("currentCount", currentCount)
+                else:
+                    print("overflow", overflow, "currentCount", currentCount, "subdivisions", subdivisions)
+                    # print("overflow", overflow)
+                    preTie = self.currentList[location].dur - overflow
+                    # print("pre-tie", preTie)
+                    newDur = preTie
+                    currentNote.dur = newDur
+                    currentNote.tieStart = True
+                    middleList.append(currentNote)
+                    tiedNote = copy.deepcopy(self.currentList[location])
+                    tiedDur = overflow % subdivisions
+                    tiedNote.dur = tiedDur
+                    tiedNote.tieEnd = True
+                    tiedNote.measureFlag = True
+                    middleList.append(tiedNote)
+                    currentCount = overflow % currentCount
             else:
                 alteredDuration = copy.deepcopy(self.currentList[location])
-                alteredDuration.dur = alteredDuration.dur / self.measureFactor
-                returnList.append(alteredDuration)
+                middleList.append(alteredDuration)
+        uniqueDurations = self.getUniques(middleList)
+        print("durs", uniqueDurations)
+        lcmOfDurations = reduce(self.lcm, uniqueDurations)
+        print("lcm", lcmOfDurations)
+        subdivisions = self.measureFactor * lcmOfDurations
+        print("subdivisions", subdivisions)
+        returnList = middleList
         return returnList
 
     def groupByImpliedMeter(self):
