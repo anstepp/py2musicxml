@@ -1,5 +1,6 @@
-from noteList import noteList
 from lxml import etree
+from .noteList import noteList
+
 
 class Score:
     def __init__(self, *args):

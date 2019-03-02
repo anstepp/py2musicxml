@@ -1,6 +1,4 @@
-from note import note
-from noteList import noteList
-from score import Score
+from py2musicxml import note, noteList, Score
 
 aaronPitches = [9, 9, 2, 0, 7]
 morganPitches = [4, 0, 2, 7, 9, 7]

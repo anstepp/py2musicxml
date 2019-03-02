@@ -1,10 +1,10 @@
-import note
-from pitchMath import convertToXML
 from lxml import etree
 import copy
 from functools import reduce
 import fractions
 
+from .note import note
+from .pitchMath import convertToXML
 
 class noteList:
     def __init__(self, theList):
