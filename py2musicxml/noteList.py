@@ -6,6 +6,7 @@ import fractions
 from .note import note
 from .pitchMath import convertToXML
 
+
 class noteList:
     def __init__(self, theList):
         self.initalList = None
@@ -52,7 +53,7 @@ class noteList:
                 a, b = b, a % b
             return a
         else:
-            #convert float to fraction by approximating denominator then gcd
+            # convert float to fraction by approximating denominator then gcd
             return fractions.gcd(
                 fractions.fraction(a).limit_denominator(),
                 fractions.fraction(b).limit_denominator(),
@@ -89,7 +90,14 @@ class noteList:
                 # print("logic for ties", currentCount, subdivisions)
                 overflow = currentCount - subdivisions
                 if overflow // subdivisions > 1:
-                    print("overflow", overflow, "currentCount", currentCount, "subdivisions", subdivisions)
+                    print(
+                        "overflow",
+                        overflow,
+                        "currentCount",
+                        currentCount,
+                        "subdivisions",
+                        subdivisions,
+                    )
                     newDur = subdivisions
                     currentNote.dur = newDur
                     currentNote.tieStart = True
@@ -103,7 +111,14 @@ class noteList:
                     currentCount = overflow % currentCount
                     print("currentCount", currentCount)
                 else:
-                    print("overflow", overflow, "currentCount", currentCount, "subdivisions", subdivisions)
+                    print(
+                        "overflow",
+                        overflow,
+                        "currentCount",
+                        currentCount,
+                        "subdivisions",
+                        subdivisions,
+                    )
                     # print("overflow", overflow)
                     preTie = self.currentList[location].dur - overflow
                     # print("pre-tie", preTie)

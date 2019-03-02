@@ -1,12 +1,13 @@
 from lxml import etree
 
+
 def convertToXML(theList, fname):
     partNumber = 0
     root = etree.Element("score-partwise")
     root.attrib["version"] = "3.0"
     partList = etree.SubElement(root, "part-list")
     partNumber = 0
-    #masterBeatSubdivisions = 4
+    # masterBeatSubdivisions = 4
     for subList in theList:
         currentBeatFactor = subList[1]
         beatMeasure = subList[2]
@@ -33,7 +34,7 @@ def convertToXML(theList, fname):
         beats.text = "4"
         beatType = etree.SubElement(time, "beat-type")
         beatType.text = "4"
-        #eventually we need a clef determinant
+        # eventually we need a clef determinant
         clef = etree.SubElement(partAttributes, "clef")
         sign = etree.SubElement(clef, "sign")
         sign.text = "G"
@@ -45,7 +46,7 @@ def convertToXML(theList, fname):
                 measure = etree.SubElement(part, "measure")
                 measure.attrib["number"] = str(currentMeasure)
             else:
-            	pass
+                pass
             if currentNote.pc is not True:
                 currentNote.makeOctavePC()
             elif currentNote.octave is not True:

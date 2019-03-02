@@ -3,6 +3,7 @@ from math import ceil
 from .noteRhythm import noteRhythm
 from .notePC import notePC
 
+
 class note(noteRhythm, notePC):
     def __init__(self, r, octave, pc):
         self.dur = r

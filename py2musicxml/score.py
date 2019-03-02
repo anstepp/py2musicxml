@@ -14,7 +14,7 @@ class Score:
         root.attrib["version"] = "3.0"
         partList = etree.SubElement(root, "part-list")
         partNumber = 0
-        #masterBeatSubdivisions = 4
+        # masterBeatSubdivisions = 4
         for musicalPart in self.parts:
             currentBeatFactor = musicalPart.measureFactor
             beatMeasure = musicalPart.measureBeats
@@ -41,7 +41,7 @@ class Score:
             beats.text = "4"
             beatType = etree.SubElement(time, "beat-type")
             beatType.text = "4"
-            #eventually we need a clef determinant
+            # eventually we need a clef determinant
             clef = etree.SubElement(partAttributes, "clef")
             sign = etree.SubElement(clef, "sign")
             sign.text = "G"
@@ -98,4 +98,6 @@ class Score:
             )
             newRoot = etree.XML(serialized)
             theTree = etree.ElementTree(newRoot)
-            theTree.write(fname, pretty_print=True, encoding="UTF-8", xml_declaration=True)
+            theTree.write(
+                fname, pretty_print=True, encoding="UTF-8", xml_declaration=True
+            )
