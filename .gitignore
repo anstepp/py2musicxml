@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# die pycache cpython die
+.pyc
+*/*/*/__pycache__/
+*/*/__pycache__/
+*/__pycache__/
+
 # C extensions
 *.so
 
