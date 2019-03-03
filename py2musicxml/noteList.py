@@ -1,42 +1,44 @@
-from lxml import etree
 import copy
-from functools import reduce
 import fractions
+
+from functools import reduce
+from lxml import etree
 
 from .note import note
 from .pitchMath import convertToXML
 
+DEFAULT_MEASURE_BEATS = 4
+DEFAULT_MEASURE_FACTOR = 1
+
 
 class noteList:
-    def __init__(self, theList):
-        self.initalList = None
-        self.measureFactor = None
-        self.measureBeats = None
-        self.currentList = theList
-        self.finalList = None
+    measureFactor, measureBeats = None, None
+    initalList, currentList, finalList = None, None, None
 
-    # is this redundant with the cleanList(), or do we make that default beahvior?
+    def __init__(self, theList):
+        self.currentList = theList
+
+    # is this redundant with the _clean_list(), or do we make that default beahvior?
     """default behavior is to simply clean an input list to 4/4
        it's also an option to feed extra arguments with keywords to 
        modify behavior for optional cleaning methods or user choices
        for measure groupings of factors"""
 
     def getList(self, **kwargs):
-        if kwargs.get("factor"):
-            self.measureFactor = kwargs.get("factor")
-        else:
-            self.measureFactor = 1
-        if kwargs.get("beats"):
-            self.measureBeats = kwargs.get("beats")
-        else:
-            self.measureBeats = 4
-        if kwargs.get("how"):
-            noteSortMethod = kwargs.get("how")
-        else:
-            noteSortMethod = "Default"
-        self.cleanList(noteSortMethod)
 
-    def cleanList(self, how):
+        self.measureFactor = (
+            kwargs.get("factor") if kwargs.get("factor") else DEFAULT_MEASURE_FACTOR
+        )
+
+        self.measureBeats = (
+            kwargs.get("beats") if kwargs.get("beats") else DEFAULT_MEASURE_BEATS
+        )
+
+        noteSortMethod = kwargs.get("how") if kwargs.get("how") else "Default"
+
+        self._clean_list(noteSortMethod)
+
+    def _clean_list(self, how):
         if how is "Implied":
             self.finalList = self.groupByImpliedMeter()
         if how is "Map":
