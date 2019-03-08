@@ -30,21 +30,21 @@ def fractalNames(generations, list1, list2):
     return returnList
 
 
-iterateme = fractalNames(2, aaronPitches, morganPitches)
-#iterateme2 = fractalNames(3, aaronPitches, morganPitches)
+iterateme = fractalNames(1, aaronPitches, morganPitches)
+iterateme2 = fractalNames(1, morganPitches, aaronPitches)
 # iterateme3 = fractalNames(4, morganPitches, aaronPitches)
 # iterateme4 = fractalNames(5, morganPitches, aaronPitches)
-notes = [note(5, 2, x) for x in iterateme]
-# notes2 = [note(3, 4, x) for x in iterateme2]
+notes = [note(x, 2, x) for x in iterateme]
+notes2 = [note(x, 4, x) for x in iterateme2]
 # notes3 = [note(6, 3, x) for x in iterateme3]
 # notes4 = [note(1, 2, x) for x in iterateme4]
 theList = noteList(notes)
 theList.getList(factor=1)
-# theList2 = noteList(notes2)
-# theList2.getList(factor=2)
+theList2 = noteList(notes2)
+theList2.getList(factor=1)
 # theList3 = noteList(notes3)
 # theList3.getList(factor=2)
 # theList4 = noteList(notes4)
 # theList4.getList(factor=5)
-theScore = Score(theList)
+theScore = Score(theList, theList2)
 theScore.convertToXML("fractal.xml")
