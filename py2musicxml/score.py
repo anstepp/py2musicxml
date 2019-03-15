@@ -55,9 +55,9 @@ class Score:
                 else:
                     pass
                 # if currentNote.pc is not True:
-                #     currentNote.makeOctavePC()
+                #     currentNote.make_octave_pc()
                 # elif currentNote.octave is not True:
-                #     currentNote.makeOctavePC()
+                #     currentNote.make_octave_pc()
                 theNote = etree.SubElement(measure, "note")
                 thePitch = etree.SubElement(theNote, "pitch")
                 theStep = etree.SubElement(thePitch, "step")

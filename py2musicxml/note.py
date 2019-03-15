@@ -5,121 +5,80 @@ from .notePC import notePC
 
 
 class note(noteRhythm, notePC):
+    # default flags for ties & tuplets
+    tieStart, tieContinue, tieEnd = False, False, False
+    tupletStart, tupletContinue, tupletEnd = False, False, False
+
+    # measure defaults
+    measureFactor, measureFlag = 1, False
+
     def __init__(self, r, octave, pc):
-        self.dur = r
-        self.octave = octave
-        self.pc = pc
-        # flags for ties
-        self.tieStart = False
-        self.tieContinue = False
-        self.tieEnd = False
-        # flags for tuplets
-        self.tupletStart = False
-        self.tupletContinue = False
-        self.tupletEnd = False
-        self.measureFactor = 1
-        self.measureFlag = False
+        self.dur, self.octave, self.pc = r, octave, pc
+
         # called to correct any errant pitch classes
         self.overflowTest()
+
         # get these variables upon instantiation in the case the list is acted upon
-        self.stepName, self.alter, self.accidental = self.getNoteName(0)
+        self.stepName, self.alter, self.accidental = self._get_step_name(0)
 
-    @classmethod
-    def initFromList(cls, noteRhythm, notePC):
-        dur = noteRhythm.dur
-        octave = notePC.octave
-        pc = notePC.pc
-        return cls(dur, octave, pc)
+    def _get_step_name(self, starting_pitch):
+        flat_keys = [1, 3, 5, 8, 10]
+        sharp_keys = [2, 4, 6, 7, 9, 11]
 
-    def getNoteName(self, startingPitch):
-        flatKeys = [1, 3, 5, 8, 10]
-        sharpKeys = [2, 4, 6, 7, 9, 11]
-        if startingPitch is 0:
-            if self.pc == 0:
-                return ["C", "0", "natural"]
-            elif self.pc == 1:
-                return ["C", "1", "sharp"]
-            elif self.pc == 2:
-                return ["D", "0", "natural"]
-            elif self.pc == 3:
-                return ["E", "-1", "flat"]
-            elif self.pc == 4:
-                return ["E", "0", "natural"]
-            elif self.pc == 5:
-                return ["F", "0", "natural"]
-            elif self.pc == 6:
-                return ["F", "1", "sharp"]
-            elif self.pc == 7:
-                return ["G", "0", "natural"]
-            elif self.pc == 8:
-                return ["A", "-1", "flat"]
-            elif self.pc == 9:
-                return ["A", "0", "natural"]
-            elif self.pc == 10:
-                return ["B", "-1", "flat"]
-            elif self.pc == 11:
-                return ["B", "0", "natural"]
-            else:
-                print("Note out of bounds - this could be a problem.", self.pc)
-                return [None, None, None]
-        if startingPitch in flatKeys:
-            if self.pc == 0:
-                return ["C", "0", "natural"]
-            elif self.pc == 1:
-                return ["D", "-1", "flat"]
-            elif self.pc == 2:
-                return ["D", "0", "natural"]
-            elif self.pc == 3:
-                return ["E", "-1", "flat"]
-            elif self.pc == 4:
-                return ["E", "0", "natural"]
-            elif self.pc == 5:
-                return ["F", "0", "natural"]
-            elif self.pc == 6:
-                return ["G", "-1", "flat"]
-            elif self.pc == 7:
-                return ["G", "0", "natural"]
-            elif self.pc == 8:
-                return ["A", "-1", "flat"]
-            elif self.pc == 9:
-                return ["A", "0", "natural"]
-            elif self.pc == 10:
-                return ["B", "-1", "flat"]
-            elif self.pc == 11:
-                return ["B", "0", "natural"]
-            else:
-                print("Note out of bounds - this could be a problem.")
-                return [None, None, None]
-        if startingPitch in sharpKeys:
-            if self.pc == 0:
-                return ["C", "0", "natural"]
-            elif self.pc == 1:
-                return ["C", "1", "sharp"]
-            elif self.pc == 2:
-                return ["D", "0", "natural"]
-            elif self.pc == 3:
-                return ["D", "1", "sharp"]
-            elif self.pc == 4:
-                return ["E", "0", "natural"]
-            elif self.pc == 5:
-                return ["F", "0", "natural"]
-            elif self.pc == 6:
-                return ["F", "1", "sharp"]
-            elif self.pc == 7:
-                return ["G", "0", "natural"]
-            elif self.pc == 8:
-                return ["G", "1", "sharp"]
-            elif self.pc == 9:
-                return ["A", "0", "natural"]
-            elif self.pc == 10:
-                return ["A", "1", "sharp"]
-            elif self.pc == 11:
-                return ["B", "0", "natural"]
-            else:
-                print("Note out of bounds - this could be a problem.")
-                return [None, None, None]
+        step_names = {}
 
-    def makeOctavePC(self):
+        if starting_pitch == 0:
+            step_names = {
+                0: ['C', '0', 'natural'],
+                1: ['C', '1', 'sharp'],
+                2: ['D', '0', 'natural'],
+                3: ['E', '-1', 'flat'],
+                4: ['E', '0', 'natural'],
+                5: ['F', '0', 'natural'],
+                6: ['F', '1', 'sharp'],
+                7: ['G', '0', 'natural'],
+                8: ['A', '-1', 'flat'],
+                9: ['A', '0', 'natural'],
+                10: ['B', '-1', 'flat'],
+                11: ['B', '0', 'natural'],
+            }
+        elif starting_pitch in flat_keys:
+            step_names = {
+                0: ['C', '0', 'natural'],
+                1: ['D', '-1', 'flat'],
+                2: ['D', '0', 'natural'],
+                3: ['E', '-1', 'flat'],
+                4: ['E', '0', 'natural'],
+                5: ['F', '0', 'natural'],
+                6: ['G', '-1', 'flat'],
+                7: ['G', '0', 'natural'],
+                8: ['A', '-1', 'flat'],
+                9: ['A', '0', 'natural'],
+                10: ['B', '-1', 'flat'],
+                11: ['B', '0', 'natural'],
+            }
+        elif starting_pitch in sharp_keys:
+            step_names = {
+                0: ['C', '0', 'natural'],
+                1: ['C', '1', 'sharp'],
+                2: ['D', '0', 'natural'],
+                3: ['D', '1', 'sharp'],
+                4: ['E', '0', 'natural'],
+                5: ['F', '0', 'natural'],
+                6: ['F', '1', 'sharp'],
+                7: ['G', '0', 'natural'],
+                8: ['G', '1', 'sharp'],
+                9: ['A', '0', 'natural'],
+                10: ['A', '1', 'sharp'],
+                11: ['B', '0', 'natural'],
+            }
+        else:
+            raise Exception('starting_pitch must be zero, a flat key, or sharp key')
+
+        return step_names[self.pc]
+
+    def make_octave_pc(self):
+        raise Exception('self.pitch is not defined anywhere yet')
         octave = int(self.pitch)
         floatPC = self.pitch % 1
         pc = int(round(floatPC, 2) * 100)
