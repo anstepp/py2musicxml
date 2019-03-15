@@ -81,10 +81,10 @@ class noteList:
         subdivisions = self.measureBeats
         for location, item in enumerate(self.currentList):
             currentCount += item.dur
+            currentCountFloor = currentCount // subdivisions
+            currentCountMod = currentCount % subdivisions
             print("current dur", "currentCount", item.dur, currentCount)
-            if (currentCount % subdivisions is 0) and (
-                currentCount // subdivisions is 1
-            ):
+            if currentCountFloor == 1 and currentCountMod == 0:
                 print("zero, equal")
                 if location != len(self.currentList) - 1:
                     self.currentList[location + 1].measureFlag = True
@@ -122,9 +122,7 @@ class noteList:
                     middleList.append(alteredDuration)
                 currentCount = 0
                 print("currentCount", currentCount)
-            elif currentCount % subdivisions is 0 and (
-                currentCount // subdivisions > 1
-            ):
+            elif currentCountMod == 0 and currentCountFloor > 1:
                 print("zero, greater than")
                 how_many_measures = currentCount // subdivisions
                 if location != len(self.currentList) - 1:
@@ -145,9 +143,7 @@ class noteList:
                     how_many_measures -= 1
                 lastCurrentCount = currentCount % subdivisions
                 currentCount = 0
-            elif (currentCount % subdivisions > 0) and (
-                currentCount // subdivisions is 1
-            ):
+            elif currentCountMod > 0 and currentCountFloor == 1:
                 print("greater than, zero")
                 currentNote = copy.deepcopy(self.currentList[location])
                 overflow = currentCount - subdivisions
@@ -181,9 +177,7 @@ class noteList:
                 lastCurrentCount = currentCount % subdivisions
                 currentCount = overflow
                 print("currentCount", currentCount)
-            elif (currentCount % subdivisions > 0) and (
-                currentCount // subdivisions > 1
-            ):
+            elif currentCountMod > 0 and currentCountFloor > 1:
                 print("greater than, greater than")
                 how_many_measures = currentCount // subdivisions
                 extra_measure_beats = subdivisions * how_many_measures
@@ -225,7 +219,7 @@ class noteList:
                 lastCurrentCount = currentCount % subdivisions
                 currentCount = overflow % subdivisions
                 print("currentCount", currentCount)
-            else:
+            elif currentCountMod > 0 and currentCountFloor < 1:
                 print("buisness as usual")
                 alteredDuration = copy.deepcopy(self.currentList[location])
                 print("dur", alteredDuration.dur)
