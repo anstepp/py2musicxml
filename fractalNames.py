@@ -1,4 +1,4 @@
-from py2musicxml import note, noteList, Score
+from py2musicxml import Note, noteList, Score
 
 aaronPitches = [9, 9, 2, 0, 7]
 morganPitches = [4, 0, 2, 7, 9, 7]
@@ -34,10 +34,10 @@ iterateme = fractalNames(1, aaronPitches, morganPitches)
 iterateme2 = fractalNames(1, morganPitches, aaronPitches)
 # iterateme3 = fractalNames(4, morganPitches, aaronPitches)
 # iterateme4 = fractalNames(5, morganPitches, aaronPitches)
-notes = [note(x, 2, x) for x in iterateme]
-notes2 = [note(x, 4, x) for x in iterateme2]
-# notes3 = [note(6, 3, x) for x in iterateme3]
-# notes4 = [note(1, 2, x) for x in iterateme4]
+notes = [Note(x, 2, x) for x in iterateme]
+notes2 = [Note(x, 4, x) for x in iterateme2]
+# notes3 = [Note(6, 3, x) for x in iterateme3]
+# notes4 = [Note(1, 2, x) for x in iterateme4]
 theList = noteList(notes)
 theList.getList(factor=1)
 theList2 = noteList(notes2)

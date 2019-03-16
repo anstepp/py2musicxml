@@ -1,6 +1,5 @@
 import itertools
 import random
-from note import *
 
 
 class bangleize:
@@ -57,8 +56,8 @@ class bangleize:
                 longList[location - 1] += 1
         longList = [x for x in longList if x > 0]
         for item in longList:
-        	if item is 0:
-        		print(item)
+            if item is 0:
+                print(item)
         return longList
 
     def euclid(self, u, v):

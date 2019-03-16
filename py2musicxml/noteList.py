@@ -4,7 +4,6 @@ import fractions
 from functools import reduce
 from lxml import etree
 
-from .note import note
 from .pitchMath import convertToXML
 
 DEFAULT_MEASURE_BEATS = 4
@@ -91,7 +90,9 @@ class noteList:
                 if item.dur > subdivisions:
                     print("dur greater than subdivisions", item.dur, subdivisions)
                     how_many_measures = currentCount // subdivisions
-                    what_goes_to_the_first_measure = item.dur - currentCount // subdivisions
+                    what_goes_to_the_first_measure = (
+                        item.dur - currentCount // subdivisions
+                    )
                     print(what_goes_to_the_first_measure)
                     last_note_of_old_measure = copy.deepcopy(self.currentList[location])
                     last_note_of_old_measure.dur = what_goes_to_the_first_measure
@@ -129,7 +130,9 @@ class noteList:
                     self.currentList[location + 1].measureFlag = True
                 how_many_measures = currentCount // subdivisions - 1
                 print(subdivisions * how_many_measures, item.dur)
-                what_goes_to_the_first_measure = item.dur - subdivisions * how_many_measures
+                what_goes_to_the_first_measure = (
+                    item.dur - subdivisions * how_many_measures
+                )
                 last_note_of_old_measure = copy.deepcopy(self.currentList[location])
                 last_note_of_old_measure.dur = what_goes_to_the_first_measure
                 print("first measure", what_goes_to_the_first_measure)
@@ -187,7 +190,9 @@ class noteList:
                 print("last_measure_counts", last_measure_counts)
                 if lastCurrentCount > 0:
                     what_goes_to_the_first_measure = last_measure_counts
-                    what_goes_to_the_last_measure = overflow - what_goes_to_the_first_measure
+                    what_goes_to_the_last_measure = (
+                        overflow - what_goes_to_the_first_measure
+                    )
                 else:
                     what_goes_to_the_first_measure = False
                     what_goes_to_the_last_measure = overflow
@@ -202,7 +207,7 @@ class noteList:
                     currentNote.tieStart = True
                     # FIXME: This needs to not get switched on first note
                     currentNote.measureFlag = True
-                    if what_goes_to_the_last_measure > 0:  
+                    if what_goes_to_the_last_measure > 0:
                         currentNote.tieEnd = True
                     currentNote.tieEnd = True
                     print("dur", currentNote.dur)

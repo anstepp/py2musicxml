@@ -1,10 +1,20 @@
-from math import ceil
-
 from .noteRhythm import noteRhythm
 from .notePC import notePC
 
+# the life of a note
 
-class note(noteRhythm, notePC):
+# in a tuplet, we change the subdivision of the beat
+# groups of 3 in the space of 2
+# grouping of notes other than the subdivision of the meter
+# it has to change in the subdivsion, feel of music changes
+# how is this unit of time divided, and then subdivided
+
+# when beat is divided by 2, subdivisions are in groups of 2 - simple time
+# by 3, compound
+# 4 is outgrowth of 2, can be reduced into 2
+
+
+class Note(noteRhythm, notePC):
     # default flags for ties & tuplets
     tieStart, tieContinue, tieEnd = False, False, False
     tupletStart, tupletContinue, tupletEnd = False, False, False
@@ -20,6 +30,14 @@ class note(noteRhythm, notePC):
 
         # get these variables upon instantiation in the case the list is acted upon
         self.stepName, self.alter, self.accidental = self._get_step_name(0)
+
+    #  # Needs a way to be able to make a note given a note rhythm and pitch class
+    # @classmethod
+    #  def initFromList(cls, noteRhythm, notePC):
+    #      dur = noteRhythm.dur
+    #      octave = notePC.octave
+    #      pc = notePC.pc
+    #      return cls(dur, octave, pc)
 
     def _get_step_name(self, starting_pitch):
         flat_keys = [1, 3, 5, 8, 10]
@@ -83,16 +101,3 @@ class note(noteRhythm, notePC):
         floatPC = self.pitch % 1
         pc = int(round(floatPC, 2) * 100)
         return octave, pc
-
-
-# the life of a note
-
-# in a tuplet, we change the subdivision of the beat
-# groups of 3 in the space of 2
-# grouping of notes other than the subdivision of the meter
-# it has to change in the subdivsion, feel of music changes
-# how is this unit of time divided, and then subdivided
-
-# when beat is divided by 2, subdivisions are in groups of 2 - simple time
-# by 3, compound
-# 4 is outgrowth of 2, can be reduced into 2
