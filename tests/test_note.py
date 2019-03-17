@@ -12,6 +12,9 @@ def test_object_init_fail_without_args():
 
 def test_object_init_success_with_args():
     n = Note(TEST_DURATION, TEST_OCTAVE, TEST_PITCH_CLASS)
+    assert n.dur == TEST_DURATION
+    assert n.octave == TEST_OCTAVE
+    assert n.pc == TEST_PITCH_CLASS
 
 
 def test_get_step_name():

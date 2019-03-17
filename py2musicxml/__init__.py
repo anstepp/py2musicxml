@@ -1,7 +1,6 @@
 from .meiwrite import MEIWrite
-from .noteList import noteList
+from .notelist import NoteList
 from .note import Note
-from .notePC import notePC
-from .noteRhythm import noteRhythm
+from .pitch_duration import Pitch, Duration, make_NoteList
 from .pitchMath import convertToXML
 from .score import Score

@@ -1,5 +1,5 @@
 from lxml import etree
-from .noteList import noteList
+from .notelist import NoteList
 
 
 class Score:

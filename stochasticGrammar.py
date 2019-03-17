@@ -1,5 +1,6 @@
 import random
-from note import *
+
+from py2musicxml import Pitch
 
 # any given note has octave and pitch
 # alteration, flat or sharp
@@ -18,11 +19,11 @@ class grammar:
         # if above 12, mod twelve and increase the octave
         if inNote.pc > 11:
             fixedPC = inNote.pc - 12
-            fixedNote = notePC(inNote.octave + 1, fixedPC)
+            fixedNote = Pitch(inNote.octave + 1, fixedPC)
             return fixedNote
         elif inNote.pc < 0:
             fixedPC = inNote.pc + 12
-            fixedNote = notePC(inNote.octave - 1, fixedPC)
+            fixedNote = Pitch(inNote.octave - 1, fixedPC)
             return fixedNote
         else:
             return inNote
@@ -36,7 +37,7 @@ class grammar:
                 newGeneration.append(current)
                 newGeneration.append(
                     self.overflowTest(
-                        notePC(current.octave, current.pc + self.replacementThree)
+                        Pitch(current.octave, current.pc + self.replacementThree)
                     )
                 )
                 newGeneration.append(current)
@@ -44,7 +45,7 @@ class grammar:
                 newGeneration.append(current)
                 newGeneration.append(
                     self.overflowTest(
-                        notePC(current.octave, current.pc + self.replacementTwo)
+                        Pitch(current.octave, current.pc + self.replacementTwo)
                     )
                 )
 

@@ -1,5 +1,4 @@
-from .noteRhythm import noteRhythm
-from .notePC import notePC
+from .utils import fix_pitch_overflow
 
 # the life of a note
 
@@ -14,7 +13,7 @@ from .notePC import notePC
 # 4 is outgrowth of 2, can be reduced into 2
 
 
-class Note(noteRhythm, notePC):
+class Note:
     # default flags for ties & tuplets
     tieStart, tieContinue, tieEnd = False, False, False
     tupletStart, tupletContinue, tupletEnd = False, False, False
@@ -23,21 +22,13 @@ class Note(noteRhythm, notePC):
     measureFactor, measureFlag = 1, False
 
     def __init__(self, r, octave, pc):
-        self.dur, self.octave, self.pc = r, octave, pc
+        self.dur = r
 
         # called to correct any errant pitch classes
-        self.overflowTest()
+        self.octave, self.pc = fix_pitch_overflow(octave, pc)
 
         # get these variables upon instantiation in the case the list is acted upon
         self.stepName, self.alter, self.accidental = self._get_step_name(0)
-
-    #  # Needs a way to be able to make a note given a note rhythm and pitch class
-    # @classmethod
-    #  def initFromList(cls, noteRhythm, notePC):
-    #      dur = noteRhythm.dur
-    #      octave = notePC.octave
-    #      pc = notePC.pc
-    #      return cls(dur, octave, pc)
 
     def _get_step_name(self, starting_pitch):
         flat_keys = [1, 3, 5, 8, 10]
@@ -94,10 +85,3 @@ class Note(noteRhythm, notePC):
             raise Exception('starting_pitch must be zero, a flat key, or sharp key')
 
         return step_names[self.pc]
-
-    def make_octave_pc(self):
-        raise Exception('self.pitch is not defined anywhere yet')
-        octave = int(self.pitch)
-        floatPC = self.pitch % 1
-        pc = int(round(floatPC, 2) * 100)
-        return octave, pc

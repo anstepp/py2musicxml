@@ -10,7 +10,7 @@ DEFAULT_MEASURE_BEATS = 4
 DEFAULT_MEASURE_FACTOR = 1
 
 
-class noteList:
+class NoteList:
     measureFactor, measureBeats = None, None
     initalList, currentList, finalList = None, None, None
 

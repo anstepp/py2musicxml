@@ -1,6 +1,7 @@
 import random
 from itertools import cycle, dropwhile, islice
-from note import *
+
+from py2musicxml import Pitch
 
 
 class grammar:
@@ -84,11 +85,11 @@ class grammar:
     def overflowTest(self, inNote):
         if inNote.pc > 11:
             fixedPC = inNote.pc - 12
-            fixedNote = notePC(inNote.octave, fixedPC)
+            fixedNote = Pitch(inNote.octave, fixedPC)
             return fixedNote
         elif inNote.pc < 0:
             fixedPC = inNote.pc + 12
-            fixedNote = notePC(inNote.octave, fixedPC)
+            fixedNote = Pitch(inNote.octave, fixedPC)
             return fixedNote
         else:
             return inNote
@@ -126,12 +127,12 @@ class grammar:
                 # print current.pc, self.target1
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A1R1)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote, current]
                 else:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A1R2)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote]
             if current.pc == self.target2:
@@ -139,12 +140,12 @@ class grammar:
                 # print current.pc, self.target2
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A2R1)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote, current]
                 else:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A2R2)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote]
             if current.pc == self.target3:
@@ -152,12 +153,12 @@ class grammar:
                 # print current.pc, self.target3
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A3R1)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote, current]
                 else:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A3R2)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote]
             if current.pc == self.target4:
@@ -165,12 +166,12 @@ class grammar:
                 # print current.pc, self.target4
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A4R1)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote, current]
                 else:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A4R2)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote]
             if current.pc == self.target5:
@@ -178,12 +179,12 @@ class grammar:
                 # print current.pc, self.target5
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A5R1)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote, current]
                 else:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A5R2)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote]
             if current.pc == self.target6:
@@ -191,12 +192,12 @@ class grammar:
                 # print current.pc, self.target6
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A6R1)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote, current]
                 else:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A6R2)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote]
             if current.pc == self.target7:
@@ -204,12 +205,12 @@ class grammar:
                 # print current.pc, self.target7
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A7R1)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote, current]
                 else:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A7R2)
-                    stage1 = notePC(current.octave + octaveFlag, thePC)
+                    stage1 = Pitch(current.octave + octaveFlag, thePC)
                     newNote = self.overflowTest(stage1)
                     newGeneration += [current, newNote]
         return newGeneration

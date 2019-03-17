@@ -1,7 +1,8 @@
-import notePC as NPC
 import random
 import fieldRule as R  # three, two, testVal
 from itertools import cycle
+
+from py2musicxml import Pitch
 
 
 class pitchField:
@@ -68,7 +69,7 @@ class pitchField:
                 nextGen.append(item)
 
 
-# x = pitchField([2, 3, 1, 2], NPC.notePC(1, 0), 0.5)
+# x = pitchField([2, 3, 1, 2], Pitch(1, 0), 0.5)
 # y = x.makeField()
 # for it in y:
 # 	print(y)

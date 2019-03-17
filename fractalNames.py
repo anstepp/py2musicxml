@@ -1,4 +1,4 @@
-from py2musicxml import Note, noteList, Score
+from py2musicxml import Note, NoteList, Score
 
 aaronPitches = [9, 9, 2, 0, 7]
 morganPitches = [4, 0, 2, 7, 9, 7]
@@ -38,13 +38,13 @@ notes = [Note(x, 2, x) for x in iterateme]
 notes2 = [Note(x, 4, x) for x in iterateme2]
 # notes3 = [Note(6, 3, x) for x in iterateme3]
 # notes4 = [Note(1, 2, x) for x in iterateme4]
-theList = noteList(notes)
+theList = NoteList(notes)
 theList.getList(factor=1)
-theList2 = noteList(notes2)
+theList2 = NoteList(notes2)
 theList2.getList(factor=1)
-# theList3 = noteList(notes3)
+# theList3 = NoteList(notes3)
 # theList3.getList(factor=2)
-# theList4 = noteList(notes4)
+# theList4 = NoteList(notes4)
 # theList4.getList(factor=5)
 theScore = Score(theList, theList2)
 theScore.convertToXML("fractal.xml")
