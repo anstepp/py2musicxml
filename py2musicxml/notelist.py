@@ -242,6 +242,7 @@ class NoteList:
         print("lcm", lcmOfDurations)
         subdivisions = self.measureFactor * lcmOfDurations
         print("subdivisions", subdivisions)
+        # in the future, this will do scaling, etc.
         returnList = middleList
         return returnList
 
