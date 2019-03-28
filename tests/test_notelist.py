@@ -14,3 +14,13 @@ def test_object_init_success_with_args():
     test_note = Note(TEST_DURATION, TEST_OCTAVE, TEST_PITCH_CLASS)
 
     nlist = NoteList([test_note, test_note])
+
+
+def test_simple_test():
+    test_note = Note(2, TEST_OCTAVE, TEST_PITCH_CLASS)
+
+    nlist = NoteList([test_note, test_note, test_note, test_note, test_note])
+
+    nlist.getList()
+
+    assert nlist.currentList == nlist.finalList

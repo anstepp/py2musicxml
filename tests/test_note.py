@@ -46,3 +46,12 @@ def test_get_step_name():
         n._get_step_name(999)
     except Exception as e:
         assert str(e) == 'starting_pitch must be zero, a flat key, or sharp key'
+
+
+def test_note_equality():
+    note_a = Note(1, 2, 3)
+    note_b = Note(1, 2, 3)
+    note_c = Note(9, 8, 7)
+
+    assert note_a == note_b
+    assert note_a != note_c
