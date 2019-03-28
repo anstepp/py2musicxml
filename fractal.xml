@@ -47,58 +47,89 @@
           <alter>1</alter>
           <octave>3</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>1</duration>
         <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>3</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
     <measure number="3">
       <note>
         <pitch>
-          <step>C</step>
-          <alter>1</alter>
-          <octave>3</octave>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>2</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
+        <duration>2</duration>
+        <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>B</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
     <measure number="4">
       <note>
         <pitch>
-          <step>C</step>
-          <alter>1</alter>
-          <octave>3</octave>
+          <step>B</step>
+          <alter>0</alter>
+          <octave>2</octave>
         </pitch>
-        <duration>2</duration>
-        <accidental>sharp</accidental>
+        <duration>3</duration>
+        <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>1</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
     <measure number="5">
       <note>
         <pitch>
-          <step>A</step>
+          <step>E</step>
           <alter>0</alter>
-          <octave>2</octave>
+          <octave>3</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
@@ -107,44 +138,95 @@
     <measure number="6">
       <note>
         <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>3</octave>
         </pitch>
         <duration>4</duration>
-        <accidental>natural</accidental>
+        <accidental>sharp</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
       </note>
     </measure>
     <measure number="7">
       <note>
         <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>3</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
+        <duration>1</duration>
+        <accidental>sharp</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
       </note>
-    </measure>
-    <measure number="8">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="9">
       <note>
         <pitch>
           <step>E</step>
           <alter>0</alter>
           <octave>3</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>3</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="8">
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>C</step>
+          <alter>1</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>sharp</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="9">
+      <note>
+        <pitch>
+          <step>C</step>
+          <alter>1</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>3</duration>
+        <accidental>sharp</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>1</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -155,57 +237,54 @@
     <measure number="10">
       <note>
         <pitch>
-          <step>E</step>
+          <step>A</step>
           <alter>0</alter>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
       </note>
     </measure>
     <measure number="11">
       <note>
         <pitch>
-          <step>E</step>
+          <step>B</step>
           <alter>0</alter>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="12">
       <note>
         <pitch>
+          <step>B</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>1</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
           <step>E</step>
           <alter>0</alter>
           <octave>3</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>3</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
@@ -216,11 +295,24 @@
           <alter>0</alter>
           <octave>3</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>sharp</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
@@ -231,44 +323,28 @@
           <alter>1</alter>
           <octave>3</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>3</duration>
         <accidental>sharp</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>1</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
       </note>
     </measure>
     <measure number="15">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-      </note>
-    </measure>
-    <measure number="16">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-      </note>
-    </measure>
-    <measure number="17">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-      </note>
-    </measure>
-    <measure number="18">
       <note>
         <pitch>
           <step>E</step>
@@ -276,6 +352,73 @@
           <octave>3</octave>
         </pitch>
         <duration>4</duration>
+        <accidental>natural</accidental>
+      </note>
+    </measure>
+    <measure number="16">
+      <note>
+        <pitch>
+          <step>B</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>4</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="17">
+      <note>
+        <pitch>
+          <step>B</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>1</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>B</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>3</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="18">
+      <note>
+        <pitch>
+          <step>B</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -288,64 +431,61 @@
         <pitch>
           <step>E</step>
           <alter>0</alter>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>3</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>D</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>1</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="20">
       <note>
         <pitch>
-          <step>E</step>
+          <step>D</step>
           <alter>0</alter>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
       </note>
     </measure>
     <measure number="21">
       <note>
         <pitch>
-          <step>E</step>
+          <step>A</step>
           <alter>0</alter>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="22">
       <note>
         <pitch>
-          <step>E</step>
+          <step>A</step>
           <alter>0</alter>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>1</duration>
         <accidental>natural</accidental>
@@ -356,12 +496,12 @@
       </note>
       <note>
         <pitch>
-          <step>C</step>
-          <alter>1</alter>
-          <octave>3</octave>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>2</octave>
         </pitch>
         <duration>3</duration>
-        <accidental>sharp</accidental>
+        <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
@@ -371,73 +511,74 @@
     <measure number="23">
       <note>
         <pitch>
-          <step>C</step>
-          <alter>1</alter>
-          <octave>3</octave>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>2</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
+        <duration>2</duration>
+        <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
     <measure number="24">
       <note>
         <pitch>
-          <step>C</step>
-          <alter>1</alter>
-          <octave>3</octave>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>2</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
+        <duration>3</duration>
+        <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>D</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>1</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
     <measure number="25">
       <note>
         <pitch>
-          <step>C</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>sharp</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
+          <step>D</step>
           <alter>0</alter>
           <octave>2</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>4</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
       </note>
     </measure>
     <measure number="26">
       <note>
         <pitch>
-          <step>A</step>
+          <step>C</step>
           <alter>0</alter>
           <octave>2</octave>
         </pitch>
@@ -446,40 +587,45 @@
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="27">
       <note>
         <pitch>
-          <step>A</step>
+          <step>C</step>
           <alter>0</alter>
           <octave>2</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>1</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>3</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="28">
       <note>
         <pitch>
-          <step>A</step>
+          <step>G</step>
           <alter>0</alter>
           <octave>2</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
@@ -492,7 +638,7 @@
           <alter>0</alter>
           <octave>2</octave>
         </pitch>
-        <duration>3</duration>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -507,58 +653,46 @@
           <alter>0</alter>
           <octave>2</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>3</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>1</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="30">
       <note>
         <pitch>
-          <step>B</step>
+          <step>G</step>
           <alter>0</alter>
           <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
       </note>
     </measure>
     <measure number="31">
       <note>
         <pitch>
-          <step>B</step>
+          <step>A</step>
           <alter>0</alter>
           <octave>2</octave>
         </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>3</duration>
+        <duration>4</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -569,38 +703,56 @@
     <measure number="32">
       <note>
         <pitch>
-          <step>E</step>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>2</octave>
+        </pitch>
+        <duration>1</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>D</step>
           <alter>0</alter>
           <octave>3</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>3</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="33">
       <note>
         <pitch>
+          <step>D</step>
+          <alter>0</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
           <step>E</step>
           <alter>0</alter>
           <octave>3</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
@@ -611,876 +763,43 @@
           <alter>0</alter>
           <octave>3</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>3</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>D</step>
+          <alter>0</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>1</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="35">
       <note>
         <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="36">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="37">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="38">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="39">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="40">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>sharp</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="41">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="42">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="43">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="44">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="45">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="46">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="47">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="48">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="49">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="50">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="51">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="52">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="53">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="54">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="55">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="56">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="57">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="58">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="59">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="60">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-      </note>
-      <note>
-        <pitch>
-          <step>C</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="61">
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="62">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="63">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="64">
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="65">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="66">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="67">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>2</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="68">
-      <note>
-        <pitch>
           <step>D</step>
           <alter>0</alter>
           <octave>3</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="69">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="70">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="71">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="72">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="73">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="74">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="75">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="76">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="77">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="78">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="79">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>3</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
       </note>
     </measure>
   </part>
   <part id="P2">
     <measure number="1">
       <attributes>
-        <divisions>1</divisions>
+        <divisions>2</divisions>
         <key>
           <fifths>0</fifths>
           <mode>none</mode>
@@ -1500,7 +819,7 @@
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>8</duration>
         <accidental>flat</accidental>
         <tie type="start"/>
         <notations>
@@ -1515,26 +834,7 @@
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>flat</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="3">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>-1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
+        <duration>2</duration>
         <accidental>flat</accidental>
         <tie type="stop"/>
         <notations>
@@ -1547,8 +847,36 @@
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>3</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="3">
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <accidental>sharp</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
@@ -1558,12 +886,12 @@
     <measure number="4">
       <note>
         <pitch>
-          <step>E</step>
-          <alter>0</alter>
+          <step>F</step>
+          <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
+        <duration>6</duration>
+        <accidental>sharp</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
@@ -1571,12 +899,12 @@
       </note>
       <note>
         <pitch>
-          <step>F</step>
-          <alter>1</alter>
+          <step>B</step>
+          <alter>0</alter>
           <octave>4</octave>
         </pitch>
         <duration>2</duration>
-        <accidental>sharp</accidental>
+        <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
@@ -1586,44 +914,23 @@
     <measure number="5">
       <note>
         <pitch>
-          <step>F</step>
-          <alter>1</alter>
+          <step>B</step>
+          <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
+        <duration>8</duration>
+        <accidental>natural</accidental>
       </note>
     </measure>
     <measure number="6">
       <note>
         <pitch>
-          <step>F</step>
+          <step>C</step>
           <alter>1</alter>
-          <octave>4</octave>
+          <octave>5</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>8</duration>
         <accidental>sharp</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
@@ -1633,19 +940,28 @@
     <measure number="7">
       <note>
         <pitch>
+          <step>C</step>
+          <alter>1</alter>
+          <octave>5</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>sharp</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
           <step>B</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
@@ -1658,24 +974,33 @@
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
     <measure number="9">
       <note>
         <pitch>
-          <step>B</step>
+          <step>E</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
@@ -1685,11 +1010,11 @@
       <note>
         <pitch>
           <step>C</step>
-          <alter>1</alter>
-          <octave>5</octave>
+          <alter>0</alter>
+          <octave>4</octave>
         </pitch>
-        <duration>3</duration>
-        <accidental>sharp</accidental>
+        <duration>2</duration>
+        <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
@@ -1700,49 +1025,37 @@
       <note>
         <pitch>
           <step>C</step>
-          <alter>1</alter>
-          <octave>5</octave>
+          <alter>0</alter>
+          <octave>4</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
+        <duration>8</duration>
+        <accidental>natural</accidental>
       </note>
     </measure>
     <measure number="11">
       <note>
         <pitch>
-          <step>C</step>
-          <alter>1</alter>
-          <octave>5</octave>
+          <step>D</step>
+          <alter>0</alter>
+          <octave>4</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
+        <duration>8</duration>
+        <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="12">
       <note>
         <pitch>
-          <step>C</step>
-          <alter>1</alter>
-          <octave>5</octave>
+          <step>D</step>
+          <alter>0</alter>
+          <octave>4</octave>
         </pitch>
-        <duration>3</duration>
-        <accidental>sharp</accidental>
+        <duration>2</duration>
+        <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
@@ -1750,11 +1063,11 @@
       </note>
       <note>
         <pitch>
-          <step>B</step>
+          <step>G</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -1765,7 +1078,20 @@
     <measure number="13">
       <note>
         <pitch>
-          <step>B</step>
+          <step>G</step>
+          <alter>0</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>A</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
@@ -1774,68 +1100,92 @@
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="14">
       <note>
         <pitch>
-          <step>B</step>
+          <step>A</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>6</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>0</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="15">
       <note>
         <pitch>
-          <step>B</step>
+          <step>G</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>3</duration>
+        <duration>8</duration>
         <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
       </note>
     </measure>
     <measure number="16">
       <note>
         <pitch>
-          <step>E</step>
-          <alter>0</alter>
+          <step>F</step>
+          <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
+        <duration>8</duration>
+        <accidental>sharp</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
       </note>
     </measure>
     <measure number="17">
       <note>
         <pitch>
-          <step>C</step>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>sharp</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>D</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
       </note>
+    </measure>
+    <measure number="18">
       <note>
         <pitch>
           <step>D</step>
@@ -1844,27 +1194,46 @@
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
       </note>
-    </measure>
-    <measure number="18">
       <note>
         <pitch>
-          <step>G</step>
+          <step>E</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
       </note>
     </measure>
     <measure number="19">
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>6</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
       <note>
         <pitch>
           <step>A</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -1879,39 +1248,18 @@
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>8</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
       </note>
     </measure>
     <measure number="21">
       <note>
         <pitch>
-          <step>A</step>
+          <step>B</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2</duration>
+        <duration>8</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -1922,30 +1270,39 @@
     <measure number="22">
       <note>
         <pitch>
-          <step>G</step>
+          <step>B</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="23">
       <note>
         <pitch>
-          <step>G</step>
+          <step>A</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>4</duration>
         <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
@@ -1954,12 +1311,12 @@
       </note>
       <note>
         <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>5</octave>
         </pitch>
-        <duration>2</duration>
-        <accidental>sharp</accidental>
+        <duration>4</duration>
+        <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
@@ -1969,54 +1326,50 @@
     <measure number="24">
       <note>
         <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>5</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
+        <duration>6</duration>
+        <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>5</octave>
+        </pitch>
+        <duration>2</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
     <measure number="25">
       <note>
         <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>sharp</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>D</step>
+          <step>E</step>
           <alter>0</alter>
-          <octave>4</octave>
+          <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>8</duration>
         <accidental>natural</accidental>
       </note>
     </measure>
     <measure number="26">
       <note>
         <pitch>
-          <step>E</step>
+          <step>A</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>8</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -2027,11 +1380,11 @@
     <measure number="27">
       <note>
         <pitch>
-          <step>E</step>
+          <step>A</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
@@ -2040,11 +1393,11 @@
       </note>
       <note>
         <pitch>
-          <step>A</step>
+          <step>G</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>3</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -2055,9 +1408,22 @@
     <measure number="28">
       <note>
         <pitch>
-          <step>A</step>
+          <step>G</step>
           <alter>0</alter>
           <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>D</step>
+          <alter>0</alter>
+          <octave>5</octave>
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
@@ -2065,20 +1431,16 @@
         <notations>
           <tied type="start"/>
         </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
       </note>
     </measure>
     <measure number="29">
       <note>
         <pitch>
-          <step>A</step>
+          <step>D</step>
           <alter>0</alter>
-          <octave>4</octave>
+          <octave>5</octave>
         </pitch>
-        <duration>3</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
@@ -2087,12 +1449,12 @@
       </note>
       <note>
         <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>5</octave>
         </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
+        <duration>2</duration>
+        <accidental>sharp</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
@@ -2102,50 +1464,38 @@
     <measure number="30">
       <note>
         <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>5</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
+        <duration>8</duration>
+        <accidental>sharp</accidental>
       </note>
     </measure>
     <measure number="31">
       <note>
         <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>5</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
+        <duration>8</duration>
+        <accidental>sharp</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="32">
       <note>
         <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>5</octave>
         </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
+        <duration>2</duration>
+        <accidental>sharp</accidental>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
@@ -2153,11 +1503,11 @@
       </note>
       <note>
         <pitch>
-          <step>A</step>
+          <step>B</step>
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>1</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
@@ -2168,6 +1518,19 @@
     <measure number="33">
       <note>
         <pitch>
+          <step>B</step>
+          <alter>0</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
           <step>A</step>
           <alter>0</alter>
           <octave>4</octave>
@@ -2177,10 +1540,6 @@
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
@@ -2191,26 +1550,7 @@
           <alter>0</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="35">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
@@ -2223,12 +1563,23 @@
           <alter>0</alter>
           <octave>5</octave>
         </pitch>
-        <duration>3</duration>
+        <duration>2</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
         </notations>
+      </note>
+    </measure>
+    <measure number="35">
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>5</octave>
+        </pitch>
+        <duration>8</duration>
+        <accidental>natural</accidental>
       </note>
     </measure>
     <measure number="36">
@@ -2238,15 +1589,11 @@
           <alter>0</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>8</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
@@ -2257,15 +1604,24 @@
           <alter>0</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
+        <accidental>natural</accidental>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0</alter>
+          <octave>5</octave>
+        </pitch>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
@@ -2278,24 +1634,33 @@
         </pitch>
         <duration>4</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
         <tie type="stop"/>
         <notations>
           <tied type="stop"/>
+        </notations>
+      </note>
+      <note>
+        <pitch>
+          <step>A</step>
+          <alter>0</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <accidental>natural</accidental>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
         </notations>
       </note>
     </measure>
     <measure number="39">
       <note>
         <pitch>
-          <step>E</step>
+          <step>A</step>
           <alter>0</alter>
-          <octave>5</octave>
+          <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>6</duration>
         <accidental>natural</accidental>
         <tie type="stop"/>
         <notations>
@@ -2304,9 +1669,9 @@
       </note>
       <note>
         <pitch>
-          <step>E</step>
+          <step>G</step>
           <alter>0</alter>
-          <octave>5</octave>
+          <octave>4</octave>
         </pitch>
         <duration>2</duration>
         <accidental>natural</accidental>
@@ -2319,661 +1684,33 @@
     <measure number="40">
       <note>
         <pitch>
-          <step>E</step>
+          <step>G</step>
           <alter>0</alter>
-          <octave>5</octave>
+          <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>8</duration>
         <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
       </note>
     </measure>
     <measure number="41">
       <note>
         <pitch>
-          <step>E</step>
+          <step>D</step>
           <alter>0</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>8</duration>
         <accidental>natural</accidental>
         <tie type="start"/>
         <notations>
           <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
         </notations>
       </note>
     </measure>
     <measure number="42">
       <note>
         <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="43">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="44">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="45">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="46">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="47">
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="48">
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="49">
-      <note>
-        <pitch>
           <step>D</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="50">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="51">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="52">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="53">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="54">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="55">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="56">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>sharp</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="57">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="58">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="59">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="60">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>sharp</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="61">
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>sharp</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="62">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="63">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="64">
-      <note>
-        <pitch>
-          <step>B</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="65">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="66">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="67">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="68">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="69">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="70">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="71">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="72">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="73">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="74">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="75">
-      <note>
-        <pitch>
-          <step>E</step>
           <alter>0</alter>
           <octave>5</octave>
         </pitch>
@@ -2983,237 +1720,6 @@
         <notations>
           <tied type="stop"/>
         </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>2</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="76">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="77">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="78">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="79">
-      <note>
-        <pitch>
-          <step>E</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="80">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="81">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="82">
-      <note>
-        <pitch>
-          <step>A</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>3</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="83">
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-        <tie type="start"/>
-        <notations>
-          <tied type="start"/>
-        </notations>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="84">
-      <note>
-        <pitch>
-          <step>G</step>
-          <alter>0</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>1</duration>
-        <accidental>natural</accidental>
-        <tie type="stop"/>
-        <notations>
-          <tied type="stop"/>
-        </notations>
-      </note>
-    </measure>
-    <measure number="85">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="86">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
-      </note>
-    </measure>
-    <measure number="87">
-      <note>
-        <pitch>
-          <step>D</step>
-          <alter>0</alter>
-          <octave>5</octave>
-        </pitch>
-        <duration>4</duration>
-        <accidental>natural</accidental>
       </note>
     </measure>
   </part>

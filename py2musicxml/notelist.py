@@ -113,7 +113,6 @@ class NoteList:
                 else:
                     print("dur is subdivisions", item.dur, subdivisions)
                     alteredDuration = copy.deepcopy(self.currentList[location])
-                    alteredDuration.dur = subdivisions
                     print(
                         "Zero, Zero: currentCount, subdivisions, dur",
                         currentCount,
@@ -138,6 +137,7 @@ class NoteList:
                 last_note_of_old_measure.dur = what_goes_to_the_first_measure
                 print("first measure", what_goes_to_the_first_measure)
                 last_note_of_old_measure.tieStart = True
+                middleList.append(last_note_of_old_measure)
                 while how_many_measures > 0:
                     note_to_add = copy.deepcopy(self.currentList[location])
                     note_to_add.dur = subdivisions
