@@ -74,6 +74,7 @@ class NoteList:
 
     def groupList(self):
         currentCount = 0
+        # current count of number of subdivisions including the new note (item)
         lastCurrentCount = 0
         middleList = []
         returnList = []
@@ -137,6 +138,7 @@ class NoteList:
                 last_note_of_old_measure.dur = what_goes_to_the_first_measure
                 print("first measure", what_goes_to_the_first_measure)
                 last_note_of_old_measure.tieStart = True
+                middleList.append(last_note_of_old_measure)
                 while how_many_measures > 0:
                     note_to_add = copy.deepcopy(self.currentList[location])
                     note_to_add.dur = subdivisions
