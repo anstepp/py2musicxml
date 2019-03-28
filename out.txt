@@ -1,183 +1,47 @@
-current dur currentCount 13 13
+current dur currentCount 14 14
 greater than, greater than
-last_measure_counts 4
-dur 4
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 1
-current dur currentCount 9 10
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-currentCount 2
-current dur currentCount 11 13
-greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 16 17
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 18 19
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 3
-current dur currentCount 16 19
-greater than, greater than
-last_measure_counts 1
-dur 1
-dur 4
+WGTTLM 2
 dur 4
 dur 4
 dur 4
 adding extra note 2
 dur 2
-currentCount 3
-current dur currentCount 13 16
+currentCount 2
+current dur currentCount 10 12
 zero, greater than
-12 13
-first measure 1
+8 10
+first measure 2
 dur 4
 dur 4
-dur 4
-current dur currentCount 9 9
-greater than, greater than
-last_measure_counts 4
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 1
-current dur currentCount 11 12
+current dur currentCount 12 12
 zero, greater than
-8 11
-first measure 3
-dur 4
-dur 4
-current dur currentCount 16 16
-zero, greater than
-12 16
+8 12
 first measure 4
 dur 4
 dur 4
-dur 4
-current dur currentCount 18 18
+current dur currentCount 17 17
 greater than, greater than
-last_measure_counts 4
+WGTTLM 1
 dur 4
 dur 4
 dur 4
 dur 4
-adding extra note 2
-dur 2
-currentCount 2
-current dur currentCount 16 18
-greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 2
-current dur currentCount 11 13
-greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-dur 4
+adding extra note 1
+dur 1
 currentCount 1
-current dur currentCount 11 12
+current dur currentCount 19 20
 zero, greater than
-8 11
+16 19
 first measure 3
 dur 4
 dur 4
-current dur currentCount 4 4
-zero, equal
-dur is subdivisions 4 4
-Zero, Zero: currentCount, subdivisions, dur 4 4 4
 dur 4
-currentCount 0
-current dur currentCount 2 2
-buisness as usual
-dur 2
-currentCount 2
-current dur currentCount 9 11
+dur 4
+current dur currentCount 17 17
 greater than, greater than
-last_measure_counts 2
-dur 2
+WGTTLM 1
 dur 4
 dur 4
-adding extra note 1
-dur 1
-currentCount 3
-current dur currentCount 9 12
-zero, greater than
-8 9
-first measure 1
-dur 4
-dur 4
-current dur currentCount 9 9
-greater than, greater than
-last_measure_counts 4
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 1
-current dur currentCount 2 3
-buisness as usual
-dur 2
-currentCount 3
-current dur currentCount 0 3
-buisness as usual
-dur 0
-currentCount 3
-current dur currentCount 7 10
-greater than, greater than
-last_measure_counts 1
-dur 1
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 2
-current dur currentCount 11 13
-greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 7 8
-zero, greater than
-4 7
-first measure 3
-dur 4
-current dur currentCount 9 9
-greater than, greater than
-last_measure_counts 4
 dur 4
 dur 4
 adding extra note 1
@@ -185,362 +49,174 @@ dur 1
 currentCount 1
 current dur currentCount 14 15
 greater than, greater than
-last_measure_counts 3
+WGTTLM 3
 dur 3
 dur 4
 dur 4
-dur 4
+adding extra note 3
+dur 3
 currentCount 3
-current dur currentCount 16 19
+current dur currentCount 10 13
 greater than, greater than
-last_measure_counts 1
+WGTTLM 1
 dur 1
 dur 4
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 12 13
+greater than, greater than
+WGTTLM 1
+dur 3
+dur 4
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 17 18
+greater than, greater than
+WGTTLM 2
+dur 3
 dur 4
 dur 4
 dur 4
 adding extra note 2
 dur 2
-currentCount 3
-current dur currentCount 14 17
+currentCount 2
+current dur currentCount 19 21
 greater than, greater than
-last_measure_counts 1
+WGTTLM 1
+dur 2
+dur 4
+dur 4
+dur 4
+dur 4
+adding extra note 1
 dur 1
-dur 4
-dur 4
-dur 4
-dur 4
 currentCount 1
-0 4
-1 4
-2 4
-3 1
-4 4
-5 4
-6 4
-7 4
-8 4
-9 4
-10 4
-11 4
-12 4
-13 4
-14 4
-15 4
-16 4
-17 4
-18 4
-19 4
-20 4
-21 2
-22 4
-23 4
-24 4
-25 4
-26 4
-27 1
-28 4
-29 4
-30 4
-31 4
-32 4
-33 4
-34 4
-35 4
-36 4
-37 2
-38 4
-39 4
-40 4
-41 4
-42 4
-43 4
-44 4
-45 4
-46 4
-47 4
-48 2
-49 4
-50 4
-51 1
-52 4
-53 4
-54 4
-55 4
-56 1
-57 2
-58 0
-59 4
-60 4
-61 1
-62 4
-63 4
-64 4
-65 4
-66 4
-67 4
-68 1
-69 4
-70 4
-71 4
-72 4
-73 4
-74 4
-75 4
-76 2
-77 4
-78 4
-79 4
-80 4
-durs [4, 1, 2, 0]
-lcm 0
-subdivisions 0
+current dur currentCount 17 18
+greater than, greater than
+WGTTLM 2
+dur 3
+dur 4
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 12 14
+greater than, greater than
+WGTTLM 2
+dur 2
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 12 14
+greater than, greater than
+WGTTLM 2
+dur 2
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 5 7
+greater than, zero
+dur 2
+dur 3
+currentCount 3
+current dur currentCount 3 6
+greater than, zero
+dur 1
+dur 2
+currentCount 2
+current dur currentCount 10 12
+zero, greater than
+8 10
+first measure 2
+dur 4
+dur 4
+current dur currentCount 10 10
+greater than, greater than
+WGTTLM 2
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 10 12
+zero, greater than
+8 10
+first measure 2
+dur 4
+dur 4
+current dur currentCount 3 3
+buisness as usual
+dur 3
+currentCount 3
+current dur currentCount 1 4
+zero, equal
+dur is subdivisions 1 4
+Zero, Zero: currentCount, subdivisions, dur 4 4 4
+dur 4
+currentCount 0
 current dur currentCount 8 8
 zero, greater than
 4 8
 first measure 4
 dur 4
-current dur currentCount 4 4
-zero, equal
-dur is subdivisions 4 4
-Zero, Zero: currentCount, subdivisions, dur 4 4 4
-dur 4
-currentCount 0
-current dur currentCount 6 6
-greater than, zero
-dur 4
-dur 2
-currentCount 2
-current dur currentCount 11 13
-greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 13 14
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-dur 4
-currentCount 2
-current dur currentCount 11 13
-greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 4 5
-greater than, zero
-dur 3
-dur 1
-currentCount 1
-current dur currentCount 0 1
-buisness as usual
-dur 0
-currentCount 1
-current dur currentCount 2 3
-buisness as usual
-dur 2
-currentCount 3
-current dur currentCount 7 10
-greater than, greater than
-last_measure_counts 1
-dur 1
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 2
-current dur currentCount 9 11
-greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 3
-current dur currentCount 7 10
-greater than, greater than
-last_measure_counts 1
-dur 1
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 2
-current dur currentCount 6 8
+current dur currentCount 12 12
 zero, greater than
-4 6
-first measure 2
+8 12
+first measure 4
 dur 4
-current dur currentCount 2 2
-buisness as usual
+dur 4
+current dur currentCount 8 8
+zero, greater than
+4 8
+first measure 4
+dur 4
+current dur currentCount 10 10
+greater than, greater than
+WGTTLM 2
+dur 4
+dur 4
+adding extra note 2
 dur 2
 currentCount 2
-current dur currentCount 4 6
-greater than, zero
-dur 2
-dur 2
-currentCount 2
-current dur currentCount 9 11
+current dur currentCount 15 17
 greater than, greater than
-last_measure_counts 2
+WGTTLM 1
 dur 2
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 3
-current dur currentCount 11 14
-greater than, greater than
-last_measure_counts 1
-dur 1
 dur 4
 dur 4
 dur 4
 adding extra note 1
 dur 1
-currentCount 2
-current dur currentCount 9 11
+currentCount 1
+current dur currentCount 17 18
 greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-adding extra note 1
-dur 1
-currentCount 3
-current dur currentCount 16 19
-greater than, greater than
-last_measure_counts 1
-dur 1
-dur 4
+WGTTLM 2
+dur 3
 dur 4
 dur 4
 dur 4
 adding extra note 2
 dur 2
-currentCount 3
-current dur currentCount 16 19
+currentCount 2
+current dur currentCount 15 17
 greater than, greater than
-last_measure_counts 1
-dur 1
-dur 4
-dur 4
-dur 4
-dur 4
-adding extra note 2
+WGTTLM 1
 dur 2
-currentCount 3
-current dur currentCount 9 12
-zero, greater than
-8 9
-first measure 1
 dur 4
-dur 4
-current dur currentCount 7 7
-greater than, zero
-dur 4
-dur 3
-currentCount 3
-current dur currentCount 14 17
-greater than, greater than
-last_measure_counts 1
-dur 1
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 18 19
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 3
-current dur currentCount 18 21
-greater than, greater than
-last_measure_counts 1
-dur 1
-dur 4
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 11 12
-zero, greater than
-8 11
-first measure 3
-dur 4
-dur 4
-current dur currentCount 9 9
-greater than, greater than
-last_measure_counts 4
 dur 4
 dur 4
 adding extra note 1
 dur 1
 currentCount 1
-current dur currentCount 16 17
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 16 17
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 16 17
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 9 10
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-currentCount 2
-current dur currentCount 7 9
-greater than, greater than
-last_measure_counts 2
-dur 2
-dur 4
-dur 4
-currentCount 1
-current dur currentCount 14 15
-greater than, greater than
-last_measure_counts 3
-dur 3
-dur 4
-dur 4
-dur 4
-currentCount 3
 0 4
 1 4
 2 4
@@ -553,58 +229,417 @@ currentCount 3
 9 4
 10 4
 11 4
-12 4
-13 3
-14 1
-15 0
-16 2
+12 1
+13 4
+14 4
+15 4
+16 4
 17 4
 18 4
-19 1
+19 4
 20 4
-21 4
-22 1
+21 1
+22 3
 23 4
 24 4
-25 1
-26 4
-27 2
-28 2
-29 2
-30 4
+25 3
+26 1
+27 4
+28 4
+29 1
+30 3
 31 4
-32 1
-33 4
-34 4
+32 4
+33 1
+34 3
 35 4
-36 1
+36 4
 37 4
-38 4
-39 1
+38 2
+39 2
 40 4
 41 4
 42 4
 43 4
-44 2
-45 4
+44 1
+45 3
 46 4
 47 4
 48 4
 49 2
-50 4
+50 2
 51 4
 52 4
-53 3
-54 4
+53 2
+54 2
 55 4
 56 4
-57 4
-58 4
-59 4
-60 4
-61 4
+57 2
+58 2
+59 3
+60 1
+61 2
 62 4
 63 4
+64 4
+65 4
+66 2
+67 4
+68 4
+69 3
+70 4
+71 4
+72 4
+73 4
+74 4
+75 4
+76 4
+77 2
+78 2
+79 4
+80 4
+81 4
+82 1
+83 3
+84 4
+85 4
+86 4
+87 2
+88 2
+89 4
+90 4
+91 4
+92 1
+durs [4, 2, 1, 3]
+lcm 12
+subdivisions 12
+current dur currentCount 9 9
+greater than, greater than
+WGTTLM 1
+dur 4
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 5 6
+greater than, zero
+dur 3
+dur 2
+currentCount 2
+current dur currentCount 7 9
+greater than, greater than
+WGTTLM 1
+dur 2
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 12 13
+greater than, greater than
+WGTTLM 1
+dur 3
+dur 4
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 14 15
+greater than, greater than
+WGTTLM 3
+dur 3
+dur 4
+dur 4
+adding extra note 3
+dur 3
+currentCount 3
+current dur currentCount 12 15
+greater than, greater than
+WGTTLM 3
+dur 1
+dur 4
+dur 4
+adding extra note 3
+dur 3
+currentCount 3
+current dur currentCount 5 8
+zero, greater than
+4 5
+first measure 1
+dur 4
+current dur currentCount 1 1
+buisness as usual
+dur 1
+currentCount 1
+current dur currentCount 3 4
+zero, equal
+dur is subdivisions 3 4
+Zero, Zero: currentCount, subdivisions, dur 4 4 4
+dur 4
+currentCount 0
+current dur currentCount 8 8
+zero, greater than
+4 8
+first measure 4
+dur 4
+current dur currentCount 10 10
+greater than, greater than
+WGTTLM 2
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 8 10
+greater than, greater than
+WGTTLM 2
+dur 2
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 7 9
+greater than, greater than
+WGTTLM 1
+dur 2
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 3 4
+zero, equal
+dur is subdivisions 3 4
+Zero, Zero: currentCount, subdivisions, dur 4 4 4
+dur 4
+currentCount 0
+current dur currentCount 5 5
+greater than, zero
+dur 4
+dur 1
+currentCount 1
+current dur currentCount 10 11
+greater than, greater than
+WGTTLM 3
+dur 3
+dur 4
+adding extra note 3
+dur 3
+currentCount 3
+current dur currentCount 12 15
+greater than, greater than
+WGTTLM 3
+dur 1
+dur 4
+dur 4
+adding extra note 3
+dur 3
+currentCount 3
+current dur currentCount 10 13
+greater than, greater than
+WGTTLM 1
+dur 1
+dur 4
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 17 18
+greater than, greater than
+WGTTLM 2
+dur 3
+dur 4
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 17 19
+greater than, greater than
+WGTTLM 3
+dur 2
+dur 4
+dur 4
+dur 4
+adding extra note 3
+dur 3
+currentCount 3
+current dur currentCount 10 13
+greater than, greater than
+WGTTLM 1
+dur 1
+dur 4
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 8 9
+greater than, greater than
+WGTTLM 1
+dur 3
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 15 16
+zero, greater than
+12 15
+first measure 3
+dur 4
+dur 4
+dur 4
+current dur currentCount 19 19
+greater than, greater than
+WGTTLM 3
+dur 4
+dur 4
+dur 4
+dur 4
+adding extra note 3
+dur 3
+currentCount 3
+current dur currentCount 19 22
+greater than, greater than
+WGTTLM 2
+dur 1
+dur 4
+dur 4
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 12 14
+greater than, greater than
+WGTTLM 2
+dur 2
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 10 12
+zero, greater than
+8 10
+first measure 2
+dur 4
+dur 4
+current dur currentCount 17 17
+greater than, greater than
+WGTTLM 1
+dur 4
+dur 4
+dur 4
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 17 18
+greater than, greater than
+WGTTLM 2
+dur 3
+dur 4
+dur 4
+dur 4
+adding extra note 2
+dur 2
+currentCount 2
+current dur currentCount 17 19
+greater than, greater than
+WGTTLM 3
+dur 2
+dur 4
+dur 4
+dur 4
+adding extra note 3
+dur 3
+currentCount 3
+current dur currentCount 10 13
+greater than, greater than
+WGTTLM 1
+dur 1
+dur 4
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 8 9
+greater than, greater than
+WGTTLM 1
+dur 3
+dur 4
+adding extra note 1
+dur 1
+currentCount 1
+current dur currentCount 15 16
+zero, greater than
+12 15
+first measure 3
+dur 4
+dur 4
+dur 4
+0 4
+1 4
+2 1
+3 3
+4 2
+5 2
+6 4
+7 1
+8 3
+9 4
+10 4
+11 1
+12 3
+13 4
+14 4
+15 3
+16 1
+17 4
+18 4
+19 3
+20 4
+21 1
+22 4
+23 4
+24 4
+25 4
+26 2
+27 2
+28 4
+29 2
+30 2
+31 4
+32 1
+33 4
+34 4
+35 1
+36 3
+37 4
+38 3
+39 1
+40 4
+41 4
+42 3
+43 1
+44 4
+45 4
+46 1
+47 3
+48 4
+49 4
+50 4
+51 2
+52 2
+53 4
+54 4
+55 4
+56 3
+57 1
+58 4
+59 4
+60 1
+61 3
+62 4
+63 1
 64 4
 65 4
 66 4
@@ -612,26 +647,44 @@ currentCount 3
 68 4
 69 4
 70 4
-71 1
-72 4
+71 3
+72 1
 73 4
 74 4
 75 4
 76 4
-77 4
-78 4
+77 2
+78 2
 79 4
 80 4
-81 4
+81 2
 82 4
 83 4
 84 4
 85 4
 86 4
 87 4
-88 4
-89 4
+88 1
+89 3
 90 4
-durs [4, 2, 3, 1, 0]
-lcm 0
-subdivisions 0
+91 4
+92 4
+93 2
+94 2
+95 4
+96 4
+97 4
+98 3
+99 1
+100 4
+101 4
+102 1
+103 3
+104 4
+105 1
+106 4
+107 4
+108 4
+durs [4, 1, 3, 2]
+lcm 12
+subdivisions 12

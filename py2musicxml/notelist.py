@@ -182,25 +182,26 @@ class NoteList:
                 print("currentCount", currentCount)
             elif currentCountMod > 0 and currentCountFloor > 1:
                 print("greater than, greater than")
-                how_many_measures = currentCount // subdivisions
-                extra_measure_beats = subdivisions * how_many_measures
                 currentNote = copy.deepcopy(self.currentList[location])
-                overflow = currentCount - extra_measure_beats
-                last_measure_counts = subdivisions - lastCurrentCount
-                print("last_measure_counts", last_measure_counts)
-                if lastCurrentCount > 0:
-                    what_goes_to_the_first_measure = last_measure_counts
-                    what_goes_to_the_last_measure = (
-                        overflow - what_goes_to_the_first_measure
-                    )
+                last_measure_count = subdivisions - lastCurrentCount
+                overflow = currentCountMod
+                if last_measure_count > 0:
+                    how_many_measures = currentCount // subdivisions - 1
+                    what_goes_to_the_first_measure = subdivisions - lastCurrentCount
+                    what_goes_to_the_last_measure = overflow
+                    extra_measure_beats = subdivisions * how_many_measures
+                    print("WGTTLM",what_goes_to_the_last_measure)
                 else:
+                    how_many_measures = currentCount // subdivisions
                     what_goes_to_the_first_measure = False
                     what_goes_to_the_last_measure = overflow
+                    extra_measure_beats = subdivisions * how_many_measures
                 if what_goes_to_the_first_measure:
                     currentNote = copy.deepcopy(self.currentList[location])
                     currentNote.dur = what_goes_to_the_first_measure
                     print("dur", currentNote.dur)
                     currentNote.tieStart = True
+                    middleList.append(currentNote)
                 while how_many_measures > 0:
                     currentNote = copy.deepcopy(self.currentList[location])
                     currentNote.dur = subdivisions
