@@ -191,7 +191,7 @@ class NoteList:
                     what_goes_to_the_first_measure = subdivisions - lastCurrentCount
                     what_goes_to_the_last_measure = overflow
                     extra_measure_beats = subdivisions * how_many_measures
-                    print("WGTTLM",what_goes_to_the_last_measure)
+                    print("WGTTLM", what_goes_to_the_last_measure)
                 else:
                     how_many_measures = currentCount // subdivisions
                     what_goes_to_the_first_measure = False

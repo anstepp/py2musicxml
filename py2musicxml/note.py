@@ -85,3 +85,18 @@ class Note:
             raise Exception('starting_pitch must be zero, a flat key, or sharp key')
 
         return step_names[self.pc]
+
+    def __eq__(self, other):
+        if (
+            (self.dur == other.dur)
+            and (self.octave == other.octave)
+            and (self.pc == other.pc)
+        ):
+            return True
+        else:
+            return False
+
+    def __str__(self):
+        return 'Duration: {}, Octave: {}, Pitch Class: {}'.format(
+            self.dur, self.octave, self.pc
+        )
