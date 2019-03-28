@@ -74,6 +74,7 @@ class NoteList:
 
     def groupList(self):
         currentCount = 0
+        # current count of number of subdivisions including the new note (item)
         lastCurrentCount = 0
         middleList = []
         returnList = []
