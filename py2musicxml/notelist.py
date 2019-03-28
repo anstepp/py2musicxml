@@ -78,12 +78,13 @@ class NoteList:
         middleList = []
         returnList = []
         subdivisions = self.measureBeats
+
         for location, item in enumerate(self.currentList):
             currentCount += item.dur
             currentCountFloor = currentCount // subdivisions
             currentCountMod = currentCount % subdivisions
             print("current dur", "currentCount", item.dur, currentCount)
-            if currentCountFloor == 1 and currentCountMod == 0:
+            if currentCountMod == 0 and currentCountFloor == 1:
                 print("zero, equal")
                 if location != len(self.currentList) - 1:
                     self.currentList[location + 1].measureFlag = True
@@ -231,7 +232,7 @@ class NoteList:
                 print("dur", alteredDuration.dur)
                 middleList.append(alteredDuration)
                 print("currentCount", currentCount)
-                lastCurrentCount = currentCount % subdivisions
+                lastCurrentCount = currentCountMod
         for key, value in enumerate(middleList):
             print(key, value.dur)
         uniqueDurations = self.getUniques(middleList)
