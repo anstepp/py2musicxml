@@ -9,7 +9,6 @@ class Score:
             self.parts.append(arg)
 
     def convertToXML(self, fname):
-        partNumber = 0
         root = etree.Element("score-partwise")
         root.attrib["version"] = "3.0"
         partList = etree.SubElement(root, "part-list")
@@ -18,7 +17,7 @@ class Score:
         for musicalPart in self.parts:
             currentBeatFactor = musicalPart.measureFactor
             beatMeasure = musicalPart.measureBeats
-            beatDivisions = beatMeasure * currentBeatFactor
+            beatDivisions = musicalPart.subdivisions
             partNumber += 1
             scorePart = etree.SubElement(partList, "score-part")
             scorePart.attrib["id"] = "P" + str(partNumber)
@@ -63,7 +62,7 @@ class Score:
                 theStep = etree.SubElement(thePitch, "step")
                 theStep.text = currentNote.stepName
                 theDur = etree.SubElement(theNote, "duration")
-                theDur.text = str(currentNote.dur * currentBeatFactor)
+                theDur.text = str(currentNote.dur)
                 if currentNote.alter:
                     accidental = etree.SubElement(theNote, "accidental")
                     accidental.text = currentNote.accidental

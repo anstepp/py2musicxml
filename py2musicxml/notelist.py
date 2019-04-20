@@ -16,7 +16,7 @@ class NoteList:
 
     def __init__(self, theList):
         self.currentList = theList
-
+        self.subdivisions = None
     # is this redundant with the _clean_list(), or do we make that default beahvior?
     """default behavior is to simply clean an input list to 4/4
        it's also an option to feed extra arguments with keywords to 
@@ -56,8 +56,8 @@ class NoteList:
         else:
             # convert float to fraction by approximating denominator then gcd
             return fractions.gcd(
-                fractions.fraction(a).limit_denominator(),
-                fractions.fraction(b).limit_denominator(),
+                fractions.Fraction(a).limit_denominator(),
+                fractions.Fraction(b).limit_denominator(),
             )
 
     def lcm(self, a, b):
@@ -74,37 +74,32 @@ class NoteList:
 
     def groupList(self):
         currentCount = 0
-        # current count of number of subdivisions including the new note (item)
+        # current count of number of self.subdivisions including the new note (item)
         lastCurrentCount = 0
         middleList = []
         returnList = []
-        subdivisions = self.measureBeats
+        self.subdivisions = self.measureBeats * self.measureFactor
 
         for location, item in enumerate(self.currentList):
             currentCount += item.dur
-            currentCountFloor = currentCount // subdivisions
-            currentCountMod = currentCount % subdivisions
-            print("current dur", "currentCount", item.dur, currentCount)
+            currentCountFloor = currentCount // self.subdivisions
+            currentCountMod = currentCount % self.subdivisions
             if currentCountMod == 0 and currentCountFloor == 1:
-                print("zero, equal")
+                #print("zero, equal")
                 if location != len(self.currentList) - 1:
                     self.currentList[location + 1].measureFlag = True
-                if item.dur > subdivisions:
-                    print("dur greater than subdivisions", item.dur, subdivisions)
-                    how_many_measures = currentCount // subdivisions
+                if item.dur > self.subdivisions:
+                    how_many_measures = currentCount // self.subdivisions
                     what_goes_to_the_first_measure = (
-                        item.dur - currentCount // subdivisions
+                        item.dur - currentCount // self.subdivisions
                     )
-                    print(what_goes_to_the_first_measure)
                     last_note_of_old_measure = copy.deepcopy(self.currentList[location])
                     last_note_of_old_measure.dur = what_goes_to_the_first_measure
-                    print(what_goes_to_the_first_measure)
                     last_note_of_old_measure.tieStart = True
                     middleList.append(last_note_of_old_measure)
                     while how_many_measures > 0:
                         whole_measure_note = copy.deepcopy(self.currentList[location])
-                        whole_measure_note.dur = subdivisions
-                        print(whole_measure_note)
+                        whole_measure_note.dur = self.subdivisions
                         if how_many_measures > 1:
                             whole_measure_note.tieStart = True
                         else:
@@ -112,136 +107,109 @@ class NoteList:
                         middleList.append(whole_measure_note)
                         how_many_measures -= 1
                 else:
-                    print("dur is subdivisions", item.dur, subdivisions)
                     alteredDuration = copy.deepcopy(self.currentList[location])
-                    print(
-                        "Zero, Zero: currentCount, subdivisions, dur",
-                        currentCount,
-                        subdivisions,
-                        alteredDuration.dur,
-                    )
-                    print("dur", alteredDuration.dur)
                     middleList.append(alteredDuration)
                 currentCount = 0
-                print("currentCount", currentCount)
             elif currentCountMod == 0 and currentCountFloor > 1:
-                print("zero, greater than")
-                how_many_measures = currentCount // subdivisions
+                #print("zero, greater than")
+                how_many_measures = currentCount // self.subdivisions
                 if location != len(self.currentList) - 1:
                     self.currentList[location + 1].measureFlag = True
-                how_many_measures = currentCount // subdivisions - 1
-                print(subdivisions * how_many_measures, item.dur)
+                how_many_measures = currentCount // self.subdivisions - 1
                 what_goes_to_the_first_measure = (
-                    item.dur - subdivisions * how_many_measures
+                    item.dur - self.subdivisions * how_many_measures
                 )
                 last_note_of_old_measure = copy.deepcopy(self.currentList[location])
                 last_note_of_old_measure.dur = what_goes_to_the_first_measure
-                print("first measure", what_goes_to_the_first_measure)
                 last_note_of_old_measure.tieStart = True
                 middleList.append(last_note_of_old_measure)
                 while how_many_measures > 0:
                     note_to_add = copy.deepcopy(self.currentList[location])
-                    note_to_add.dur = subdivisions
-                    print("dur", note_to_add.dur)
+                    note_to_add.dur = self.subdivisions
                     note_to_add.measureFlag = True
                     middleList.append(note_to_add)
                     how_many_measures -= 1
-                lastCurrentCount = currentCount % subdivisions
+                lastCurrentCount = currentCountMod
                 currentCount = 0
             elif currentCountMod > 0 and currentCountFloor == 1:
-                print("greater than, zero")
+                #print("greater than, zero")
                 currentNote = copy.deepcopy(self.currentList[location])
-                overflow = currentCount - subdivisions
-                if overflow // subdivisions > 1:
-                    newDur = subdivisions
+                overflow = currentCount - self.subdivisions
+                if overflow // self.subdivisions > 1:
+                    newDur = self.subdivisions
                     currentNote.dur = newDur
                     currentNote.tieStart = True
-                    print("dur", currentNote.dur)
                     middleList.append(currentNote)
                     tiedNote = copy.deepcopy(self.currentList[location])
-                    tiedDur = overflow % subdivisions
+                    tiedDur = overflow % self.subdivisions
                     tiedNote.dur = newDur
                     tiedNote.tieEnd = True
                     tiedNote.measureFlag = True
-                    print("dur", tiedNote.dur)
                     middleList.append(tiedNote)
                 else:
                     preTie = self.currentList[location].dur - overflow
                     newDur = preTie
                     currentNote.dur = newDur
                     currentNote.tieStart = True
-                    print("dur", currentNote.dur)
                     middleList.append(currentNote)
                     tiedNote = copy.deepcopy(self.currentList[location])
-                    tiedDur = overflow % subdivisions
+                    tiedDur = overflow % self.subdivisions
                     tiedNote.dur = tiedDur
                     tiedNote.tieEnd = True
                     tiedNote.measureFlag = True
-                    print("dur", tiedNote.dur)
                     middleList.append(tiedNote)
-                lastCurrentCount = currentCount % subdivisions
+                lastCurrentCount = currentCount % self.subdivisions
                 currentCount = overflow
-                print("currentCount", currentCount)
             elif currentCountMod > 0 and currentCountFloor > 1:
-                print("greater than, greater than")
+                #print("greater than, greater than")
                 currentNote = copy.deepcopy(self.currentList[location])
-                last_measure_count = subdivisions - lastCurrentCount
+                last_measure_count = self.subdivisions - lastCurrentCount
                 overflow = currentCountMod
                 if last_measure_count > 0:
-                    how_many_measures = currentCount // subdivisions - 1
-                    what_goes_to_the_first_measure = subdivisions - lastCurrentCount
+                    how_many_measures = currentCount // self.subdivisions - 1
+                    what_goes_to_the_first_measure = self.subdivisions - lastCurrentCount
                     what_goes_to_the_last_measure = overflow
-                    extra_measure_beats = subdivisions * how_many_measures
-                    print("WGTTLM", what_goes_to_the_last_measure)
+                    extra_measure_beats = self.subdivisions * how_many_measures
                 else:
-                    how_many_measures = currentCount // subdivisions
+                    how_many_measures = currentCount // self.subdivisions
                     what_goes_to_the_first_measure = False
                     what_goes_to_the_last_measure = overflow
-                    extra_measure_beats = subdivisions * how_many_measures
+                    extra_measure_beats = self.subdivisions * how_many_measures
                 if what_goes_to_the_first_measure:
                     currentNote = copy.deepcopy(self.currentList[location])
                     currentNote.dur = what_goes_to_the_first_measure
-                    print("dur", currentNote.dur)
                     currentNote.tieStart = True
                     middleList.append(currentNote)
                 while how_many_measures > 0:
                     currentNote = copy.deepcopy(self.currentList[location])
-                    currentNote.dur = subdivisions
+                    currentNote.dur = self.subdivisions
                     currentNote.tieStart = True
                     # FIXME: This needs to not get switched on first note
                     currentNote.measureFlag = True
                     if what_goes_to_the_last_measure > 0:
                         currentNote.tieEnd = True
                     currentNote.tieEnd = True
-                    print("dur", currentNote.dur)
                     middleList.append(currentNote)
                     how_many_measures -= 1
                 if what_goes_to_the_last_measure > 0:
-                    print("adding extra note", what_goes_to_the_last_measure)
                     currentNote = copy.deepcopy(self.currentList[location])
                     currentNote.dur = what_goes_to_the_last_measure
                     currentNote.tieEnd = True
                     currentNote.measureFlag = True
-                    print("dur", currentNote.dur)
                     middleList.append(currentNote)
-                lastCurrentCount = currentCount % subdivisions
-                currentCount = overflow % subdivisions
-                print("currentCount", currentCount)
+                lastCurrentCount = currentCount % self.subdivisions
+                currentCount = overflow % self.subdivisions
             elif currentCountMod > 0 and currentCountFloor < 1:
-                print("buisness as usual")
+                #print("buisness as usual")
                 alteredDuration = copy.deepcopy(self.currentList[location])
-                print("dur", alteredDuration.dur)
                 middleList.append(alteredDuration)
-                print("currentCount", currentCount)
                 lastCurrentCount = currentCountMod
-        for key, value in enumerate(middleList):
-            print(key, value.dur)
         uniqueDurations = self.getUniques(middleList)
         print("durs", uniqueDurations)
         lcmOfDurations = reduce(self.lcm, uniqueDurations)
         print("lcm", lcmOfDurations)
-        subdivisions = self.measureFactor * lcmOfDurations
-        print("subdivisions", subdivisions)
+        #self.subdivisions = self.measureFactor * lcmOfDurations
+        print("self.subdivisions", self.subdivisions)
         # in the future, this will do scaling, etc.
         returnList = middleList
         return returnList
@@ -264,21 +232,21 @@ class NoteList:
         for mapValue in mapToGroup:
             currentBeats = mapValue[0]
             currentMultiplier = mapValue[1]
-            subdivisions = currentBeats * currentMultiplier
+            self.subdivisions = currentBeats * currentMultiplier
             for location, item in enumerate(self.currentList):
                 currentCount += item.dur
                 # print("currentCount", currentCount)
-                if currentCount == subdivisions:
+                if currentCount == self.subdivisions:
                     if location != len(currentList) - 1:
                         self.currentList[location + 1].measureFlag = True
                     alteredDuration = copy.deepcopy(self.currentList[location])
                     alteredDuration.dur = alteredDuration.dur / currentMultiplier
                     returnList.append(alteredDuration)
                     currentCount = 0
-                elif currentCount > subdivisions:
+                elif currentCount > self.subdivisions:
                     currentNote = copy.deepcopy(self.currentList[location])
-                    # print("logic for ties", currentCount, subdivisions)
-                    overflow = currentCount - subdivisions
+                    # print("logic for ties", currentCount, self.subdivisions)
+                    overflow = currentCount - self.subdivisions
                     # print("overflow", overflow)
                     preTie = self.currentList[location].dur - overflow
                     # print("pre-tie", preTie)
