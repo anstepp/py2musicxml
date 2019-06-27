@@ -214,13 +214,18 @@ class NoteList:
         returnList = middleList
         return returnList
 
-    def groupByImpliedMeter(self):
-        pass
-        """eventually, group measures by emphasis of rhythm and pitch
-        this might have to find a way to work between two different
-        pitch class objects to create a list of interactions. Not
-        sure what to do yet. There also needs to be a way to pass
-        the measure information onto the XML parser."""
+    def getImpliedMeter(self):
+        locationMap = []
+        pitchLocations = self.getChangePitch()
+        meterLocations = self.getChangeGroup()
+        highestLevel = [pitch for pitch, meter in zip(pitchLocations, meterLocations) if pitch == meter]
+        lastLocation = 0
+        for location in highestLevel:
+            subgroup = self.currentList[lastLocation:location]
+            groups2and3 = self.metricFinder(subgroup)
+            locationMap.append(groups2and3)
+        impliedList = self.groupByMap(locationMap)
+
 
     """this method is designed to take an input map to allow
     for various time signatures being user defined, or to 
