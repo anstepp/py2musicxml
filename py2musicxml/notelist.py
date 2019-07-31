@@ -214,17 +214,32 @@ class NoteList:
         returnList = middleList
         return returnList
 
+    def getChangePitch(self, group):
+        for item, value in group[1:-1]:
+            if item is > group[value - 1] and item < group[value + 1]:
+                #put a grouping tag
+                pass
+            elif item < group[value - 1] and item > group[value + 1]:
+                #put a group tag
+                pass
+
+    def getChangeGroup(self, group):
+        pass
+
     def getImpliedMeter(self):
         locationMap = []
         pitchLocations = self.getChangePitch()
         meterLocations = self.getChangeGroup()
         highestLevel = [pitch for pitch, meter in zip(pitchLocations, meterLocations) if pitch == meter]
         lastLocation = 0
+        #perhaps wrap this in a smaller function and make it recurisve? Is there a non-recusrive way to make this work?
         for location in highestLevel:
             subgroup = self.currentList[lastLocation:location]
-            groups2and3 = self.metricFinder(subgroup)
+            groups2and3 = self.metricFinder(subgroup) #or should I use the .getChangePitch() and .getChangeGroup()
             locationMap.append(groups2and3)
+            location = lastLocation
         impliedList = self.groupByMap(locationMap)
+        return impliedList
 
 
     """this method is designed to take an input map to allow
@@ -270,3 +285,6 @@ class NoteList:
                     alteredDuration.dur = alteredDuration.dur / currentMultiplier
                     returnList.append(alteredDuration)
         return returnList
+
+    def metricFinder(self, subgroup):
+        pass
