@@ -216,7 +216,7 @@ class NoteList:
 
     def getChangePitch(self, group):
         for item, value in group[1:-1]:
-            if item is > group[value - 1] and item < group[value + 1]:
+            if item > group[value - 1] and item < group[value + 1]:
                 #put a grouping tag
                 pass
             elif item < group[value - 1] and item > group[value + 1]:

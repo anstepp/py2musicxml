@@ -2,9 +2,15 @@ import Tree
 
 class PhraseTree(Tree):
 
-	def __init__(self, notelist):
-		val = 0
-		nodelist = [val += x for note.dur in notelist if self.tieTest(note)]
+	def __init__(self):
+		getNoteList = self.PhraseGenerator(theList)
+
+	def PhraseGenerator(self, notelist):
+		total = 0
+		for item in notelist:
+			if tieTest(item):
+				total + item
+				yield item
 
 	def tieTest(self, note):
 		if note.TieContinue is False and note.TieEnd is False:
@@ -12,3 +18,5 @@ class PhraseTree(Tree):
 		else:
 			return False
 
+	def makeList(self):
+		pass
