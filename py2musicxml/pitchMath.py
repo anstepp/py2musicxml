@@ -41,7 +41,7 @@ def convertToXML(theList, fname):
         line = etree.SubElement(clef, "line")
         line.text = "2"
         for currentNote in subList[0]:
-            if currentNote.measureFlag is True:
+            if currentNote.measure_flag is True:
                 currentMeasure += 1
                 measure = etree.SubElement(part, "measure")
                 measure.attrib["number"] = str(currentMeasure)
@@ -65,19 +65,19 @@ def convertToXML(theList, fname):
                 theAlter.text = currentNote.alter
             else:
                 theAlter.text = 0
-            if currentNote.tieStart:
+            if currentNote.tie_start:
                 theTie = etree.SubElement(theNote, "tie")
                 theTie.attrib["type"] = "start"
                 notations = etree.SubElement(theNote, "notations")
                 notateTie = etree.SubElement(notations, "tied")
                 notateTie.attrib["type"] = "start"
-            if currentNote.tieContinue:
+            if currentNote.tie_continue:
                 theTie = etree.SubElement(theNote, "tie")
                 theTie.attrib["type"] = "continue"
                 notations = etree.SubElement(theNote, "notations")
                 notateTie = etree.SubElement(notations, "tied")
                 notateTie.attrib["type"] = "continue"
-            if currentNote.tieEnd:
+            if currentNote.tie_end:
                 theTie = etree.SubElement(theNote, "tie")
                 theTie.attrib["type"] = "stop"
                 notations = etree.SubElement(theNote, "notations")

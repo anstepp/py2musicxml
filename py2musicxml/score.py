@@ -15,7 +15,7 @@ class Score:
         partNumber = 0
         # masterBeatSubdivisions = 4
         for musicalPart in self.parts:
-            currentBeatFactor = musicalPart.measureFactor
+            currentBeatFactor = musicalPart.measure_factor
             beatMeasure = musicalPart.measureBeats
             beatDivisions = musicalPart.subdivisions
             partNumber += 1
@@ -47,7 +47,7 @@ class Score:
             line = etree.SubElement(clef, "line")
             line.text = "2"
             for currentNote in musicalPart.finalList:
-                if currentNote.measureFlag is True:
+                if currentNote.measure_flag is True:
                     currentMeasure += 1
                     measure = etree.SubElement(XMLPart, "measure")
                     measure.attrib["number"] = str(currentMeasure)
@@ -71,19 +71,19 @@ class Score:
                     theAlter.text = currentNote.alter
                 else:
                     theAlter.text = 0
-                if currentNote.tieStart:
+                if currentNote.tie_start:
                     theTie = etree.SubElement(theNote, "tie")
                     theTie.attrib["type"] = "start"
                     notations = etree.SubElement(theNote, "notations")
                     notateTie = etree.SubElement(notations, "tied")
                     notateTie.attrib["type"] = "start"
-                if currentNote.tieContinue:
+                if currentNote.tie_continue:
                     theTie = etree.SubElement(theNote, "tie")
                     theTie.attrib["type"] = "continue"
                     notations = etree.SubElement(theNote, "notations")
                     notateTie = etree.SubElement(notations, "tied")
                     notateTie.attrib["type"] = "continue"
-                if currentNote.tieEnd:
+                if currentNote.tie_end:
                     theTie = etree.SubElement(theNote, "tie")
                     theTie.attrib["type"] = "stop"
                     notations = etree.SubElement(theNote, "notations")
