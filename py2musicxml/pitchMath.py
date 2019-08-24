@@ -1,5 +1,6 @@
 from lxml import etree
 
+## Remove this file once Aaron is sure he doesn't need it for reference anymore
 
 def convertToXML(theList, fname):
     partNumber = 0
