@@ -81,7 +81,7 @@ class Score:
 
             ## NOTES
 
-            # for each note in part's NoteList
+            # for each Note in part's NoteList
             for current_note in score_part.finalList:
 
                 # if it's a new measure, increment the xml_measure
@@ -92,7 +92,7 @@ class Score:
                     )
 
                 # note
-                #   -> pitch, duration, accidental
+                #   -> pitch, duration, accidental, notation ties
                 xml_note = etree.SubElement(xml_measure, "note")
 
                 xml_note_pitch = etree.SubElement(xml_note, "pitch")
@@ -111,7 +111,6 @@ class Score:
                 # pitch octave
                 xml_note_pitch_octave = etree.SubElement(xml_note_pitch, "octave")
                 xml_note_pitch_octave.text = str(current_note.octave)
-
 
                 # duration
                 xml_note_duration = etree.SubElement(xml_note, "duration")
