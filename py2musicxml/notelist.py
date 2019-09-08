@@ -4,14 +4,12 @@ import fractions
 from functools import reduce
 from lxml import etree
 
-from .pitchMath import convertToXML
-
 DEFAULT_MEASURE_BEATS = 4
 DEFAULT_MEASURE_FACTOR = 1
 
 
 class NoteList:
-    measureFactor, measureBeats = None, None
+    measure_factor, measureBeats = None, None
     initalList, currentList, finalList = None, None, None
 
     def __init__(self, theList):
@@ -25,7 +23,7 @@ class NoteList:
 
     def getList(self, **kwargs):
 
-        self.measureFactor = (
+        self.measure_factor = (
             kwargs.get("factor") if kwargs.get("factor") else DEFAULT_MEASURE_FACTOR
         )
 
@@ -78,7 +76,7 @@ class NoteList:
         lastCurrentCount = 0
         middleList = []
         returnList = []
-        self.subdivisions = self.measureBeats * self.measureFactor
+        self.subdivisions = self.measureBeats * self.measure_factor
 
         for location, item in enumerate(self.currentList):
             currentCount += item.dur
@@ -87,7 +85,7 @@ class NoteList:
             if currentCountMod == 0 and currentCountFloor == 1:
                 #print("zero, equal")
                 if location != len(self.currentList) - 1:
-                    self.currentList[location + 1].measureFlag = True
+                    self.currentList[location + 1].measure_flag = True
                 if item.dur > self.subdivisions:
                     how_many_measures = currentCount // self.subdivisions
                     what_goes_to_the_first_measure = (
@@ -95,15 +93,15 @@ class NoteList:
                     )
                     last_note_of_old_measure = copy.deepcopy(self.currentList[location])
                     last_note_of_old_measure.dur = what_goes_to_the_first_measure
-                    last_note_of_old_measure.tieStart = True
+                    last_note_of_old_measure.tie_start = True
                     middleList.append(last_note_of_old_measure)
                     while how_many_measures > 0:
                         whole_measure_note = copy.deepcopy(self.currentList[location])
                         whole_measure_note.dur = self.subdivisions
                         if how_many_measures > 1:
-                            whole_measure_note.tieStart = True
+                            whole_measure_note.tie_start = True
                         else:
-                            whole_measure_note.tieEnd = True
+                            whole_measure_note.tie_end = True
                         middleList.append(whole_measure_note)
                         how_many_measures -= 1
                 else:
@@ -114,19 +112,19 @@ class NoteList:
                 #print("zero, greater than")
                 how_many_measures = currentCount // self.subdivisions
                 if location != len(self.currentList) - 1:
-                    self.currentList[location + 1].measureFlag = True
+                    self.currentList[location + 1].measure_flag = True
                 how_many_measures = currentCount // self.subdivisions - 1
                 what_goes_to_the_first_measure = (
                     item.dur - self.subdivisions * how_many_measures
                 )
                 last_note_of_old_measure = copy.deepcopy(self.currentList[location])
                 last_note_of_old_measure.dur = what_goes_to_the_first_measure
-                last_note_of_old_measure.tieStart = True
+                last_note_of_old_measure.tie_start = True
                 middleList.append(last_note_of_old_measure)
                 while how_many_measures > 0:
                     note_to_add = copy.deepcopy(self.currentList[location])
                     note_to_add.dur = self.subdivisions
-                    note_to_add.measureFlag = True
+                    note_to_add.measure_flag = True
                     middleList.append(note_to_add)
                     how_many_measures -= 1
                 lastCurrentCount = currentCountMod
@@ -138,25 +136,25 @@ class NoteList:
                 if overflow // self.subdivisions > 1:
                     newDur = self.subdivisions
                     currentNote.dur = newDur
-                    currentNote.tieStart = True
+                    currentNote.tie_start = True
                     middleList.append(currentNote)
                     tiedNote = copy.deepcopy(self.currentList[location])
                     tiedDur = overflow % self.subdivisions
                     tiedNote.dur = newDur
-                    tiedNote.tieEnd = True
-                    tiedNote.measureFlag = True
+                    tiedNote.tie_end = True
+                    tiedNote.measure_flag = True
                     middleList.append(tiedNote)
                 else:
                     preTie = self.currentList[location].dur - overflow
                     newDur = preTie
                     currentNote.dur = newDur
-                    currentNote.tieStart = True
+                    currentNote.tie_start = True
                     middleList.append(currentNote)
                     tiedNote = copy.deepcopy(self.currentList[location])
                     tiedDur = overflow % self.subdivisions
                     tiedNote.dur = tiedDur
-                    tiedNote.tieEnd = True
-                    tiedNote.measureFlag = True
+                    tiedNote.tie_end = True
+                    tiedNote.measure_flag = True
                     middleList.append(tiedNote)
                 lastCurrentCount = currentCount % self.subdivisions
                 currentCount = overflow
@@ -178,24 +176,24 @@ class NoteList:
                 if what_goes_to_the_first_measure:
                     currentNote = copy.deepcopy(self.currentList[location])
                     currentNote.dur = what_goes_to_the_first_measure
-                    currentNote.tieStart = True
+                    currentNote.tie_start = True
                     middleList.append(currentNote)
                 while how_many_measures > 0:
                     currentNote = copy.deepcopy(self.currentList[location])
                     currentNote.dur = self.subdivisions
-                    currentNote.tieStart = True
+                    currentNote.tie_start = True
                     # FIXME: This needs to not get switched on first note
-                    currentNote.measureFlag = True
+                    currentNote.measure_flag = True
                     if what_goes_to_the_last_measure > 0:
-                        currentNote.tieEnd = True
-                    currentNote.tieEnd = True
+                        currentNote.tie_end = True
+                    currentNote.tie_end = True
                     middleList.append(currentNote)
                     how_many_measures -= 1
                 if what_goes_to_the_last_measure > 0:
                     currentNote = copy.deepcopy(self.currentList[location])
                     currentNote.dur = what_goes_to_the_last_measure
-                    currentNote.tieEnd = True
-                    currentNote.measureFlag = True
+                    currentNote.tie_end = True
+                    currentNote.measure_flag = True
                     middleList.append(currentNote)
                 lastCurrentCount = currentCount % self.subdivisions
                 currentCount = overflow % self.subdivisions
@@ -208,7 +206,7 @@ class NoteList:
         print("durs", uniqueDurations)
         lcmOfDurations = reduce(self.lcm, uniqueDurations)
         print("lcm", lcmOfDurations)
-        #self.subdivisions = self.measureFactor * lcmOfDurations
+        #self.subdivisions = self.measure_factor * lcmOfDurations
         print("self.subdivisions", self.subdivisions)
         # in the future, this will do scaling, etc.
         returnList = middleList
@@ -258,7 +256,7 @@ class NoteList:
                 # print("currentCount", currentCount)
                 if currentCount == self.subdivisions:
                     if location != len(currentList) - 1:
-                        self.currentList[location + 1].measureFlag = True
+                        self.currentList[location + 1].measure_flag = True
                     alteredDuration = copy.deepcopy(self.currentList[location])
                     alteredDuration.dur = alteredDuration.dur / currentMultiplier
                     returnList.append(alteredDuration)
@@ -271,13 +269,13 @@ class NoteList:
                     preTie = self.currentList[location].dur - overflow
                     # print("pre-tie", preTie)
                     currentNote.dur = preTie / currentMultiplier
-                    currentNote.tieStart = True
+                    currentNote.tie_start = True
                     returnList.append(currentNote)
                     # there should probably be a "no accidental" flag, too
                     tiedNote = copy.deepcopy(self.currentList[location])
-                    tiedNote.dur = overflow / measureFactor
-                    tiedNote.tieEnd = True
-                    tiedNote.measureFlag = True
+                    tiedNote.dur = overflow / measure_factor
+                    tiedNote.tie_end = True
+                    tiedNote.measure_flag = True
                     returnList.append(tiedNote)
                     currentCount = overflow
                 else:

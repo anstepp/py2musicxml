@@ -13,7 +13,7 @@ class PhraseTree(Tree):
 				yield item
 
 	def tieTest(self, note):
-		if note.TieContinue is False and note.TieEnd is False:
+		if note.tie_continue is False and note.tie_end is False:
 			return True
 		else:
 			return False
