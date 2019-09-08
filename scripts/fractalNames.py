@@ -7,6 +7,7 @@ rachelPitches = [2, -3, 0, 11, 4, 9]
 nicer1 = [0, 2, 4, 6, 8]
 nicer2 = [0, 2, 4, 7, 9]
 
+
 def fractalNames(generations, list1, list2):
     oddList = list1
     evenList = list2
@@ -49,5 +50,5 @@ theList3 = NoteList(notes3)
 theList3.getList(factor=3)
 theList4 = NoteList(notes4)
 theList4.getList(factor=4)
-theScore = Score(theList2, theList4, theList3, theList)
-theScore.convertToXML("fractal.xml")
+theScore = Score(score_parts=[theList2, theList4, theList3, theList])
+theScore.convert_to_xml("fractal.xml")

@@ -4,8 +4,6 @@ import fractions
 from functools import reduce
 from lxml import etree
 
-from .pitchMath import convertToXML
-
 DEFAULT_MEASURE_BEATS = 4
 DEFAULT_MEASURE_FACTOR = 1
 
