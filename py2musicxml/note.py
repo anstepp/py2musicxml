@@ -1,6 +1,8 @@
+from typing import Tuple
+
 from .utils import fix_pitch_overflow
 
-# the life of a note
+# The Life of a Note
 
 # in a tuplet, we change the subdivision of the beat
 # groups of 3 in the space of 2
@@ -15,22 +17,22 @@ from .utils import fix_pitch_overflow
 
 class Note:
     # default flags for ties & tuplets
-    tieStart, tieContinue, tieEnd = False, False, False
-    tupletStart, tupletContinue, tupletEnd = False, False, False
+    tie_start, tie_continue, tie_end = False, False, False
+    tuplet_start, tuplet_continue, tuplet_end = False, False, False
 
     # measure defaults
-    measureFactor, measureFlag = 1, False
+    measure_factor, measure_flag = 1, False
 
-    def __init__(self, r, octave, pc):
-        self.dur = r
+    def __init__(self, duration: int, octave: int, pitch_class: int) -> None:
+        self.dur = duration
 
         # called to correct any errant pitch classes
-        self.octave, self.pc = fix_pitch_overflow(octave, pc)
+        self.octave, self.pc = fix_pitch_overflow(octave, pitch_class)
 
         # get these variables upon instantiation in the case the list is acted upon
         self.stepName, self.alter, self.accidental = self._get_step_name(0)
 
-    def _get_step_name(self, starting_pitch):
+    def _get_step_name(self, starting_pitch: int) -> Tuple[str, int, str]:
         flat_keys = [1, 3, 5, 8, 10]
         sharp_keys = [2, 4, 6, 7, 9, 11]
 
@@ -86,7 +88,7 @@ class Note:
 
         return step_names[self.pc]
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if (
             (self.dur == other.dur)
             and (self.octave == other.octave)
@@ -96,7 +98,7 @@ class Note:
         else:
             return False
 
-    def __str__(self):
+    def __str__(self) -> str:
         return 'Duration: {}, Octave: {}, Pitch Class: {}'.format(
             self.dur, self.octave, self.pc
         )
