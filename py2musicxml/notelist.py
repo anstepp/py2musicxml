@@ -214,14 +214,30 @@ class NoteList:
         returnList = middleList
         return returnList
 
+    def assignMeasureWeight(self):
+        for note in self.currentList:
+            if note.measureFlag is False:
+                pass
+            else:
+                if note.location is 1:
+                    weight = 1000
+                else:
+                    if getChangePitch(self.currentList[note:note]):
+                        note.weight += 1
+                    if note.duration > subdivisions:
+                        note.weight += 1
+                    
+                # 
+
+    def compareWeight(self):
+        pass
+
     def getChangePitch(self, group):
         for item, value in group[1:-1]:
             if item > group[value - 1] and item < group[value + 1]:
-                #put a grouping tag
-                pass
+                return True
             elif item < group[value - 1] and item > group[value + 1]:
-                #put a group tag
-                pass
+                return True
 
     def getChangeGroup(self, group):
         pass
