@@ -1,10 +1,14 @@
+import bjorklund.py
+from .note import Note
+from .beat import Beat
+
 class Measure():
 	index = None
-	notes = []
+	beats = []
 	weight = None
 	subdivisions = None 
 	meter = []
-	time_signature = []
+	time_signature = tuple()
 
 	def __init__(self, notes: Iterable[NoteList]):
 		self.get_subdivisions()
