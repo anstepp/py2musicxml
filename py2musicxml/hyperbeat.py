@@ -1,7 +1,7 @@
 class Hyperbeat:
 
-	location = None
-	level = None 
+    location = None
+    level = None 
 
-	def __init__(self):
-		pass
+    def __init__(self):
+        pass
