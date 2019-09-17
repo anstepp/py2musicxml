@@ -6,9 +6,11 @@ class Measure():
     index = None
     beats = []
     weight = None
-    subdivisions = None 
+    divisions = None 
+    subdivisions = None
     meter = []
     time_signature = tuple()
+    notes = []
 
     def __init__(self, notes: Iterable[NoteList]):
         self.get_subdivisions()
@@ -26,10 +28,11 @@ class Measure():
         for beat in self.meter:
             measure_map.append(beat * self.subdivisions)
 
-    def bjorklund(attacks, size):
-        unspacedList = []
+    def bjorklund(self):
+        unspacedList = self.notes
         returnList = []
-        remainder = size - attacks
+        remainder = 0
+
         for x in range(0, size):
             if x < attacks:
                 returnList.append([1])
