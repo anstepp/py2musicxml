@@ -45,21 +45,6 @@ class NoteList:
         else:
             self.finalList = self.groupList()
 
-    def gcd(self, a, b):
-        if type(a) and type(b) is int:
-            while b:
-                a, b = b, a % b
-            return a
-        else:
-            # convert float to fraction by approximating denominator then gcd
-            return fractions.gcd(
-                fractions.Fraction(a).limit_denominator(),
-                fractions.Fraction(b).limit_denominator(),
-            )
-
-    def lcm(self, a, b):
-        return a * b // self.gcd(a, b)
-
     def getUniques(self, theList):
         uniques = []
         for item in theList:

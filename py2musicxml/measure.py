@@ -6,20 +6,34 @@ class Measure():
     index = None
     beats = []
     weight = None
+    #divisions is subdivisions of the quarter note
     divisions = None 
-    subdivisions = None
-    meter = []
+    #subdivisions is the musical
+    subdivisions = []
     time_signature = tuple()
     notes = []
 
     def __init__(self, notes: Iterable[NoteList]):
-        self.get_subdivisions()
         self.notes = notes
+        self.get_divisions()
 
-    def get_subdivisions(self, factor: int, divisions: int):
-        time_factor = factor
-        smallest_division = divisions
-        self.subdivisions = factor * divsions
+    def gcd(self, a: Union[int, float], b: Union[int, float]):
+        if type(a) and type(b) is int:
+            while b:
+                a, b = b, a % b
+            return a
+        else:
+            # convert float to fraction by approximating denominator then gcd
+            return fractions.gcd(
+                fractions.Fraction(a).limit_denominator(),
+                fractions.Fraction(b).limit_denominator(),
+            )
+
+    def lcm(self, a: int, b: int):
+        return a * b // self.gcd(a, b)
+
+    def get_divisions(self):
+        self.divisions = reduce(self.lcm, self.notes.dur)
 
     def divide_measure(self):
         current_count = 0
@@ -28,10 +42,10 @@ class Measure():
         for beat in self.meter:
             measure_map.append(beat * self.subdivisions)
 
-    def bjorklund(self):
-        unspacedList = self.notes
+    def bjorklund(self, unspacedList: Iterable[NoteList]):
+        unspacedList = unspacedList
         returnList = []
-        remainder = 0
+        remainder = len(unspacedList)
 
         for x in range(0, size):
             if x < attacks:
@@ -65,5 +79,3 @@ class Measure():
             remainderCount = [counter + 1 for x in remainderList if x is min(remainderList)]
             remainder = len(remainderList)
         return returnList[0]
-
-    def evenly_space(self):
