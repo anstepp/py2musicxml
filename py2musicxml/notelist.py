@@ -3,6 +3,7 @@ import fractions
 
 from functools import reduce
 from lxml import etree
+from noteGrouping.py import group_notes
 
 DEFAULT_MEASURE_BEATS = 4
 DEFAULT_MEASURE_FACTOR = 1
@@ -34,7 +35,7 @@ class NoteList:
 
         self._clean_list(note_sort_method)
 
-    def _clean_list(self, how):
+    def _clean_list(self, how: str):
         if how is "Implied":
             self.final_list = self.groupByImpliedMeter()
         if how is "Map":
@@ -45,9 +46,9 @@ class NoteList:
         else:
             self.final_list = self.group_list()
 
-    def get_uniques(self, theList):
+    def get_uniques(self, input_list: Iterable[NoteList]):
         uniques = []
-        for item in theList:
+        for item in input_list:
             if item.dur not in uniques:
                 uniques.append(item.dur)
             else:
@@ -93,14 +94,14 @@ class NoteList:
     def compare_weight(self):
         pass
 
-    def get_change_pitch(self, group):
+    def get_change_pitch(self, group: Iterable[NoteList]):
         for item, value in group[1:-1]:
             if item > group[value - 1] and item < group[value + 1]:
                 return True
             elif item < group[value - 1] and item > group[value + 1]:
                 return True
 
-    def get_change_group(self, group):
+    def get_change_group(self, group: Iterable[NoteList]):
         pass
 
     def get_implied_meter(self):
@@ -124,7 +125,7 @@ class NoteList:
     have different proportions per measure.
     It may not work yet."""
 
-    def group_by_map(self, input_map):
+    def group_by_map(self, input_map: list):
         map_to_group = input_map
         for map_value in map_to_group:
             current_beats = map_value[0]
@@ -163,5 +164,5 @@ class NoteList:
                     return_list.append(altered_duration)
         return return_list
 
-    def metric_finder(self, subgroup):
+    def metric_finder(self, subgroup: Iterable[NoteList]):
         pass
