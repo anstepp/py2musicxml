@@ -64,7 +64,7 @@ class NoteList:
         self.subdivisions = self.measure_beats * self.measure_factor
 
         #new function to group by input from the noteGroup function in another file
-        measure_list = note_grouping(self.current_list, self.subdivisions, 0)
+        measure_list = group_notes(self.current_list, self.subdivisions)
         
         unique_durations = self.get_uniques(middle_list)
         print("durs", unique_durations)
