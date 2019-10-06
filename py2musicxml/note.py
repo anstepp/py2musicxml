@@ -19,6 +19,7 @@ class Note:
     # default flags for ties & tuplets
     tie_start, tie_continue, tie_end = False, False, False
     tuplet_start, tuplet_continue, tuplet_end = False, False, False
+    beam = False
 
     # measure defaults
     measure_factor, measure_flag = 1, False

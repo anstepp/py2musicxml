@@ -8,14 +8,13 @@ def group_notes(input_list: Iterable[Union[NoteList,Measure]], divisions: int or
     current_count = 0
     last_current_count = 0
     divisions_list = divisions
+    current_note_group = list()
     if current_list is type(NoteList):
         for location, item in enumerate(current_list):
             current_count += item.dur
             current_count_floor = current_count // subdivisions
             current_count_mod = current_count % subdivisions
             if current_count_mod == 0 and current_count_floor == 1:
-                if location != len(current_list) - 1:
-                    current_list[location + 1].measure_flag = True
                 if item.dur > subdivisions:
                     how_many_measures = current_count // subdivisions
                     what_goes_to_the_first_measure = (
@@ -38,6 +37,8 @@ def group_notes(input_list: Iterable[Union[NoteList,Measure]], divisions: int or
                     altered_duration = copy.deepcopy(current_list[location])
                     middle_list.append(altered_duration)
                 current_count = 0
+                if location != len(current_list) - 1:
+                    current_list[location + 1].measure_flag = True
             elif current_count_mod == 0 and current_count_floor > 1:
                 how_many_measures = current_count // subdivisions
                 if location != len(current_list) - 1:
