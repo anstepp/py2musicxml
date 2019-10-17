@@ -138,7 +138,7 @@ def group_notes(input_list: Iterable[Union[NoteList,Measure]], divisions: int or
             if current_count_mod == 0 and current_count_floor == 1:
                 if location != len(current_list) - 1:
                     #make this create a new beat
-                    current_list[location + 1].measure_flag = True
+                    current_list[location + 1].beat = True
                 if item.dur > subdivisions:
                     duration_of_beat = ???
                     what_goes_to_the_first_beat = (

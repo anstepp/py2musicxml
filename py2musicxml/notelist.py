@@ -88,8 +88,6 @@ class NoteList:
                         note.weight += 1
                     if note.duration > subdivisions:
                         note.weight += 1
-                    
-                # 
 
     def compare_weight(self):
         pass
