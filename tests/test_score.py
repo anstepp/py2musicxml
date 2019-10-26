@@ -2,14 +2,14 @@ import pytest
 
 from lxml import etree
 
-from py2musicxml import Note, NoteList, Score
+from py2musicxml import Note, Part, Score
 
 
 def test_simple_score():
 
     test_note = Note(duration=4, octave=8, pitch_class=2)
-    test_notelist = NoteList([test_note, test_note])
-    test_notelist.getList()
+    test_notelist = Part([test_note, test_note], [(4,4)])
+    test_notelist.get_part()
 
     score = Score(score_parts=[test_notelist])
 

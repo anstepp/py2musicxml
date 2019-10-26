@@ -8,10 +8,11 @@ class Tree:
         pass
 
     def makeTree(self):
-        pass
+        nodeList.sort(nodeList, key=lambda node: node.location)
+        for current_node in nodeList
 
     def searchTree(self):
         pass
 
-    def = getBoundaries(self):
+    def getBoundaries(self):
         pass

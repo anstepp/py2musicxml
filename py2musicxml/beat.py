@@ -1,19 +1,18 @@
-from note import Note
+from py2musicxml import Note
 
 class Beat:
 
-    notes = []
+    notes = list()
     tuplet = False
+    subdivisions = None
 
     def __init__(self):
-        self.make_beams()
+        pass
 
-    def make_beams(self):
-        for note in notes[1:-1]:
+    def _make_beams(self):
+        for note in self.notes[0:-1]:
             note.beam = True    
 
-    # do I need a warn not to use beat.notes.append()?
-    # Should it be overloaded?
-    def add_note(self, note):
-        notes.append(note)
-        self.make_beams()
+    def add_note(self, note: Note):
+        self.notes.append(note)
+        self._make_beams()

@@ -3,50 +3,39 @@ import fractions
 
 from functools import reduce
 from lxml import etree
-from typing import Iterable
+from typing import Iterable, List, Tuple
+from py2musicxml import Measure, Note
+
+TimeSignature = List[Tuple[int, int]]
 
 DEFAULT_MEASURE_BEATS = 4
 DEFAULT_MEASURE_FACTOR = 1
 
 
-class NoteList:
+class Part:
     measure_factor, measure_beats = None, None
     initial_list, current_list, final_list = None, None, None
+    time_signature = []
+    subdivisions, wngob = None, None
 
-    def __init__(self, input_list: list):
+    def __init__(self, input_list: Iterable[Note], time_signature: TimeSignature):
         self.current_list = input_list
-        self.subdivisions = None
+        self.time_signature = time_signature
+        self.measure_beats = self.time_signature[0][0]
+        self.wngob = self.time_signature[0][1]
+        self.get_part(1)
+
     """default behavior is to simply clean an input list to 4/4
        it's also an option to feed extra arguments with keywords to 
        modify behavior for optional cleaning methods or user choices
        for measure groupings of factors"""
 
-    def get_part(self, **kwargs):
 
-        self.measure_factor = (
-            kwargs.get("factor") if kwargs.get("factor") else DEFAULT_MEASURE_FACTOR
-        )
+    def get_part(self, measure_factor: int):
 
-        self.measure_beats = (
-            kwargs.get("beats") if kwargs.get("beats") else DEFAULT_MEASURE_BEATS
-        )
+        subdivisions = int(self.measure_beats / self.wngob) * measure_factor
 
-        note_sort_method = kwargs.get("how") if kwargs.get("how") else "Default"
-
-        self._clean_list(note_sort_method)
-
-        return self.final_list
-
-    def _clean_list(self, how: str):
-        if how is "Implied":
-            self.final_list = self.groupByImpliedMeter()
-        if how is "Map":
-            self.final_list = self.group_by_map()
-        # default to 4/4
-        if how is "Default":
-            self.final_list = self.group_list()
-        else:
-            self.final_list = self.group_list()
+        self.final_list = self.group_list_to_measures(subdivisions)
 
     def get_uniques(self):
         uniques = []
@@ -56,18 +45,6 @@ class NoteList:
             else:
                 pass
         return uniques
-
-    def group_list(self):
-        current_count = 0
-        # current count of number of self.subdivisions including the new note (item)
-        last_current_count = 0
-        middle_list = []
-        return_list = []
-        self.subdivisions = self.measure_beats * self.measure_factor
-
-        #new function to group by input from the noteGroup function in another file
-        measure_list = self.group_list_to_measures(self.subdivisions)
-        return measure_list
 
     def assign_measure_weight(self):
         for note in self.current_list:
@@ -113,7 +90,9 @@ class NoteList:
     def group_list_to_measures(self, subdivisions: int):
         current_list = self.current_list
         current_count = 0
-        middle_list = list()
+        current_measure = Measure(self.time_signature[0])
+        measure_list = list()
+        subdivisions = subdivisions
         for location, item in enumerate(current_list):
             current_count += item.dur
             current_count_floor = current_count // subdivisions
@@ -127,7 +106,10 @@ class NoteList:
                     last_note_of_old_measure = copy.deepcopy(current_list[location])
                     last_note_of_old_measure.dur = what_goes_to_the_first_measure
                     last_note_of_old_measure.tie_start = True
-                    middle_list.append(last_note_of_old_measure)
+                    current_measure.add_note(last_note_of_old_measure)
+                    current_measure.subdivide_measure()
+                    measure_list.append(current_measure)
+                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
                     while how_many_measures > 0:
                         whole_measure_note = copy.deepcopy(current_list[location])
                         whole_measure_note.dur = subdivisions
@@ -135,18 +117,28 @@ class NoteList:
                             whole_measure_note.tie_start = True
                         else:
                             whole_measure_note.tie_end = True
-                        middle_list.append(whole_measure_note)
+                        current_measure.add_note(whole_measure_note)
+                        current_measure.subdivide_measure()
+                        measure_list.append(current_measure)
+                        current_measure = Measure(self.time_signature[location%len(self.time_signature)])
                         how_many_measures -= 1
                 else:
                     altered_duration = copy.deepcopy(current_list[location])
-                    middle_list.append(altered_duration)
+                    current_measure.add_note(altered_duration)
+                    current_measure.subdivide_measure()
+                    measure_list.append(current_measure)
+                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
                 current_count = 0
                 if location != len(current_list) - 1:
-                    current_list[location + 1].measure_flag = True
+                    measure_list.append(current_measure)
+                    current_measure.subdivide_measure()
+                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
             elif current_count_mod == 0 and current_count_floor > 1:
                 how_many_measures = current_count // subdivisions
                 if location != len(current_list) - 1:
-                    current_list[location + 1].measure_flag = True
+                    measure_list.append(current_measure)
+                    current_measure.subdivide_measure()
+                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
                 how_many_measures = current_count // subdivisions - 1
                 what_goes_to_the_first_measure = (
                     item.dur - subdivisions * how_many_measures
@@ -154,12 +146,15 @@ class NoteList:
                 last_note_of_old_measure = copy.deepcopy(current_list[location])
                 last_note_of_old_measure.dur = what_goes_to_the_first_measure
                 last_note_of_old_measure.tie_start = True
-                middle_list.append(last_note_of_old_measure)
+                current_measure.add_note(last_note_of_old_measure)
                 while how_many_measures > 0:
                     note_to_add = copy.deepcopy(current_list[location])
                     note_to_add.dur = subdivisions
                     note_to_add.measure_flag = True
-                    middle_list.append(note_to_add)
+                    current_measure.add_note(note_to_add)
+                    measure_list.append(current_measure)
+                    current_measure.subdivide_measure()
+                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
                     how_many_measures -= 1
                 last_current_count = current_count_mod
                 current_count = 0
@@ -170,25 +165,25 @@ class NoteList:
                     new_dur = subdivisions
                     current_note.dur = new_dur
                     current_note.tie_start = True
-                    middle_list.append(current_note)
+                    current_measure.add_note(current_note)
                     tied_note = copy.deepcopy(current_list[location])
                     tied_dur = overflow % subdivisions
                     tied_note.dur = new_dur
                     tied_note.tie_end = True
                     tied_note.measure_flag = True
-                    middle_list.append(tied_note)
+                    current_measure.add_note(tied_note)
                 else:
                     pre_tie = current_list[location].dur - overflow
                     new_dur = pre_tie
                     current_note.dur = new_dur
                     current_note.tie_start = True
-                    middle_list.append(current_note)
+                    current_measure.add_note(current_note)
                     tied_note = copy.deepcopy(current_list[location])
                     tied_dur = overflow % subdivisions
                     tied_note.dur = tied_dur
                     tied_note.tie_end = True
                     tied_note.measure_flag = True
-                    middle_list.append(tied_note)
+                    current_measure.add_note(tied_note)
                 last_current_count = current_count % subdivisions
                 current_count = overflow
             elif current_count_mod > 0 and current_count_floor > 1:
@@ -209,7 +204,7 @@ class NoteList:
                     current_note = copy.deepcopy(current_list[location])
                     current_note.dur = what_goes_to_the_first_measure
                     current_note.tie_start = True
-                    middle_list.append(current_note)
+                    current_measure.add_note(current_note)
                 while how_many_measures > 0:
                     current_note = copy.deepcopy(current_list[location])
                     current_note.dur = subdivisions
@@ -219,62 +214,18 @@ class NoteList:
                     if what_goes_to_the_last_measure > 0:
                         current_note.tie_end = True
                     current_note.tie_end = True
-                    middle_list.append(current_note)
+                    current_measure.add_note(current_note)
                     how_many_measures -= 1
                 if what_goes_to_the_last_measure > 0:
                     current_note = copy.deepcopy(current_list[location])
                     current_note.dur = what_goes_to_the_last_measure
                     current_note.tie_end = True
                     current_note.measure_flag = True
-                    middle_list.append(current_note)
+                    current_measure.add_note(current_note)
                 last_current_count = current_count % subdivisions
                 current_count = overflow % subdivisions
             elif current_count_mod > 0 and current_count_floor < 1:
                 altered_duration = copy.deepcopy(current_list[location])
-                middle_list.append(altered_duration)
+                current_measure.add_note(altered_duration)
                 last_current_count = current_count_mod
-            return current_list
-
-    """this method is designed to take an input map to allow
-    for various time signatures being user defined, or to 
-    have different proportions per measure.
-    It may not work yet."""
-
-    def group_by_map(self, input_map: list):
-        map_to_group = input_map
-        for map_value in map_to_group:
-            current_beats = map_value[0]
-            current_multiplier = map_value[1]
-            self.subdivisions = current_beats * current_multiplier
-            for location, item in enumerate(self.current_list):
-                current_count += item.dur
-                # print("current_count", current_count)
-                if current_count == self.subdivisions:
-                    if location != len(current_list) - 1:
-                        self.current_list[location + 1].measure_flag = True
-                    altered_duration = copy.deepcopy(self.current_list[location])
-                    altered_duration.dur = altered_duration.dur / current_multiplier
-                    return_list.append(altered_duration)
-                    current_count = 0
-                elif current_count > self.subdivisions:
-                    current_note = copy.deepcopy(self.current_list[location])
-                    # print("logic for ties", current_count, self.subdivisions)
-                    overflow = current_count - self.subdivisions
-                    # print("overflow", overflow)
-                    pre_tie = self.current_list[location].dur - overflow
-                    # print("pre-tie", pre_tie)
-                    current_note.dur = pre_tie / current_multiplier
-                    current_note.tie_start = True
-                    return_list.append(current_note)
-                    # there should probably be a "no accidental" flag, too
-                    tied_note = copy.deepcopy(self.current_list[location])
-                    tied_note.dur = overflow / measure_factor
-                    tied_note.tie_end = True
-                    tied_note.measure_flag = True
-                    return_list.append(tied_note)
-                    current_count = overflow
-                else:
-                    altered_duration = copy.deepcopy(self.current_list[location])
-                    altered_duration.dur = altered_duration.dur / current_multiplier
-                    return_list.append(altered_duration)
-        return return_list
+        return measure_list
