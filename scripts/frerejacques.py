@@ -24,6 +24,9 @@ print(len(part_fj.final_list))
 print(part_fj.final_list[0].beats)
 print(len(part_fj.final_list[0].beats))
 
+for i in range(len(part_fj.final_list[0].beats[0].notes)):
+    print(part_fj.final_list[0].beats[0].notes[i])
 
-# score = Score(score_parts=part_list)
-# score.convert_to_xml("frerejacques.xml")
+
+score = Score(score_parts=part_list)
+score.convert_to_xml("frerejacquesadj.xml")

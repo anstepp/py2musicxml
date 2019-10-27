@@ -33,7 +33,7 @@ class Part:
 
     def get_part(self, measure_factor: int):
 
-        subdivisions = int(self.measure_beats / self.wngob) * measure_factor
+        subdivisions = self.measure_beats * measure_factor
 
         self.final_list = self.group_list_to_measures(subdivisions)
 
@@ -88,16 +88,25 @@ class Part:
         return implied_list
 
     def group_list_to_measures(self, subdivisions: int):
-        current_list = self.current_list
-        current_count = 0
-        current_measure = Measure(self.time_signature[0])
-        measure_list = list()
         subdivisions = subdivisions
+        print(subdivisions)
+        measure_list = list()
+        current_measure = Measure(self.time_signature[0])
+        current_count = 0
+        current_list = self.current_list
+        print(current_list)
         for location, item in enumerate(current_list):
             current_count += item.dur
+            print(location, item, current_count)
             current_count_floor = current_count // subdivisions
             current_count_mod = current_count % subdivisions
             if current_count_mod == 0 and current_count_floor == 1:
+                #print("zero, equal")
+                if location != len(current_list) - 1:
+                    current_list[location + 1].measure_flag = True
+                    current_measure.subdivide_measure()
+                    measure_list.append(current_measure)
+                    current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
                 if item.dur > subdivisions:
                     how_many_measures = current_count // subdivisions
                     what_goes_to_the_first_measure = (
@@ -109,7 +118,7 @@ class Part:
                     current_measure.add_note(last_note_of_old_measure)
                     current_measure.subdivide_measure()
                     measure_list.append(current_measure)
-                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
+                    current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
                     while how_many_measures > 0:
                         whole_measure_note = copy.deepcopy(current_list[location])
                         whole_measure_note.dur = subdivisions
@@ -120,25 +129,23 @@ class Part:
                         current_measure.add_note(whole_measure_note)
                         current_measure.subdivide_measure()
                         measure_list.append(current_measure)
-                        current_measure = Measure(self.time_signature[location%len(self.time_signature)])
+                        current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
                         how_many_measures -= 1
                 else:
                     altered_duration = copy.deepcopy(current_list[location])
                     current_measure.add_note(altered_duration)
                     current_measure.subdivide_measure()
                     measure_list.append(current_measure)
-                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
+                    current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
                 current_count = 0
-                if location != len(current_list) - 1:
-                    measure_list.append(current_measure)
-                    current_measure.subdivide_measure()
-                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
             elif current_count_mod == 0 and current_count_floor > 1:
+                #print("zero, greater than")
                 how_many_measures = current_count // subdivisions
                 if location != len(current_list) - 1:
-                    measure_list.append(current_measure)
+                    current_list[location + 1].measure_flag = True
                     current_measure.subdivide_measure()
-                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
+                    measure_list.append(current_measure)
+                    current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
                 how_many_measures = current_count // subdivisions - 1
                 what_goes_to_the_first_measure = (
                     item.dur - subdivisions * how_many_measures
@@ -152,30 +159,30 @@ class Part:
                     note_to_add.dur = subdivisions
                     note_to_add.measure_flag = True
                     current_measure.add_note(note_to_add)
-                    measure_list.append(current_measure)
                     current_measure.subdivide_measure()
-                    current_measure = Measure(self.time_signature[location%len(self.time_signature)])
+                    measure_list.append(current_measure)
+                    current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
                     how_many_measures -= 1
-                last_current_count = current_count_mod
+                lastcurrent_count = current_count_mod
                 current_count = 0
             elif current_count_mod > 0 and current_count_floor == 1:
+                #print("greater than, zero")
                 current_note = copy.deepcopy(current_list[location])
                 overflow = current_count - subdivisions
                 if overflow // subdivisions > 1:
-                    new_dur = subdivisions
-                    current_note.dur = new_dur
+                    newDur = subdivisions
+                    current_note.dur = newDur
                     current_note.tie_start = True
                     current_measure.add_note(current_note)
                     tied_note = copy.deepcopy(current_list[location])
                     tied_dur = overflow % subdivisions
-                    tied_note.dur = new_dur
+                    tied_note.dur = newDur
                     tied_note.tie_end = True
                     tied_note.measure_flag = True
                     current_measure.add_note(tied_note)
                 else:
                     pre_tie = current_list[location].dur - overflow
-                    new_dur = pre_tie
-                    current_note.dur = new_dur
+                    current_note.dur = pre_tie
                     current_note.tie_start = True
                     current_measure.add_note(current_note)
                     tied_note = copy.deepcopy(current_list[location])
@@ -184,15 +191,19 @@ class Part:
                     tied_note.tie_end = True
                     tied_note.measure_flag = True
                     current_measure.add_note(tied_note)
-                last_current_count = current_count % subdivisions
+                    current_measure.subdivide_measure()
+                    measure_list.append(current_measure)
+                    current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
+                lastcurrent_count = current_count % subdivisions
                 current_count = overflow
             elif current_count_mod > 0 and current_count_floor > 1:
+                #print("greater than, greater than")
                 current_note = copy.deepcopy(current_list[location])
-                last_measure_count = subdivisions - last_current_count
+                last_measure_count = subdivisions - lastcurrent_count
                 overflow = current_count_mod
                 if last_measure_count > 0:
                     how_many_measures = current_count // subdivisions - 1
-                    what_goes_to_the_first_measure = subdivisions - last_current_count
+                    what_goes_to_the_first_measure = subdivisions - lastcurrent_count
                     what_goes_to_the_last_measure = overflow
                     extra_measure_beats = subdivisions * how_many_measures
                 else:
@@ -211,6 +222,9 @@ class Part:
                     current_note.tie_start = True
                     # FIXME: This needs to not get switched on first note
                     current_note.measure_flag = True
+                    current_measure.subdivide_measure()
+                    measure_list.append(current_measure)
+                    current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
                     if what_goes_to_the_last_measure > 0:
                         current_note.tie_end = True
                     current_note.tie_end = True
@@ -222,10 +236,14 @@ class Part:
                     current_note.tie_end = True
                     current_note.measure_flag = True
                     current_measure.add_note(current_note)
-                last_current_count = current_count % subdivisions
+                    current_measure.subdivide_measure()
+                    measure_list.append(current_measure)
+                    current_measure = Measure(self.time_signature[(len(measure_list)+1)%len(self.time_signature)])
+                lastcurrent_count = current_count % subdivisions
                 current_count = overflow % subdivisions
             elif current_count_mod > 0 and current_count_floor < 1:
+                #print("buisness as usual")
                 altered_duration = copy.deepcopy(current_list[location])
                 current_measure.add_note(altered_duration)
-                last_current_count = current_count_mod
+                lastcurrent_count = current_count_mod
         return measure_list
