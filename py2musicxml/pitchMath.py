@@ -92,4 +92,4 @@ def convertToXML(theList, fname):
         )
         newRoot = etree.XML(serialized)
         theTree = etree.ElementTree(newRoot)
-        theTree.write(fname, pretty_print=True, encoding="UTF-8", xml_declaration=True)
+        theTree.write(fname, pretty_# print=True, encoding="UTF-8", xml_declaration=True)

@@ -23,8 +23,10 @@ class Note:
 
     # measure defaults
     measure_factor, measure_flag = 1, False
+    is_rest = True
 
     def __init__(self, duration: int, octave: int, pitch_class: int) -> None:
+
         self.dur = duration
 
         # called to correct any errant pitch classes

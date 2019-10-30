@@ -119,12 +119,12 @@ class grammar:
                 return 0, finalValue
 
     def nextStepwiseGen(self, string):
-        # print string
+        # # print string
         newGeneration = list()
         for current in string:
             if current.pc == self.target1:
                 flip = self.R1.random()
-                # print current.pc, self.target1
+                # # print current.pc, self.target1
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A1R1)
                     stage1 = Pitch(current.octave + octaveFlag, thePC)
@@ -137,7 +137,7 @@ class grammar:
                     newGeneration += [current, newNote]
             if current.pc == self.target2:
                 flip = self.R2.random()
-                # print current.pc, self.target2
+                # # print current.pc, self.target2
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A2R1)
                     stage1 = Pitch(current.octave + octaveFlag, thePC)
@@ -150,7 +150,7 @@ class grammar:
                     newGeneration += [current, newNote]
             if current.pc == self.target3:
                 flip = self.R3.random()
-                # print current.pc, self.target3
+                # # print current.pc, self.target3
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A3R1)
                     stage1 = Pitch(current.octave + octaveFlag, thePC)
@@ -163,7 +163,7 @@ class grammar:
                     newGeneration += [current, newNote]
             if current.pc == self.target4:
                 flip = self.R4.random()
-                # print current.pc, self.target4
+                # # print current.pc, self.target4
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A4R1)
                     stage1 = Pitch(current.octave + octaveFlag, thePC)
@@ -176,7 +176,7 @@ class grammar:
                     newGeneration += [current, newNote]
             if current.pc == self.target5:
                 flip = self.R5.random()
-                # print current.pc, self.target5
+                # # print current.pc, self.target5
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A5R1)
                     stage1 = Pitch(current.octave + octaveFlag, thePC)
@@ -189,7 +189,7 @@ class grammar:
                     newGeneration += [current, newNote]
             if current.pc == self.target6:
                 flip = self.R6.random()
-                # print current.pc, self.target6
+                # # print current.pc, self.target6
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A6R1)
                     stage1 = Pitch(current.octave + octaveFlag, thePC)
@@ -202,7 +202,7 @@ class grammar:
                     newGeneration += [current, newNote]
             if current.pc == self.target7:
                 flip = self.R7.random()
-                # print current.pc, self.target7
+                # # print current.pc, self.target7
                 if flip > self.testVal:
                     octaveFlag, thePC = self.getAbsPitch(current.pc, self.A7R1)
                     stage1 = Pitch(current.octave + octaveFlag, thePC)

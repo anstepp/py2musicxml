@@ -8,10 +8,8 @@ from py2musicxml import Part
 class Score:
     """Generates a MusicXML score from a list of parts (NoteLists) and outputs score to file"""
 
-    def __init__(self, score_parts: list):
-        self.score_parts = []
-        for part in score_parts:
-            self.score_parts.append(part)
+    def __init__(self, score_parts: Iterable[Part]):
+        self.score_parts = score_parts
 
     def convert_to_xml(self, output_filepath: str) -> None:
         """Entrypoint to Score class
@@ -40,7 +38,7 @@ class Score:
 
         for idx, score_part in enumerate(self.score_parts):
             part_number = idx + 1
-            print('Processing part: {}'.format(part_number))
+            # print('Processing part: {}'.format(part_number))
 
             current_measure_count = 1
             current_beat_factor = score_part.measure_factor
@@ -82,61 +80,61 @@ class Score:
 
             # for each Note in part's NoteList
             current_measure_count = 0
-            for current_measure in score_part.final_list:
+            # print(score_part.measure_list)
+            for current_measure in score_part.measure_list:
                 current_measure_count += 1
-                print(current_measure_count, current_measure, '\n')
-                xml_measure = etree.SubElement(
-                    xml_part, "measure", {"number": str(current_measure_count)})
-                for current_note in current_measure.beats:
-                    #print(current_beat, '\n', current_measure.beats, '\n')
-                    #for current_note in current_beat.notes:
-                   #print(current_note, '\n')
-                    # note
-                    #   -> pitch, duration, accidental, notation ties
-                    xml_note = etree.SubElement(xml_measure, "note")
+                if current_measure_count != 1:
+                    xml_measure = etree.SubElement(
+                        xml_part, "measure", {"number": str(current_measure_count)})
+                for current_beat in current_measure.beats:
+                    for current_note in current_beat.notes:
 
-                    xml_note_pitch = etree.SubElement(xml_note, "pitch")
+                        # note
+                        #   -> pitch, duration, accidental, notation ties
+                        xml_note = etree.SubElement(xml_measure, "note")
 
-                    # pitch step
-                    xml_note_pitch_step = etree.SubElement(xml_note_pitch, "step")
-                    xml_note_pitch_step.text = current_note.stepName
+                        xml_note_pitch = etree.SubElement(xml_note, "pitch")
 
-                    # pitch alter
-                    xml_note_pitch_alter = etree.SubElement(xml_note_pitch, "alter")
+                        # pitch step
+                        xml_note_pitch_step = etree.SubElement(xml_note_pitch, "step")
+                        xml_note_pitch_step.text = current_note.stepName
 
-                    xml_note_pitch_alter.text = (
-                        current_note.alter if xml_note_pitch_alter is not None else 0
-                    )
+                        # pitch alter
+                        xml_note_pitch_alter = etree.SubElement(xml_note_pitch, "alter")
 
-                    # pitch octave
-                    xml_note_pitch_octave = etree.SubElement(xml_note_pitch, "octave")
-                    xml_note_pitch_octave.text = str(current_note.octave)
-
-                    # duration
-                    xml_note_duration = etree.SubElement(xml_note, "duration")
-                    xml_note_duration.text = str(current_note.dur)
-
-                    # accidental
-                    if current_note.alter:
-                        xml_note_accidental = etree.SubElement(xml_note, "accidental")
-                        xml_note_accidental.text = current_note.accidental
-
-                    # notation ties
-                    if current_note.tie_start:
-                        xml_notations = etree.SubElement(xml_note, "notations")
-                        xml_notations_tied = etree.SubElement(
-                            xml_notations, "tied", {"type": "start"}
+                        xml_note_pitch_alter.text = (
+                            current_note.alter if xml_note_pitch_alter is not None else 0
                         )
-                    if current_note.tie_continue:
-                        xml_notations = etree.SubElement(xml_note, "notations")
-                        xml_notations_tied = etree.SubElement(
-                            xml_notations, "tied", {"type": "continue"}
-                        )
-                    if current_note.tie_end:
-                        xml_notations = etree.SubElement(xml_note, "notations")
-                        xml_notations_tied = etree.SubElement(
-                            xml_notations, "tied", {"type": "stop"}
-                        )
+
+                        # pitch octave
+                        xml_note_pitch_octave = etree.SubElement(xml_note_pitch, "octave")
+                        xml_note_pitch_octave.text = str(current_note.octave)
+
+                        # duration
+                        xml_note_duration = etree.SubElement(xml_note, "duration")
+                        xml_note_duration.text = str(current_note.dur)
+
+                        # accidental
+                        if current_note.alter:
+                            xml_note_accidental = etree.SubElement(xml_note, "accidental")
+                            xml_note_accidental.text = current_note.accidental
+
+                        # notation ties
+                        if current_note.tie_start:
+                            xml_notations = etree.SubElement(xml_note, "notations")
+                            xml_notations_tied = etree.SubElement(
+                                xml_notations, "tied", {"type": "start"}
+                            )
+                        if current_note.tie_continue:
+                            xml_notations = etree.SubElement(xml_note, "notations")
+                            xml_notations_tied = etree.SubElement(
+                                xml_notations, "tied", {"type": "continue"}
+                            )
+                        if current_note.tie_end:
+                            xml_notations = etree.SubElement(xml_note, "notations")
+                            xml_notations_tied = etree.SubElement(
+                                xml_notations, "tied", {"type": "stop"}
+                            )
 
             serialized = etree.tostring(
                 root,

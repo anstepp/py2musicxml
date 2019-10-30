@@ -248,7 +248,7 @@ class NoteList:
             self.subdivisions = current_beats * current_multiplier
             for location, item in enumerate(self.current_list):
                 current_count += item.dur
-                # print("current_count", current_count)
+                # # print("current_count", current_count)
                 if current_count == self.subdivisions:
                     if location != len(current_list) - 1:
                         self.current_list[location + 1].measure_flag = True
@@ -258,11 +258,11 @@ class NoteList:
                     current_count = 0
                 elif current_count > self.subdivisions:
                     current_note = copy.deepcopy(self.current_list[location])
-                    # print("logic for ties", current_count, self.subdivisions)
+                    # # print("logic for ties", current_count, self.subdivisions)
                     overflow = current_count - self.subdivisions
-                    # print("overflow", overflow)
+                    # # print("overflow", overflow)
                     pre_tie = self.current_list[location].dur - overflow
-                    # print("pre-tie", pre_tie)
+                    # # print("pre-tie", pre_tie)
                     current_note.dur = pre_tie / current_multiplier
                     current_note.tie_start = True
                     return_list.append(current_note)

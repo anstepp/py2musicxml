@@ -14,4 +14,4 @@ def group_notes(input_list: Iterable[Union[NoteList,Measure]], divisions: int or
     elif current_list is type(Measure):
 
     else:
-        print("Error - wrong type of list")
+        # print("Error - wrong type of list")

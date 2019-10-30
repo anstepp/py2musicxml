@@ -37,5 +37,5 @@ def bjorklund(attacks, size):
     return returnList[0]
 
 
-printme = bjorklund(7, 12)
-print(printme)
+# printme = bjorklund(7, 12)
+# print(# printme)
