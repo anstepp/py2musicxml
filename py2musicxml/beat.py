@@ -4,6 +4,7 @@ class Beat:
 
     tuplet = False
     subdivisions = None
+    multi_beat = False
 
     def __init__(self):
         self.notes = list()

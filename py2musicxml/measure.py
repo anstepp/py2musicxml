@@ -26,6 +26,8 @@ class Measure:
         self.meter_counts = list()
         self.time_signature = time_signature
         self.divide_measure()
+        self.additive_beat_gen = self.count_generator()
+        self.additive_beat_list = list((x for x in self.additive_beat_gen))
 
     def count_generator(self):
         count = 0
