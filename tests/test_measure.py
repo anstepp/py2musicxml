@@ -1,11 +1,6 @@
 import pytest
 
-from py2musicxml import Measure, Beat, Note
-
-TEST_TIME = [(4,4)]
-TEST_DUR = 1
-TEST_OCTAVE = 4
-TEST_PITCH = 0
+from py2musicxml import Measure
 
 
 def test_object_init_fail_without_args():
@@ -14,24 +9,54 @@ def test_object_init_fail_without_args():
 
 
 def test_object_init_success_with_args():
-    m = Measure(time_signature=TEST_TIME)
-    assert m.time_signature == TEST_TIME
+    time_sig = (4, 4)
 
-def test_measure_empty():
-    m = Measure(time_signature=TEST_TIME)
-    assert not m.notes
-    assert not m.beats
+    m = Measure(time_signature=time_sig)
 
-def test_measure_equality():
-    measure_a = Measure(time_signature=TEST_TIME)
-    measure_b = Measure(time_signature=TEST_TIME)
-    test_note = Note(duration=TEST_DUR, octave=TEST_OCTAVE, pitch_class=TEST_PITCH)
-    measure_a.add_note(test_note)
-    measure_b.add_note(test_note)
-    measure_c = Measure(time_signature=TEST_TIME)
-    
+    assert m.time_signature == time_sig
+    assert m.is_empty() == True
 
-    assert measure_a != measure_b
-    assert measure_a != measure_c
-    assert not measure_c.beats
-    assert not measure_c.notes
+
+@pytest.mark.parametrize(
+    "time_signature, expected_meter_division, expected_meter_type, expected_meter_map",
+    [
+        ((4, 4), 'Quadruple', 'Simple', [1, 1, 1, 1]),
+        ((3, 4), 'Triple', 'Simple', [1, 1, 1]),
+        ((2, 4), 'Duple', 'Simple', [1, 1]),
+        ((12, 8), 'Quadruple', 'Compound', [1, 1, 1, 1]),
+        ((3, 8), 'Triple', 'Simple', [1, 1, 1]),
+        ((2, 16), 'Duple', 'Simple', [1, 1]),
+        ((6, 8), 'Duple', 'Compound', [1, 1]),
+    ],
+)
+def test_create_measure_map(
+    time_signature, expected_meter_division, expected_meter_type, expected_meter_map
+):
+    m = Measure(time_signature=time_signature)
+
+    assert m.meter_division == expected_meter_division
+    assert m.meter_type == expected_meter_type
+    assert m.measure_map == expected_meter_map
+
+
+@pytest.mark.parametrize(
+    "time_signature, expected_cumulative_beats, expected_total_cumulative_beats",
+    [
+        # fmt: off
+        ((4, 4), [1, 2, 3, 4], 4),
+        ((3, 4), [1, 2, 3], 3),
+        ((2, 4), [1, 2], 2),
+        ((12, 8), [1, 2, 3, 4], 4),
+        ((3, 8), [1, 2, 3], 3),
+        ((2, 16), [1, 2], 2),
+        ((6, 8), [1, 2], 2),
+        # fmt: on
+    ],
+)
+def test_cumulative_beats(
+    time_signature, expected_cumulative_beats, expected_total_cumulative_beats
+):
+    m = Measure(time_signature=time_signature)
+
+    assert m.cumulative_beats == expected_cumulative_beats
+    assert m.total_cumulative_beats == expected_total_cumulative_beats
