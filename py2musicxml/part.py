@@ -3,47 +3,60 @@ import fractions
 
 from functools import reduce
 from lxml import etree
-from typing import Iterable, List, Tuple
+from typing import Iterable, List, NamedTuple, Tuple
 from py2musicxml import Measure, Note, Beat, Rest
-from collections import namedtuple
 
-TimeSignature = List[Tuple[int, int]]
+# from collections import namedtuple
 
-DEFAULT_MEASURE_BEATS = 4
-DEFAULT_MEASURE_FACTOR = 1
+TimeSignatures = List[Tuple[int, int]]
+
+
+class CurrentCountDivisions(NamedTuple):
+    beat_floor: int
+    beat_mod: int
+    measure_floor: int
+    measure_mod: int
 
 
 class Part:
-    def __init__(self, input_list: Iterable[Note], time_signature: TimeSignature):
-        self.measure_factor, self.measure_beats = None, None
-        self.subdivisions, self.max_subdivisions = None, None
-        self.time_signature_index, self.current_beat_count, self.current_count = (
-            None,
-            None,
-            None,
-        )
-        self.additive_beat_count = None
-        self.current_count_mod, self.current_count_floor = None, None
-        self.measure_list, self.current_list, self.final_list = list(), list(), list()
+    def __init__(self, input_list: Iterable[Note], time_signatures: TimeSignatures):
+
         self.current_list = input_list
-        self.time_signature = time_signature
-        self.measure_beats = self.time_signature[0][0]
-        self.wngob = self.time_signature[0][1]
+
+        self.measures = []
+
+        # TS stuff
+        self.time_signatures = time_signatures
+        self.time_signature_index = 0
+
+        self.subdivisions, self.max_subdivisions = None, None
+
+        # where we are in the cumulative beats
+        self.current_beat_count = None
+
+        # value of note duration that needs to be written
+        # current count gets incremented when we intake the next note
+        # gets decremented when we write a measure
         self.current_count = 0
-        self.get_part(1)
+
+        # current count mod or floor divided by current cumulative beat
+        self.current_count_mod, self.current_count_floor = None, None
+
+        #  self.current_measure_mod, self.current_measure_floor
+
+        self.create_part()
 
     """default behavior is to simply clean an input list to 4/4
        it's also an option to feed extra arguments with keywords to 
        modify behavior for optional cleaning methods or user choices
        for measure groupings of factors"""
 
-    def get_part(self, measure_factor: int):
-
-        self.measure_factor = measure_factor
+    def create_part(self):
+        '''Transform input list of notes into a list of measures'''
         self.group_list_to_measures()
-        # [measure.subdivide_measure() for measure in self.measure_list]
 
-    def get_uniques(self):
+    def get_uniques(self,):
+        '''unique durations of the notes in the list'''
         uniques = []
         for item in current_list:
             if item.dur not in uniques:
@@ -75,7 +88,7 @@ class Part:
     #         elif item < group[value - 1] and item > group[value + 1]:
     #             return True
 
-    def get_change_group(self,):
+    def get_change_group(self):
         pass
 
     def get_implied_meter(self):
@@ -99,50 +112,60 @@ class Part:
         implied_list = self.group_by_map(location_map)
         return implied_list
 
-    """Call this function to advance to the next measure.
-    This should only be called when a measure is full, that is,
-    current_beat_count is full, or the subdivisions are full.
-    """
+
+    def _advance_time_signature_index(self) -> None:
+        self.time_signature_index = (self.time_signature_index + 1) % len(
+            self.time_signatures
+        )
+
 
     def append_and_increment_measure(self) -> None:
+        print("new measure")
+        '''The measure is full, so add in the current beat and push into self.measures
+        then create a fresh measure and beat
+
+        Call this function to advance to the next measure.
+            This should only be called when a measure is full, that is,
+            current_beat_count is full, or the subdivisions are full.
+        '''
+
         self.current_measure.add_beat(self.current_beat)
-        self.measure_list.append(self.current_measure)
-        self.advance_time_signature_index()
-        self.current_measure = Measure(self.time_signature[self.time_signature_index])
+        self.measures.append(self.current_measure)
+
+        self._advance_time_signature_index()
+
+        self.current_measure = Measure(self.time_signatures[self.time_signature_index])
+        self.max_subdivisions = self.current_measure.total_cumulative_beats
+
         self.current_beat = Beat()
-        self.additive_beat_count = self.current_measure.count_generator()
-        self.set_current_count_adjacencies()
-        self.max_subdivisions = self.current_measure.additive_beat_max
+
         self.current_beat_count = 0
-        self.subdivisions = self.current_measure.additive_beat_list[
+        
+        self.subdivisions = self.current_measure.cumulative_beats[
             self.current_beat_count
         ]
 
-    def advance_time_signature_index(self) -> None:
-        self.time_signature_index = (self.time_signature_index + 1) % len(
-            self.time_signature
-        )
-
-    def advance_current_beat_count(self, advance: int) -> None:
+    def advance_current_beat_count(self) -> None:
         """If the measure is full of beats, we need to append the measure
         and advance to a new measure. Otherwise, just advance the current
         count"""
-        self.current_beat_count += advance
+        self.current_beat_count += 1
         if self.current_beat_count >= len(self.current_measure.measure_map) - 1:
             self.append_and_increment_measure()
             self.current_beat_count = 0
             self.current_beat = Beat()
         else:
             self.current_measure.add_beat(self.current_beat)
-            self.subdivisions = self.current_measure.additive_beat_list[
+            self.subdivisions = self.current_measure.cumulative_beats[
                 self.current_beat_count
             ]
             self.current_beat = Beat()
 
-    def make_whole_measure_note(self, size: int, advance: int) -> None:
-        self.current_beat = Beat()
+    def make_whole_measure_note(self, duration: int, advance: int) -> None:
+        # self.current_beat = Beat()
         note_to_add = copy.deepcopy(self.current_note)
-        note_to_add.dur = size
+        note_to_add.dur = duration
+        print(note_to_add)
         self.current_beat.add_note(note_to_add)
         self.append_and_increment_measure()
 
@@ -153,9 +176,10 @@ class Part:
         for index in range(advance):
             self.advance_current_beat_count()
 
-    def get_internal_measures(self) -> None:
+    def get_internal_measures(self) -> int:
         # print("current_beat_count", self.current_beat_count)
-        # Get any remiander of the note that belongs in the last measure
+        # Get any remainder of the note that belongs in the last measure
+        
         if self.current_beat_count > 0:
             # print("current_beat_count > 1")
             overflow = self.current_measure_mod
@@ -170,132 +194,141 @@ class Part:
         # Test for all subdivisions being equal
 
         if self.current_measure.equal_divisions:
-            how_many_measures = self.current_measure_floor
-            if self.current_beat_count is 0:
-                while how_many_measures > 0:
-                    # print('current_count_mod: {}'.format(self.current_count_mod))
-                    # print('current_measure_mod: {}'.format(self.current_measure_mod))
 
-                    # print("how many measures", how_many_measures)
-                    """This uses the type of measure to write a whole measure.
-                    Eventually, we need to take cases of dotted notes that cross
-                    one level of subdivisions, as well as half notes in 3 and 4/4"""
-                    if self.current_measure.meter is "Duple":
-                        if self.current_count >= 2:
-                            self.make_whole_measure_note(2, 2)
-                            self.current_count -= 2
-                            self.set_current_count_adjacencies()
-                            how_many_measures = self.current_measure_floor
-                    elif self.current_measure.meter is "Triple":
-                        # print("I'm in triple, current_count {}".format(self.current_count))
-                        if self.current_count >= 3:
-                            # print('and currentcount is gte 3')
-                            self.make_whole_measure_note(3, 3)
-                            self.current_count -= 3
-                            # print("current_count:", self.current_count)
-                            how_many_measures -= 1
-                            # print(
-                            #     "Current count:",
-                            #     self.current_count,
-                            #     "hm measures:",
-                            #     how_many_measures,
-                            # )
+            # how many measures do we need to write
+            while self.current_measure_floor >= 1:
+                """This uses the type of measure to write a whole measure.
+                Eventually, we need to take cases of dotted notes that cross
+                one level of subdivisions, as well as half notes in 3 and 4/4"""
+                if self.current_measure.meter_division is "Duple":
+                    self.make_whole_measure_note(2, 2)
+                    self.current_count -= 2
+                    self.set_current_count_adjacencies()
+                
+                elif self.current_measure.meter_division is "Triple":
+                    self.make_whole_measure_note(3, 3)
+                    self.current_count -= 3
+                    self.set_current_count_adjacencies()
 
-                    elif self.current_measure is "Quadruple":
-                        if self.current_count >= 4:
-                            self.make_whole_measure_note(4, 4)
-                            self.current_count -= 4
-                            self.set_current_count_adjacencies()
-                            how_many_measures = self.current_measure_floor
+                elif self.current_measure.meter_division is "Quadruple":
+                    self.make_whole_measure_note(4, 4)
+                    if self.current_count == 4:
+                        self.current_count = 0
+                    else:
+                        self.current_count -= 4
+                    self.set_current_count_adjacencies()
 
-                # print("BEFORE REMIANDER")
-                # print('self.current_measure_mod: {}'.format(self.current_measure_mod))
-
-                if self.current_measure_mod > 0:
-                    # print("REMIANDER")
-                    # print("self.current_count: {}".format(self.current_count))
-                    remiander_note = copy.deepcopy(self.current_note)
-                    remiander_note.dur = self.current_count
-                    self.current_beat.add_note(remiander_note)
-                    self.advance_current_beat_count(self.current_count)
-                    self.current_count = remiander_note.dur
-                else:
-                    pass
+            if self.current_measure_mod > 0:
+                remiander_note = copy.deepcopy(self.current_note)
+                remiander_note.dur = self.current_measure_mod
+                self.current_beat.add_note(remiander_note)
+                self.advance_current_beat_count()
+                self.current_count = self.current_measure_mod
+            else:
+                pass
         else:
             """Eventually, this will deal with additive meters.
             For now, skip, and fail on a test by testing:
             assert self.current_measure.equal_divisions = True"""
             pass
-        return self.current_count
+        last_current_count = self.current_count
+        return last_current_count
 
     def set_current_count_adjacencies(self) -> int:
         self.current_count_floor = self.current_count // self.subdivisions
         self.current_count_mod = self.current_count % self.subdivisions
         self.current_measure_floor = self.current_count // self.max_subdivisions
         self.current_measure_mod = self.current_count % self.max_subdivisions
+        print("adjacencies set", self.current_count, self.current_count_floor, self.current_count_mod, self.current_measure_floor, self.current_measure_mod)
 
-        return self.current_measure_floor
-        # print("adjacencies set", self.current_count_floor, self.current_count_mod, self.current_measure_floor, self.current_measure_mod)
+    def _get_current_count_divisions(
+        self,
+        current_count: int,
+        measure_subdivisions: int,
+        measure_max_subdivisions: int,
+    ) -> CurrentCountDivisions:
+        return CurrentCountDivisions(
+            beat_floor=current_count // measure_subdivisions,
+            beat_mod=current_count % measure_subdivisions,
+            measure_floor=current_count // measure_max_subdivisions,
+            measure_mod=current_count % measure_max_subdivisions,
+        )
 
-    def wrap_up(self) -> None:
-        last_measure = self.measure_list[-1]
-        duration_passed = 0
-        for beat in last_measure.beats:
-            for note in beat.notes:
-                duration_passed += note.dur
-                # print(duration_passed)
-        counter = -1
-        while counter > (len(last_measure.additive_beat_list) * -1):
-            if duration_passed < last_measure.additive_beat_list[counter]:
-                pass
-                # print("Duration {}, Beat Count {}".format(duration_passed, last_measure.additive_beat_list[counter]))
-            else:
-                counter -= 1
+    def wrap_up(self, remainder: int) -> None:
+        self.current_beat.add_note(Rest(remainder))
+        self.append_and_increment_measure()
 
     def group_list_to_measures(self) -> None:
 
-        current_information_tuple = namedtuple(
-            "current_information_tuple",
-            ['current_measure',
-            'current_beat',
-            'current_measure_count',
-            'time_signature_index',
-            'current_beat_count',
-            'subdivisions',
-            'current_note',
-            'current_count']
-        )
-
-        self.current_measure = Measure(self.time_signature[0])
+        self.current_measure = Measure(self.time_signatures[self.time_signature_index])
         self.current_beat = Beat()
 
-        self.current_measure_count = 0
-        self.time_signature_index = 0
+        # how many beats in measure we have traveled
         self.current_beat_count = 0
 
-        self.measure_beat_list = self.current_measure.additive_beat_list
-        self.subdivisions = self.measure_beat_list[self.current_beat_count]
-        self.max_subdivisions = self.current_measure.additive_beat_max
+        # keep track of how full the beat is
 
+        # MEASURE subdivisions and max subdivisions
+        self.subdivisions = self.current_measure.cumulative_beats[
+            self.current_beat_count
+        ]
+        self.max_subdivisions = self.current_measure.total_cumulative_beats
+
+        remainder = 0
         for location, note in enumerate(self.current_list):
+            print("location {} remainder {} ".format(location, remainder))
             self.current_note = note
             self.current_count += self.current_note.dur
+            print(note, self.current_count, remainder)
             # print("new note current count", self.current_count)
-            current_count = self.set_current_count_adjacencies()
-            # print("note {}, current_count {}, current_measure_floor {} current_measure_mod {}".format(
-            #    note, self.current_count, self.current_measure_floor, self.current_measure_mod))
-            # in this case, we need to advance the measure count
-            if self.current_measure_floor >= 1:
+
+            self.set_current_count_adjacencies()
+
+            # cc_divs = self._get_current_count_divisions(
+            #     current_count, self.subdivisions, self.max_subdivisions
+            # )
+            if remainder > 0 and self.current_measure_floor >= 1:
+
+                """In this case, we have leftover note duration from the previous
+                measure. We write that note, then decrement current_count to reflect
+                that note being written."""
+                if self.current_note.dur >= remainder:
+                    last_measure_remaining_duration = remainder
+                    note_to_add_to_old_measure = copy.deepcopy(self.current_note)
+                    note_to_add_to_old_measure.dur = last_measure_remaining_duration
+                    self.current_beat.add_note(note_to_add_to_old_measure)
+                    self.append_and_increment_measure()
+                    self.set_current_count_adjacencies()
+                    self.current_count = 0
+                    remainder = 0
+                else:
+                    print("else")
+                    self.current_beat.add_note(self.current_note)
+                    remainder = self.max_subdivisions - self.current_count
+                    self.set_current_count_adjacencies()
+
+            #print("current_measure_floor : ", self.current_measure_floor)
+            # Our current count exceeds the max duration of the current measure
+            if self.current_measure_floor >= 1 and self.current_count >= self.max_subdivisions:
+                print("get internal measures")
                 # use this to clean up the measures that exist
-                self.get_internal_measures()
+
+                # there is at least one measure to be filled
+                # ie break into measures and beats
+                remainder = self.get_internal_measures()
+                # would need to pass current_beat_count 
+
                 """This has advanced the measure, and the measure may be incomplete.
                 If the next note advances beyond a measure, this function is called again.
                 Else, the else."""
-            else:
-                if self.current_count >= self.subdivisions:
-                    self.current_beat.add_note(self.current_note)
-                    self.advance_current_beat_count(self.current_count)
-                else:
-                    # append to beat, do not advance beats
-                    self.current_beat.add_note(self.current_note)
-        # self.wrap_up()
+            if self.current_count > 0:
+
+                note_to_add_to_current_measure = copy.deepcopy(self.current_note)
+                note_to_add_to_current_measure.dur = self.current_count
+                self.current_beat.add_note(self.current_note)
+                #self.advance_current_beat_count()
+                remainder = self.max_subdivisions - self.current_count
+
+        self.current_measure.add_beat(self.current_beat)
+        self.current_beat = Beat()
+        self.wrap_up(self.max_subdivisions - remainder)
