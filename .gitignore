@@ -12,8 +12,8 @@ __pycache__/
 # C extensions
 *.so
 
-# kill all xml
-.xml
+# .xml files
+*.xml
 
 # Distribution / packaging
 .Python

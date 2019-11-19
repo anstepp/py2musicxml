@@ -72,8 +72,8 @@ class pitchField:
 # x = pitchField([2, 3, 1, 2], Pitch(1, 0), 0.5)
 # y = x.makeField()
 # for it in y:
-# 	print(y)
+# 	# print(y)
 # x.makeRules([4,8,12,14])
 # x.makeFieldGen([3,],3)
 # thing = x.makeFieldGen([0,], 4)
-# print(thing)
+# # print(thing)

@@ -10,7 +10,7 @@ soprano, alto, tenor, bass = []
 #if generating melody, use this
 
 
-getTriaic(note):
+getTriadic(note):
 	return [note - 5, note - 3, note, note + 3, note + 5]
 
 getHarmonyBass(note):

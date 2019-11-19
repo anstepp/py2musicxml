@@ -3,286 +3,278 @@ import fractions
 
 from functools import reduce
 from lxml import etree
+from typing import Iterable
 
 DEFAULT_MEASURE_BEATS = 4
 DEFAULT_MEASURE_FACTOR = 1
 
 
 class NoteList:
-    measure_factor, measureBeats = None, None
-    initalList, currentList, finalList = None, None, None
+    measure_factor, measure_beats = None, None
+    initial_list, current_list, final_list = None, None, None
 
-    def __init__(self, theList):
-        self.currentList = theList
+    def __init__(self, input_list: list):
+        self.current_list = input_list
         self.subdivisions = None
-    # is this redundant with the _clean_list(), or do we make that default beahvior?
     """default behavior is to simply clean an input list to 4/4
        it's also an option to feed extra arguments with keywords to 
        modify behavior for optional cleaning methods or user choices
        for measure groupings of factors"""
 
-    def getList(self, **kwargs):
+    def get_part(self, **kwargs):
 
         self.measure_factor = (
             kwargs.get("factor") if kwargs.get("factor") else DEFAULT_MEASURE_FACTOR
         )
 
-        self.measureBeats = (
+        self.measure_beats = (
             kwargs.get("beats") if kwargs.get("beats") else DEFAULT_MEASURE_BEATS
         )
 
-        noteSortMethod = kwargs.get("how") if kwargs.get("how") else "Default"
+        note_sort_method = kwargs.get("how") if kwargs.get("how") else "Default"
 
-        self._clean_list(noteSortMethod)
+        self._clean_list(note_sort_method)
 
-    def _clean_list(self, how):
+        return self.final_list
+
+    def _clean_list(self, how: str):
         if how is "Implied":
-            self.finalList = self.groupByImpliedMeter()
+            self.final_list = self.groupByImpliedMeter()
         if how is "Map":
-            self.finalList = self.groupByMap()
+            self.final_list = self.group_by_map()
         # default to 4/4
         if how is "Default":
-            self.finalList = self.groupList()
+            self.final_list = self.group_list()
         else:
-            self.finalList = self.groupList()
+            self.final_list = self.group_list()
 
-    def gcd(self, a, b):
-        if type(a) and type(b) is int:
-            while b:
-                a, b = b, a % b
-            return a
-        else:
-            # convert float to fraction by approximating denominator then gcd
-            return fractions.gcd(
-                fractions.Fraction(a).limit_denominator(),
-                fractions.Fraction(b).limit_denominator(),
-            )
-
-    def lcm(self, a, b):
-        return a * b // self.gcd(a, b)
-
-    def getUniques(self, theList):
+    def get_uniques(self):
         uniques = []
-        for item in theList:
+        for item in current_list:
             if item.dur not in uniques:
                 uniques.append(item.dur)
             else:
                 pass
         return uniques
 
-    def groupList(self):
-        currentCount = 0
+    def group_list(self):
+        current_count = 0
         # current count of number of self.subdivisions including the new note (item)
-        lastCurrentCount = 0
-        middleList = []
-        returnList = []
-        self.subdivisions = self.measureBeats * self.measure_factor
+        last_current_count = 0
+        middle_list = []
+        return_list = []
+        self.subdivisions = self.measure_beats * self.measure_factor
 
-        for location, item in enumerate(self.currentList):
-            currentCount += item.dur
-            currentCountFloor = currentCount // self.subdivisions
-            currentCountMod = currentCount % self.subdivisions
-            if currentCountMod == 0 and currentCountFloor == 1:
-                #print("zero, equal")
-                if location != len(self.currentList) - 1:
-                    self.currentList[location + 1].measure_flag = True
-                if item.dur > self.subdivisions:
-                    how_many_measures = currentCount // self.subdivisions
+        #new function to group by input from the noteGroup function in another file
+        measure_list = self.group_list_to_measures(self.subdivisions)
+        return measure_list
+
+    def assign_measure_weight(self):
+        for note in self.current_list:
+            if note.measure_flag is False:
+                pass
+            else:
+                if note.location is 1:
+                    weight = 1000
+                else:
+                    if get_change_pitch(self.current_list[note:note]):
+                        note.weight += 1
+                    if note.duration > subdivisions:
+                        note.weight += 1
+
+    def compare_weight(self):
+        pass
+
+    # def get_change_pitch(self, range: window):
+    #     for item, value in group[1:-1]:
+    #         if item > group[value - 1] and item < group[value + 1]:
+    #             return True
+    #         elif item < group[value - 1] and item > group[value + 1]:
+    #             return True
+
+    def get_change_group(self,):
+        pass
+
+    def get_implied_meter(self):
+        location_map = []
+        pitch_locations = self.get_change_pitch()
+        meter_locations = self.get_change_group()
+        highest_level = [pitch for pitch, meter in zip(pitch_locations, meter_locations) if pitch == meter]
+        last_location = 0
+        #perhaps wrap this in a smaller function and make it recurisve? Is there a non-recusrive way to make this work?
+        for location in highest_level:
+            subgroup = self.current_list[last_location:location]
+            groups_2_and_3 = self.metric_finder(subgroup) #or should I use the .get_change_pitch() and .get_change_group()
+            location_map.append(groups_2_and_3)
+            location = last_location
+        implied_list = self.group_by_map(location_map)
+        return implied_list
+
+    def group_list_to_measures(self, subdivisions: int):
+        current_list = self.current_list
+        current_count = 0
+        middle_list = list()
+        for location, item in enumerate(current_list):
+            current_count += item.dur
+            current_count_floor = current_count // subdivisions
+            current_count_mod = current_count % subdivisions
+            if current_count_mod == 0 and current_count_floor == 1:
+                if item.dur > subdivisions:
+                    how_many_measures = current_count // subdivisions
                     what_goes_to_the_first_measure = (
-                        item.dur - currentCount // self.subdivisions
+                        item.dur - current_count // subdivisions
                     )
-                    last_note_of_old_measure = copy.deepcopy(self.currentList[location])
+                    last_note_of_old_measure = copy.deepcopy(current_list[location])
                     last_note_of_old_measure.dur = what_goes_to_the_first_measure
                     last_note_of_old_measure.tie_start = True
-                    middleList.append(last_note_of_old_measure)
+                    middle_list.append(last_note_of_old_measure)
                     while how_many_measures > 0:
-                        whole_measure_note = copy.deepcopy(self.currentList[location])
-                        whole_measure_note.dur = self.subdivisions
+                        whole_measure_note = copy.deepcopy(current_list[location])
+                        whole_measure_note.dur = subdivisions
                         if how_many_measures > 1:
                             whole_measure_note.tie_start = True
                         else:
                             whole_measure_note.tie_end = True
-                        middleList.append(whole_measure_note)
+                        middle_list.append(whole_measure_note)
                         how_many_measures -= 1
                 else:
-                    alteredDuration = copy.deepcopy(self.currentList[location])
-                    middleList.append(alteredDuration)
-                currentCount = 0
-            elif currentCountMod == 0 and currentCountFloor > 1:
-                #print("zero, greater than")
-                how_many_measures = currentCount // self.subdivisions
-                if location != len(self.currentList) - 1:
-                    self.currentList[location + 1].measure_flag = True
-                how_many_measures = currentCount // self.subdivisions - 1
+                    altered_duration = copy.deepcopy(current_list[location])
+                    middle_list.append(altered_duration)
+                current_count = 0
+                if location != len(current_list) - 1:
+                    current_list[location + 1].measure_flag = True
+            elif current_count_mod == 0 and current_count_floor > 1:
+                how_many_measures = current_count // subdivisions
+                if location != len(current_list) - 1:
+                    current_list[location + 1].measure_flag = True
+                how_many_measures = current_count // subdivisions - 1
                 what_goes_to_the_first_measure = (
-                    item.dur - self.subdivisions * how_many_measures
+                    item.dur - subdivisions * how_many_measures
                 )
-                last_note_of_old_measure = copy.deepcopy(self.currentList[location])
+                last_note_of_old_measure = copy.deepcopy(current_list[location])
                 last_note_of_old_measure.dur = what_goes_to_the_first_measure
                 last_note_of_old_measure.tie_start = True
-                middleList.append(last_note_of_old_measure)
+                middle_list.append(last_note_of_old_measure)
                 while how_many_measures > 0:
-                    note_to_add = copy.deepcopy(self.currentList[location])
-                    note_to_add.dur = self.subdivisions
+                    note_to_add = copy.deepcopy(current_list[location])
+                    note_to_add.dur = subdivisions
                     note_to_add.measure_flag = True
-                    middleList.append(note_to_add)
+                    middle_list.append(note_to_add)
                     how_many_measures -= 1
-                lastCurrentCount = currentCountMod
-                currentCount = 0
-            elif currentCountMod > 0 and currentCountFloor == 1:
-                #print("greater than, zero")
-                currentNote = copy.deepcopy(self.currentList[location])
-                overflow = currentCount - self.subdivisions
-                if overflow // self.subdivisions > 1:
-                    newDur = self.subdivisions
-                    currentNote.dur = newDur
-                    currentNote.tie_start = True
-                    middleList.append(currentNote)
-                    tiedNote = copy.deepcopy(self.currentList[location])
-                    tiedDur = overflow % self.subdivisions
-                    tiedNote.dur = newDur
-                    tiedNote.tie_end = True
-                    tiedNote.measure_flag = True
-                    middleList.append(tiedNote)
+                last_current_count = current_count_mod
+                current_count = 0
+            elif current_count_mod > 0 and current_count_floor == 1:
+                current_note = copy.deepcopy(current_list[location])
+                overflow = current_count - subdivisions
+                if overflow // subdivisions > 1:
+                    new_dur = subdivisions
+                    current_note.dur = new_dur
+                    current_note.tie_start = True
+                    middle_list.append(current_note)
+                    tied_note = copy.deepcopy(current_list[location])
+                    tied_dur = overflow % subdivisions
+                    tied_note.dur = new_dur
+                    tied_note.tie_end = True
+                    tied_note.measure_flag = True
+                    middle_list.append(tied_note)
                 else:
-                    preTie = self.currentList[location].dur - overflow
-                    newDur = preTie
-                    currentNote.dur = newDur
-                    currentNote.tie_start = True
-                    middleList.append(currentNote)
-                    tiedNote = copy.deepcopy(self.currentList[location])
-                    tiedDur = overflow % self.subdivisions
-                    tiedNote.dur = tiedDur
-                    tiedNote.tie_end = True
-                    tiedNote.measure_flag = True
-                    middleList.append(tiedNote)
-                lastCurrentCount = currentCount % self.subdivisions
-                currentCount = overflow
-            elif currentCountMod > 0 and currentCountFloor > 1:
-                #print("greater than, greater than")
-                currentNote = copy.deepcopy(self.currentList[location])
-                last_measure_count = self.subdivisions - lastCurrentCount
-                overflow = currentCountMod
+                    pre_tie = current_list[location].dur - overflow
+                    new_dur = pre_tie
+                    current_note.dur = new_dur
+                    current_note.tie_start = True
+                    middle_list.append(current_note)
+                    tied_note = copy.deepcopy(current_list[location])
+                    tied_dur = overflow % subdivisions
+                    tied_note.dur = tied_dur
+                    tied_note.tie_end = True
+                    tied_note.measure_flag = True
+                    middle_list.append(tied_note)
+                last_current_count = current_count % subdivisions
+                current_count = overflow
+            elif current_count_mod > 0 and current_count_floor > 1:
+                current_note = copy.deepcopy(current_list[location])
+                last_measure_count = subdivisions - last_current_count
+                overflow = current_count_mod
                 if last_measure_count > 0:
-                    how_many_measures = currentCount // self.subdivisions - 1
-                    what_goes_to_the_first_measure = self.subdivisions - lastCurrentCount
+                    how_many_measures = current_count // subdivisions - 1
+                    what_goes_to_the_first_measure = subdivisions - last_current_count
                     what_goes_to_the_last_measure = overflow
-                    extra_measure_beats = self.subdivisions * how_many_measures
+                    extra_measure_beats = subdivisions * how_many_measures
                 else:
-                    how_many_measures = currentCount // self.subdivisions
+                    how_many_measures = current_count // subdivisions
                     what_goes_to_the_first_measure = False
                     what_goes_to_the_last_measure = overflow
-                    extra_measure_beats = self.subdivisions * how_many_measures
+                    extra_measure_beats = subdivisions * how_many_measures
                 if what_goes_to_the_first_measure:
-                    currentNote = copy.deepcopy(self.currentList[location])
-                    currentNote.dur = what_goes_to_the_first_measure
-                    currentNote.tie_start = True
-                    middleList.append(currentNote)
+                    current_note = copy.deepcopy(current_list[location])
+                    current_note.dur = what_goes_to_the_first_measure
+                    current_note.tie_start = True
+                    middle_list.append(current_note)
                 while how_many_measures > 0:
-                    currentNote = copy.deepcopy(self.currentList[location])
-                    currentNote.dur = self.subdivisions
-                    currentNote.tie_start = True
+                    current_note = copy.deepcopy(current_list[location])
+                    current_note.dur = subdivisions
+                    current_note.tie_start = True
                     # FIXME: This needs to not get switched on first note
-                    currentNote.measure_flag = True
+                    current_note.measure_flag = True
                     if what_goes_to_the_last_measure > 0:
-                        currentNote.tie_end = True
-                    currentNote.tie_end = True
-                    middleList.append(currentNote)
+                        current_note.tie_end = True
+                    current_note.tie_end = True
+                    middle_list.append(current_note)
                     how_many_measures -= 1
                 if what_goes_to_the_last_measure > 0:
-                    currentNote = copy.deepcopy(self.currentList[location])
-                    currentNote.dur = what_goes_to_the_last_measure
-                    currentNote.tie_end = True
-                    currentNote.measure_flag = True
-                    middleList.append(currentNote)
-                lastCurrentCount = currentCount % self.subdivisions
-                currentCount = overflow % self.subdivisions
-            elif currentCountMod > 0 and currentCountFloor < 1:
-                #print("buisness as usual")
-                alteredDuration = copy.deepcopy(self.currentList[location])
-                middleList.append(alteredDuration)
-                lastCurrentCount = currentCountMod
-        uniqueDurations = self.getUniques(middleList)
-        print("durs", uniqueDurations)
-        lcmOfDurations = reduce(self.lcm, uniqueDurations)
-        print("lcm", lcmOfDurations)
-        #self.subdivisions = self.measure_factor * lcmOfDurations
-        print("self.subdivisions", self.subdivisions)
-        # in the future, this will do scaling, etc.
-        returnList = middleList
-        return returnList
-
-    def getChangePitch(self, group):
-        for item, value in group[1:-1]:
-            if item > group[value - 1] and item < group[value + 1]:
-                #put a grouping tag
-                pass
-            elif item < group[value - 1] and item > group[value + 1]:
-                #put a group tag
-                pass
-
-    def getChangeGroup(self, group):
-        pass
-
-    def getImpliedMeter(self):
-        locationMap = []
-        pitchLocations = self.getChangePitch()
-        meterLocations = self.getChangeGroup()
-        highestLevel = [pitch for pitch, meter in zip(pitchLocations, meterLocations) if pitch == meter]
-        lastLocation = 0
-        #perhaps wrap this in a smaller function and make it recurisve? Is there a non-recusrive way to make this work?
-        for location in highestLevel:
-            subgroup = self.currentList[lastLocation:location]
-            groups2and3 = self.metricFinder(subgroup) #or should I use the .getChangePitch() and .getChangeGroup()
-            locationMap.append(groups2and3)
-            location = lastLocation
-        impliedList = self.groupByMap(locationMap)
-        return impliedList
-
+                    current_note = copy.deepcopy(current_list[location])
+                    current_note.dur = what_goes_to_the_last_measure
+                    current_note.tie_end = True
+                    current_note.measure_flag = True
+                    middle_list.append(current_note)
+                last_current_count = current_count % subdivisions
+                current_count = overflow % subdivisions
+            elif current_count_mod > 0 and current_count_floor < 1:
+                altered_duration = copy.deepcopy(current_list[location])
+                middle_list.append(altered_duration)
+                last_current_count = current_count_mod
+            return current_list
 
     """this method is designed to take an input map to allow
     for various time signatures being user defined, or to 
     have different proportions per measure.
     It may not work yet."""
 
-    def groupByMap(self, inputMap):
-        mapToGroup = Map
-        for mapValue in mapToGroup:
-            currentBeats = mapValue[0]
-            currentMultiplier = mapValue[1]
-            self.subdivisions = currentBeats * currentMultiplier
-            for location, item in enumerate(self.currentList):
-                currentCount += item.dur
-                # print("currentCount", currentCount)
-                if currentCount == self.subdivisions:
-                    if location != len(currentList) - 1:
-                        self.currentList[location + 1].measure_flag = True
-                    alteredDuration = copy.deepcopy(self.currentList[location])
-                    alteredDuration.dur = alteredDuration.dur / currentMultiplier
-                    returnList.append(alteredDuration)
-                    currentCount = 0
-                elif currentCount > self.subdivisions:
-                    currentNote = copy.deepcopy(self.currentList[location])
-                    # print("logic for ties", currentCount, self.subdivisions)
-                    overflow = currentCount - self.subdivisions
-                    # print("overflow", overflow)
-                    preTie = self.currentList[location].dur - overflow
-                    # print("pre-tie", preTie)
-                    currentNote.dur = preTie / currentMultiplier
-                    currentNote.tie_start = True
-                    returnList.append(currentNote)
+    def group_by_map(self, input_map: list):
+        map_to_group = input_map
+        for map_value in map_to_group:
+            current_beats = map_value[0]
+            current_multiplier = map_value[1]
+            self.subdivisions = current_beats * current_multiplier
+            for location, item in enumerate(self.current_list):
+                current_count += item.dur
+                # # print("current_count", current_count)
+                if current_count == self.subdivisions:
+                    if location != len(current_list) - 1:
+                        self.current_list[location + 1].measure_flag = True
+                    altered_duration = copy.deepcopy(self.current_list[location])
+                    altered_duration.dur = altered_duration.dur / current_multiplier
+                    return_list.append(altered_duration)
+                    current_count = 0
+                elif current_count > self.subdivisions:
+                    current_note = copy.deepcopy(self.current_list[location])
+                    # # print("logic for ties", current_count, self.subdivisions)
+                    overflow = current_count - self.subdivisions
+                    # # print("overflow", overflow)
+                    pre_tie = self.current_list[location].dur - overflow
+                    # # print("pre-tie", pre_tie)
+                    current_note.dur = pre_tie / current_multiplier
+                    current_note.tie_start = True
+                    return_list.append(current_note)
                     # there should probably be a "no accidental" flag, too
-                    tiedNote = copy.deepcopy(self.currentList[location])
-                    tiedNote.dur = overflow / measure_factor
-                    tiedNote.tie_end = True
-                    tiedNote.measure_flag = True
-                    returnList.append(tiedNote)
-                    currentCount = overflow
+                    tied_note = copy.deepcopy(self.current_list[location])
+                    tied_note.dur = overflow / measure_factor
+                    tied_note.tie_end = True
+                    tied_note.measure_flag = True
+                    return_list.append(tied_note)
+                    current_count = overflow
                 else:
-                    alteredDuration = copy.deepcopy(self.currentList[location])
-                    alteredDuration.dur = alteredDuration.dur / currentMultiplier
-                    returnList.append(alteredDuration)
-        return returnList
-
-    def metricFinder(self, subgroup):
-        pass
+                    altered_duration = copy.deepcopy(self.current_list[location])
+                    altered_duration.dur = altered_duration.dur / current_multiplier
+                    return_list.append(altered_duration)
+        return return_list

@@ -57,7 +57,7 @@ class bangleize:
         longList = [x for x in longList if x > 0]
         for item in longList:
             if item is 0:
-                print(item)
+                # print(item)
         return longList
 
     def euclid(self, u, v):
