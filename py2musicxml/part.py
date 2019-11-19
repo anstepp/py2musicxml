@@ -55,7 +55,7 @@ class Part:
         '''Transform input list of notes into a list of measures'''
         self.group_list_to_measures()
 
-    def get_uniques(self,):
+    def get_uniques(self):
         '''unique durations of the notes in the list'''
         uniques = []
         for item in current_list:
@@ -112,7 +112,6 @@ class Part:
         implied_list = self.group_by_map(location_map)
         return implied_list
 
-
     def _advance_time_signature_index(self) -> None:
         self.time_signature_index = (self.time_signature_index + 1) % len(
             self.time_signatures
@@ -149,6 +148,7 @@ class Part:
         """If the measure is full of beats, we need to append the measure
         and advance to a new measure. Otherwise, just advance the current
         count"""
+
         self.current_beat_count += 1
         if self.current_beat_count >= len(self.current_measure.measure_map) - 1:
             self.append_and_increment_measure()
