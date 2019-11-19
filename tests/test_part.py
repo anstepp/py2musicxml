@@ -1,4 +1,4 @@
-from py2musicxml import Measure, Note, Beat, Part
+from py2musicxml import Measure, Note, Beat, Part, Score
 
 expected_note_values = [3, 3, 1, 2, 1, 2, 3, 1, 2, 2, 1]
 expected_beat_lens = [1, 1, 2, 2, 1, 2, 2, 1]
@@ -22,14 +22,14 @@ def assert_durs():
             for note in beat.notes:
                 expected_note_duration = expected_note_values[note_count]
                 
-                # print('MY TEST')
-                # print(note)
-                # print(note_count, beat, beat.notes, note.dur, expected_note_duration)
+                print('MY TEST')
+                print(note)
+                print(note_count, beat, beat.notes, note.dur, expected_note_duration)
                 
                 assert note.dur == expected_note_duration
                 note_count += 1
 
-#assert_durs()
+assert_durs()
         
 def assert_unique():
     for index_x, x in enumerate(test_part.measures):
@@ -49,10 +49,7 @@ def frere_jacques():
     fj_pitches = [0, 2, 4, 0, 0, 2, 4, 0, 4, 5, 7, 4, 5, 7, 7, 9, 7, 5, 4, 0, 7, 9, 7, 5, 4, 0, 0, -5, 0, 0, -5, 0]
     fj_durs = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 4, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 4, 2, 2, 4]
     fj_ts = [[4,4]]
-    fj_list = []
-
-    for pitch, dur in zip(fj_pitches, fj_durs):
-        fj_list.append(Note(dur, pitch, 4))
+    fj_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
 
     fj_part = Part(fj_list, fj_ts)
 
@@ -64,5 +61,11 @@ def frere_jacques():
                 assert fj_durs[counter] == note.dur
                 counter += 1
 
+    score = Score([fj_part])
+    score.convert_to_xml("test_score_fj.xml")
+
 frere_jacques()
+
+
+
 

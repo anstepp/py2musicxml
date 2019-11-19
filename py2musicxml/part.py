@@ -218,14 +218,6 @@ class Part:
                         self.current_count -= 4
                     self.set_current_count_adjacencies()
 
-            if self.current_measure_mod > 0:
-                remiander_note = copy.deepcopy(self.current_note)
-                remiander_note.dur = self.current_measure_mod
-                self.current_beat.add_note(remiander_note)
-                self.advance_current_beat_count()
-                self.current_count = self.current_measure_mod
-            else:
-                pass
         else:
             """Eventually, this will deal with additive meters.
             For now, skip, and fail on a test by testing:
@@ -256,7 +248,7 @@ class Part:
 
     def wrap_up(self, remainder: int) -> None:
         self.current_beat.add_note(Rest(remainder))
-        self.append_and_increment_measure()
+        self.measures.append(self.current_measure)
 
     def group_list_to_measures(self) -> None:
 
@@ -276,10 +268,10 @@ class Part:
 
         remainder = 0
         for location, note in enumerate(self.current_list):
-            print("location {} remainder {} ".format(location, remainder))
+            print("\nlocation {} remainder {} ".format(location, remainder))
             self.current_note = note
             self.current_count += self.current_note.dur
-            print(note, self.current_count, remainder)
+            print("note, cc, remainder: ", note, self.current_count, remainder)
             # print("new note current count", self.current_count)
 
             self.set_current_count_adjacencies()
@@ -287,47 +279,78 @@ class Part:
             # cc_divs = self._get_current_count_divisions(
             #     current_count, self.subdivisions, self.max_subdivisions
             # )
-            if remainder > 0 and self.current_measure_floor >= 1:
 
-                """In this case, we have leftover note duration from the previous
-                measure. We write that note, then decrement current_count to reflect
-                that note being written."""
-                if self.current_note.dur >= remainder:
-                    last_measure_remaining_duration = remainder
-                    note_to_add_to_old_measure = copy.deepcopy(self.current_note)
-                    note_to_add_to_old_measure.dur = last_measure_remaining_duration
-                    self.current_beat.add_note(note_to_add_to_old_measure)
-                    self.append_and_increment_measure()
-                    self.set_current_count_adjacencies()
-                    self.current_count = 0
-                    remainder = 0
-                else:
-                    print("else")
-                    self.current_beat.add_note(self.current_note)
-                    remainder = self.max_subdivisions - self.current_count
-                    self.set_current_count_adjacencies()
+            
+            if self.current_measure_floor == 1 and self.current_measure_mod == 0:
+                measure_or_less_test = True
+            else:
+                measure_or_less_test = False
 
-            #print("current_measure_floor : ", self.current_measure_floor)
-            # Our current count exceeds the max duration of the current measure
-            if self.current_measure_floor >= 1 and self.current_count >= self.max_subdivisions:
-                print("get internal measures")
-                # use this to clean up the measures that exist
-
-                # there is at least one measure to be filled
-                # ie break into measures and beats
-                remainder = self.get_internal_measures()
-                # would need to pass current_beat_count 
-
-                """This has advanced the measure, and the measure may be incomplete.
-                If the next note advances beyond a measure, this function is called again.
-                Else, the else."""
-            if self.current_count > 0:
-
-                note_to_add_to_current_measure = copy.deepcopy(self.current_note)
-                note_to_add_to_current_measure.dur = self.current_count
+            if measure_or_less_test or self.current_measure_floor == 0:
                 self.current_beat.add_note(self.current_note)
-                #self.advance_current_beat_count()
-                remainder = self.max_subdivisions - self.current_count
+                    #self.advance_current_beat_count()
+                if self.current_count < self.max_subdivisions:
+                    print("cc less than")
+                    remainder = self.current_count
+                else:
+                    print("cc equal or greater")
+                    self.append_and_increment_measure()
+                    self.current_count = 0
+                    self.set_current_count_adjacencies()
+                    remainder = 0
+                print("breakout remainder: ", remainder)
+
+            if self.current_measure_floor >= 1:
+                if remainder > 0:
+                    print("remainder")
+                    """In this case, we have leftover note duration from the previous
+                    measure. We write that note, then decrement current_count to reflect
+                    that note being written."""
+                    if self.current_note.dur >= remainder:
+                        print("if")
+                        last_measure_remaining_duration = self.max_subdivisions - remainder
+                        note_to_add_to_old_measure = copy.deepcopy(self.current_note)
+                        note_to_add_to_old_measure.dur = last_measure_remaining_duration
+                        print(note_to_add_to_old_measure)
+                        self.current_beat.add_note(note_to_add_to_old_measure)
+                        self.append_and_increment_measure()
+                        print("if pre-adjust cc: ", self.current_count)
+                        self.current_count -= self.max_subdivisions
+                        self.set_current_count_adjacencies()
+                        print("If current count ", self.current_count)
+                        remainder = 0
+                        
+                    else:
+                        print("else")
+                        self.current_beat.add_note(self.current_note)
+                        remainder = self.max_subdivisions - self.current_count
+                        print(remainder)
+                        self.set_current_count_adjacencies()
+
+                #print("current_measure_floor : ", self.current_measure_floor)
+                # Our current count exceeds the max duration of the current measure
+                if self.current_measure_floor >= 1 and self.current_count >= self.max_subdivisions:
+                    print("get internal measures")
+                    # use this to clean up the measures that exist
+
+                    # there is at least one measure to be filled
+                    # ie break into measures and beats
+                    remainder = self.get_internal_measures()
+                    # would need to pass current_beat_count 
+
+                if self.current_count > 0:
+                    note_to_add_to_old_measure = copy.deepcopy(self.current_note)
+                    note_to_add_to_old_measure.dur = self.current_count
+                    self.current_beat.add_note(note_to_add_to_old_measure)
+                    #self.advance_current_beat_count()
+                    if self.current_count < self.max_subdivisions:
+                        print("cc less than")
+                        remainder = self.current_count
+                    else:
+                        print("cc equal or greater")
+                        self.current_count = 0
+                    print("tail remainder: ", remainder)
+
 
         self.current_measure.add_beat(self.current_beat)
         self.current_beat = Beat()
