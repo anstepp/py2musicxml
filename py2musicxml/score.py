@@ -81,7 +81,7 @@ class Score:
             # for each Note in part's NoteList
             current_measure_count = 0
             # print(score_part.measures)
-            for current_measure in score_part.measures:
+            for measure_index, current_measure in enumerate(score_part.measures):
                 current_measure_count += 1
                 if current_measure_count != 1:
                     xml_measure = etree.SubElement(
@@ -90,7 +90,10 @@ class Score:
                     for current_note in current_beat.notes:
                         print(current_note)
                         if type(current_note) == Rest:
-                            print("I'm a Rest")
+                            xml_note = etree.SubElement(xml_measure, "note")
+                            xml_rest = etree.SubElement(xml_note, "rest")
+                            xml_rest_duration = etree.SubElement(xml_note, "duration")
+                            xml_rest_duration.text = str(current_note.dur)
 
                         else:
                             # note

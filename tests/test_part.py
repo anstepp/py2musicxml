@@ -1,4 +1,4 @@
-from py2musicxml import Measure, Note, Beat, Part, Score
+from py2musicxml import Measure, Note, Beat, Part, Score, Rest
 
 expected_note_values = [3, 3, 1, 2, 1, 2, 3, 1, 2, 2, 1]
 expected_beat_lens = [1, 1, 2, 2, 1, 2, 2, 1]
@@ -6,8 +6,9 @@ expected_beat_lens = [1, 1, 2, 2, 1, 2, 2, 1]
 test_note_a = Note(4, 4, 4)
 test_note_b = Note(3, 3, 3)
 test_note_c = Note(6, 6, 6)
+test_rest = Rest(1)
 
-test_list = [test_note_b, test_note_a, test_note_b, test_note_c, test_note_a]
+test_list = [test_note_b, test_note_a, test_note_b, test_note_c, test_note_a, test_rest]
 
 test_sig = [[3, 4]]
 
@@ -45,6 +46,9 @@ def assert_unique():
 
 assert_unique()
 
+test_score = Score(score_parts=[test_part])
+test_score.convert_to_xml("test_score_cases.xml")
+
 def frere_jacques():
     fj_pitches = [0, 2, 4, 0, 0, 2, 4, 0, 4, 5, 7, 4, 5, 7, 7, 9, 7, 5, 4, 0, 7, 9, 7, 5, 4, 0, 0, -5, 0, 0, -5, 0]
     fj_durs = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 4, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 4, 2, 2, 4]
@@ -61,7 +65,7 @@ def frere_jacques():
                 assert fj_durs[counter] == note.dur
                 counter += 1
 
-    score = Score([fj_part])
+    score = Score(score_parts=[fj_part])
     score.convert_to_xml("test_score_fj.xml")
 
 frere_jacques()
