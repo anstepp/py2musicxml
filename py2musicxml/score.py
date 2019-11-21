@@ -41,7 +41,6 @@ class Score:
             # print('Processing part: {}'.format(part_number))
 
             current_measure_count = 1
-            current_beat_factor = 1
 
             # part
             xml_part = etree.SubElement(root, "part", {"id": "P" + str(part_number)})
@@ -55,7 +54,7 @@ class Score:
             xml_part_attributes = etree.SubElement(xml_measure, "attributes")
 
             xml_part_divisions = etree.SubElement(xml_part_attributes, "divisions")
-            xml_part_divisions.text = str(current_beat_factor)
+            xml_part_divisions.text = str(score_part.measure_factor)
 
             xml_part_key = etree.SubElement(xml_part_attributes, "key")
             xml_part_fifths = etree.SubElement(xml_part_key, "fifths")
@@ -63,11 +62,13 @@ class Score:
             xml_part_mode = etree.SubElement(xml_part_key, "mode")
             xml_part_mode.text = 'none'
 
+
+            current_ts = score_part.time_signatures[0]
             xml_part_time = etree.SubElement(xml_part_attributes, "time")
             xml_part_beats = etree.SubElement(xml_part_time, "beats")
-            xml_part_beats.text = "4"
+            xml_part_beats.text = str(current_ts[0])
             xml_part_beat_type = etree.SubElement(xml_part_time, "beat-type")
-            xml_part_beat_type.text = "4"
+            xml_part_beat_type.text = str(current_ts[1])
 
             # TODO: eventually we need a clef determinant
             xml_part_clef = etree.SubElement(xml_part_attributes, "clef")

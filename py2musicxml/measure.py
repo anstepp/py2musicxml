@@ -9,7 +9,7 @@ METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 
 
 class Measure:
-    def __init__(self, time_signature: Tuple):
+    def __init__(self, time_signature: Tuple, factor: int):
 
         self.time_signature = time_signature
 
@@ -26,12 +26,8 @@ class Measure:
         # hypermetric weight of measure
         # self.weight = None
 
-        # TODO: self.subdivisions eventually needs to be LCM of uniques in Part
-        # for now, default to 1
-        self.subdivisions = 1
-
         self.meter_division, self.meter_type, self.measure_map = (
-            self._create_measure_map()
+            self._create_measure_map(factor)
         )
 
         self.cumulative_beats = list((x for x in self._cumulative_beat_generator()))
@@ -43,7 +39,7 @@ class Measure:
         else:
             return False
 
-    def _cumulative_beat_generator(self):
+    def _cumulative_beat_generator(self) -> None:
         count = 0
         for beat in self.measure_map:
             count += beat
@@ -52,7 +48,7 @@ class Measure:
     def add_beat(self, beat: Beat) -> None:
         self.beats.append(beat)
 
-    def _create_measure_map(self) -> Tuple[Optional[str], str, List[int]]:
+    def _create_measure_map(self, subdivisions: int) -> Tuple[Optional[str], str, List[int]]:
         '''
         1. Determines the measure division and type
             (measure_type will always be Simple, Compound, or Additive)
@@ -74,7 +70,7 @@ class Measure:
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Compound"
-                measure_map = [self.subdivisions for x in range(beats_in_measure)]
+                measure_map = [subdivisions for x in range(beats_in_measure)]
 
             # time sig denominator is divisible by 2
             elif self.time_signature[1] % 2 == 0:
@@ -83,7 +79,7 @@ class Measure:
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"
-                measure_map = [self.subdivisions for x in range(beats_in_measure)]
+                measure_map = [subdivisions for x in range(beats_in_measure)]
 
             # time sig denominator is not divisible by 2 or 3
             else:

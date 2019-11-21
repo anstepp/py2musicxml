@@ -157,7 +157,7 @@ class Part:
 
         self._advance_time_signature_index()
 
-        self.current_measure = Measure(self.time_signatures[self.time_signature_index])
+        self.current_measure = Measure(self.time_signatures[self.time_signature_index], self.measure_factor)
         self.max_subdivisions = self.current_measure.total_cumulative_beats
 
         self.current_beat = Beat()
@@ -302,7 +302,7 @@ class Part:
 
     def group_list_to_measures(self) -> None:
 
-        self.current_measure = Measure(self.time_signatures[self.time_signature_index])
+        self.current_measure = Measure(self.time_signatures[self.time_signature_index], self.measure_factor)
         self.current_beat = Beat()
 
         # how many beats in measure we have traveled
@@ -327,7 +327,7 @@ class Part:
             decrememted when measures pass."""
 
             self.current_note = note
-            self.current_count += self.current_note.dur
+            self.current_count += self.current_note.dur * self.measure_factor
 
             """We call this function now, and when current count changes
             to set variables to measure the relationship of the current count
@@ -341,7 +341,9 @@ class Part:
 
             if measure_or_less_test or self.current_measure_floor == 0:
                 print("less than a measure, location {}, note {}, remainder {}, current_count {}, current_measure_floor {}, current_measure_mod {}, max_subdivisions {}".format(location, note, remainder, self.current_count, self.current_measure_floor, self.current_measure_mod, self.max_subdivisions))
-                self.current_beat.add_note(self.current_note)
+                note_to_add = copy.deepcopy(self.current_note)
+                note_to_add.dur *= self.measure_factor
+                self.current_beat.add_note(note_to_add)
                 if self.current_count < self.max_subdivisions:
                     remainder = self.current_count
 
