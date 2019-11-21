@@ -1,9 +1,8 @@
 import copy
 import fractions
 
-from functools import reduce
 from lxml import etree
-from typing import Iterable, List, NamedTuple, Tuple
+from typing import Iterable, List, NamedTuple, Tuple, Union
 from py2musicxml import Measure, Note, Beat, Rest
 
 # from collections import namedtuple
@@ -33,7 +32,7 @@ class Part:
 
         # where we are in the cumulative beats
         self.current_beat_count = None
-
+        self.current_measure = None
         # value of note duration that needs to be written
         # current count gets incremented when we intake the next note
         # gets decremented when we write a measure
@@ -43,6 +42,8 @@ class Part:
         self.current_count_mod, self.current_count_floor = None, None
 
         #  self.current_measure_mod, self.current_measure_floor
+        uniques = self.get_uniques()
+        self.measure_factor = self._get_factor(uniques)
 
         self.create_part()
 
@@ -55,15 +56,40 @@ class Part:
         '''Transform input list of notes into a list of measures'''
         self.group_list_to_measures()
 
-    def get_uniques(self):
+    def get_uniques(self) -> list:
         '''unique durations of the notes in the list'''
         uniques = []
-        for item in current_list:
+        for item in self.current_list:
             if item.dur not in uniques:
                 uniques.append(item.dur)
             else:
                 pass
         return uniques
+
+    def _get_factor(self, input_list: list) -> int:
+        current = 1
+        factor = 1
+        for item in input_list:
+            if item < 1:
+                current *= item
+                factor = round(1/current)
+                print(factor)
+        return factor
+
+    def gcd(self, a: Union[int, float], b: Union[int, float]):
+        if type(a) and type(b) is int:
+            while b:
+                a, b = b, a % b
+            return a
+        else:
+            # convert float to fraction by approximating denominator then gcd
+            return fractions.gcd(
+                fractions.Fraction(a).limit_denominator(),
+                fractions.Fraction(b).limit_denominator(),
+            )
+
+    def lcm(self, a: int, b: int):
+        return a * b // self.gcd(a, b)
 
     def assign_measure_weight(self):
         for note in self.current_list:
@@ -118,7 +144,6 @@ class Part:
         )
 
     def append_and_increment_measure(self) -> None:
-        print("new measure")
         '''The measure is full, so add in the current beat and push into self.measures
         then create a fresh measure and beat
 
@@ -160,11 +185,13 @@ class Part:
             ]
             self.current_beat = Beat()
 
-    def make_whole_measure_note(self, duration: int, advance: int) -> None:
+    def make_whole_measure_note(self, duration: int, advance: int, tie: bool) -> None:
         # self.current_beat = Beat()
         note_to_add = copy.deepcopy(self.current_note)
         note_to_add.dur = duration
-        print(note_to_add)
+        if tie:
+            note_to_add.tie_start = True
+        #print(note_to_add)
         self.current_beat.add_note(note_to_add)
         self.append_and_increment_measure()
 
@@ -175,7 +202,16 @@ class Part:
         for index in range(advance):
             self.advance_current_beat_count()
 
+    def _full_measure_tie_check(self) -> bool:
+        if self.current_measure_mod > 0:
+            return True
+        elif self.current_measure_floor > 1:
+            return True
+        else:
+            return False
+
     def get_internal_measures(self) -> int:
+        print("get_internal_measures invoked")
         # print("current_beat_count", self.current_beat_count)
         # Get any remainder of the note that belongs in the last measure
 
@@ -200,28 +236,34 @@ class Part:
                 Eventually, we need to take cases of dotted notes that cross
                 one level of subdivisions, as well as half notes in 3 and 4/4"""
                 if self.current_measure.meter_division is "Duple":
-                    self.make_whole_measure_note(2, 2)
+                    if self._full_measure_tie_check():
+                        self.make_whole_measure_note(2, 2, True)
+                    else:
+                        self.make_whole_measure_note(2,2,False)
                     if self.current_count == 2:
                         self.current_count = 0
-                        self.measures[-1].beats[-1].tie_start = True
                     else:
                         self.current_count -= 2
                     self.set_current_count_adjacencies()
 
                 elif self.current_measure.meter_division is "Triple":
-                    self.make_whole_measure_note(3, 3)
+                    if self._full_measure_tie_check():
+                        self.make_whole_measure_note(3, 3, True)
+                    else:
+                        self.make_whole_measure_note(3,3,False)
                     if self.current_count == 3:
                         self.current_count = 0
-                        self.measures[-1].beats[-1].tie_start = True
                     else:
                         self.current_count -= 3
                     self.set_current_count_adjacencies()
 
                 elif self.current_measure.meter_division is "Quadruple":
-                    self.make_whole_measure_note(4, 4)
+                    if self._full_measure_tie_check():
+                        self.make_whole_measure_note(4, 4, True)
+                    else:
+                        self.make_whole_measure_note(4,4,False)
                     if self.current_count == 4:
                         self.current_count = 0
-                        self.measures[-1].beats[-1].tie_start = True
                     else:
                         self.current_count -= 4
                     self.set_current_count_adjacencies()
@@ -255,6 +297,7 @@ class Part:
 
     def wrap_up(self, remainder: int) -> None:
         self.current_beat.add_note(Rest(remainder))
+        self.current_measure.add_beat(self.current_beat)
         self.measures.append(self.current_measure)
 
     def group_list_to_measures(self) -> None:
@@ -274,7 +317,7 @@ class Part:
         self.max_subdivisions = self.current_measure.total_cumulative_beats
 
         remainder = 0
-        for note in self.current_list:
+        for location, note in enumerate(self.current_list):
 
             """Iterate through the list of notes and group them into
             measures and beats. As we iterate, we advance a counter called
@@ -285,7 +328,6 @@ class Part:
 
             self.current_note = note
             self.current_count += self.current_note.dur
-
 
             """We call this function now, and when current count changes
             to set variables to measure the relationship of the current count
@@ -298,6 +340,7 @@ class Part:
                 measure_or_less_test = False
 
             if measure_or_less_test or self.current_measure_floor == 0:
+                print("less than a measure, location {}, note {}, remainder {}, current_count {}, current_measure_floor {}, current_measure_mod {}, max_subdivisions {}".format(location, note, remainder, self.current_count, self.current_measure_floor, self.current_measure_mod, self.max_subdivisions))
                 self.current_beat.add_note(self.current_note)
                 if self.current_count < self.max_subdivisions:
                     remainder = self.current_count
@@ -309,25 +352,30 @@ class Part:
                     remainder = 0
 
             if self.current_measure_floor >= 1:
+                print("over a measure, location {}, note {}, remainder {}, current_measure_floor {}, current_measure_mod {}, current_count {}, max_subdivisions {}".format(location, note, remainder, self.current_measure_floor, self.current_measure_mod, self.current_count, self.max_subdivisions))
                 if remainder > 0:
                     """In this case, we have leftover note duration from the previous
                     measure. We write that note, then decrement current_count to reflect
                     that note being written."""
-                    if self.current_note.dur >= remainder:
+                    if self.current_count >= self.max_subdivisions:
+                        print("if")
                         last_measure_remaining_duration = (
                             self.max_subdivisions - remainder
                         )
                         note_to_add_to_old_measure = copy.deepcopy(self.current_note)
                         note_to_add_to_old_measure.dur = last_measure_remaining_duration
-                        print(note_to_add_to_old_measure)
+                        note_to_add_to_old_measure.tie_start = True
+                        #print(note_to_add_to_old_measure)
                         self.current_beat.add_note(note_to_add_to_old_measure)
-                        self.append_and_increment_measure()
-                        self.measures[-1].beats[-1].tie_start = True
                         self.current_count -= self.max_subdivisions
+                        print(self.current_count)
+                        self.append_and_increment_measure()
                         self.set_current_count_adjacencies()
+                        print("over a measure adj, location {}, note {}, current_measure_floor {}, current_measure_mod {}, current_count {}, max_subdivisions {}".format(location, note, self.current_measure_floor, self.current_measure_mod, self.current_count, self.max_subdivisions))
                         remainder = 0
 
                     else:
+                        print("else")
                         self.current_beat.add_note(self.current_note)
                         remainder = self.max_subdivisions - self.current_count
                         self.set_current_count_adjacencies()
@@ -337,6 +385,7 @@ class Part:
                     self.current_measure_floor >= 1
                     and self.current_count >= self.max_subdivisions
                 ):
+                    print("get_internal_measures, ")
                     # use this to clean up the measures that exist
 
                     # there is at least one measure to be filled
@@ -345,15 +394,15 @@ class Part:
                     # would need to pass current_beat_count
 
                 if self.current_count > 0:
+                    print("tail, location {}, dur {}, current_count {}".format(location, note.dur, self.current_count))
                     note_to_add_to_old_measure = copy.deepcopy(self.current_note)
                     note_to_add_to_old_measure.dur = self.current_count
                     self.current_beat.add_note(note_to_add_to_old_measure)
                     # self.advance_current_beat_count()
-                    if self.current_count < self.max_subdivisions:
-                        remainder = self.current_count
-                    else:
-                        self.current_count = 0
+                    remainder = self.current_count
+
 
         self.current_measure.add_beat(self.current_beat)
         self.current_beat = Beat()
-        self.wrap_up(self.max_subdivisions - remainder)
+        if remainder:
+            self.wrap_up(self.max_subdivisions - remainder)

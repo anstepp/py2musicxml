@@ -49,21 +49,6 @@ class Measure:
             count += beat
             yield count
 
-    def gcd(self, a: Union[int, float], b: Union[int, float]):
-        if type(a) and type(b) is int:
-            while b:
-                a, b = b, a % b
-            return a
-        else:
-            # convert float to fraction by approximating denominator then gcd
-            return fractions.gcd(
-                fractions.Fraction(a).limit_denominator(),
-                fractions.Fraction(b).limit_denominator(),
-            )
-
-    def lcm(self, a: int, b: int):
-        return a * b // self.gcd(a, b)
-
     def add_beat(self, beat: Beat) -> None:
         self.beats.append(beat)
 

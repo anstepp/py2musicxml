@@ -86,6 +86,14 @@ class Score:
                 if current_measure_count != 1:
                     xml_measure = etree.SubElement(
                         xml_part, "measure", {"number": str(current_measure_count)})
+                    if measure_index > 0:
+                        if current_measure.time_signature != score_part.measures[measure_index-1].time_signature:
+                            xml_measure_attributes = etree.SubElement(xml_measure, "attributes")
+                            xml_measure_time_signature = etree.SubElement(xml_measure_attributes, "time")
+                            xml_measure_time_beats = etree.SubElement(xml_measure_time_signature, "beats")
+                            xml_measure_time_beat_type = etree.SubElement(xml_measure_time_signature, "beat-type")
+                            xml_measure_time_beats.text = str(current_measure.time_signature[0])
+                            xml_measure_time_beat_type.text = str(current_measure.time_signature[1])
                 for current_beat in current_measure.beats:
                     for current_note in current_beat.notes:
                         print(current_note)
