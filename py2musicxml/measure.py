@@ -70,7 +70,7 @@ class Measure:
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Compound"
-                measure_map = [subdivisions for x in range(beats_in_measure)]
+                measure_map = [subdivisions * 1.5 for x in range(beats_in_measure)]
 
             # time sig denominator is divisible by 2
             elif self.time_signature[1] % 2 == 0:
@@ -141,73 +141,3 @@ class Measure:
         # return returnList[0]
         return [0]
 
-    # def check_for_multiple_value(self, index: int, current_note: Note) -> bool:
-    #     index = index
-    #     current_beat = self.measure_map[index]
-    #     if self.equal_divisions:
-    #         if self.meter == "Duple":
-    #             if current_note.dur == current_beat * 2:
-    #                 new_beat = Beat()
-    #                 new_beat.add_note(current_note)
-    #                 self.beats.append(new_beat)
-    #                 index += 1
-    #                 return index
-    #         if self.meter == "Triple":
-    #             if (
-    #                 current_note.dur == current_beat * 3
-    #                 or current_note.dur == current_beat * 2
-    #             ):
-    #                 new_beat = Beat()
-    #                 new_beat.add_note(current_note)
-    #                 self.beats.append(new_beat)
-    #                 index += 1
-    #                 return index
-    #         if self.meter == "Quadruple":
-    #             if (
-    #                 current_note.dur == current_beat * 4
-    #                 or current_note.dur == current_beat * 2
-    #             ):
-    #                 new_beat = Beat()
-    #                 new_beat.add_note(current_note)
-    #                 self.beats.append(new_beat)
-    #                 index += 1
-    #                 return index
-    #             elif current_note.dur == current_beat * 3 and index < 2:
-    #                 new_beat = Beat()
-    #                 new_beat.add_note(current_note)
-    #                 self.beats.append(new_beat)
-    #                 index += 1
-    #                 return index
-    #             else:
-    #                 return index
-    #         else:
-    #             return index
-    #     else:
-    #         return index
-
-    # def get_extra_beats(self, overflow: int) -> int:
-    #     overflow = overflow
-    #     beat_count = 0
-    #     for subdivisions in self.measure_map:
-    #         overflow - subdivisions
-    #         if overflow:
-    #             beat_count += 1
-    #     return beat_count
-
-    # def remove_extra_beats(self, count: int, index: int, dur: int) -> int:
-    #     count = count + 1
-    #     dur = dur
-    #     end = index + count
-    #     number_of_beat_subdivisions = 0
-    #     for beat_duration in self.measure_map[count:end]:
-    #         number_of_beat_subdivisions += beat_duration
-    #     new_dur = dur - number_of_beat_subdivisions
-    #     return new_dur
-
-    # def append_and_increment(self, measure: Beat, current_beat_count: int):
-    #     current_beat_count = current_beat_count
-    #     beat = measure
-    #     self.beats.append(beat)
-    #     # print(self.beats)
-    #     current_beat_count += 1
-    #     return Beat(), current_beat_count

@@ -133,7 +133,7 @@ def test_fj_shifting_ts():
                 counter += 1
 
     score = Score(score_parts=[fj_part])
-    score.convert_to_xml("test_score_fj_34.xml")
+    score.convert_to_xml("test_score_fj_shifting.xml")
 
 def test_frere_jacques_subdiv():
 
