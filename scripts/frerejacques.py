@@ -1,31 +1,42 @@
 import pathlib
+import random
 import sys
 
 # package_dir = pathlib.Path(__file__).parent.parent
 
 # sys.path.append(package_dir)
 
-from py2musicxml import Note, NoteList, Score, Part
+from py2musicxml import Note, NoteList, Score, Part, Rest
 
+# fmt: off
 pitches = [0, 2, 4, 0, 0, 2, 4, 0, 4, 5, 7, 4, 5, 7, 7, 9, 7, 5, 4, 0, 7, 9, 7, 5, 4, 0, 0, -5, 0, 0, -5, 0]
 durs = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 4, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 4, 2, 2, 4]
+# fmt: on
+
 
 frerejacques = [Note(x, 4, y) for x, y in zip(durs, pitches)]
+frerejacques_delayed = [Rest(4) for x in range(4)] + frerejacques
+frerejacques_delayed2 = [Rest(4) for x in range(4)] + frerejacques_delayed
 
-time_signature = [(4,4)]
+frerejacques_reduced = [Note(x * 0.25, 4, y) for x, y in zip(durs, pitches)]
+frerejacques_reduced2 = [Note(x * 0.5, 4, y) for x, y in zip(durs, pitches)]
+frerejacques_reduced3 = [Note(x * 0.125, 4, y) for x, y in zip(durs, pitches)]
 
-part_fj = Part(frerejacques, time_signature)
-part_list = [part_fj]
+for x in range(2):
+    frerejacques_reduced += frerejacques_reduced
+    frerejacques_reduced2 += frerejacques_reduced2
+    frerejacques_reduced3 += frerejacques_reduced3
 
-# print(part_fj)
-# print(part_fj.final_list)
-# print(len(part_fj.final_list))
+frerejacques_delayed = frerejacques_delayed + frerejacques
+frerejacques_delayed2 = frerejacques_delayed2 + frerejacques
+frerejacques = frerejacques + frerejacques
 
-# print(part_fj.final_list[0].beats)
-# print(len(part_fj.final_list[0].beats))
+time_signature = [(4,4),(6,8),(2,4)]
 
-# for i in range(len(part_fj.final_list[0].beats[0].notes)):
-    # print(part_fj.final_list[0].beats[0].notes[i])
+part_list = [
+    Part(p, time_signature)
+    for p in [frerejacques_delayed2, frerejacques_delayed, frerejacques, frerejacques_reduced3,frerejacques_reduced2,frerejacques_reduced]
+]
 
 
 score = Score(score_parts=part_list)
