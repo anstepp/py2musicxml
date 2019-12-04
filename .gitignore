@@ -126,3 +126,8 @@ dmypy.json
 
 # mac stuff
 .DS_Store
+
+# Aaron's stuff
+out.txt
+*/out.txt
+*/*/out.txt
