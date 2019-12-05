@@ -1,15 +1,13 @@
-class Riemann_Chord():
-
+class Riemann_Chord:
     def __init__(self, note_a: int, note_b: int, note_c: int) -> None:
         self.root = note_a
         self.third = note_b
         self.fifth = note_c
         self.major = None
         self.minor = None
-        self._major_or_minor()
+
         self.proper_voice_leading = [self.root, self.third, self.fifth]
         self.proper_voice_leading.sort()
-
 
         test_fifth = (self.fifth - self.root) % 12
         if test_fifth == 7 or test_fifth == -5:
@@ -44,7 +42,7 @@ class Riemann_Chord():
             new_fifth = self.root - 2
             return Riemann_Chord(self.third, self.fifth, new_fifth)
 
-    #leading tone
+    # leading tone
     def L(self):
         if self.major is True:
             new_fifth = self.root - 1
