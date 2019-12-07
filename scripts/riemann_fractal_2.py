@@ -1,13 +1,13 @@
 from py2musicxml import Note, Score, Part, Rest
-from riemann import Riemann_Chord
+from riemann import RiemannChord
 
 import random
 
 from typing import Iterable
 
-class Generations_Generator:
+class RiemannGenerator:
 
-    def __init__(self, starting_chord: Iterable[Riemann_Chord]):
+    def __init__(self, starting_chord: Iterable[RiemannChord]):
         self.starting_chord = starting_chord
         self.generations_list = []
         self.voice_leading = False

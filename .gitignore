@@ -12,8 +12,10 @@ __pycache__/
 # C extensions
 *.so
 
-# .xml files
+# py2musicxml output score & sound files
 *.xml
+*.wav
+
 
 # Distribution / packaging
 .Python
@@ -126,3 +128,8 @@ dmypy.json
 
 # mac stuff
 .DS_Store
+
+# Aaron's stuff
+out.txt
+*/out.txt
+*/*/out.txt

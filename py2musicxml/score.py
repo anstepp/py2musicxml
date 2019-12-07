@@ -1,7 +1,7 @@
 import pathlib
 
 from lxml import etree
-from typing import Iterable
+from typing import Iterable, Optional
 
 from py2musicxml import Part, Rest, Measure
 
@@ -9,10 +9,18 @@ from py2musicxml import Part, Rest, Measure
 class Score:
     """Generates a MusicXML score from a list of parts (NoteLists) and outputs score to file"""
 
-    def __init__(self, score_parts: Iterable[Part]):
-        
+    def __init__(
+        self,
+        score_parts: Iterable[Part],
+        title: Optional[str] = None,
+        composer: Optional[str] = None,
+    ):
+
         self.score_parts = score_parts
-        
+
+        self.title = title
+        self.composer = composer
+
         max_len = 0
 
         longest_part = self.score_parts[0]
@@ -26,7 +34,9 @@ class Score:
         for part in self.score_parts:
             if len(part.measures) < max_len:
                 for idx in range(max_len - len(part.measures)):
-                    part.measures.append(Measure(longest_part.measures[idx].time_signature, 1))
+                    part.measures.append(
+                        Measure(longest_part.measures[idx].time_signature, 1)
+                    )
 
     def convert_to_xml(self, output_filepath: str) -> None:
         """Entrypoint to Score class
@@ -40,6 +50,19 @@ class Score:
         """Convert self.parts (list of NoteLists) to a MusicXML tree"""
 
         root = etree.Element("score-partwise", {"version": "3.0"})
+
+        if self.title:
+            xml_movement_title = etree.SubElement(root, "movement-title")
+            xml_movement_title.text = self.title
+
+        if self.composer:
+            xml_identification = etree.SubElement(root, "identification")
+
+            xml_identification_composer = etree.SubElement(
+                xml_identification, "creator", {"type": "composer"}
+            )
+
+            xml_identification_composer.text = self.composer
 
         # create part-list
         #   score-part, part-name

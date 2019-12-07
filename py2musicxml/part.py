@@ -76,17 +76,9 @@ class Part:
         return factor
 
     def assign_measure_weight(self):
-        for note in self.current_list:
-            if note.measure_flag is False:
-                pass
-            else:
-                if note.location is 1:
-                    weight = 1000
-                else:
-                    if get_change_pitch(self.current_list[note:note]):
-                        note.weight += 1
-                    if note.duration > subdivisions:
-                        note.weight += 1
+        weight = 0
+        for index, measure in enumerate(self.measures):
+            pass
 
     def compare_weight(self):
         pass
