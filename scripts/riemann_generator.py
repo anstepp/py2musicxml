@@ -1,5 +1,6 @@
 from py2musicxml import Note, Score, Part, Rest
 from riemann import RiemannChord
+from itertools import cycle
 
 import random
 
@@ -84,6 +85,17 @@ class RiemannGenerator:
         
         return output_list
 
+    def arp(self, generation: int, per_chord_notes: int) -> Iterable[int]:
+
+        output_list = []
+
+        for chord in self.generations_list[generation]:
+            cycle_arp = cycle(chord.proper_voice_leading)
+            for i in range(per_chord_notes):
+                output_list.append(next(cycle_arp))
+            
+        return output_list
+
     def invert_list(self) -> Iterable[int]:
 
         inverted_list = []
@@ -110,6 +122,7 @@ class RiemannGenerator:
             trans_inverted_list.append((12 - pitch) + transposition)
 
         return trans_inverted_list
+
 
 class Rests:
 

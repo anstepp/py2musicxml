@@ -1,15 +1,12 @@
 class Hyperbeat:
 
-    location = None
-    level = None 
-    children = list()
-
     def __init__(self, location: int, level: int):
-        level = level
-        location = location
+        self.level = level
+        self.location = location
+        self.children = []
 
     def promote(self):
-        new_level = level + 1
+        new_level = self.level + 1
         Hyperbeat(self.location, new_level)
 
     def get_children(self, potential_children: Iterable[list], neighbor: Hyperbeat):

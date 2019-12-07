@@ -1,4 +1,4 @@
-class Riemann_Chord:
+class RiemannChord:
     def __init__(self, note_a: int, note_b: int, note_c: int) -> None:
         self.root = note_a
         self.third = note_b
@@ -31,25 +31,25 @@ class Riemann_Chord:
             new_third = self.third - 1
         elif self.minor is True:
             new_third = self.third + 1
-        return Riemann_Chord(self.root, new_third, self.fifth)
+        return RiemannChord(self.root, new_third, self.fifth)
 
     # relative
     def R(self):
         if self.major is True:
             new_root = self.fifth + 2
-            return Riemann_Chord(new_root, self.root, self.third)
+            return RiemannChord(new_root, self.root, self.third)
         elif self.minor is True:
             new_fifth = self.root - 2
-            return Riemann_Chord(self.third, self.fifth, new_fifth)
+            return RiemannChord(self.third, self.fifth, new_fifth)
 
     # leading tone
     def L(self):
         if self.major is True:
             new_fifth = self.root - 1
-            return Riemann_Chord(self.third, self.fifth, new_fifth)
+            return RiemannChord(self.third, self.fifth, new_fifth)
         elif self.minor is True:
             new_root = self.fifth + 1
-            return Riemann_Chord(new_root, self.root, self.third)
+            return RiemannChord(new_root, self.root, self.third)
 
     # Slide
     def S(self):

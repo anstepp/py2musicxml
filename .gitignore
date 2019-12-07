@@ -12,8 +12,10 @@ __pycache__/
 # C extensions
 *.so
 
-# .xml files
+# py2musicxml output score & sound files
 *.xml
+*.wav
+
 
 # Distribution / packaging
 .Python

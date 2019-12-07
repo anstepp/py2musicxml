@@ -1,9 +1,9 @@
 from py2musicxml import Note, Score, Part, Rest
-from riemann import Riemann_Chord
+from riemann import RiemannChord
 
 import random
 
-starting_chord = Riemann_Chord(0,4,7)
+starting_chord = RiemannChord(0,4,7)
 
 def rules(input_chord, generation):
 

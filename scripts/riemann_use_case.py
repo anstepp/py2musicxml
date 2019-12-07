@@ -1,8 +1,8 @@
 from py2musicxml import Note, Score, Part, Rest
-from riemann_fractal_2 import Generations_Generator, Rests
-from riemann import Riemann_Chord
+from riemann_fractal_2 import RiemannGenerator, Rests
+from riemann import RiemannChord
 
-gg_1 = Generations_Generator(Riemann_Chord(0,4,7))
+gg_1 = RiemannGenerator(RiemannChord(0,4,7))
 gg_1.generation_algorithm(200, (2,8))
 soprano_1 = gg_1.get_note_list(7, 2)
 alto_1 = gg_1.get_note_list(8, 1)
@@ -18,7 +18,7 @@ soprano = soprano_list_of_notes_1
 alto = alto_list_of_notes_1
 bass = bass_list_of_notes_1
 
-soprano_2 = gg_1.get_note_list(12, 2)
+soprano_2 = gg_1.arp(30)
 soprano_list_of_notes_2 = [Note(0.25, 4, pitch_class) for pitch_class in soprano_2]
 
 soprano.append(Rest(4))
