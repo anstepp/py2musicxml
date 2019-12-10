@@ -1,6 +1,6 @@
 #currently pseudocode
 
-from py2musicxml import Note
+from py2musicxml.notation import Note
 
 ranges = {"bass" : [[2, "e"], [4,"c"]], "tenor" : [[3, "c"],[4,"g"]], 
 		  "alto" : [[3,"g"], [5,"c"]], "soprano" : [[4, "c"], [5,"a"]]}

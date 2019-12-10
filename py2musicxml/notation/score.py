@@ -3,7 +3,9 @@ import pathlib
 from lxml import etree
 from typing import Iterable, Optional
 
-from py2musicxml import Part, Rest, Measure
+from .part import Part
+from .rest import Rest
+from .measure import Measure
 
 
 class Score:

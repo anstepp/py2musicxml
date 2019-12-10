@@ -1,4 +1,4 @@
-from py2musicxml import Note, Score, Part, Rest
+from py2musicxml.notation import Note, Score, Part, Rest
 from riemann import RiemannChord
 
 import random

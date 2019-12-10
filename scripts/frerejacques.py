@@ -6,7 +6,7 @@ import sys
 
 # sys.path.append(package_dir)
 
-from py2musicxml import Note, NoteList, Score, Part, Rest
+from py2musicxml.notation import Note, Score, Part, Rest
 
 # fmt: off
 pitches = [0, 2, 4, 0, 0, 2, 4, 0, 4, 5, 7, 4, 5, 7, 7, 9, 7, 5, 4, 0, 7, 9, 7, 5, 4, 0, 0, -5, 0, 0, -5, 0]

@@ -1,4 +1,4 @@
-from py2musicxml import Note
+from .note import Note
 
 class Beat:
 
