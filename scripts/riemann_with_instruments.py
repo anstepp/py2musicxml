@@ -1,4 +1,4 @@
-from py2musicxml import Score
+from py2musicxml.notation import Score
 from riemann import RiemannChord
 from voice import Flute, Clarinet, Bassoon, Voice
 from riemann_generator import RiemannGenerator

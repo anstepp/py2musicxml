@@ -1,4 +1,4 @@
-from py2musicxml import Note, Score, Part
+from py2musicxml.notation import Note, Score, Part
 
 aaronPitches = [9, 9, 2, 0, 7]
 morganPitches = [4, 0, 2, 7, 9, 7]

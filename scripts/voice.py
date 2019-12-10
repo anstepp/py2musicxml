@@ -1,4 +1,4 @@
-from py2musicxml import Note, Rest, Part
+from py2musicxml.notation import Note, Rest, Part
 
 from typing import List, Tuple, Iterable, Union
 

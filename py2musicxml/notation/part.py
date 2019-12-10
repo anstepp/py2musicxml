@@ -3,7 +3,12 @@ import fractions
 
 from lxml import etree
 from typing import Iterable, List, NamedTuple, Tuple, Union
-from py2musicxml import Measure, Note, Beat, Rest
+
+from .measure import Measure
+from .note import Note
+from .beat import Beat
+from .rest import Rest
+
 
 # from collections import namedtuple
 
@@ -83,7 +88,7 @@ class Part:
     def compare_weight(self):
         pass
 
-    def _get_index_range(self, index: int, search_range: int) -> int, int:
+    def _get_index_range(self, index: int, search_range: int) -> Tuple[int, int]:
         if index < search_range:
             return 0, search_range + index
         else:

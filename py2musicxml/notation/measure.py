@@ -2,7 +2,9 @@ import copy
 
 from typing import Iterable, List, Optional, Tuple, Union
 
-from py2musicxml import Note, Beat, Rest
+from .note import Note
+from .beat import Beat
+from .rest import Rest
 
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}

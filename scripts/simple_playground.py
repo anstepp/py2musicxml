@@ -1,6 +1,6 @@
 import random
 
-from py2musicxml import Note, Score, Part, Rest
+from py2musicxml.notation import Note, Score, Part, Rest
 
 
 e = Note(duration=1, octave=5, pitch_class=4)
