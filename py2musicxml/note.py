@@ -101,7 +101,24 @@ class Note:
         else:
             return False
 
+    """For the greater than override, we don't care about
+    duration. We can easily just compare duration by calling
+    note.dur. Pitch is more complicated because of the octave/
+    pitch class design."""
+
+    def __gt__(self, other) -> bool:
+        if self.octave > other.octave:
+            return True
+        elif self.octave == other.octave:
+            if self.pc > other.pc:
+                return True
+            else:
+                return False
+        else:
+            return False
+
     def __str__(self) -> str:
         return 'Duration: {}, Octave: {}, Pitch Class: {}'.format(
             self.dur, self.octave, self.pc
         )
+
