@@ -78,17 +78,32 @@ class Part:
     def assign_measure_weight(self):
         weight = 0
         for index, measure in enumerate(self.measures):
-            pass
+            self._get_change_pitch(10)
 
     def compare_weight(self):
         pass
 
-    # def get_change_pitch(self, range: window):
-    #     for item, value in group[1:-1]:
-    #         if item > group[value - 1] and item < group[value + 1]:
-    #             return True
-    #         elif item < group[value - 1] and item > group[value + 1]:
-    #             return True
+    def _get_index_range(self, index: int, search_range: int) -> int, int:
+        if index < search_range:
+            return 0, search_range + index
+        else:
+            return index - search_range, index + search_range
+
+    def _get_change_pitch(self, index: int) -> None:
+        index_range_low, index_range_high = self._get_index_range(index)
+        test_measure_pitch = self.measures[index].beats[0]
+        
+        # test downbeats
+        for measure in self.measures[index_range_low:index_range_high]:
+            if measure.beats[0] > test_measure_pitch:
+                break
+            else:
+                self.weight += 1
+        for measure in self.measures:
+            if measure.beats[0] < test_measure_pitch:
+                break
+            else:
+                self.weight += 1
 
     def get_change_group(self):
         pass
