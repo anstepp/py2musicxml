@@ -66,7 +66,7 @@ class RiemannGenerator:
 
                         current_generation.extend([chord, new_chord, next_chord, final_chord])
 
-            self.generations_list.append(list(current_generation))
+            self.generations_list.append(list(current_generation)[slice_start:slice_end])
             generation += 1
 
     def get_note_list(self, generation: int, part: int):
@@ -77,7 +77,7 @@ class RiemannGenerator:
 
         for chord in list_to_operate_on:
 
-            part_dictionary = {0:chord.proper_voice_leading[0], 1:chord.proper_voice_leading[1], 2:chord.proper_voice_leading[2]}
+            part_dictionary = {0:chord.root, 1:chord.third, 2:chord.fifth}
 
             append_for_part = part_dictionary.get(part)
 
