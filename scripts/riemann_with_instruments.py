@@ -42,7 +42,7 @@ for generation in range(0, 100):
 
     random.seed(generation)
 
-    flute.extend_pitches(rg_1.arp(generation, 4))
+    flute.extend_pitches(rg_1.arp(generation, random.randint(3,8)))
     rhythm = [random.choice(flute_rhythms) for x in flute.pitches]
     flute.extend_durations(rhythm)
     flute.make_note_list(6)

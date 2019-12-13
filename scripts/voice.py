@@ -43,7 +43,14 @@ class Voice:
         for index, note in enumerate(self.note_list[slice_range[0]:slice_range[1]]):
             if type(note) is not Rest:
                 self.note_list[index * 2] = Note(note.dur * 0.25, note.octave, note.pc)
-                self.note_list.insert(index * 2 + 1, Rest(note.dur * 0.75))
+                if index != slice_range[1]:
+
+                    self.note_list.insert(index * 2 + 1, Rest(note.dur * 0.75))
+
+    def clear_list(self):
+        self.pitches = []
+        self.durations = []
+        self.note_list = []
 
 class Flute(Voice):
 
@@ -71,3 +78,15 @@ class Bassoon(Voice):
     def __init__(self):
         super(Bassoon, self).__init__()
         self.range = [(1, 10), (5,3)]
+
+class Violin(Voice):
+
+    def __init__(self):
+        super(Violin, self).__init__()
+        self.range = [(3,7), (8,11)]
+
+class Cello(Voice):
+
+    def __init__(self):
+        super(Cello, self).__init__()
+        self.range = [(1, 0), (6,4)]

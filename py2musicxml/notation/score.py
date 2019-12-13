@@ -6,6 +6,7 @@ from typing import Iterable, Optional
 from .part import Part
 from .rest import Rest
 from .measure import Measure
+from .beat import Beat
 
 
 class Score:
@@ -22,6 +23,7 @@ class Score:
 
         self.title = title
         self.composer = composer
+        self._pad_with_empty_measures()
 
 
     def _pad_with_empty_measures(self):
@@ -41,7 +43,7 @@ class Score:
                         measure_to_append = Measure(ts, 1)
                         full_rest = ts[0]
                         empty_beat = Beat(ts[0])
-                        empty_beat.add_note(full_rest)
+                        empty_beat.add_note(Rest(full_rest))
                         measure_to_append.add_beat(empty_beat)
                         part.measures.append(measure_to_append)
 

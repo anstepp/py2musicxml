@@ -4,6 +4,7 @@ import random
 import statistics
 
 from mpl_toolkits.mplot3d import Axes3D
+import mpld3
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
@@ -12,7 +13,7 @@ from typing import Iterable
 
 from py2musicxml.notation import Score, Note, Rest
 from riemann import RiemannChord
-from voice import Flute, Clarinet, Bassoon, Voice
+from voice import Flute, Clarinet, Bassoon, Voice, Violin, Cello
 from riemann_generator import RiemannGenerator
 
 
@@ -20,21 +21,26 @@ from riemann_generator import RiemannGenerator
 
 flute = Flute()
 clarinet = Clarinet()
-bassoon = Bassoon()
+violin = Violin()
+cello = Cello()
 
 # make a list for easy assignment
 
-instruments = [i for i in [bassoon, clarinet, flute]]
+instruments = [i for i in [flute, clarinet, violin, cello]]
 
 # create pitch generation algorithm
 
 rg_1 = RiemannGenerator(RiemannChord(0, 4, 7))
 rg_2 = RiemannGenerator(RiemannChord(2, 6, 9))
+rg_3 = RiemannGenerator(RiemannChord(3, 6, 10))
 
 # run algorithm, populate generations
 
-rg_1.generation_algorithm(1200, (3, 50))
-rg_2.generation_algorithm(1200, (2, 10))
+print("Generating Riemann Fractal")
+
+rg_1.generation_algorithm(2500, (10, 40))
+rg_2.generation_algorithm(2500, (5, 35))
+rg_3.generation_algorithm(2500, (0, 30))
 
 
 # make a super simple chorale that goes further into the
@@ -44,40 +50,72 @@ time_signature = [(4, 4), (3, 4), (2, 4)]
 
 generated_scores = []
 
-n_samples = 500
+n_samples = 100
 
-for generation in range(0, n_samples):
+for generation in range(100, n_samples + 100):
 
     random.seed(generation)
 
-    print(generation)
+    print("generation",generation,"of",n_samples+100)
+
+    # if (generation % 3) == 2:
+
+    #     flute.extend_pitches(rg_3.arp(generation, random.randint(6,12)))
+    #     rhythm = [0.25 for x in flute.pitches]
+    #     flute.extend_durations(rhythm)
+    #     flute.make_note_list(6)
+    #     flute.check_range()
+
+    #     clarinet.extend_pitches(rg_3.get_note_list(generation, 2))
+    #     cl_rhythm = [random.randint(1,4) for x in clarinet.pitches]
+    #     clarinet.extend_durations(cl_rhythm)
+    #     clarinet.make_note_list(4)
+    #     clarinet.check_range()
+
+    #     violin.extend_pitches(rg_3.arp(generation, random.randint(6,12)))
+    #     violin_rhythm = [0.25 for x in violin.pitches]
+    #     violin.extend_durations(violin_rhythm)
+    #     violin.make_note_list(6)
+    #     violin.check_range() 
+
+    #     cello.extend_pitches(rg_3.get_note_list(generation, 0))
+    #     cello_rhythm = [random.randint(1,4) for x in cello.pitches]
+    #     cello.extend_durations(cello_rhythm)
+    #     cello.make_note_list(2)
+    #     cello.check_range()
 
     if (generation % 2) == 1:
 
-        flute.extend_pitches(rg_1.arp(generation, 6))
+        flute.extend_pitches(rg_2.arp(generation, random.randint(6,12)))
         rhythm = [0.25 for x in flute.pitches]
         flute.extend_durations(rhythm)
-        flute.make_note_list(6)
+        flute.make_note_list(5)
         flute.check_range()
 
         clarinet.extend_pitches(rg_2.get_note_list(generation, 2))
-        cl_rhythm = [random.randint(4,8) for x in clarinet.pitches]
+        cl_rhythm = [random.randint(1,4) for x in clarinet.pitches]
         clarinet.extend_durations(cl_rhythm)
         clarinet.make_note_list(4)
         clarinet.check_range()
 
-        bassoon.extend_pitches(rg_1.get_note_list(generation, 1))
-        bsn_rhythm = [random.randint(1,4) for x in bassoon.pitches]
-        bassoon.extend_durations(bsn_rhythm)
-        bassoon.make_note_list(4)
-        bassoon.check_range()
+        violin.extend_pitches(rg_2.arp(generation, random.randint(6,12)))
+        violin_rhythm = [0.25 for x in violin.pitches]
+        violin.extend_durations(violin_rhythm)
+        violin.make_note_list(5)
+        violin.check_range() 
 
-    if (generation % 2) == 0:
+        cello.extend_pitches(rg_2.get_note_list(generation, 0))
+        cello_rhythm = [random.randint(1,4) for x in cello.pitches]
+        cello.extend_durations(cello_rhythm)
+        cello.make_note_list(2)
+        cello.check_range()
 
-        flute.extend_pitches(rg_2.arp(generation, 7))
+    if (generation % 2) == 0:   
+
+        flute.extend_pitches(rg_1.arp(generation, random.randint(6,12)))
         rhythm = [0.25 for x in flute.pitches]
         flute.extend_durations(rhythm)
-        flute.make_note_list(6)
+        flute.make_note_list(5)
         flute.check_range()
 
         clarinet.extend_pitches(rg_1.get_note_list(generation, 2))
@@ -86,28 +124,35 @@ for generation in range(0, n_samples):
         clarinet.make_note_list(4)
         clarinet.check_range()
 
-        bassoon.extend_pitches(rg_2.get_note_list(generation, 1))
-        bsn_rhythm = [random.randint(4,8) for x in bassoon.pitches]
-        bassoon.extend_durations(bsn_rhythm)
-        bassoon.make_note_list(3)
-        bassoon.check_range()   
+        violin.extend_pitches(rg_1.arp(generation, random.randint(6,12)))
+        violin_rhythm = [0.25 for x in violin.pitches]
+        violin.extend_durations(violin_rhythm)
+        violin.make_note_list(5)
+        violin.check_range() 
+
+        cello.extend_pitches(rg_1.get_note_list(generation, 0))
+        cello_rhythm = [random.randint(1,4) for x in cello.pitches]
+        cello.extend_durations(cello_rhythm)
+        cello.make_note_list(2)
+        cello.check_range() 
 
     generated_scores.append(
         Score(
             score_parts=[
-                instrument.make_part(time_signature) for instrument in instruments[::-1]
+                instrument.make_part(time_signature) for instrument in instruments
             ]
         )
     )
 
+    [instrument.clear_list() for instrument in instruments]
 
-# counter = 0
+counter = 0
 
-# for score in generated_scores:
-#     file_name = "score_data_set_" + str(counter) + ".xml"
-#     score.convert_to_xml(file_name)
-#     counter += 1
-#     print(counter)
+for score in generated_scores:
+    file_name = "xml/score_data_set_" + str(counter) + ".xml"
+    score.convert_to_xml(file_name)
+    counter += 1
+    print("score",counter,"of",len(generated_scores))
 
 scores_downbeats = []
 scores_features = []
@@ -135,10 +180,10 @@ for score in generated_scores:
 
     score_downbeat_pitch_class = statistics.mean(score_downbeats)
     score_measures = measures / len(score.score_parts)
-    score_duration_mode = statistics.mean(score_beat_durations)
+    score_duration_mean = statistics.mean(score_beat_durations)
 
     scores_features.append(
-        [score_downbeat_pitch_class, score_measures, score_duration_mode]
+        [score_downbeat_pitch_class, score_measures, score_duration_mean]
     )
     scores_downbeats.append(score_downbeats)
 
@@ -168,46 +213,36 @@ print("Running KMeans")
 X = np.array(scores_dataset)
 print(X.shape)
 
-pca = PCA(n_components=10)
+pca = PCA(n_components=3)
 pca.fit(X)
 Xpca = pca.transform(X)
 
-print(X.shape)
+print(Xpca.shape)
 
-Xpca_embedded = TSNE(n_components=2).fit_transform(Xpca)
+# Xpca_embedded = TSNE(n_components=2).fit_transform(Xpca)
 
-print(X.shape)
+# print(Xpca_embedded.shape)
 
-random_state = 345
-n_clusters = 4
+random_state = 900
+n_clusters = 12
 
 kmeans = KMeans(n_clusters=n_clusters, random_state=random_state)
 
-meaned_data = kmeans.fit_predict(Xpca_embedded)
+output = kmeans.fit_predict(Xpca)
+for idx, item in enumerate(output):
+    print(idx, item)
 
-labels = kmeans.labels_
+kmeanslabels = kmeans.labels_
 cluster_centers = kmeans.cluster_centers_
 
 fig = plt.figure(1, figsize=(20, 4))
+
 ax = fig.add_subplot(111, projection='3d')
+ax.scatter(Xpca[:,0], Xpca[:, 1], Xpca[:,2], c=kmeanslabels)
 
-rx, ry = 3., 1.
-area = rx * ry * np.pi
-theta = np.arange(0, 2 * np.pi + 0.01, 0.1)
-verts = np.column_stack([rx / area * np.cos(theta), ry / area * np.sin(theta)])
+labels = ['score {0}'.format(i + 1) for i in range(len(scores_dataset))]
+tooltip = mpld3.plugins.PointLabelTooltip(ax, labels=labels)
+mpld3.plugins.connect(fig, tooltip)
 
-x, y, s, c = np.random.rand(4, 30)
-s *= 10**2.
-
-fig, ax = plt.subplots()
-ax.scatter(X[:,0], X[:,2], c=labels)
-
-# plt.show()
-
-# ax.scatter(X[:, 0], X[:, 1], X[:, 2], c=labels)
-
-
-ax.set_xlabel('Downbeat Most Freq. Pitch Class')
-ax.set_ylabel('Downbeat Most Freq. Duration')
 
 plt.show()
