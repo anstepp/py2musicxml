@@ -26,7 +26,7 @@ cello = Cello()
 
 # make a list for easy assignment
 
-instruments = [i for i in [flute, clarinet, violin, cello]]
+instruments = [flute, clarinet, violin, cello]
 
 # create pitch generation algorithm
 
@@ -38,9 +38,9 @@ rg_3 = RiemannGenerator(RiemannChord(3, 6, 10))
 
 print("Generating Riemann Fractal")
 
-rg_1.generation_algorithm(2500, (10, 40))
-rg_2.generation_algorithm(2500, (5, 35))
-rg_3.generation_algorithm(2500, (0, 30))
+rg_1.generation_algorithm(2500, (10, 60))
+rg_2.generation_algorithm(2500, (5, 65))
+rg_3.generation_algorithm(2500, (0, 70))
 
 
 # make a super simple chorale that goes further into the
@@ -50,7 +50,7 @@ time_signature = [(4, 4), (3, 4), (2, 4)]
 
 generated_scores = []
 
-n_samples = 100
+n_samples = 2000
 
 for generation in range(100, n_samples + 100):
 
@@ -86,7 +86,7 @@ for generation in range(100, n_samples + 100):
 
     if (generation % 2) == 1:
 
-        flute.extend_pitches(rg_2.arp(generation, random.randint(6,12)))
+        flute.extend_pitches(rg_2.arp(generation, random.randint(5,10)))
         rhythm = [0.25 for x in flute.pitches]
         flute.extend_durations(rhythm)
         flute.make_note_list(5)
@@ -124,7 +124,7 @@ for generation in range(100, n_samples + 100):
         clarinet.make_note_list(4)
         clarinet.check_range()
 
-        violin.extend_pitches(rg_1.arp(generation, random.randint(6,12)))
+        violin.extend_pitches(rg_1.arp(generation, random.randint(5,10)))
         violin_rhythm = [0.25 for x in violin.pitches]
         violin.extend_durations(violin_rhythm)
         violin.make_note_list(5)
