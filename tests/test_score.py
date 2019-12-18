@@ -2,20 +2,27 @@ import pytest
 
 from lxml import etree
 
-from py2musicxml import Note, Part, Score
+from py2musicxml.notation import Note, Part, Score, Measure, Beat
 
 
 def test_simple_score():
 
-    test_note = Note(duration=4, octave=8, pitch_class=2)
-    test_notelist = Part([test_note, test_note], [(4,4)])
-    test_notelist.get_part(1)
+    durs = [3, 1, 2, 1, 2, 3, 1]
+    test_note_a = Note(4, 4, 4)
+    test_note_b = Note(3, 3, 0)
+    test_note_c = Note(6, 6, 2)
+    test_notelist = [test_note_a, test_note_b, test_note_c]
 
-    score = Score(score_parts=[test_notelist])
+    time_signature = [(3, 4), (2, 4)]
 
-    musicxml_score = score._convert_score_parts_to_xml()
+    test_part = Part(test_notelist, time_signature)
 
-    expected_score = '<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">\n<score-partwise version="3.0"><part-list><score-part id="P1"><part-name/></score-part></part-list><part id="P1"><measure number="1"><attributes><divisions>1</divisions><key><fifths>0</fifths><mode>none</mode></key><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes></measure><measure number="2"><note><pitch><step>D</step><alter>0</alter><octave>8</octave></pitch><duration>4</duration><accidental>natural</accidental></note></measure><measure number="3"><note><pitch><step>D</step><alter>0</alter><octave>8</octave></pitch><duration>4</duration><accidental>natural</accidental></note></measure></part></score-partwise>'
+    assert len(test_part.measures[0].notes) == 1
+    assert len(test_part.measures[1].notes) == 2
+    assert test_part.measures[0].beats[0].notes[0].dur == 3
+    assert len(test_part.measures) == 5
 
-    assert etree.tostring(musicxml_score).decode('utf-8') == expected_score
+    part_list = [test_part]
+    score = Score(score_parts=part_list)
 
+    score.convert_to_xml("frerejacques.xml")

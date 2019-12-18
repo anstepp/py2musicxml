@@ -1,6 +1,6 @@
 import pytest
 
-from py2musicxml import Measure
+from py2musicxml.notation import Measure
 
 
 def test_object_init_fail_without_args():
