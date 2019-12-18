@@ -3,7 +3,7 @@ from __future__ import annotations
 from itertools import cycle, compress
 from typing import Iterable
 
-
+CLOCKFACE = 12
 
 class PitchClassSet():
 
@@ -45,7 +45,7 @@ class PitchClassSet():
 
             next(cycled_set)
 
-        first_to_last_pc_distance = [(s[-1] - s[0]) % 12 for s in potential_set_orders]
+        first_to_last_pc_distance = [(s[-1] - s[0]) % CLOCKFACE for s in potential_set_orders]
 
         minimum_distance = min(first_to_last_pc_distance)
 
@@ -65,7 +65,7 @@ class PitchClassSet():
         
 
     def _get_zero_start(self, pcs: Iterable[int]) -> Iterable[int]:
-        zero_set = [(x - pcs[0]) % 12 for x in pcs]
+        zero_set = [(x - pcs[0]) % CLOCKFACE for x in pcs]
         return zero_set
 
     def _get_smallest_intervals_sorted(self, candidates: Iterable[list]) -> Iterable[int]:
@@ -83,7 +83,6 @@ class PitchClassSet():
                 for interval, candidate in zip(current_intervals, candidates):
                     if interval == minimum_interval:
                         return candidate
-
 
     def _interval_generator(self, candidate: Iterable[int]):
 
@@ -106,9 +105,9 @@ class PitchClassSet():
 
         for var in reverse_me[::-1]:
             if var == 0:
-                var = 12
+                var = CLOCKFACE
 
-            tied = (((12 - var) + reverse_me[-1]) % 12)
+            tied = (((CLOCKFACE - var) + reverse_me[-1]) % CLOCKFACE)
 
             reversed_list.append(tied)
 
@@ -116,19 +115,27 @@ class PitchClassSet():
 
     def transpose(self, interval: int) -> PitchClassSet:
 
-        new_pcs = [(pc + interval) % 12 for pc in self.ordered_list]
+        new_pcs = [(pc + interval) % CLOCKFACE for pc in self.ordered_list]
 
         return PitchClassSet(new_pcs)
 
     def invert(self) -> PitchClassSet:
 
-        new_pcs = [(12 - pc) % 12 for pc in self.ordered_list]
+        new_pcs = [(CLOCKFACE - pc) % CLOCKFACE for pc in self.ordered_list]
 
         return PitchClassSet(new_pcs)
 
     def transpositional_inversion(self, interval: int) -> PitchClassSet:
 
-        new_pcs = [((12 - var) + reverse_me[-1]) % 12 for pc in self.ordered_list]
+        new_pcs = [((CLOCKFACE - pc) + interval) % CLOCKFACE for pc in self.ordered_list]
+
+        return PitchClassSet(new_pcs)
+
+    def get_compliment(self) -> PitchClassSet:
+
+        new_pcs = [x for x in range(CLOCKFACE) if x not in self.ordered_list]
+
+        print(new_pcs)
 
         return PitchClassSet(new_pcs)
 

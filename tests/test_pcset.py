@@ -103,3 +103,30 @@ def test_transpose():
     assert new_pcs.normal_order == test_pcs.normal_order == [0,1,6]
     assert new_pcs.ordered_list != test_pcs.ordered_list
     assert new_pcs.ordered_list == [4,5,11]
+
+def test_invert():
+
+    test_pcs = PitchClassSet([0,1,7])
+
+    inverted_pcs = test_pcs.invert()
+
+    assert test_pcs.normal_order == inverted_pcs.normal_order
+    assert inverted_pcs.ordered_list == [0,5,11]
+
+def test_invert_transpose():
+
+    test_pcs = PitchClassSet([0,1,7])
+
+    invert_transpose_pcs = test_pcs.transpositional_inversion(4)
+
+    assert test_pcs.normal_order == invert_transpose_pcs.normal_order
+    assert invert_transpose_pcs.ordered_list == [3,4,9]
+
+def test_compliment():
+
+    test_pcs = PitchClassSet([0,1,7])
+
+    compliment_pcs = test_pcs.get_compliment()
+
+    assert compliment_pcs.ordered_list == [2,3,4,5,6,8,9,10,11]
+    assert compliment_pcs.normal_order == [0,1,2,3,4,6,7,8,9]
