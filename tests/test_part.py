@@ -1,6 +1,6 @@
 import pytest
 
-from py2musicxml import Measure, Note, Beat, Part, Score, Rest
+from py2musicxml.notation import Measure, Note, Beat, Part, Score, Rest
 
 expected_note_values = [3, 3, 1, 2, 1, 2, 3, 1, 2, 2, 1]
 expected_beat_lens = [1, 1, 2, 2, 1, 2, 2, 1]
