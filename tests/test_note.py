@@ -1,6 +1,6 @@
 import pytest
 
-from py2musicxml import Note
+from py2musicxml.notation import Note
 
 TEST_DURATION, TEST_OCTAVE, TEST_PITCH_CLASS = 10, 8, 2
 
