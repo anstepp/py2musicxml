@@ -36,16 +36,20 @@ time_signature = [(4,4), (3,4), (2,4)]
 
 score_list = []
 
+flute_rhythms = [0.25, 0.5, 0.75, 1]
+
 for generation in range(0, 100):
 
-    flute.extend_pitches(rg_1.arp(generation, 4))
-    rhythm = [0.25 for x in flute.pitches]
+    random.seed(generation)
+
+    flute.extend_pitches(rg_1.arp(generation, random.randint(3,8)))
+    rhythm = [random.choice(flute_rhythms) for x in flute.pitches]
     flute.extend_durations(rhythm)
     flute.make_note_list(6)
     flute.check_range()
 
     clarinet.extend_pitches(rg_2.get_note_list(generation, 2))
-    cl_rhythm = [1 for x in clarinet.pitches]
+    cl_rhythm = [random.randint(1,6) for x in clarinet.pitches]
     clarinet.extend_durations(cl_rhythm)
     clarinet.make_note_list(4)
     clarinet.check_range()
@@ -53,12 +57,12 @@ for generation in range(0, 100):
     clarinet.make_staccato((random.randint(20,30), random.randint(40,50)))
 
     bassoon.extend_pitches(rg_2.get_note_list(generation, 0))
-    bsn_rhythm = [1 for x in bassoon.pitches]
+    bsn_rhythm = [random.randint(2,10) for x in bassoon.pitches]
     bassoon.extend_durations(bsn_rhythm)
     bassoon.make_note_list(4)
     bassoon.check_range()
-    bassoon.make_staccato((random.randint(0,10), random.randint(10,20)))
-    bassoon.make_staccato((random.randint(20,30), random.randint(40,50)))
+    for x in range(len(bassoon.note_list), 20):
+        bassoon.make_staccato(random.randint(x, x+10), random.randint(x+11, x+20))
 
     score_list.append(Score(score_parts=[instrument.make_part(time_signature) for instrument in instruments[::-1]]))
 
