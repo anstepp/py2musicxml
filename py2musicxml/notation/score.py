@@ -179,7 +179,7 @@ class Score:
                             xml_note_pitch_step = etree.SubElement(
                                 xml_note_pitch, "step"
                             )
-                            xml_note_pitch_step.text = current_note.stepName
+                            xml_note_pitch_step.text = current_note.step_name
 
                             # pitch alter
                             xml_note_pitch_alter = etree.SubElement(
