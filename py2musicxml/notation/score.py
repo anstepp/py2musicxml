@@ -8,6 +8,7 @@ from .rest import Rest
 from .measure import Measure
 from .beat import Beat
 
+EMPTY_MEASURE_FACTOR = 1
 
 class Score:
     """Generates a MusicXML score from a list of parts (NoteLists) and outputs score to file"""
@@ -40,7 +41,7 @@ class Score:
                 if len(part.measures) < max_len:
                     for idx in range(len(part.measures), max_len):
                         ts = longest_part.measures[idx].time_signature
-                        measure_to_append = Measure(ts, 1)
+                        measure_to_append = Measure(ts, EMPTY_MEASURE_FACTOR)
                         full_rest = ts[0]
                         empty_beat = Beat(ts[0])
                         empty_beat.add_note(Rest(full_rest))

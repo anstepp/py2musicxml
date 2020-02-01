@@ -4,71 +4,83 @@ from itertools import cycle
 
 import random
 
-from typing import Iterable
+from typing import Iterable, Tuple, List
 
 class RiemannGenerator:
 
-    def __init__(self, starting_chord: Iterable[RiemannChord]):
+    def __init__(self, starting_chord: RiemannChord):
         self.starting_chord = starting_chord
         self.generations_list = []
         self.voice_leading = False
 
-    def generation_algorithm(self, max_generations: int, slices: tuple):
+        self.transformation_replacement = {
+            'P' : 'LPL',
+            'L' : 'SPS',
+            'R' : 'PSP',
+            'S' : 'LSL',
+            'N' : 'PLR',
+            'H' : 'LPL',
+        }
 
-        slice_start = slices[0]
-        slice_end = slices[1]
+    def set_replacements(self, transformation_replacements: dict) -> None:
 
-        current_generation = [self.starting_chord]
-        self.generations_list = [current_generation]
-        generation = 1
+        self.transformation_replacements = transformation_replacements
 
-        while generation < max_generations:
 
-            generation_to_process = self.generations_list[generation - 1]
-            current_generation = []
+    def _get_windows(transformation: str, slice_start: int, slice_end: int):
+            
+        transform_window = None
 
-            for index, chord in enumerate(generation_to_process):
+        if len(transformation) < slice_start:
+            transform_window = transformation
+        elif len(transformation) < slice_end:
+            transform_window = transformation[slice_start:]
+        else:
+            transform_window = transformation[slice_start:slice_end]
 
-                if generation % 2 is True:
+        return transform_window
 
-                    if chord.major is True:
-                        new_chord = chord.P()
-                        next_chord = new_chord.S()
-                        final_chord = next_chord.P()
-                        another_chord = final_chord.S()
+    def _create_transformation_fractal(self, original_transformation: str, generations: int, window_start: int, window_end: int) -> List[str]:
 
-                        current_generation.extend([chord, new_chord, next_chord, final_chord, another_chord])
+        transformation_generations = []
 
-                    elif chord.minor is True:
-                        new_chord = chord.S()
-                        next_chord = new_chord.P()
-                        final_chord = next_chord.S()
+        transform_this = original_transformation
 
-                        current_generation.extend([chord, new_chord, next_chord, final_chord])
+        for generation in range(generations):
 
-                else:
+            transformed_transformations = []
 
-                    if chord.major is True:
-                        new_chord = chord.R()
-                        next_chord = new_chord.S()
-                        final_chord = next_chord.R()
-                        another_chord = final_chord.S()
+            # transform = char in string
+            for transform in transform_this:
+                transformed_transform = self.transformation_replacement[transform]
+                transformed_transformations.append(transformed_transform)
+                new_transform = ''.join(transformed_transformations)
 
-                        current_generation.extend([chord, new_chord, next_chord, final_chord, another_chord])
+            windowed_transformation = self._get_windows(new_transform, window_start, window_end)
+            transformation_generations.append(windowed_transformation)
+            transform_this = windowed_transformation
 
-                    elif chord.minor is True:
-                        new_chord = chord.L()
-                        next_chord = new_chord.P()
-                        final_chord = next_chord.S()
+        return transformation_generations
 
-                        current_generation.extend([chord, new_chord, next_chord, final_chord])
 
-            if (len(current_generation) > slice_end):
-                generation_post_slice = current_generation[slice_start:slice_end]
-                self.generations_list.append(generation_post_slice)
-            else:
-                self.generations_list.append(current_generation)
-            generation += 1
+    def get_chords(self, original_transformation: str, generations: int, window_start: int, window_end: int) -> None:
+
+        transformation_generations = self._create_transformation_fractal(original_transformation, generations, window_start, window_end)
+
+        for generation in transformation_generations:
+
+            chord = self.starting_chord
+
+            current_chord_generation = [chord]
+
+            for transformation in generation:
+
+                chord = getattr(chord, transformation)()
+
+                current_chord_generation.append(chord)
+
+            self.generations_list.append(current_chord_generation)
+
 
     def get_note_list(self, generation: int, part: int):
 
@@ -123,6 +135,21 @@ class RiemannGenerator:
             trans_inverted_list.append((12 - pitch) + transposition)
 
         return trans_inverted_list
+
+    def _get_windows(self, transformation: str, slice_start: int, slice_end: int):
+            
+        transform_window = None
+
+        if len(transformation) < slice_start:
+            transform_window = transformation
+        elif len(transformation) < slice_end:
+            transform_window = transformation[slice_start:]
+        else:
+            transform_window = transformation[slice_start:slice_end]
+
+        return transform_window
+
+ 
 
 
 class Rests:

@@ -9,11 +9,15 @@ class PitchClassSet():
 
     def __init__(self, pcs: Iterable[int]) -> None:
 
-        self.ordered_set = set(pcs)
+        self.ordered_set = [x for x in set(pcs) if x is not None]
 
         self.ordered_list = list(self.ordered_set)
 
+        print(self.ordered_list)
+
         self.ordered_list.sort()
+
+        print(self.ordered_list)
 
         self.cardinality = len(self.ordered_list)
 
@@ -32,7 +36,8 @@ class PitchClassSet():
 
             for current_pc in range(self.cardinality):
 
-                current_set.append(next(cycled_set))
+                next_cycled_set = next(cycled_set)
+                current_set.append(next_cycled_set)
 
             zeroed_set = self._get_zero_start(current_set)
             zeroed_set_reversed = self._reverse_TI(zeroed_set)
@@ -45,7 +50,9 @@ class PitchClassSet():
 
             next(cycled_set)
 
-        first_to_last_pc_distance = [(s[-1] - s[0]) % CLOCKFACE for s in potential_set_orders]
+        first_to_last_pc_distance = [
+            (s[-1] - s[0]) % CLOCKFACE for s in potential_set_orders
+        ]
 
         minimum_distance = min(first_to_last_pc_distance)
 
@@ -60,9 +67,22 @@ class PitchClassSet():
                 minimum_potential = potential_set_orders[idx]
                 candidates.append(minimum_potential)
 
-        smallest_intervals = self._get_smallest_intervals_sorted(candidates)
-        return smallest_intervals
+        candidates = self._remove_list_dupes(candidates)
         
+        smallest_intervals = self._get_smallest_intervals_sorted(candidates)
+        
+        return smallest_intervals
+      
+
+    def _remove_list_dupes(self, candidates: Iterable[int]) -> Iterable[int]:
+        
+        no_duplicates = []
+
+        for candidate in candidates:
+            if candidate not in no_duplicates:
+                no_duplicates.append(candidate)
+
+        return no_duplicates  
 
     def _get_zero_start(self, pcs: Iterable[int]) -> Iterable[int]:
         zero_set = [(x - pcs[0]) % CLOCKFACE for x in pcs]
@@ -82,6 +102,7 @@ class PitchClassSet():
             if counter == 1:
                 for interval, candidate in zip(current_intervals, candidates):
                     if interval == minimum_interval:
+                        print(candidate)
                         return candidate
 
     def _interval_generator(self, candidate: Iterable[int]):

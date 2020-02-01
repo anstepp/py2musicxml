@@ -10,6 +10,20 @@ def test_object_init():
 
     assert pcs.normal_order == [0,1,5]
 
+# def test_get_zero_start():
+#     pcs = PitchClassSet([0,7,11,4])
+
+#     assert pcs._get_zero_start([4, 7, 11, 0]) == [0,1,3,6]
+
+
+def test_example():
+
+    pcs = PitchClassSet([0,7,11,4])
+
+    assert pcs.cardinality == 4
+
+    assert pcs.normal_order == [0,1,5,8]
+
 def test_object_long_set():
 
     pitch_classes_one = [0,1,2,3,4,5]
