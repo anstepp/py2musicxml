@@ -46,12 +46,15 @@ for generation in range(50, 70):
 
     flute.extend_pitches(rg_1.arp(generation, random.randint(3,8)))
     rhythm = [0.25 for x in flute.pitches]
+
     flute.extend_durations(rhythm)
     flute.make_note_list(6)
     flute.check_range()
 
     clarinet.extend_pitches(rg_2.get_note_list(generation, 2))
+
     cl_rhythm = [4 for x in clarinet.pitches]
+
     clarinet.extend_durations(cl_rhythm)
     clarinet.make_note_list(4)
     clarinet.check_range()
@@ -65,6 +68,7 @@ for generation in range(50, 70):
     bassoon.check_range()
     # for x in range(len(bassoon.note_list), 20):
     #     bassoon.make_staccato(random.randint(x, x+10), random.randint(x+11, x+20))
+
 
     score_list.append(Score(score_parts=[instrument.make_part(time_signature) for instrument in instruments[::-1]]))
 

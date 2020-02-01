@@ -24,6 +24,7 @@ def test_example():
 
     assert pcs.normal_order == [0,1,5,8]
 
+
 def test_object_long_set():
 
     pitch_classes_one = [0,1,2,3,4,5]

@@ -42,6 +42,7 @@ class Score:
                     for idx in range(len(part.measures), max_len):
                         ts = longest_part.measures[idx].time_signature
                         measure_to_append = Measure(ts, EMPTY_MEASURE_FACTOR)
+
                         full_rest = ts[0]
                         empty_beat = Beat(ts[0])
                         empty_beat.add_note(Rest(full_rest))

@@ -56,6 +56,7 @@ class RiemannGenerator:
                 transformed_transformations.append(transformed_transform)
                 new_transform = ''.join(transformed_transformations)
 
+
             windowed_transformation = self._get_windows(new_transform, window_start, window_end)
             transformation_generations.append(windowed_transformation)
             transform_this = windowed_transformation

@@ -13,11 +13,7 @@ class PitchClassSet():
 
         self.ordered_list = list(self.ordered_set)
 
-        print(self.ordered_list)
-
         self.ordered_list.sort()
-
-        print(self.ordered_list)
 
         self.cardinality = len(self.ordered_list)
 
@@ -39,6 +35,7 @@ class PitchClassSet():
                 next_cycled_set = next(cycled_set)
                 current_set.append(next_cycled_set)
 
+
             zeroed_set = self._get_zero_start(current_set)
             zeroed_set_reversed = self._reverse_TI(zeroed_set)
 
@@ -53,6 +50,7 @@ class PitchClassSet():
         first_to_last_pc_distance = [
             (s[-1] - s[0]) % CLOCKFACE for s in potential_set_orders
         ]
+
 
         minimum_distance = min(first_to_last_pc_distance)
 
@@ -86,6 +84,7 @@ class PitchClassSet():
 
     def _get_zero_start(self, pcs: Iterable[int]) -> Iterable[int]:
         zero_set = [(x - pcs[0]) % CLOCKFACE for x in pcs]
+
         return zero_set
 
     def _get_smallest_intervals_sorted(self, candidates: Iterable[list]) -> Iterable[int]:
@@ -102,8 +101,9 @@ class PitchClassSet():
             if counter == 1:
                 for interval, candidate in zip(current_intervals, candidates):
                     if interval == minimum_interval:
-                        print(candidate)
+
                         return candidate
+
 
     def _interval_generator(self, candidate: Iterable[int]):
 
@@ -130,6 +130,7 @@ class PitchClassSet():
 
             tied = (((CLOCKFACE - var) + reverse_me[-1]) % CLOCKFACE)
 
+
             reversed_list.append(tied)
 
         return reversed_list
@@ -138,11 +139,13 @@ class PitchClassSet():
 
         new_pcs = [(pc + interval) % CLOCKFACE for pc in self.ordered_list]
 
+
         return PitchClassSet(new_pcs)
 
     def invert(self) -> PitchClassSet:
 
         new_pcs = [(CLOCKFACE - pc) % CLOCKFACE for pc in self.ordered_list]
+
 
         return PitchClassSet(new_pcs)
 
@@ -156,7 +159,6 @@ class PitchClassSet():
 
         new_pcs = [x for x in range(CLOCKFACE) if x not in self.ordered_list]
 
-        print(new_pcs)
 
         return PitchClassSet(new_pcs)
 
