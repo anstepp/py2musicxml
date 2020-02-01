@@ -50,7 +50,7 @@ class Measure:
     def add_beat(self, beat: Beat) -> None:
         self.beats.append(beat)
 
-    def _create_measure_map(self, subdivisions: int) -> Tuple[Optional[str], str, List[int]]:
+    def _create_measure_map(self, factor: int) -> Tuple[Optional[str], str, List[int]]:
         '''
         1. Determines the measure division and type
             (measure_type will always be Simple, Compound, or Additive)
@@ -72,7 +72,7 @@ class Measure:
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Compound"
-                measure_map = [subdivisions * 1.5 for x in range(beats_in_measure)]
+                measure_map = [factor * 1.5 for x in range(beats_in_measure)]
 
             # time sig denominator is divisible by 2
             elif self.time_signature[1] % 2 == 0:
@@ -81,7 +81,7 @@ class Measure:
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"
-                measure_map = [subdivisions for x in range(beats_in_measure)]
+                measure_map = [factor for x in range(beats_in_measure)]
 
             # time sig denominator is not divisible by 2 or 3
             else:
@@ -89,7 +89,7 @@ class Measure:
 
                 # meter_division remains None
                 meter_type = "Additive"
-                measure_map = self.bjorklund()
+                measure_map = self.bjorklund(self.time_signature[1], self.time_signature[0])
         else:
             # meter_division remains None
             meter_type = "Additive"
@@ -99,47 +99,34 @@ class Measure:
 
 
 
-    def bjorklund(self):
+    def bjorklund(self, subdivisions: int, divisions: int) -> Tuple:
         '''Evenly spaces two numbers that are not divisible by each other'''
 
-        unspacedList = unspacedList
-        returnList = []
-        remainder = len(unspacedList)
+        return_list = []
+        remainder = subdivisions - divisions
 
-        for x in range(0, size):
-            if x < attacks:
-                returnList.append([1])
-            else:
-                returnList.append([0])
-        minimumLength = 0
-        listCounter = 0
-        tempList = returnList
+        return_list = [1 for x in range(divisions)] + [0 for x in range(subdivisions - divisions)]
+
+        minimum_length = 0
+        list_counter = 0
+        temp_list = return_list
         while remainder > 1:
-            listCounter = 0
-            if minimumLength is 0:
-                for currentSeries in returnList:
-                    if currentSeries[0] is 0 and listCounter < attacks:
-                        tempList[listCounter] += currentSeries
-                        tempList[tempList.index(currentSeries)] = []
-                        listCounter += 1
+            list_counter = 0
+            if minimum_length == 0:
+                if list_counter < divisions:
+                    temp_list[list_counter] += 1
+                    list_counter += 1
             else:
-                for item in returnList:
-                    if len(item) is minimumLength:
-                        if len(item) is minimumLength:
-                            tempList[listCounter] += item
-                            tempList[tempList.index(item)] = []
-                            listCounter += 1
-            tempList = [x for x in tempList if x != []]
-            returnList = tempList
-            listCounter = 0
-            remainderList = [len(x) for x in returnList]
-            minimumLength = min(remainderList)
+                for item in return_list:
+                    if len(item) is minimum_length:
+                        if len(item) is minimum_length:
+                            temp_list[list_counter] += item
+                            temp_list[temp_list.index(item)] = []
+                            list_counter += 1
+            temp_list = [x for x in temp_list if x != []]
+            return_list = temp_list
+            list_counter = 0
             counter = 0
-            remainderCount = [
-                counter + 1 for x in remainderList if x is min(remainderList)
-            ]
-            remainder = len(remainderList)
         
-        # return returnList[0]
-        return [0]
-
+        measure_map = (2,3)
+        return measure_map

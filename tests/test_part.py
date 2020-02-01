@@ -3,6 +3,7 @@ import pytest
 from py2musicxml.notation import Measure, Note, Beat, Part, Score, Rest
 
 expected_note_values = [3, 3, 1, 2, 1, 2, 3, 1, 2, 2, 1]
+expected_note_pitches =[3, 4, 4, 3, 3, 6, 6, 6, 4, 4, None]
 expected_beat_lens = [1, 1, 2, 2, 1, 2, 2, 1]
 
 test_note_a = Note(4, 4, 4)
@@ -24,15 +25,19 @@ test_part = Part(test_list, test_sig)
 def test_assert_durs():
     note_count = 0
     for index, measure in enumerate(test_part.measures):
+
         for beat in measure.beats:
             for note in beat.notes:
                 expected_note_duration = expected_note_values[note_count]
+                expected_note_pitch = expected_note_pitches[note_count]
                 
                 print('MY TEST')
                 print(note)
-                print(note_count, beat, beat.notes, note.dur, expected_note_duration)
+                print(measure, note_count, beat, beat.notes, note.dur, expected_note_duration)
                 
                 assert note.dur == expected_note_duration
+                if note is Note:
+                    assert note.pc == expected_note_pitch
                 note_count += 1
 
         
@@ -146,7 +151,12 @@ def test_frere_jacques_subdiv():
     fj_halved_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs_halved, fj_pitches)]
     fj_halved_part = Part(fj_halved_list, fj_ts)
 
+    fj_durs_quartered = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1]
+    fj_quartered_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs_quartered, fj_pitches)]
+    fj_quartered_part = Part(fj_quartered_list, fj_ts)
+
     assert fj_halved_part.measure_factor == 2
+    assert fj_quartered_part.measure_factor == 4
 
     counter = 0
     for measure_index, measure in enumerate(fj_part.measures):
@@ -156,8 +166,11 @@ def test_frere_jacques_subdiv():
                 assert fj_durs[counter] == note.dur
                 counter += 1
 
-    score = Score(score_parts=[fj_part, fj_halved_part])
+    score = Score(score_parts=[fj_part, fj_halved_part, fj_quartered_part])
     score.convert_to_xml("test_score_fj_subdiv.xml")
+
+    score_two = Score(score_parts=[fj_quartered_part])
+    score_two.convert_to_xml("test_score_fj_only_quarter.musicxml")
 
     # fmt: off
     fj_durs_shift = [2,2,2,1,1,1,1,2,1,1,2,2,2,2,2,1,1,1,1,3,1,1,1,1,1,2,2,1,1,1,1,1,1,2,1,1,2,2,2,2,2,1,2,1,3]
