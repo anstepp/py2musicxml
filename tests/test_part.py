@@ -3,7 +3,7 @@ import pytest
 from py2musicxml.notation import Measure, Note, Beat, Part, Score, Rest
 
 expected_note_values = [3, 3, 1, 2, 1, 2, 3, 1, 2, 2, 1]
-expected_note_pitches =[3, 4, 4, 3, 3, 6, 6, 6, 4, 4, None]
+expected_note_pitches = [3, 4, 4, 3, 3, 6, 6, 6, 4, 4, None]
 expected_beat_lens = [1, 1, 2, 2, 1, 2, 2, 1]
 
 test_note_a = Note(4, 4, 4)
@@ -22,6 +22,7 @@ fj_durs = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 4, 1, 1, 1, 1, 2, 2, 1, 1, 1, 
 
 test_part = Part(test_list, test_sig)
 
+
 def test_assert_durs():
     note_count = 0
     for index, measure in enumerate(test_part.measures):
@@ -30,23 +31,30 @@ def test_assert_durs():
             for note in beat.notes:
                 expected_note_duration = expected_note_values[note_count]
                 expected_note_pitch = expected_note_pitches[note_count]
-                
+
                 print('MY TEST')
                 print(note)
-                print(measure, note_count, beat, beat.notes, note.dur, expected_note_duration)
-                
+                print(
+                    measure,
+                    note_count,
+                    beat,
+                    beat.notes,
+                    note.dur,
+                    expected_note_duration,
+                )
+
                 assert note.dur == expected_note_duration
                 if note is Note:
                     assert note.pc == expected_note_pitch
                 note_count += 1
 
-        
+
 def test_assert_unique():
     for index_x, x in enumerate(test_part.measures):
-        #print(index_x)
+        # print(index_x)
         for index_y, y in enumerate(test_part.measures):
             if x is not y:
-                #print(index_y, y, y.beats)
+                # print(index_y, y, y.beats)
                 assert not set(y.beats).intersection(set(x.beats))
             else:
                 assert set(y.beats).intersection(set(x.beats)) == set(y.beats).union(
@@ -57,6 +65,7 @@ def test_assert_unique():
 test_score = Score(score_parts=[test_part])
 test_score.convert_to_xml("test_score_cases.xml")
 
+
 def test_long_durs():
     # fmt: off
     long_durs = [4,4,4,4,7,1,4,6,7,3,8,6,7,1,5,6,1]
@@ -64,9 +73,9 @@ def test_long_durs():
     # fmt: on
 
     long_durs_list = [Note(x, 4, x) for x in long_durs]
-    long_durs_part = Part(long_durs_list, [(4,4)])
+    long_durs_part = Part(long_durs_list, [(4, 4)])
 
-    long_durs_part_halved_list = [Note(x * 0.5, 4, x) for x in long_durs] 
+    long_durs_part_halved_list = [Note(x * 0.5, 4, x) for x in long_durs]
 
     note_count = 0
     for index, measure in enumerate(long_durs_part.measures):
@@ -80,9 +89,10 @@ def test_long_durs():
     long_durs_score = Score(score_parts=[long_durs_part])
     long_durs_score.convert_to_xml("test_score_long.xml")
 
+
 def test_frere_jacques():
 
-    fj_ts = [[4,4]]
+    fj_ts = [[4, 4]]
     fj_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
 
     fj_part = Part(fj_list, fj_ts)
@@ -104,7 +114,7 @@ def test_fj_three_four():
     # fmt: off
     fj_durs_34 = [2,1,1,2,2,1,1,2,2,1,1,2,2,1,3,2,1,1,2,2,1,1,1,1,2,1,1,1,1,1,1,1,1,2,2,1,1,2,2,1,1,2,3,1,2]
     # fmt: on
-    fj_ts = [[3,4]]
+    fj_ts = [[3, 4]]
     fj_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
 
     fj_part = Part(fj_list, fj_ts)
@@ -120,11 +130,12 @@ def test_fj_three_four():
     score = Score(score_parts=[fj_part])
     score.convert_to_xml("test_score_fj_34.xml")
 
+
 def test_fj_shifting_ts():
     # fmt: off
     fj_durs_shift = [2,2,2,1,1,1,1,2,1,1,2,2,2,2,2,1,1,1,1,3,1,1,1,1,1,2,2,1,1,1,1,1,1,2,1,1,2,2,2,2,2,1,2,1,3]
     # fmt: on
-    fj_ts = [(4,4),(3,4),(2,4)]
+    fj_ts = [(4, 4), (3, 4), (2, 4)]
     fj_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
 
     fj_part = Part(fj_list, fj_ts)
@@ -140,19 +151,90 @@ def test_fj_shifting_ts():
     score = Score(score_parts=[fj_part])
     score.convert_to_xml("test_score_fj_shifting.xml")
 
+
 def test_frere_jacques_subdiv():
 
-    fj_ts = [[4,4]]
+    fj_ts = [[4, 4]]
     fj_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
 
     fj_part = Part(fj_list, fj_ts)
 
-    fj_durs_halved = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 0.5, 0.5, 0.5, 0.5, 1, 1, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 2, 1, 1, 2]
-    fj_halved_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs_halved, fj_pitches)]
+    fj_durs_halved = [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        1,
+        1,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+    ]
+    fj_halved_list = [
+        Note(dur, 4, pitch) for dur, pitch in zip(fj_durs_halved, fj_pitches)
+    ]
     fj_halved_part = Part(fj_halved_list, fj_ts)
 
-    fj_durs_quartered = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1]
-    fj_quartered_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs_quartered, fj_pitches)]
+    fj_durs_quartered = [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        1,
+        0.5,
+        0.5,
+        1,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.5,
+        0.5,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        1,
+        0.5,
+        0.5,
+        1,
+    ]
+    fj_quartered_list = [
+        Note(dur, 4, pitch) for dur, pitch in zip(fj_durs_quartered, fj_pitches)
+    ]
     fj_quartered_part = Part(fj_quartered_list, fj_ts)
 
     assert fj_halved_part.measure_factor == 2
@@ -175,7 +257,7 @@ def test_frere_jacques_subdiv():
     # fmt: off
     fj_durs_shift = [2,2,2,1,1,1,1,2,1,1,2,2,2,2,2,1,1,1,1,3,1,1,1,1,1,2,2,1,1,1,1,1,1,2,1,1,2,2,2,2,2,1,2,1,3]
     # fmt: on
-    fj_ts = [(4,4),(3,4),(2,4)]
+    fj_ts = [(4, 4), (3, 4), (2, 4)]
     fj_list = [Note(dur * 0.5, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
 
     fj_part = Part(fj_list, fj_ts)
@@ -187,9 +269,3 @@ def test_frere_jacques_subdiv():
     #             print(counter, fj_durs_shift[counter], note)
     #             assert fj_durs_shift[counter] == note.dur
     #             counter += 1
-
-
-
-
-
-

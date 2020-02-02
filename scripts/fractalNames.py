@@ -36,7 +36,7 @@ iterateme = fractalNames(4, aaronPitches, morganPitches)
 
 notes = [Note(0.25, 3, x) for x in iterateme]
 
-theList = Part(notes, [(4,4)])
+theList = Part(notes, [(4, 4)])
 
 theScore = Score([theList])
 theScore.convert_to_xml("fractal.musicxml")

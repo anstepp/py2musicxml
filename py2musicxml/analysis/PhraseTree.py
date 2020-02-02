@@ -1,7 +1,7 @@
 import Tree
 
-class PhraseTree(Tree):
 
+class PhraseTree(Tree):
     def __init__(self):
         getNoteList = self.PhraseGenerator(theList)
 

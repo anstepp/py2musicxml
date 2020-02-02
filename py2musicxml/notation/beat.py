@@ -1,7 +1,7 @@
 from .note import Note
 
-class Beat:
 
+class Beat:
     def __init__(self, subdivisions: int) -> None:
         self.notes = []
         self.tuplet = False
@@ -15,11 +15,11 @@ class Beat:
                 note.beam_start = True
             else:
                 note.beam_continue = True
-               
 
     def add_note(self, note: Note) -> None:
         self.notes.append(note)
         self._make_beams()
+
     #     self._tuplet_test()
 
     # def _tuplet_test(self):

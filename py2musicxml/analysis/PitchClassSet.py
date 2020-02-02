@@ -5,8 +5,8 @@ from typing import Iterable
 
 CLOCKFACE = 12
 
-class PitchClassSet():
 
+class PitchClassSet:
     def __init__(self, pcs: Iterable[int]) -> None:
 
         self.ordered_set = [x for x in set(pcs) if x is not None]
@@ -18,7 +18,6 @@ class PitchClassSet():
         self.cardinality = len(self.ordered_list)
 
         self.normal_order = self._get_normal_order(self.ordered_list)
-
 
     def _get_normal_order(self, pclist: Iterable[int]) -> Iterable[int]:
 
@@ -35,7 +34,6 @@ class PitchClassSet():
                 next_cycled_set = next(cycled_set)
                 current_set.append(next_cycled_set)
 
-
             zeroed_set = self._get_zero_start(current_set)
             zeroed_set_reversed = self._reverse_TI(zeroed_set)
 
@@ -43,7 +41,7 @@ class PitchClassSet():
 
             if zeroed_set != zeroed_set_reversed:
 
-              potential_set_orders.append(zeroed_set_reversed)
+                potential_set_orders.append(zeroed_set_reversed)
 
             next(cycled_set)
 
@@ -51,13 +49,16 @@ class PitchClassSet():
             (s[-1] - s[0]) % CLOCKFACE for s in potential_set_orders
         ]
 
-
         minimum_distance = min(first_to_last_pc_distance)
 
-        compression_mask = [1 if dist == minimum_distance else 0 for dist in first_to_last_pc_distance]
+        compression_mask = [
+            1 if dist == minimum_distance else 0 for dist in first_to_last_pc_distance
+        ]
 
-        minimum_distance_list = list(compress(first_to_last_pc_distance, compression_mask))
-            
+        minimum_distance_list = list(
+            compress(first_to_last_pc_distance, compression_mask)
+        )
+
         candidates = []
 
         for idx, value in enumerate(compression_mask):
@@ -66,28 +67,29 @@ class PitchClassSet():
                 candidates.append(minimum_potential)
 
         candidates = self._remove_list_dupes(candidates)
-        
+
         smallest_intervals = self._get_smallest_intervals_sorted(candidates)
-        
+
         return smallest_intervals
-      
 
     def _remove_list_dupes(self, candidates: Iterable[int]) -> Iterable[int]:
-        
+
         no_duplicates = []
 
         for candidate in candidates:
             if candidate not in no_duplicates:
                 no_duplicates.append(candidate)
 
-        return no_duplicates  
+        return no_duplicates
 
     def _get_zero_start(self, pcs: Iterable[int]) -> Iterable[int]:
         zero_set = [(x - pcs[0]) % CLOCKFACE for x in pcs]
 
         return zero_set
 
-    def _get_smallest_intervals_sorted(self, candidates: Iterable[list]) -> Iterable[int]:
+    def _get_smallest_intervals_sorted(
+        self, candidates: Iterable[list]
+    ) -> Iterable[int]:
 
         generators = [self._interval_generator(candidate) for candidate in candidates]
 
@@ -103,7 +105,6 @@ class PitchClassSet():
                     if interval == minimum_interval:
 
                         return candidate
-
 
     def _interval_generator(self, candidate: Iterable[int]):
 
@@ -128,8 +129,7 @@ class PitchClassSet():
             if var == 0:
                 var = CLOCKFACE
 
-            tied = (((CLOCKFACE - var) + reverse_me[-1]) % CLOCKFACE)
-
+            tied = ((CLOCKFACE - var) + reverse_me[-1]) % CLOCKFACE
 
             reversed_list.append(tied)
 
@@ -139,19 +139,19 @@ class PitchClassSet():
 
         new_pcs = [(pc + interval) % CLOCKFACE for pc in self.ordered_list]
 
-
         return PitchClassSet(new_pcs)
 
     def invert(self) -> PitchClassSet:
 
         new_pcs = [(CLOCKFACE - pc) % CLOCKFACE for pc in self.ordered_list]
 
-
         return PitchClassSet(new_pcs)
 
     def transpositional_inversion(self, interval: int) -> PitchClassSet:
 
-        new_pcs = [((CLOCKFACE - pc) + interval) % CLOCKFACE for pc in self.ordered_list]
+        new_pcs = [
+            ((CLOCKFACE - pc) + interval) % CLOCKFACE for pc in self.ordered_list
+        ]
 
         return PitchClassSet(new_pcs)
 
@@ -159,6 +159,4 @@ class PitchClassSet():
 
         new_pcs = [x for x in range(CLOCKFACE) if x not in self.ordered_list]
 
-
         return PitchClassSet(new_pcs)
-

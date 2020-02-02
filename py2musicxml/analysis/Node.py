@@ -1,5 +1,3 @@
-import note.py
-
 class Node:
     location = None
     level = None
@@ -27,7 +25,7 @@ class Node:
         while parent_node is not head_node:
             tree_level + 1
             parent_node = get_parent(parent_node)
-        #fix this with true traversal algorithm
+        # fix this with true traversal algorithm
         level = 0
         for level in range(tree_level):
             for current_neighbor in neighbors:
@@ -38,4 +36,3 @@ class Node:
 
     def get_children(self):
         return children
-
