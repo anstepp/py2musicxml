@@ -1,11 +1,13 @@
-from py2musicxml.notation import Score
-from riemann import RiemannChord
-from voice import Flute, Clarinet, Bassoon, Voice
-from riemann_generator import RiemannGenerator
+import random
 
 from typing import Iterable
 
-import random
+from py2musicxml.notation import Score
+from py2musicxml.composition import RiemannChord
+from py2musicxml.composition.voice import Flute, Clarinet, Bassoon, Voice
+
+from riemann_generator import RiemannGenerator
+
 
 # create instruments
 
@@ -17,22 +19,22 @@ bassoon = Bassoon()
 
 instruments = [i for i in [bassoon, clarinet, flute]]
 
-#create pitch generation algorithm
+# create pitch generation algorithm
 
-rg_1 = RiemannGenerator(RiemannChord(0,4,7))
-rg_2 = RiemannGenerator(RiemannChord(2,6,9))
+rg_1 = RiemannGenerator(RiemannChord(0, 4, 7))
+rg_2 = RiemannGenerator(RiemannChord(2, 6, 9))
 
 # run algorithm, populate generations
 
-rg_1.generation_algorithm(1000, (3,50))
-rg_2.generation_algorithm(1000, (2,10))
+rg_1.generation_algorithm(1000, (3, 50))
+rg_2.generation_algorithm(1000, (2, 10))
 
 
-# make a super simple chorale that goes further into the 
+# make a super simple chorale that goes further into the
 # target replacement algorithm
 
 generation = 50
-time_signature = [(4,4), (3,4), (2,4)]
+time_signature = [(4, 4), (3, 4), (2, 4)]
 
 score_list = []
 
@@ -44,7 +46,7 @@ for generation in range(50, 70):
 
     random.seed(generation)
 
-    flute.extend_pitches(rg_1.arp(generation, random.randint(3,8)))
+    flute.extend_pitches(rg_1.arp(generation, random.randint(3, 8)))
     rhythm = [0.25 for x in flute.pitches]
 
     flute.extend_durations(rhythm)
@@ -69,8 +71,13 @@ for generation in range(50, 70):
     # for x in range(len(bassoon.note_list), 20):
     #     bassoon.make_staccato(random.randint(x, x+10), random.randint(x+11, x+20))
 
-
-    score_list.append(Score(score_parts=[instrument.make_part(time_signature) for instrument in instruments[::-1]]))
+    score_list.append(
+        Score(
+            score_parts=[
+                instrument.make_part(time_signature) for instrument in instruments[::-1]
+            ]
+        )
+    )
 
 print(len(score_list))
 
@@ -80,7 +87,3 @@ for score in score_list:
     file_name = "score_data_set_" + str(counter) + ".xml"
     score.convert_to_xml(file_name)
     counter += 1
-
-
-
-

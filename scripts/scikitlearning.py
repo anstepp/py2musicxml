@@ -1,119 +1,117 @@
 import matplotlib.pyplot as plt
+import mpld3
 import numpy as np
 import random
 import re
 import statistics
 
 from collections import Counter
-
 from importlib import import_module
-
+from itertools import cycle
 from mpl_toolkits.mplot3d import Axes3D
-import mpld3
+
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-from typing import Iterable, Tuple
-from itertools import cycle
 
-from py2musicxml.notation import Score, Note, Rest
-from riemann import RiemannChord
-from voice import Flute, Clarinet, Bassoon, Voice, Violin, Cello
-from riemann_generator import RiemannGenerator
+from typing import Iterable, Tuple
+
 from py2musicxml.analysis import PitchClassSet
+from py2musicxml.composition import RiemannChord
+from py2musicxml.composition.voice import Flute, Clarinet, Bassoon, Voice, Violin, Cello
+from py2musicxml.notation import Score, Note, Rest
+
+from riemann_generator import RiemannGenerator
+
 
 PITCH_CLASS_SETS = {
-
     # trichords are 0-11
-    0 : [0,1,2],
-    1 : [0,1,3],
-    2 : [0,1,4],
-    3 : [0,1,5],
-    4 : [0,1,6],
-    5 : [0,2,4],
-    6 : [0,2,5],
-    7 : [0,2,6],
-    8 : [0,2,7],
-    9 : [0,3,6],
-    10 : [0,3,7],
-    11 : [0,4,8],
-
-    #tetrachords are 12-40
-    12 : [0,1,2,3],
-    13 : [0,1,2,4],
-    14 : [0,1,2,5],
-    15 : [0,1,2,6],
-    16 : [0,1,2,7],
-    17 : [0,1,3,4],
-    18 : [0,1,3,5],
-    19 : [0,1,3,6],
-    20 : [0,1,3,7],
-    21 : [0,1,4,5],
-    22 : [0,1,4,6],
-    23 : [0,1,4,7],
-    24 : [0,1,4,8],
-    25 : [0,1,5,6],
-    26 : [0,1,5,7],
-    27 : [0,1,5,8],
-    28 : [0,1,6,7],
-    29 : [0,2,3,5],
-    30 : [0,2,3,6],
-    31 : [0,2,3,7],
-    32 : [0,2,4,6],
-    33 : [0,2,4,7],
-    34 : [0,2,4,8],
-    35 : [0,2,5,7],
-    36 : [0,2,5,8],
-    37 : [0,2,6,8],
-    38 : [0,3,4,7],
-    39 : [0,3,5,8],
-    40 : [0,3,6,9],
-
-    #pentachords are
-    41 : [0,1,2,3,4],
-    42 : [0,1,2,3,5],
-    43 : [0,1,2,3,6],
-    44 : [0,1,2,3,7],
-    45 : [0,1,2,4,5],
-    46 : [0,1,2,4,6],
-    47 : [0,1,2,4,7],
-    48 : [0,1,2,4,8],
-    49 : [0,1,2,5,6],
-    50 : [0,1,2,5,7],
-    51 : [0,1,2,5,8],
-    52 : [0,1,2,6,7],
-    53 : [0,1,2,6,8],
-    54 : [0,1,3,4,6],
-    55 : [0,1,3,4,7],
-    56 : [0,1,3,4,8],
-    57 : [0,1,3,5,6],
-    58 : [0,1,3,5,7],
-    59 : [0,1,3,5,8],
-    60 : [0,1,3,6,7],
-    61 : [0,1,3,6,8],
-    62 : [0,1,3,6,9],
-    63 : [0,1,4,5,7],
-    64 : [0,1,4,5,8],
-    65 : [0,1,4,6,8],
-    66 : [0,1,4,6,9],
-    67 : [0,1,4,7,8],
-    68 : [0,1,5,6,8],
-    69 : [0,2,3,4,6],
-    70 : [0,2,3,4,7],
-    71 : [0,2,3,5,7],
-    72 : [0,2,3,6,8],
-    73 : [0,2,4,5,8],
-    74 : [0,2,4,6,8],
-    75 : [0,2,4,6,9],
-    76 : [0,2,4,7,9],
-    77 : [0,3,4,5,8],
+    0: [0, 1, 2],
+    1: [0, 1, 3],
+    2: [0, 1, 4],
+    3: [0, 1, 5],
+    4: [0, 1, 6],
+    5: [0, 2, 4],
+    6: [0, 2, 5],
+    7: [0, 2, 6],
+    8: [0, 2, 7],
+    9: [0, 3, 6],
+    10: [0, 3, 7],
+    11: [0, 4, 8],
+    # tetrachords are 12-40
+    12: [0, 1, 2, 3],
+    13: [0, 1, 2, 4],
+    14: [0, 1, 2, 5],
+    15: [0, 1, 2, 6],
+    16: [0, 1, 2, 7],
+    17: [0, 1, 3, 4],
+    18: [0, 1, 3, 5],
+    19: [0, 1, 3, 6],
+    20: [0, 1, 3, 7],
+    21: [0, 1, 4, 5],
+    22: [0, 1, 4, 6],
+    23: [0, 1, 4, 7],
+    24: [0, 1, 4, 8],
+    25: [0, 1, 5, 6],
+    26: [0, 1, 5, 7],
+    27: [0, 1, 5, 8],
+    28: [0, 1, 6, 7],
+    29: [0, 2, 3, 5],
+    30: [0, 2, 3, 6],
+    31: [0, 2, 3, 7],
+    32: [0, 2, 4, 6],
+    33: [0, 2, 4, 7],
+    34: [0, 2, 4, 8],
+    35: [0, 2, 5, 7],
+    36: [0, 2, 5, 8],
+    37: [0, 2, 6, 8],
+    38: [0, 3, 4, 7],
+    39: [0, 3, 5, 8],
+    40: [0, 3, 6, 9],
+    # pentachords are
+    41: [0, 1, 2, 3, 4],
+    42: [0, 1, 2, 3, 5],
+    43: [0, 1, 2, 3, 6],
+    44: [0, 1, 2, 3, 7],
+    45: [0, 1, 2, 4, 5],
+    46: [0, 1, 2, 4, 6],
+    47: [0, 1, 2, 4, 7],
+    48: [0, 1, 2, 4, 8],
+    49: [0, 1, 2, 5, 6],
+    50: [0, 1, 2, 5, 7],
+    51: [0, 1, 2, 5, 8],
+    52: [0, 1, 2, 6, 7],
+    53: [0, 1, 2, 6, 8],
+    54: [0, 1, 3, 4, 6],
+    55: [0, 1, 3, 4, 7],
+    56: [0, 1, 3, 4, 8],
+    57: [0, 1, 3, 5, 6],
+    58: [0, 1, 3, 5, 7],
+    59: [0, 1, 3, 5, 8],
+    60: [0, 1, 3, 6, 7],
+    61: [0, 1, 3, 6, 8],
+    62: [0, 1, 3, 6, 9],
+    63: [0, 1, 4, 5, 7],
+    64: [0, 1, 4, 5, 8],
+    65: [0, 1, 4, 6, 8],
+    66: [0, 1, 4, 6, 9],
+    67: [0, 1, 4, 7, 8],
+    68: [0, 1, 5, 6, 8],
+    69: [0, 2, 3, 4, 6],
+    70: [0, 2, 3, 4, 7],
+    71: [0, 2, 3, 5, 7],
+    72: [0, 2, 3, 6, 8],
+    73: [0, 2, 4, 5, 8],
+    74: [0, 2, 4, 6, 8],
+    75: [0, 2, 4, 6, 9],
+    76: [0, 2, 4, 7, 9],
+    77: [0, 3, 4, 5, 8],
 }
 
 PITCH_CLASS_ASSIGNMENT = {str(v): k for k, v in PITCH_CLASS_SETS.items()}
 
 
 class Fractal:
-
     def __init__(self, n_samples: int, n_generators: int) -> None:
 
         self.n_samples = n_samples
@@ -124,19 +122,15 @@ class Fractal:
 
         self.generated_scores = []
 
-
         # create instruments
-
 
     def set_time_signature(self, ts: Tuple) -> None:
 
         self.time_signature = ts
 
-
     def generate_instruments(self, instruments: Iterable[Voice]) -> None:
 
         self.instrument_list = instruments
-
 
     def initiate_generators(self, number: int) -> None:
 
@@ -151,18 +145,21 @@ class Fractal:
         # create pitch generation algorithm
 
         for x in range(number):
-            generators.append(RiemannGenerator(RiemannChord((root + x) % 12, (third + x) % 12, (fifth + x) % 12)))
+            generators.append(
+                RiemannGenerator(
+                    RiemannChord((root + x) % 12, (third + x) % 12, (fifth + x) % 12)
+                )
+            )
 
         # run algorithm, populate generations
- 
+
         for generator in generators:
             generator.get_chords('PLR', self.n_samples + 100, 0, 50)
 
         return generators
 
-
     def fibonacci_generator(self, start: int, distance: int, factor: float):
-        
+
         current_value = start
 
         last_value = 0
@@ -177,13 +174,13 @@ class Fractal:
             yield sum_of_values * factor
 
     def _create_part_arpeggio(
-        self, 
+        self,
         generation: int,
         generator: int,
-        instrument: Voice, 
-        arp_duration: int, 
-        octave: int, 
-        durations: Iterable[int]
+        instrument: Voice,
+        arp_duration: int,
+        octave: int,
+        durations: Iterable[int],
     ) -> None:
 
         cycled_durs = cycle(durations)
@@ -196,13 +193,13 @@ class Fractal:
         return instrument
 
     def _create_part_long_notes(
-        self, 
+        self,
         generation: int,
         generator: int,
-        instrument: Voice, 
-        octave: int, 
+        instrument: Voice,
+        octave: int,
         durations: Iterable[int],
-        voice
+        voice,
     ) -> None:
 
         cycled_durs = cycle(durations)
@@ -218,7 +215,7 @@ class Fractal:
         self,
         offset: int,
         arp_instruments: Iterable[str],
-        sustain_instruments: Iterable[str]
+        sustain_instruments: Iterable[str],
     ) -> None:
 
         arp_generator = cycle(list(self.fibonacci_generator(1, 10, 1)))
@@ -230,7 +227,7 @@ class Fractal:
 
             random.seed(generation)
 
-            print("generation",generation,"of", self.n_samples+offset)
+            print("generation", generation, "of", self.n_samples + offset)
 
             for instrument_idx, instrument in enumerate(self.instrument_list):
                 instrument_type = re.match(r'.*voice.(.*)\'>$', str(type(instrument))).group(1)
@@ -238,19 +235,36 @@ class Fractal:
                 if instrument_type in arp_instruments:
                     arp_dur = next(arp_generator)
                     octave = 6
-                    durs = [next(duration_generator) for x in range((next(arp_generator)))]
-                    self.instrument_list[instrument_idx] = self._create_part_arpeggio(generation, self.generators[generation % len(self.generators)], instrument, arp_dur, octave, durs)
-                
+                    durs = duration_generator
+                    for dur in durs:
+                        print(dur)
+                    self.instrument_list[instrument_idx] = self._create_part_arpeggio(
+                        generation,
+                        self.generators[generation % len(self.generators)],
+                        instrument,
+                        arp_dur,
+                        octave,
+                        durs,
+                    )
+
                 if instrument_type in sustain_instruments:
                     octave = 3
                     durs = [next(long_duration_generator) for x in range(next(long_distance_generator))]
                     voice = generation % 3
-                    self.instrument_list[instrument_idx] = self._create_part_long_notes(generation, self.generators[generation % len(self.generators)], instrument, octave, durs, voice) 
+                    self.instrument_list[instrument_idx] = self._create_part_long_notes(
+                        generation,
+                        self.generators[generation % len(self.generators)],
+                        instrument,
+                        octave,
+                        durs,
+                        voice,
+                    )
 
             self.generated_scores.append(
                 Score(
                     score_parts=[
-                        instrument.make_part(time_signature) for instrument in self.instrument_list
+                        instrument.make_part(time_signature)
+                        for instrument in self.instrument_list
                     ]
                 )
             )
@@ -267,7 +281,7 @@ class Fractal:
             file_name = "xml/score_data_set_" + str(counter) + ".musicxml"
             score.convert_to_xml(file_name)
             counter += 1
-            print("score",counter,"of",len(self.generated_scores))
+            print("score", counter, "of", len(self.generated_scores))
 
 
 time_signature = [(4, 4)]
@@ -403,6 +417,7 @@ for score in f.generated_scores:
     score_measures = measures / len(score.score_parts)
     score_duration_mean = statistics.mean(score_beat_durations)
 
+
     scores_features.append(
         [score_downbeat_pitch_class_one, 
         score_downbeat_pitch_class_two, 
@@ -410,7 +425,6 @@ for score in f.generated_scores:
         score_duration_mean,
         score_measures]
     )
-    
 
 
 # Zero pad any scores downbeat lists < max size downbeat list
@@ -468,7 +482,6 @@ ax.scatter(Xpca[:,0], Xpca[:, 1], Xpca[:,2], c=kmeanslabels)
 # labels = ['score {0}'.format(i + 1) for i in range(len(scores_dataset))]
 # tooltip = mpld3.plugins.PointLabelTooltip(ax, labels=labels)
 # mpld3.plugins.connect(fig, tooltip)
-
 
 plt.show()
 

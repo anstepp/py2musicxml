@@ -1,5 +1,6 @@
 from .Node import Node
 
+
 class Tree:
     nodeList = []
 
@@ -8,7 +9,8 @@ class Tree:
 
     def makeTree(self):
         nodeList.sort(nodeList, key=lambda node: node.location)
-        for current_node in nodeList
+        for current_node in nodeList:
+            continue
 
     def searchTree(self):
         pass

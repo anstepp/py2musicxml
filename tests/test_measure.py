@@ -53,7 +53,6 @@ def test_create_measure_map(
         # fmt: on
     ],
 )
-
 def test_cumulative_beats(
     time_signature, expected_cumulative_beats, expected_total_cumulative_beats
 ):
@@ -61,8 +60,6 @@ def test_cumulative_beats(
 
     assert m.cumulative_beats == expected_cumulative_beats
     assert m.total_cumulative_beats == expected_total_cumulative_beats
-
-
 
 
 # def test_additive_meter():

@@ -31,11 +31,18 @@ frerejacques_delayed = frerejacques_delayed + frerejacques
 frerejacques_delayed2 = frerejacques_delayed2 + frerejacques
 frerejacques = frerejacques + frerejacques
 
-time_signature = [(4,4),(6,8),(2,4)]
+time_signature = [(4, 4), (6, 8), (2, 4)]
 
 part_list = [
     Part(p, time_signature)
-    for p in [frerejacques_delayed2, frerejacques_delayed, frerejacques, frerejacques_reduced3,frerejacques_reduced2,frerejacques_reduced]
+    for p in [
+        frerejacques_delayed2,
+        frerejacques_delayed,
+        frerejacques,
+        frerejacques_reduced3,
+        frerejacques_reduced2,
+        frerejacques_reduced,
+    ]
 ]
 
 

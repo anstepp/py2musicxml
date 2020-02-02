@@ -30,8 +30,24 @@ class Note:
         # called to correct any errant pitch classes
         self.octave, self.pc = self.fix_pitch_overflow(octave, pitch_class)
 
-        # get these variables upon instantiation in the case the list is acted upon
-        self.stepName, self.alter, self.accidental = self._get_step_name(0)
+        # force starting_pitch to be keyless
+        self.step_name, self.alter, self.accidental = self._get_step_name(0)
+
+    def fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
+        new_pitch_class, new_octave = None, None
+
+        if pitch_class > 11:
+            new_pitch_class = pitch_class % 12
+            new_octave = octave + pitch_class // 12
+            return new_octave, new_pitch_class
+
+        elif pitch_class < 0:
+            new_pitch_class = pitch_class % 12
+            new_octave = octave + pitch_class // 12
+            return new_octave, new_pitch_class
+
+        else:
+            return octave, pitch_class
 
     def _get_step_name(self, starting_pitch: int) -> Tuple[str, int, str]:
         flat_keys = [1, 3, 5, 8, 10]

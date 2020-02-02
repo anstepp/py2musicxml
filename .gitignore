@@ -14,6 +14,7 @@ __pycache__/
 
 # py2musicxml output score & sound files
 *.xml
+*.musicxml
 *.wav
 
 
@@ -133,3 +134,7 @@ dmypy.json
 out.txt
 */out.txt
 */*/out.txt
+scripts/xml
+
+# Rachel's stuff
+notebooks/

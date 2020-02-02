@@ -28,9 +28,11 @@ class Measure:
         # hypermetric weight of measure
         # self.weight = None
 
-        self.meter_division, self.meter_type, self.measure_map = (
-            self._create_measure_map(factor)
-        )
+        (
+            self.meter_division,
+            self.meter_type,
+            self.measure_map,
+        ) = self._create_measure_map(factor)
 
         self.cumulative_beats = list((x for x in self._cumulative_beat_generator()))
         self.total_cumulative_beats = self.cumulative_beats[-1]
@@ -89,7 +91,9 @@ class Measure:
 
                 # meter_division remains None
                 meter_type = "Additive"
-                measure_map = self.bjorklund(self.time_signature[1], self.time_signature[0])
+                measure_map = self.bjorklund(
+                    self.time_signature[1], self.time_signature[0]
+                )
         else:
             # meter_division remains None
             meter_type = "Additive"
@@ -97,15 +101,15 @@ class Measure:
 
         return meter_division, meter_type, measure_map
 
-
-
     def bjorklund(self, subdivisions: int, divisions: int) -> Tuple:
         '''Evenly spaces two numbers that are not divisible by each other'''
 
         return_list = []
         remainder = subdivisions - divisions
 
-        return_list = [1 for x in range(divisions)] + [0 for x in range(subdivisions - divisions)]
+        return_list = [1 for x in range(divisions)] + [
+            0 for x in range(subdivisions - divisions)
+        ]
 
         minimum_length = 0
         list_counter = 0
@@ -127,6 +131,6 @@ class Measure:
             return_list = temp_list
             list_counter = 0
             counter = 0
-        
-        measure_map = (2,3)
+
+        measure_map = (2, 3)
         return measure_map
