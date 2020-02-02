@@ -1,5 +1,4 @@
 class Hyperbeat:
-
     def __init__(self, location: int, level: int):
         self.level = level
         self.location = location
@@ -14,7 +13,10 @@ class Hyperbeat:
             if potential_child.level is self.level - 1:
                 if potential_child.location is self.location:
                     self.children.append(potential_child)
-                elif potential_child.location > self.location and potential_child.location < neighbor.location:
+                elif (
+                    potential_child.location > self.location
+                    and potential_child.location < neighbor.location
+                ):
                     self.children.append(potential_child)
                 else:
                     pass

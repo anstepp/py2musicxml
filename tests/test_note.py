@@ -37,12 +37,20 @@ def test_get_step_name():
     }
 
     for test_case in test_cases.keys():
-        n = Note(duration=TEST_DURATION, octave=TEST_OCTAVE, pitch_class=test_cases[test_case]['pitch_class'])
-        result = n._get_step_name(starting_pitch=test_cases[test_case]['starting_pitch'])
+        n = Note(
+            duration=TEST_DURATION,
+            octave=TEST_OCTAVE,
+            pitch_class=test_cases[test_case]['pitch_class'],
+        )
+        result = n._get_step_name(
+            starting_pitch=test_cases[test_case]['starting_pitch']
+        )
         assert result == test_cases[test_case]['expected_result']
 
     try:
-        n = Note(duration=TEST_DURATION, octave=TEST_OCTAVE, pitch_class=TEST_PITCH_CLASS)
+        n = Note(
+            duration=TEST_DURATION, octave=TEST_OCTAVE, pitch_class=TEST_PITCH_CLASS
+        )
         n._get_step_name(starting_pitch=999)
     except Exception as e:
         assert str(e) == 'starting_pitch must be zero, a flat key, or sharp key'

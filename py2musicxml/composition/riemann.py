@@ -1,4 +1,3 @@
-
 class RiemannChord:
     def __init__(self, note_a: int, note_b: int, note_c: int) -> None:
         self.root = note_a
@@ -77,4 +76,3 @@ class RiemannChord:
         return 'Root: {}, Third: {}, Fifth: {}'.format(
             self.root, self.third, self.fifth
         )
-
