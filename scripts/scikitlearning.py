@@ -169,12 +169,12 @@ class Fractal:
 
         for x in range(distance):
 
-                sum_of_values = current_value + last_value
+            sum_of_values = current_value + last_value
 
-                last_value = current_value
-                current_value = sum_of_values
+            last_value = current_value
+            current_value = sum_of_values
 
-                yield sum_of_values * factor
+            yield sum_of_values * factor
 
     def _create_part_arpeggio(
         self, 
@@ -205,15 +205,12 @@ class Fractal:
         voice
     ) -> None:
 
-        print('durs are {}'.format(durations))
-
         cycled_durs = cycle(durations)
 
         instrument.extend_pitches(generator.get_note_list(generation, voice))
         rhythm = [next(cycled_durs) for x in instrument.pitches]
         instrument.extend_durations(rhythm)
         instrument.make_note_list(4)
-        print(instrument.note_list)
         instrument.check_range()
         return instrument
 
@@ -224,37 +221,29 @@ class Fractal:
         sustain_instruments: Iterable[str]
     ) -> None:
 
+        arp_generator = cycle(list(self.fibonacci_generator(1, 10, 1)))
+        duration_generator = cycle(list(self.fibonacci_generator(1,6,0.25)))
+        long_duration_generator = cycle(list(self.fibonacci_generator(1,6,1)))
+        long_distance_generator = cycle(list(self.fibonacci_generator(3,6,1)))
+
         for generation in range(offset, self.n_samples + offset):
 
             random.seed(generation)
 
             print("generation",generation,"of", self.n_samples+offset)
 
-            duration_generator = list(self.fibonacci_generator(1,6,0.25))
-            long_duration_generator = list(self.fibonacci_generator(1,4,1))
-            arp_generator = cycle(list(self.fibonacci_generator(1, 10, 1)))
-
             for instrument_idx, instrument in enumerate(self.instrument_list):
                 instrument_type = re.match(r'.*voice.(.*)\'>$', str(type(instrument))).group(1)
 
-
-
-                print('type of instrument is: {}'.format(instrument_type))
-
                 if instrument_type in arp_instruments:
                     arp_dur = next(arp_generator)
-                    print(arp_dur)
                     octave = 6
-                    durs = duration_generator
-                    for dur in durs:
-                        print(dur)
+                    durs = [next(duration_generator) for x in range((next(arp_generator)))]
                     self.instrument_list[instrument_idx] = self._create_part_arpeggio(generation, self.generators[generation % len(self.generators)], instrument, arp_dur, octave, durs)
                 
                 if instrument_type in sustain_instruments:
-                    octave = 4
-                    durs = long_duration_generator
-                    for dur in durs:
-                        print(durs)
+                    octave = 3
+                    durs = [next(long_duration_generator) for x in range(next(long_distance_generator))]
                     voice = generation % 3
                     self.instrument_list[instrument_idx] = self._create_part_long_notes(generation, self.generators[generation % len(self.generators)], instrument, octave, durs, voice) 
 
@@ -283,202 +272,203 @@ class Fractal:
 
 time_signature = [(4, 4)]
 
-f = Fractal(n_samples=2, n_generators=4)
+f = Fractal(n_samples=3500, n_generators=4)
 
 f.set_time_signature(time_signature)
 
 f.generate_instruments([Flute(), Clarinet(), Violin(), Cello()])
 
-
 arp_instruments = ['Flute', 'Violin']
 sustain_instruments = ['Clarinet', 'Cello']
 
-f.make_internal_scores(0, arp_instruments, sustain_instruments)
+f.make_internal_scores(100, arp_instruments, sustain_instruments)
 
-f.make_scores()
+#f.make_scores()
 
 
-# scores_downbeats = []
-# scores_features = []
+scores_downbeats = []
+scores_features = []
 
-# def get_measure_downbeat_stress(stress_list: Iterable[int]) -> Iterable[int]:
-#     pass
+def get_measure_downbeat_stress(stress_list: Iterable[int]) -> Iterable[int]:
+    pass
 
-# def get_mode_pc_normal_order(no_list: Iterable[int]) -> Iterable[int]:
+def get_mode_pc_normal_order(no_list: Iterable[int]) -> Iterable[int]:
 
-#     no_list = [tuple(no) for no in no_list]
+    no_list = [tuple(no) for no in no_list]
 
-#     no_list_uniques = []
+    no_list_uniques = []
 
-#     for no in no_list:
-#         if no in no_list_uniques:
-#             pass
-#         else:
-#             no_list_uniques.append(no)
+    for no in no_list:
+        if no in no_list_uniques:
+            pass
+        else:
+            no_list_uniques.append(no)
 
-#     pc_set_dict = {}
+    pc_set_dict = {}
 
-#     for item in no_list_uniques:
-#         pc_set_dict[item] = 0
+    for item in no_list_uniques:
+        pc_set_dict[item] = 0
 
-#     for item in no_list:
+    for item in no_list:
 
-#         pc_set_dict[item] = pc_set_dict[item] + 1
+        pc_set_dict[item] = pc_set_dict[item] + 1
 
-#     max_pc_set = max(pc_set_dict, key=pc_set_dict.get)
+    max_pc_set = max(pc_set_dict, key=pc_set_dict.get)
 
-#     max_pc_str = [str(pc) for pc in max_pc_set]
+    max_pc_str = [str(pc) for pc in max_pc_set]
 
-#     return " ".join(max_pc_str)
+    return " ".join(max_pc_str)
 
-# for score in generated_scores:
-#     score_downbeats = []
-#     score_beat_durations = []
-#     measures = 0
+for score in f.generated_scores:
+    score_downbeats = []
+    score_beat_durations = []
+    measures = 0
     
-#     downbeat_pitch_class_sets = []
+    downbeat_pitch_class_sets = []
 
-#     for part in score.score_parts:
+    for part in score.score_parts:
 
-#         part_measure_first_beats = []
+        part_measure_first_beats = []
 
-#         for idx, measure in enumerate(part.measures):
+        for idx, measure in enumerate(part.measures):
 
-#             # first beat in the measure
-#             first_measure_beat = measure.beats[0]
+            # first beat in the measure
+            first_measure_beat = measure.beats[0]
             
-#             # if first beat contains notes
-#             if first_measure_beat.notes:
-#                first_measure_note = first_measure_beat.notes[0]
+            # if first beat contains notes
+            if first_measure_beat.notes:
+               first_measure_note = first_measure_beat.notes[0]
 
-#             # (notes and rests have durations)
-#             score_beat_durations.append(first_measure_note.dur)
+            # (notes and rests have durations)
+            score_beat_durations.append(first_measure_note.dur)
 
-#             if type(first_measure_note) is Note:
-#                 # first measure note is actually a note
-#                 # append note pitch class
-#                 part_measure_first_beats.append(first_measure_note.pc)
+            if type(first_measure_note) is Note:
+                # first measure note is actually a note
+                # append note pitch class
+                part_measure_first_beats.append(first_measure_note.pc)
 
-#             elif type(first_measure_note) is Rest:
-#                 # first measure note is actually a rest
-#                 part_measure_first_beats.append(None)
+            elif type(first_measure_note) is Rest:
+                # first measure note is actually a rest
+                part_measure_first_beats.append(None)
 
-#             else:
-#                 raise Exception('Invalid first measure note type')
+            else:
+                raise Exception('Invalid first measure note type')
 
-#             measures += 1
+            measures += 1
 
-#         # add list of part's first measure beats
-#         downbeat_pitch_class_sets.append(part_measure_first_beats)
+        # add list of part's first measure beats
+        downbeat_pitch_class_sets.append(part_measure_first_beats)
 
-#     # print('part downbeats')
-#     # for part_downbeats in downbeat_pitch_class_sets:
-#     #     print(part_downbeats)
+    # print('part downbeats')
+    # for part_downbeats in downbeat_pitch_class_sets:
+    #     print(part_downbeats)
 
-#     # Figure out our score pitch classes
-#     total_measures = len(score.score_parts[0].measures)
+    # Figure out our score pitch classes
+    total_measures = len(score.score_parts[0].measures)
     
-#     score_normal_orders = []
+    score_normal_orders = []
 
-#     for measure_idx in range(total_measures):
+    for measure_idx in range(total_measures):
 
-#         downbeat_pitches = [ x[measure_idx] for x in downbeat_pitch_class_sets]
-#         pc_set = PitchClassSet(downbeat_pitches)
-#         pc_set_normal_order = pc_set.normal_order
+        downbeat_pitches = [x[measure_idx] for x in downbeat_pitch_class_sets]
+        pc_set = PitchClassSet(downbeat_pitches)
+        pc_set_normal_order = pc_set.normal_order
 
-#         # print(' measure idx: {}'.format(measure_idx))
-#         # print('downbeat pcs: {}'.format(downbeat_pitches))
-#         # print('normal order: {}'.format(pc_set_normal_order))
+        # print(' measure idx: {}'.format(measure_idx))
+        # print('downbeat pcs: {}'.format(downbeat_pitches))
+        # print('normal order: {}'.format(pc_set_normal_order))
 
-#         if len(pc_set_normal_order) > 2:
-#             score_normal_orders.append(str(pc_set_normal_order))
+        if len(pc_set_normal_order) > 2:
+            score_normal_orders.append(str(pc_set_normal_order))
 
-#     # print('Score Normal Orders')
-#     # for x in score_normal_orders:
-#     #     print(x)
+    # print('Score Normal Orders')
+    # for x in score_normal_orders:
+    #     print(x)
 
-#     cnt = Counter()
+    cnt = Counter()
 
-#     for normal_order in score_normal_orders:
-#         cnt[normal_order] += 1
+    for normal_order in score_normal_orders:
+        cnt[normal_order] += 1
 
-#     #score_downbeat_mode_pcset = get_mode_pc_normal_order([PitchClassSet(pcs).normal_order for pcs in downbeat_pcsets])
+    #score_downbeat_mode_pcset = get_mode_pc_normal_order([PitchClassSet(pcs).normal_order for pcs in downbeat_pcsets])
 
-#     scores_downbeats.append(score_downbeats)
+    scores_downbeats.append(score_downbeats)
 
-#     top_three_set_classes = cnt.most_common(3)
+    top_three_set_classes = cnt.most_common(3)
 
-#     print(top_three_set_classes)
+    score_downbeat_pitch_class_one = PITCH_CLASS_ASSIGNMENT[top_three_set_classes[0][0]]
+    score_downbeat_pitch_class_two = PITCH_CLASS_ASSIGNMENT[top_three_set_classes[1][0]]
+    score_downbeat_pitch_class_three = PITCH_CLASS_ASSIGNMENT[top_three_set_classes[2][0]]
 
-#     score_downbeat_pitch_class_one = PITCH_CLASS_ASSIGNMENT[top_three_set_classes[0][0]]
-#     score_downbeat_pitch_class_two = PITCH_CLASS_ASSIGNMENT[top_three_set_classes[1][0]]
-#     score_downbeat_pitch_class_three = PITCH_CLASS_ASSIGNMENT[top_three_set_classes[2][0]]
+    score_measures = measures / len(score.score_parts)
+    score_duration_mean = statistics.mean(score_beat_durations)
 
-#     score_measures = measures / len(score.score_parts)
-#     score_duration_mean = statistics.mean(score_beat_durations)
-
-#     scores_features.append(
-#         [score_downbeat_pitch_class_one, score_downbeat_pitch_class_two, score_downbeat_pitch_class_three]
-#     )
+    scores_features.append(
+        [score_downbeat_pitch_class_one, 
+        score_downbeat_pitch_class_two, 
+        score_downbeat_pitch_class_three, 
+        score_duration_mean,
+        score_measures]
+    )
     
 
 
-# # Zero pad any scores downbeat lists < max size downbeat list
-# max_score_downbeat_len = max(
-#     [len(score_downbeats) for score_downbeats in scores_downbeats]
-# )
+# Zero pad any scores downbeat lists < max size downbeat list
+max_score_downbeat_len = max(
+    [len(score_downbeats) for score_downbeats in scores_downbeats]
+)
 
-# for score_downbeats in scores_downbeats:
-#     if len(score_downbeats) < max_score_downbeat_len:
-#         for i in range(len(score_downbeats), max_score_downbeat_len):
-#             score_downbeats.append(0)
-
-
-# # Assemble all score features and downbeats into a dataset
-# scores_dataset = []
-# for score_idx in range(len(scores_downbeats)):
-#     features = scores_features[score_idx]
-#     # downbeats = scores_downbeats[score_idx]
-#     # features = features + downbeats
-#     scores_dataset.append(features)
+for score_downbeats in scores_downbeats:
+    if len(score_downbeats) < max_score_downbeat_len:
+        for i in range(len(score_downbeats), max_score_downbeat_len):
+            score_downbeats.append(0)
 
 
-# print("Running KMeans")
-
-# X = np.array(scores_dataset, dtype=object)
-# print(X.shape)
-
-# pca = PCA(n_components=3)
-# pca.fit(X)
-# Xpca = pca.transform(X)
-
-# # print(Xpca.shape)
-
-# # Xpca = TSNE(n_components=3).fit_transform(X)
-
-# # print(Xpca.shape)
-
-# random_state = 900
-# n_clusters = 8
-
-# kmeans = KMeans(n_clusters=n_clusters, random_state=random_state)
-
-# output = kmeans.fit_predict(Xpca)
-# for idx, item in enumerate(output):
-#     print(idx, item)
-
-# kmeanslabels = kmeans.labels_
-# cluster_centers = kmeans.cluster_centers_
-
-# fig = plt.figure(1, figsize=(20, 4))
-
-# ax = fig.add_subplot(111, projection='3d')
-# ax.scatter(Xpca[:,0], Xpca[:, 1], Xpca[:,2], c=kmeanslabels)
-
-# # labels = ['score {0}'.format(i + 1) for i in range(len(scores_dataset))]
-# # tooltip = mpld3.plugins.PointLabelTooltip(ax, labels=labels)
-# # mpld3.plugins.connect(fig, tooltip)
+# Assemble all score features and downbeats into a dataset
+scores_dataset = []
+for score_idx in range(len(scores_downbeats)):
+    features = scores_features[score_idx]
+    # downbeats = scores_downbeats[score_idx]
+    # features = features + downbeats
+    scores_dataset.append(features)
 
 
-# plt.show()
+print("Running KMeans")
+
+X = np.array(scores_dataset, dtype=object)
+print(X.shape)
+
+pca = PCA(n_components=3)
+pca.fit(X)
+Xpca = pca.transform(X)
+
+# print(Xpca.shape)
+
+# Xpca = TSNE(n_components=3).fit_transform(X)
+
+# print(Xpca.shape)
+
+random_state = 900
+n_clusters = 8
+
+kmeans = KMeans(n_clusters=n_clusters, random_state=random_state)
+
+output = kmeans.fit_predict(Xpca)
+for idx, item in enumerate(output):
+    print(idx, item)
+
+kmeanslabels = kmeans.labels_
+cluster_centers = kmeans.cluster_centers_
+
+fig = plt.figure(1, figsize=(20, 4))
+
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(Xpca[:,0], Xpca[:, 1], Xpca[:,2], c=kmeanslabels)
+
+# labels = ['score {0}'.format(i + 1) for i in range(len(scores_dataset))]
+# tooltip = mpld3.plugins.PointLabelTooltip(ax, labels=labels)
+# mpld3.plugins.connect(fig, tooltip)
+
+
+plt.show()
 

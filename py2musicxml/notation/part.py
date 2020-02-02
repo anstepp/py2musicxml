@@ -72,8 +72,11 @@ class Part:
         return uniques
 
     def _get_factor(self, input_list: list) -> int:
+        factor = 1
         minimum = min(input_list)
-        factor = 1/minimum
+        decimal_part = minimum - int(minimum)
+        if decimal_part != 0:
+            factor = 1/decimal_part
         return factor
 
     def assign_measure_weight(self):
