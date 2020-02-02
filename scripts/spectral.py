@@ -1,8 +1,10 @@
 import math
 import numpy as np
+
+from math import log2, pow
+
 from scipy.io import wavfile
 from scipy.signal import blackmanharris, find_peaks
-from math import log2, pow
 
 
 filename = "sine440.wav"

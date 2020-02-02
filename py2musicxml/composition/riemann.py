@@ -1,5 +1,3 @@
-from pprint import pprint
-from typing import List
 
 class RiemannChord:
     def __init__(self, note_a: int, note_b: int, note_c: int) -> None:
@@ -79,65 +77,4 @@ class RiemannChord:
         return 'Root: {}, Third: {}, Fifth: {}'.format(
             self.root, self.third, self.fifth
         )
-
-
-def _get_windows(transformation: str, slice_start: int, slice_end: int):
-        
-    transform_window = None
-
-    if len(transformation) < slice_start:
-        transform_window = transformation
-    elif len(transformation) < slice_end:
-        transform_window = transformation[slice_start:]
-    else:
-        transform_window = transformation[slice_start:slice_end]
-
-    return transform_window
-
-def create_transformation_fractal(original_transformation: str, generations: int, window_start: int, window_end: int) -> List[str]:
-
-    transformation_replacement = {
-        'P' : 'LPL',
-        'L' : 'SPS',
-        'R' : 'PSP',
-        'S' : 'LSL',
-        'N' : 'PLR',
-        'H' : 'LPL',
-    }
-
-    transformation_generations = []
-
-    transform_this = original_transformation
-
-    for generation in range(generations):
-
-        transformed_transformations = []
-
-        # transform = char in string
-        for transform in transform_this:
-            transformed_transform = transformation_replacement[transform]
-            transformed_transformations.append(transformed_transform)
-            new_transform = ''.join(transformed_transformations)
-
-        windowed_transformation = _get_windows(new_transform, window_start, window_end)
-        transformation_generations.append(windowed_transformation)
-        transform_this = windowed_transformation
-
-    return transformation_generations
-
-
-chord = RiemannChord(0,4,7)
-start_transformations = "PLRPLRPLRPLR"
-
-result = create_transformation_fractal(start_transformations, 1000, 0, 100)
-
-for generation in result:
-    print('\n')
-    for letter in generation:
-        current_transformation = getattr(chord, letter)
-        new_chord = current_transformation()
-        print(new_chord)
-        chord = new_chord
-
-
 

@@ -1,26 +1,28 @@
 import matplotlib.pyplot as plt
+import mpld3
 import numpy as np
 import random
 import re
 import statistics
 
 from collections import Counter
-
 from importlib import import_module
-
+from itertools import cycle
 from mpl_toolkits.mplot3d import Axes3D
-import mpld3
+
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-from typing import Iterable, Tuple
-from itertools import cycle
 
-from py2musicxml.notation import Score, Note, Rest
-from riemann import RiemannChord
-from voice import Flute, Clarinet, Bassoon, Voice, Violin, Cello
-from riemann_generator import RiemannGenerator
+from typing import Iterable, Tuple
+
 from py2musicxml.analysis import PitchClassSet
+from py2musicxml.composition import RiemannChord
+from py2musicxml.composition.voice import Flute, Clarinet, Bassoon, Voice, Violin, Cello
+from py2musicxml.notation import Score, Note, Rest
+
+from riemann_generator import RiemannGenerator
+
 
 PITCH_CLASS_SETS = {
 
@@ -283,7 +285,7 @@ class Fractal:
 
 time_signature = [(4, 4)]
 
-f = Fractal(n_samples=2, n_generators=4)
+f = Fractal(n_samples=3, n_generators=4)
 
 f.set_time_signature(time_signature)
 
@@ -293,7 +295,7 @@ f.generate_instruments([Flute(), Clarinet(), Violin(), Cello()])
 arp_instruments = ['Flute', 'Violin']
 sustain_instruments = ['Clarinet', 'Cello']
 
-f.make_internal_scores(0, arp_instruments, sustain_instruments)
+f.make_internal_scores(50, arp_instruments, sustain_instruments)
 
 f.make_scores()
 

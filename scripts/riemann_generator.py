@@ -1,10 +1,11 @@
-from py2musicxml.notation import Note, Score, Part, Rest
-from riemann import RiemannChord
-from itertools import cycle
-
 import random
 
+from itertools import cycle
 from typing import Iterable, Tuple, List
+
+from py2musicxml.notation import Note, Score, Part, Rest
+from py2musicxml.composition import RiemannChord
+
 
 class RiemannGenerator:
 

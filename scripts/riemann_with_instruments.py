@@ -1,11 +1,13 @@
-from py2musicxml.notation import Score
-from riemann import RiemannChord
-from voice import Flute, Clarinet, Bassoon, Voice
-from riemann_generator import RiemannGenerator
+import random
 
 from typing import Iterable
 
-import random
+from py2musicxml.notation import Score
+from py2musicxml.composition import RiemannChord
+from py2musicxml.composition.voice import Flute, Clarinet, Bassoon, Voice
+
+from riemann_generator import RiemannGenerator
+
 
 # create instruments
 
