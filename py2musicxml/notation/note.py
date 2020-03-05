@@ -21,7 +21,9 @@ class Note:
 
     # measure defaults
     measure_factor, measure_flag = 1, False
-    is_rest = True
+
+    # chord
+    is_chord_member = False
 
     def __init__(self, duration: int, octave: int, pitch_class: int) -> None:
 

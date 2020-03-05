@@ -21,7 +21,7 @@ class Score:
         composer: Optional[str] = None,
     ):
 
-        self.score_parts = score_parts
+        self.score_parts = [item for sublist in score_parts for item in sublist]
 
         self.title = title
         self.composer = composer
@@ -134,6 +134,7 @@ class Score:
             # print(score_part.measures)
             for measure_index, current_measure in enumerate(score_part.measures):
                 current_measure_count += 1
+                standard_subdivisions = []
                 if current_measure_count != 1:
                     xml_measure = etree.SubElement(
                         xml_part, "measure", {"number": str(current_measure_count)}
@@ -174,6 +175,10 @@ class Score:
                             # note
                             #   -> pitch, duration, accidental, notation ties
                             xml_note = etree.SubElement(xml_measure, "note")
+
+                            if current_note.is_chord_member:
+
+                                xml_chord_tag = etree.SubElement(xml_note, "chord")
 
                             xml_note_pitch = etree.SubElement(xml_note, "pitch")
 
