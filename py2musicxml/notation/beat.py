@@ -20,12 +20,10 @@ class Beat:
     def add_note(self, note: Note) -> None:
         self.notes.append(note)
         self._make_beams()
-        print(self.notes)
 
     def extend_beat(self, notes: Iterable[Note]) -> None:
         self.notes.extend(notes)
         self._make_beams()
-        print(self.notes)
 
     #     self._tuplet_test()
 

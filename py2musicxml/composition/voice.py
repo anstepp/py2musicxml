@@ -27,7 +27,7 @@ class Voice:
             if isinstance(note, Note):
                 temp_list.append(Note(note.dur, note.octave, note.pc + 2))
             else:
-                append(note)
+                temp_list.append(note)
 
         return temp_list
 
@@ -57,28 +57,34 @@ class Voice:
         temp_list = []
         for note in note_list:
             if isinstance(note, Note):
-                if note.octave == self.range[0][0]:
-                    if note.pc >= self.range[0][1]:
-                        temp_list.append(note)
-                    else:
-                        temp_note = Note(note.dur, self.range[0][0], note.pc)
-                        temp_list.append(temp_note)
+                if note.octave == self.range[0][0] and note.pc < self.range[0][1]:
+                    temp_note = Note(note.dur, note.octave + 1, note.pc)
+                    temp_list.append(temp_note)
+
+                elif note.octave == self.range[0][0] and note.pc >= self.range[0][1]:
+                    temp_list.append(note)
+
                 elif note.octave < self.range[0][0]:
                     temp_note = Note(note.dur, self.range[0][0], note.pc)
                     temp_list.append(temp_note)
-                elif note.octave == self.range[1][0]:
-                    if note.pc <= self.range[1][1]:
-                        temp_list.append(note)
-                    else:
-                        temp_note = Note(note.dur, self.range[1][0], note.pc)
-                        temp_list.append(temp_note)
+
+                elif note.octave == self.range[1][0] and note.pc > self.range[1][1]:
+                    temp_note = Note(note.dur, note.octave - 1, note.pc)
+                    temp_list.append(temp_note)
+
+                elif note.octave == self.range[1][0] and note.pc <= self.range[1][1]:
+                    temp_list.append(note)
+
                 elif note.octave > self.range[1][0]:
                     temp_note = Note(note.dur, self.range[1][0], note.pc)
-                    temp_list.append(temp_note)                   
+                    temp_list.append(temp_note)  
+
                 else:
                     temp_list.append(note)
+
             else:
                 temp_list.append(note)
+
         return temp_list
 
     def make_staccato(self, slice_range=None) -> None:
@@ -107,10 +113,8 @@ class Voice:
         for note in self.note_list:
             if isinstance(note, Note):
                 if note.octave < temp_range[0][0] and note.pc < temp_range[0][1]:
-                    print("out of range, correcting up")
                     note = Note(note.dur, temp_range[0][0], note.pc)
                 elif note.octave > temp_range[1][0] and note.pc > temp_range[1][1]:
-                    print("out of range, correcting down")
                     note.octave = Note(note.dur, temp_range[1][0], note.pc)
 
 class Flute(Voice):
@@ -125,7 +129,6 @@ class Clarinet(Voice):
         self.range = [(3, 4), (6, 9)]
         self.chalumeau = [(3, 4), (4, 4)]
 
-
     def make_part(self, time_signature: Time_Signature) -> Part:
         checked_list = self._check_range(self.note_list)
         transposed_list = self._transpose(checked_list, 2)
@@ -136,10 +139,8 @@ class Clarinet(Voice):
         for note in self.note_list[slice_range[0] : slice_range[1]]:
             if isinstance(note, Note):
                 if note.octave < self.chalumeau[0][0] and note.pc < self.chalumeau[0][1]:
-                    print("out of range, correcting up")
                     note = Note(note.dur, self.chalumeau[0][0], note.pc)
                 elif note.octave > self.chalumeau[1][0] and note.pc > self.chalumeau[1][1]:
-                    print("out of range, correcting down")
                     note = Note(note.dur, self.chalumeau[1][0], note.pc)
 
 
@@ -184,29 +185,56 @@ class Piano(Voice):
         note_list_bottom = []
         note_list_top = []
 
-        for note in self.note_list:
-            if isinstance(note, Note):
+        for idx, note in enumerate(self.note_list):
+            if idx < len(self.note_list) - 1:
+                advance_note = self.note_list[idx + 1]
+            if isinstance(note, Note) and isinstance(advance_note, Note):
+                if advance_note.is_chord_member is True:
+                    if note.octave >= 4:
+                        note_list_top.append(note)
+                    elif note.octave < 4:
+                        note_list_bottom.append(note)
+                    else:
+                        raise Exception('Note is out of range.')
+                elif advance_note.is_chord_member is False:
+                    if note.octave >= 4:
+                        note_list_top.append(note)
+                        note_list_bottom.append(Rest(note.dur))
+                    elif note.octave < 4:
+                        note_list_bottom.append(note)
+                        note_list_top.append(Rest(note.dur))
+                    else:
+                        raise Exception('Note is out of range.')
+
+            elif isinstance(note, Note):
+
                 if note.octave >= 4:
                     note_list_top.append(note)
                     note_list_bottom.append(Rest(note.dur))
-
                 elif note.octave < 4:
                     note_list_bottom.append(note)
                     note_list_top.append(Rest(note.dur))
-
                 else:
-                    print('!!!!!!!!ERROR!!!!!!!!!!!')
+                    raise Exception('Note is out of range.')
 
             elif isinstance(note, Rest):
                 note_list_top.append(note)
                 note_list_bottom.append(note)
 
             else:
-                print("!!!!!!!ERROR!!!!!!!!!")
+                raise Exception('Not a Note or Rest.')
 
-        self.bottom = Part(note_list_bottom, time_signature)
-        self.top = Part(note_list_top, time_signature)
+        for top_note, bottom_note in zip(note_list_top, note_list_bottom):
+            print('top:\t{}bottom:\t{}'.format(top_note, bottom_note))
+
+        bottom = Part(note_list_bottom, time_signature)
+        top = Part(note_list_top, time_signature)
+
+        # for top_measure, bottom_measure in zip(top.measures, bottom.measures):
+        #     for top_beat, bottom_beat in zip(top_measure.beats, bottom_measure.beats):
+        #         for top_note, bottom_note in zip(top_beat.notes, bottom_note.notes):
+        #             print('top:\t{}, bottom:\t{}'.format(top_note, bottom_note))
 
         """keep parts in score order"""
-        self.part = [self.top, self.bottom]
+        self.part = [top, bottom]
         return self.part     
