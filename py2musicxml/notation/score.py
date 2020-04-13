@@ -230,7 +230,6 @@ class Score:
                         beat_subdivisions = current_beat.subdivisions
                         
                         for current_note in current_beat.notes:
-                            print('Adding {}'.format(current_note))
 
                             if type(current_note) == Rest:
                                 xml_note = etree.SubElement(xml_measure, "note")
@@ -331,7 +330,6 @@ class Score:
                                     )
 
                     if (len(staves) > 1) and (staff_idx < len(staves) - 1):
-                        print('Adding backup')
                         xml_backup = etree.SubElement(xml_measure, "backup")
                         xml_backup_duration = etree.SubElement(xml_backup, "duration")
                         xml_backup_duration.text = str(staff.measure_factor * current_measure.total_cumulative_beats)

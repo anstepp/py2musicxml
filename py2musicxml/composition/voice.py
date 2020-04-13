@@ -11,13 +11,22 @@ class Voice:
         self.pitches = []
         self.durations = []
 
-        self.range = Range
+        self.inst_range = Range
 
         """Have both a note_list and a part associated with the instrument.
         In the case we have to operate a method belonging to an instrument
         after the measure/beat subdivision algorithm, or if the instrument
         is multiple parts (i.e. piano)"""
         self.note_list = []
+
+
+        """default to treble clef"""
+
+        self.clef = 'G'
+
+        """Default to in c"""
+
+        self.transposition = 0
 
     def _transpose(self, input_list: Iterable[Union[Note, Rest]], interval: int) -> None:
 
@@ -53,30 +62,34 @@ class Voice:
         part = Part(checked_list, time_signature)
         return [part]
 
-    def _check_range(self, note_list: Iterable[Union[Note, Rest]]):
+    def _check_range(self, note_list: Iterable[Union[Note, Rest]], temp_range=None):
         temp_list = []
+        if temp_range:
+            checking_range = temp_range
+        else:
+            checking_range = self.inst_range
         for note in note_list:
             if isinstance(note, Note):
-                if note.octave == self.range[0][0] and note.pc < self.range[0][1]:
+                if note.octave == checking_range[0][0] and note.pc < checking_range[0][1]:
                     temp_note = Note(note.dur, note.octave + 1, note.pc)
                     temp_list.append(temp_note)
 
-                elif note.octave == self.range[0][0] and note.pc >= self.range[0][1]:
+                elif note.octave == checking_range[0][0] and note.pc >= checking_range[0][1]:
                     temp_list.append(note)
 
-                elif note.octave < self.range[0][0]:
-                    temp_note = Note(note.dur, self.range[0][0], note.pc)
+                elif note.octave < checking_range[0][0]:
+                    temp_note = Note(note.dur, checking_range[0][0], note.pc)
                     temp_list.append(temp_note)
 
-                elif note.octave == self.range[1][0] and note.pc > self.range[1][1]:
+                elif note.octave == checking_range[1][0] and note.pc > checking_range[1][1]:
                     temp_note = Note(note.dur, note.octave - 1, note.pc)
                     temp_list.append(temp_note)
 
-                elif note.octave == self.range[1][0] and note.pc <= self.range[1][1]:
+                elif note.octave == checking_range[1][0] and note.pc <= checking_range[1][1]:
                     temp_list.append(note)
 
-                elif note.octave > self.range[1][0]:
-                    temp_note = Note(note.dur, self.range[1][0], note.pc)
+                elif note.octave > checking_range[1][0]:
+                    temp_note = Note(note.dur, checking_range[1][0], note.pc)
                     temp_list.append(temp_note)  
 
                 else:
@@ -88,15 +101,15 @@ class Voice:
         return temp_list
 
     def make_staccato(self, slice_range=None) -> None:
+        temp_list = []
         if slice_range:
             for note in self.note_list:
-                if isinstance(note, Note):
+                if isinstance(note, Note) and note.dur >= 0.5:
                     temp_list.append(Note(0.25, note.octave, note.pc))
                     temp_list.append(Rest(note.dur - 0.25))
         else:
-            temp_list = []
             for note in self.note_list:
-                if isinstance(note, Note):
+                if isinstance(note, Note) and note.dur >= 0.5:
                     temp_list.append(Note(0.25, note.octave, note.pc))
                     temp_list.append(Rest(note.dur - 0.25))
         self.note_list = temp_list
@@ -110,44 +123,37 @@ class Voice:
         self.note_list = input_list
 
     def constrain_range(self, temp_range: Range):
-        for note in self.note_list:
-            if isinstance(note, Note):
-                if note.octave < temp_range[0][0] and note.pc < temp_range[0][1]:
-                    note = Note(note.dur, temp_range[0][0], note.pc)
-                elif note.octave > temp_range[1][0] and note.pc > temp_range[1][1]:
-                    note.octave = Note(note.dur, temp_range[1][0], note.pc)
+        self.note_list = self._check_range(self.note_list, temp_range=temp_range)
 
 class Flute(Voice):
     def __init__(self):
         super(Flute, self).__init__()
-        self.range = [(4, 0), (7, 2)]
+        self.inst_range = [(4, 0), (7, 2)]
+        self.clef = "G"
 
 
 class Clarinet(Voice):
     def __init__(self):
         super(Clarinet, self).__init__()
-        self.range = [(3, 4), (6, 9)]
+        self.inst_range = [(3, 4), (6, 9)]
         self.chalumeau = [(3, 4), (4, 4)]
+        self.clef = "G"
+        self.transposition = 2
 
     def make_part(self, time_signature: Time_Signature) -> Part:
         checked_list = self._check_range(self.note_list)
-        transposed_list = self._transpose(checked_list, 2)
-        part = Part(transposed_list, time_signature)
+        part = Part(checked_list, time_signature)
         return [part]
 
     def constrain_to_chalumeau(self) -> None:
-        for note in self.note_list[slice_range[0] : slice_range[1]]:
-            if isinstance(note, Note):
-                if note.octave < self.chalumeau[0][0] and note.pc < self.chalumeau[0][1]:
-                    note = Note(note.dur, self.chalumeau[0][0], note.pc)
-                elif note.octave > self.chalumeau[1][0] and note.pc > self.chalumeau[1][1]:
-                    note = Note(note.dur, self.chalumeau[1][0], note.pc)
-
+        constrained_range = self._check_range(self.note_list, temp_range=self.chalumeau)
+        self.note_list = constrained_range
 
 class Bassoon(Voice):
     def __init__(self):
         super(Bassoon, self).__init__()
-        self.range = [(1, 10), (5, 3)]
+        self.inst_range = [(1, 10), (5, 3)]
+        self.clef = 'F'
 
 
 class Strings(Voice):
@@ -162,21 +168,23 @@ class Strings(Voice):
 class Violin(Strings):
     def __init__(self):
         super(Violin, self).__init__()
-        self.range = [(3, 7), (8, 11)]
+        self.inst_range = [(3, 7), (8, 11)]
         self.open_strings = [(3, 7), (4, 2), (4, 9), (5, 4)]
+        self.clef = 'G'
 
 
 class Cello(Strings):
     def __init__(self):
         super(Cello, self).__init__()
-        self.range = [(1, 0), (6, 4)]
+        self.inst_range = [(1, 0), (6, 4)]
         self.open_strings = [(1, 0), (1, 7), (2, 2), (2, 9)]
+        self.clef = 'F'
 
 
 class Piano(Voice):
     def __init__(self):
         super(Piano, self).__init__()
-        self.range = [(0, 9), (8, 0)]
+        self.inst_range = [(0, 9), (8, 0)]
 
     def make_part(self, time_signature: Time_Signature) -> Iterable[Part]:
 
@@ -223,9 +231,6 @@ class Piano(Voice):
 
             else:
                 raise Exception('Not a Note or Rest.')
-
-        for top_note, bottom_note in zip(note_list_top, note_list_bottom):
-            print('top:\t{}bottom:\t{}'.format(top_note, bottom_note))
 
         bottom = Part(note_list_bottom, time_signature)
         top = Part(note_list_top, time_signature)

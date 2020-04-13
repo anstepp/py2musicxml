@@ -76,7 +76,7 @@ class Part:
         return uniques
 
     def _get_factor(self, input_list: list) -> int:
-        fractional_list = [fractions.Fraction(x).limit_denominator(12) for x in input_list]
+        fractional_list = [fractions.Fraction(x).limit_denominator(2000) for x in input_list]
         denominators = [x.denominator for x in fractional_list]
         if denominators:
             lcm = denominators[0]
@@ -247,8 +247,7 @@ class Part:
                     if self.current_count == 2:
                         self.current_count = 0
                     else:
-                        self.current_count -= 2
-                    self.set_current_count_adjacencies()
+                        self.current_count -= 2 * self.measure_factor
 
                 elif self.current_measure.meter_division == "Triple":
                     if self._full_measure_tie_check():
@@ -258,8 +257,7 @@ class Part:
                     if self.current_count == 3:
                         self.current_count = 0
                     else:
-                        self.current_count -= 3
-                    self.set_current_count_adjacencies()
+                        self.current_count -= 3 * self.measure_factor
 
                 elif self.current_measure.meter_division == "Quadruple":
                     if self._full_measure_tie_check():
@@ -269,8 +267,9 @@ class Part:
                     if self.current_count == 4:
                         self.current_count = 0
                     else:
-                        self.current_count -= 4
-                    self.set_current_count_adjacencies()
+                        self.current_count -= 4 * self.measure_factor
+                self.set_current_count_adjacencies()
+                    
 
         else:
             """Eventually, this will deal with additive meters.
