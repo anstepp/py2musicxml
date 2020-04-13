@@ -35,6 +35,8 @@ class Note:
         # force starting_pitch to be keyless
         self.step_name, self.alter, self.accidental = self._get_step_name(0)
 
+        self.articulation = None
+
     def fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
         new_pitch_class, new_octave = None, None
 
@@ -106,6 +108,23 @@ class Note:
             raise Exception('starting_pitch must be zero, a flat key, or sharp key')
 
         return step_names[self.pc]
+
+    def add_articulation(self, notation: str) -> None:
+
+        """FIX ME: Create possible notation list"""
+
+        self.articulation = notation
+
+    def set_as_tie(self, tie_type: str) -> None:
+
+        if tie_type is 'tie_start':
+            self.tie_start = True
+        if tie_type is 'tie_continue':
+            self.tie_continue = True
+            self.articulation = None
+        if tie_type is 'tie_end':
+            self.tie_end = True
+            self.articulation = None
 
     def __eq__(self, other) -> bool:
         if (

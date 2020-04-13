@@ -10,6 +10,7 @@ from .beat import Beat
 
 EMPTY_MEASURE_FACTOR = 1
 
+ARTICULATIONS = ["stacatto", "tenuto", "accent"]
 
 class Score:
     """Generates a MusicXML score from a list of parts (NoteLists) and outputs score to file"""
@@ -275,6 +276,15 @@ class Score:
                                 xml_note_duration = etree.SubElement(xml_note, "duration")
                                 xml_note_duration.text = str(current_note.dur)
 
+                                if current_note.tie_start:
+                                    xml_tie = etree.SubElement(xml_note, "tie", {'type': 'start'})
+
+                                if current_note.tie_continue:
+                                    xml_tie = etree.SubElement(xml_note, "tie", {'type': 'start'})
+
+                                if current_note.tie_end:
+                                    xml_tie = etree.SubElement(xml_note, "tie", {'type': 'stop'})
+
                                 # accidental
                                 if current_note.alter:
                                     xml_note_accidental = etree.SubElement(
@@ -328,6 +338,14 @@ class Score:
                                     xml_notations_tied = etree.SubElement(
                                         xml_notations, "tied", {"type": "stop"}
                                     )
+
+                                if current_note.articulation:
+                                    if current_note.articulation in ARTICULATIONS:
+                                        xml_notations = etree.SubElement(xml_note, "notations")
+                                        xml_notations_articulation = etree.SubElement(xml_notations, "articulations")
+                                        xml_articulation = etree.SubElement(xml_notations_articulation, current_note.articulation)   
+                                else:
+                                    pass
 
                     if (len(staves) > 1) and (staff_idx < len(staves) - 1):
                         xml_backup = etree.SubElement(xml_measure, "backup")
