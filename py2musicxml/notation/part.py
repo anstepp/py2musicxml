@@ -190,7 +190,7 @@ class Part:
             ]
             self.current_beat = Beat(self.subdivisions * self.measure_factor)
 
-    def make_whole_measure_note(self, duration: int, advance: int, tie: bool, first=True) -> None:
+    def make_whole_measure_note(self, duration: int, advance: int, tie: bool, first: bool) -> None:
         note_to_add = copy.deepcopy(self.current_note)
         note_to_add.dur = duration * self.measure_factor
         if tie and first:
@@ -214,27 +214,32 @@ class Part:
             self.advance_current_beat_count()
 
     def _full_measure_tie_check(self) -> bool:
-        if self.current_measure_mod > 0:
-            return True
-        elif self.current_measure_floor > 1:
+        if self.current_measure_floor >= 1:
             return True
         else:
             return False
 
-    def get_internal_measures(self) -> int:
-        # print("get_internal_measures invoked")
-        # ("current_beat_count", self.current_beat_count)
+    def get_internal_measures(self, post_tie: bool) -> int:
         # Get any remainder of the note that belongs in the last measure
 
-        if self.current_beat_count > 0:
-            overflow = self.current_measure_mod
-            old_measure_dur = self.max_subdivisions - self.current_count
-            if old_measure_dur:
-                old_measure_note = copy.deepcopy(self.current_note)
-                old_measure_note.dur = old_measure_dur
-                self.current_beat.add_note(old_measure_note)
-                self.append_and_increment_measure()
-                # print("appended old measure")
+        first = post_tie
+
+        if self.current_count > 0:
+            if self.current_beat_count > 0:
+                overflow = self.current_measure_mod
+                old_measure_dur = self.max_subdivisions - self.current_count
+                if old_measure_dur:
+                    old_measure_note = copy.deepcopy(self.current_note)
+                    old_measure_note.dur = old_measure_dur
+                    self.current_beat.add_note(old_measure_note)
+                    self.append_and_increment_measure()
+                    first = False
+                else:
+                    pass
+            else:
+                pass
+        else:
+            pass
 
         # Test for all subdivisions being equal
 
@@ -242,68 +247,75 @@ class Part:
 
             counter = 0
             # how many measures do we need to write
-            while self.current_measure_floor >= 1:
+            while self.current_measure_floor >= 0:
                 """This uses the type of measure to write a whole measure.
                 Eventually, we need to take cases of dotted notes that cross
                 one level of subdivisions, as well as half notes in 3 and 4/4"""
                 if self.current_measure.meter_division == "Duple":
-                    if counter == 0:
-                        if self._full_measure_tie_check():
-                            self.make_whole_measure_note(2, 2, True, first=True)
-                        else:
-                            self.make_whole_measure_note(2, 2, False, first=True)
+                    div = 2
+                    if self._full_measure_tie_check():
+                        self.make_whole_measure_note(div, div, True, first)
+                        self.current_count -= div * self.measure_factor
+                    elif self.current_count == div * self.measure_factor:
+                        self.make_whole_measure_note(div, div, False, first)
+                        self.current_count == 0
+                        self.set_current_count_adjacencies()
+                        self.current_count -= div * self.measure_factor
+                    elif self.current_count < div * self.measure_factor:
+                        self.set_current_count_adjacencies()
+                        leftover_note = copy.deepcopy(self.current_note)
+                        leftover_note.dur = self.current_count
+                        leftover_note.set_as_tie('tie_end')
+                        return self.current_count, leftover_note
                     else:
-                        if self._full_measure_tie_check():
-                            self.make_whole_measure_note(2, 2, True, first=False)
-                        else:
-                            self.make_whole_measure_note(2, 2, False, first=False)
-                    if self.current_count == 2:
-                        self.current_count = 0
-                    else:
-                        self.current_count -= 2 * self.measure_factor
+                        pass
 
                 elif self.current_measure.meter_division == "Triple":
-                    if counter == 0:
-                        if self._full_measure_tie_check():
-                            self.make_whole_measure_note(3, 3, True, first=True)
-                        else:
-                            self.make_whole_measure_note(3, 3, False, first=True)
+                    div = 3
+                    if self._full_measure_tie_check():
+                        self.make_whole_measure_note(div, div, True, first)
+                        self.current_count -= div * self.measure_factor
+                    elif self.current_count == div * self.measure_factor:
+                        self.make_whole_measure_note(div, div, False, first)
+                        self.current_count == 0
+                        self.set_current_count_adjacencies()
+                        self.current_count -= div * self.measure_factor
+                    elif self.current_count < div * self.measure_factor:
+                        self.set_current_count_adjacencies()
+                        leftover_note = copy.deepcopy(self.current_note)
+                        leftover_note.dur = self.current_count
+                        leftover_note.set_as_tie('tie_end')
+                        return self.current_count, leftover_note
                     else:
-                        if self._full_measure_tie_check():
-                            self.make_whole_measure_note(3, 3, True, first=False)
-                        else:
-                            self.make_whole_measure_note(3, 3, False, first=False)
-                    if self.current_count == 3:
-                        self.current_count = 0
-                    else:
-                        self.current_count -= 3 * self.measure_factor
+                        pass
 
                 elif self.current_measure.meter_division == "Quadruple":
-                    if counter == 0:
-                        if self._full_measure_tie_check():
-                            self.make_whole_measure_note(4, 4, True, first=True)
-                        else:
-                            self.make_whole_measure_note(4, 4, False, first=True)
+                    div = 4
+                    if self._full_measure_tie_check():
+                        self.make_whole_measure_note(div, div, True, first)
+                        self.current_count -= div * self.measure_factor
+                    elif self.current_count == div * self.measure_factor:
+                        self.make_whole_measure_note(div, div, False, first)
+                        self.current_count == 0
+                        self.set_current_count_adjacencies()
+                        self.current_count -= div * self.measure_factor
+                    elif self.current_count < div * self.measure_factor:
+                        self.set_current_count_adjacencies()
+                        leftover_note = copy.deepcopy(self.current_note)
+                        leftover_note.dur = self.current_count
+                        leftover_note.set_as_tie('tie_end')
+                        return self.current_count, leftover_note
                     else:
-                        if self._full_measure_tie_check():
-                            self.make_whole_measure_note(4, 4, True, first=False)
-                        else:
-                            self.make_whole_measure_note(4, 4, False, first=False)
-                    if self.current_count == 4:
-                        self.current_count = 0
-                    else:
-                        self.current_count -= 4 * self.measure_factor
+                        pass
                 self.set_current_count_adjacencies()
-                counter += 1
-                    
-
+                first = False         
         else:
             """Eventually, this will deal with additive meters.
             For now, skip, and fail on a test by testing:
             assert self.current_measure.equal_divisions = True"""
             pass
         last_current_count = self.current_count
-        return last_current_count
+        return last_current_count, None
 
     def set_current_count_adjacencies(self) -> None:
         self.current_count_floor = self.current_count // self.subdivisions
@@ -358,7 +370,7 @@ class Part:
         ):
             new_note_beat = copy.deepcopy(note)
             new_note_next_beat = copy.deepcopy(note)
-            new_note_next_beat.articulation = None
+            new_note_next_beat.set_as_tie('tie_end')
             new_note_beat.dur = self.current_beat.subdivisions - self.current_count
             new_note_next_beat.dur = note.dur - new_note_beat.dur
             self.current_beat.add_note(new_note_beat)
@@ -462,7 +474,7 @@ class Part:
                     if measure_or_less_test or self.current_measure_floor == 0:
                         # print("less than a measure, location {}, note {}, remainder {}, current_count {}, current_measure_floor {}, current_measure_mod {}, max_subdivisions {}".format(location, note, remainder, self.current_count, self.current_measure_floor, self.current_measure_mod, self.max_subdivisions))
                         note_to_add = copy.deepcopy(self.current_note)
-                        note_to_add.dur = round(self.measure_factor * note_to_add.dur)
+                        note_to_add.dur = self.measure_factor * note_to_add.dur
                         self.current_beat.add_note(note_to_add)
                         if self.current_count >= self.subdivisions:
                             self.advance_current_beat_count()
@@ -517,10 +529,18 @@ class Part:
 
                             # there is at least one measure to be filled
                             # ie break into measures and beats
-                            remainder = self.get_internal_measures()
+                            if self.current_note.dur > self.current_count:
+                                first = False
+                            else:
+                                first = True
+                            remainder, leftover_note = self.get_internal_measures(first)
+                            if leftover_note:
+                                self.current_beat.add_note(leftover_note)
+                            else:
+                                pass
                             # would need to pass current_beat_count
 
-                        if self.current_count > 0:
+                        elif self.current_count > 0:
                             # print("tail, location {}, dur {}, current_count {}".format(location, note.dur, self.current_count))
                             note_to_add_to_old_measure = copy.deepcopy(self.current_note)
                             note_to_add_to_old_measure.dur = self.current_count
@@ -536,8 +556,8 @@ class Part:
 
                     pass
 
-
         if remainder:
+            self.current_measure.add_beat(self.current_beat)
             self.wrap_up(self.max_subdivisions - remainder)
         else:
             self.measures.append(self.current_measure)

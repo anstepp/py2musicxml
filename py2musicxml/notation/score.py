@@ -61,7 +61,7 @@ class Score:
         for part in self._parts:
             for staff in part['staves']:
                 if len(staff.measures) > max_len:
-                    max_len = len(staff.measures) - 1
+                    max_len = len(staff.measures)
                     longest_staff = staff              
 
         for part in self._parts:
