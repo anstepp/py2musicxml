@@ -11,8 +11,8 @@ There are several builtin objects used to represent notation in Python.
 
 These are:
 
-*Note
-*Rest
-*Measure
-*Part
-*Score
+* Note
+* Rest
+* Measure
+* Part
+* Score
