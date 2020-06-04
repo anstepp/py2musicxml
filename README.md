@@ -1,5 +1,18 @@
 # Py2MusicXML
 Convert Python Algorithms to Notation via MusicXML.
 
-This program allows for a user to write a python algorithm that can be converted into 
-MusicXML. It can then be imported into music notation software.
+Py2MusicXML is designed for prototyping musical ideas in Python. You prototype ideas using the builtin objects that represent elements of musical notation. Then, you can export the representation in Python to MusicXML, and open the .musicxml file in commercial notation software to explore your ideas further.
+
+It's fun - try it!
+
+## Basic Functionality
+
+There are several builtin objects used to represent notation in Python.
+
+These are:
+
+*Note
+*Rest
+*Measure
+*Part
+*Score
