@@ -225,6 +225,8 @@ class Score:
                                 xml_measure_time_beat_type.text = str(
                                     current_measure.time_signature[1]
                                 )
+                            else:
+                                pass
                     
                     # we add the notes
                     for current_beat in current_measure.beats:

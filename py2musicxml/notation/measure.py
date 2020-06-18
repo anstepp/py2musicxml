@@ -36,6 +36,7 @@ class Measure:
 
         self.cumulative_beats = list((x for x in self._cumulative_beat_generator()))
         self.total_cumulative_beats = self.cumulative_beats[-1]
+        self.measure_factor = None
 
     def is_empty(self) -> bool:
         if len(self.beats) == 0:

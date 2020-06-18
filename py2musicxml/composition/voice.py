@@ -51,6 +51,9 @@ class Voice:
             Note(dur, octave, pc) for dur, pc in zip(self.durations, self.pitches)
         ]
 
+    def append_to_note_list(self, note: Iterable[Union[Note, Rest]]) -> None:
+        self.note_list.append(note)
+
     def extend_note_list(self, input_list: Iterable[Union[Note, Rest]]) -> None:
         self.note_list.extend(input_list)
 
@@ -125,14 +128,27 @@ class Voice:
     def constrain_range(self, temp_range: Range):
         self.note_list = self._check_range(self.note_list, temp_range=temp_range)
 
-class Flute(Voice):
+# Woodwinds --------------------------------------------
+
+class Woodwind(Voice):
+    '''Needs woodwind specific information. Futher sub-classes
+    can be created to adapt to the needs of each specific instrument.'''
+    def __init__(self):
+        super(Woodwind, self).__init__()
+
+class Flute(Woodwind):
     def __init__(self):
         super(Flute, self).__init__()
         self.inst_range = [(4, 0), (7, 2)]
         self.clef = "G"
 
+class Oboe(Woodwind):
+    def __init__(self):
+        super(Oboe, self).__init__()
+        self.inst_range = [(,),(,)]
+        self.clef = "G"
 
-class Clarinet(Voice):
+class Clarinet(Woodwind):
     def __init__(self):
         super(Clarinet, self).__init__()
         self.inst_range = [(3, 4), (6, 9)]
@@ -149,12 +165,44 @@ class Clarinet(Voice):
         constrained_range = self._check_range(self.note_list, temp_range=self.chalumeau)
         self.note_list = constrained_range
 
-class Bassoon(Voice):
+class BassClarinet(Woodwind):
+    def __init__(self):
+        super(BassClarinet, self).__init__()
+        self.inst_range = [(,),(,)]
+        self.clef = "G"
+        self.transposition = 16 # major 9th up
+
+class Bassoon(Woodwind):
     def __init__(self):
         super(Bassoon, self).__init__()
         self.inst_range = [(1, 10), (5, 3)]
         self.clef = 'F'
 
+# Brass -------------------------------------------------------
+
+class Brass(Voice):
+    def __init__(self):
+        super(Brass, self).__init__()
+
+class Trumpet(Brass):
+    def __init__(self):
+        super(Trumpet, self).__init__()
+        self.inst_range = [()()]
+
+class Horn(Brass):
+    def __init__(self):
+        super(Horn, self).__init__()
+
+class Trombone(Brass):
+    def __init__(self):
+        super(Trombone, self).__init__()
+
+class Tuba(Brass):
+    def __init__(self):
+        super(Tuba, self).__init__()
+
+
+# Strings -----------------------------------------------------
 
 class Strings(Voice):
     def __init__(self):
@@ -172,6 +220,12 @@ class Violin(Strings):
         self.open_strings = [(3, 7), (4, 2), (4, 9), (5, 4)]
         self.clef = 'G'
 
+class Viola(Strings):
+    def __init__(self):
+        super(Viola, self).__init__()
+        self.inst_range = [(2, 0), (6, 11)]
+        self.open_strings = [(2, 0), (2, 7), (3, 2), (3, 9)]
+
 
 class Cello(Strings):
     def __init__(self):
@@ -180,6 +234,16 @@ class Cello(Strings):
         self.open_strings = [(1, 0), (1, 7), (2, 2), (2, 9)]
         self.clef = 'F'
 
+class DoubleBass(Strings):
+    def __init__(self):
+        super(Bass, self).__init__()
+
+
+# Keyboards -----------------------------------------------------------
+
+'''This includes a method to separate a single line or chord between staves.
+Eventually, there should be an intelligent or user-defined split point.
+It also should belong to a Keyboard superclass to spread the love.'''
 
 class Piano(Voice):
     def __init__(self):

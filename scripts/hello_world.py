@@ -10,7 +10,7 @@ short_note.add_articulation("tenuto")
 
 time_signature = [(3,4)]
 
-simple_part = Part([middle_c, middle_c], time_signature)
+simple_part = Part([middle_c, short_note, middle_c], time_signature)
 
 our_score = Score(parts=[[simple_part]])
 our_score.convert_to_xml("with_accent.musicxml")

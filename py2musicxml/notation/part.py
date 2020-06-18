@@ -12,6 +12,7 @@ from .rest import Rest
 
 # from collections import namedtuple
 
+TimeSignature = Tuple[int, int]
 TimeSignatures = List[Tuple[int, int]]
 
 
@@ -23,7 +24,12 @@ class CurrentCountDivisions(NamedTuple):
 
 
 class Part:
-    def __init__(self, input_list: Iterable[Note], time_signatures: TimeSignatures, key = 0):
+    def __init__(self, 
+        input_list: Iterable[Note], 
+        time_signatures: TimeSignatures, 
+        key = 0,
+        clef='G',
+        line=2):
 
         self.current_list = input_list
 
@@ -60,6 +66,14 @@ class Part:
        it's also an option to feed extra arguments with keywords to 
        modify behavior for optional cleaning methods or user choices
        for measure groupings of factors"""
+
+    def _test_for_low_bottom_time_sig(self, time_sig: TimeSignature, measure_factor: int) -> int:
+        if time_sig[1] < 3:
+            new_measure_factor = measure_factor * time_sig[1]
+            return new_measure_factor
+        else:
+            return measure_factor
+
 
     def create_part(self):
         '''Transform input list of notes into a list of measures'''
@@ -193,12 +207,15 @@ class Part:
     def make_whole_measure_note(self, duration: int, advance: int, tie: bool, first: bool) -> None:
         note_to_add = copy.deepcopy(self.current_note)
         note_to_add.dur = duration * self.measure_factor
-        if tie and first:
-            note_to_add.set_as_tie('tie_start')
-        elif tie and not first:
-            note_to_add.set_as_tie('tie_continue')
-        elif not first:
-            note_to_add.set_as_tie('tie_end')
+        if isinstance(note_to_add, Note):
+            if tie and first:
+                note_to_add.set_as_tie('tie_start')
+            elif tie and not first:
+                note_to_add.set_as_tie('tie_continue')
+            elif not first:
+                note_to_add.set_as_tie('tie_end')
+            else:
+                pass
         else:
             pass
         # print(note_to_add)
@@ -247,7 +264,7 @@ class Part:
 
             counter = 0
             # how many measures do we need to write
-            while self.current_measure_floor >= 0:
+            while self.current_measure_floor >= 0 and self.current_count > 0:
                 """This uses the type of measure to write a whole measure.
                 Eventually, we need to take cases of dotted notes that cross
                 one level of subdivisions, as well as half notes in 3 and 4/4"""
@@ -265,7 +282,8 @@ class Part:
                         self.set_current_count_adjacencies()
                         leftover_note = copy.deepcopy(self.current_note)
                         leftover_note.dur = self.current_count
-                        leftover_note.set_as_tie('tie_end')
+                        if isinstance(leftover_note, Note):
+                            leftover_note.set_as_tie('tie_end')
                         return self.current_count, leftover_note
                     else:
                         pass
@@ -284,7 +302,8 @@ class Part:
                         self.set_current_count_adjacencies()
                         leftover_note = copy.deepcopy(self.current_note)
                         leftover_note.dur = self.current_count
-                        leftover_note.set_as_tie('tie_end')
+                        if isinstance(leftover_note, Note):
+                            leftover_note.set_as_tie('tie_end')
                         return self.current_count, leftover_note
                     else:
                         pass
@@ -303,7 +322,8 @@ class Part:
                         self.set_current_count_adjacencies()
                         leftover_note = copy.deepcopy(self.current_note)
                         leftover_note.dur = self.current_count
-                        leftover_note.set_as_tie('tie_end')
+                        if isinstance(leftover_note, Note):
+                            leftover_note.set_as_tie('tie_end')
                         return self.current_count, leftover_note
                     else:
                         pass
@@ -504,7 +524,10 @@ class Part:
                                 note_to_add_to_old_measure.dur = (
                                     last_measure_remaining_duration
                                 )
-                                note_to_add_to_old_measure.set_as_tie('tie_start')
+                                if isinstance(note_to_add_to_old_measure, Note):
+                                    note_to_add_to_old_measure.set_as_tie('tie_start')
+                                else:
+                                    pass
                                 # print(note_to_add_to_old_measure)
                                 self.current_beat.add_note(note_to_add_to_old_measure)
                                 self.current_count -= self.max_subdivisions
@@ -549,11 +572,9 @@ class Part:
                             remainder = self.current_count
 
                     else:
-
                         pass
 
                 else:
-
                     pass
 
         if remainder:
