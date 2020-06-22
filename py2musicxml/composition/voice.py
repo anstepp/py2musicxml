@@ -16,13 +16,31 @@ prototyping/score production functionality.
 All instruments have the following methods. The necessary
 arguments are given as well:
 
+To extend pitch values:
 Voice.extend_pitches(List[int])
+
+To extend duration values:
 Voice.extend_durations(List[int])
+
+To convert pitch and duration values to Note objects:
 Voice.make_note_list(int)
+
+To add Note objects to the list of Note objects:
 Voice.extend_note_list(List[Note, Rest])
+
+To insert a Rest object of a given duration in the Note object list:
 Voice.insert_rest(int: duration, int: index)
+
+To insert a Note object or list of Note objects in the Note object list:
+Voice.insert_note_list(List[Note, Rest], int: index)
+
+Convert list of Note objects to a Part object:
 Voice.make_part(Time_Signature)
+
+Check range of the instrument:
 Voice.check_range()
+
+To clear out the note list:
 Voice.clear_list()
 """
 
@@ -65,6 +83,11 @@ class Voice:
 
     def insert_rest(self, duration: int, index: int) -> None:
         self.note_list.insert(index, Rest(duration))
+
+    def insert_note_list(self, input_list: Iterable[Union[Note, Rest]], index: int) -> None:
+        first_chunk = self.note_list[0:index]
+        last_chunk = self.note_list[index:]
+        self.note_list = first_chunk + input_list + last_chunk
 
     def make_part(self, time_signature: Time_Signature) -> Part:
         self.part = Part(self.note_list, time_signature)
