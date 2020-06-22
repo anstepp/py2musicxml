@@ -1,3 +1,10 @@
+"""
+The Measure object generally should not be called by a user.
+
+Measure includes information that py2musicxml uses to keep
+track of metric structure. 
+"""
+
 import copy
 
 from typing import Iterable, List, Optional, Tuple, Union

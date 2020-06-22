@@ -1,3 +1,35 @@
+"""
+The Note object contains and represents notes with pitch and duration.
+Pitches are represented in two domains: octave and pitch class. Each
+is a separate data member, and can be modified separately. Duration
+is one member.
+
+Because the Measure and Part objects contain code to split notes across
+measures, you can create a list of Notes objects and not split them for
+the measure. This is useful for prototyping.
+
+Users should only need to instantiate a Note object, or use the overloaded 
+math operators. To create a note, simply create the object:
+
+>>> middle_C_whole_note = Note(4,4,0)
+
+The Note object overloads operators to allow for comparison of note objects.
+There is an attempt to be intutitive. Equality tests for pitches, greater
+than/less than test for pitch relationships, and greater than or equal/less
+than or equal test for duration relationships. As follows:
+
+note_1 = Note(4,4,0) # Whole note middle C
+note_2 = Note(2,4,1) # Half note middle C#
+
+>>> note_1 == note_2
+False
+>>> note_1 > note_2
+False
+>>> note_1 >= note_2
+True
+
+"""
+
 from typing import Tuple
 
 # The Life of a Note
@@ -28,12 +60,12 @@ class Note:
         self.dur = duration
 
         # called to correct any errant pitch classes
-        self.octave, self.pc = self.fix_pitch_overflow(octave, pitch_class)
+        self.octave, self.pc = self._fix_pitch_overflow(octave, pitch_class)
 
         # force starting_pitch to be keyless
         self.step_name, self.alter, self.accidental = self._get_step_name(0)
 
-    def fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
+    def _fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
         new_pitch_class, new_octave = None, None
 
         if pitch_class > 11:
@@ -105,6 +137,8 @@ class Note:
 
         return step_names[self.pc]
 
+    # Evaluate pitch equality.
+
     def __eq__(self, other) -> bool:
         if (
             (self.dur == other.dur)
@@ -115,10 +149,7 @@ class Note:
         else:
             return False
 
-    """For the greater than override, we don't care about
-    duration. We can easily just compare duration by calling
-    note.dur. Pitch is more complicated because of the octave/
-    pitch class design."""
+    # Evaluate pitch relative to another
 
     def __gt__(self, other) -> bool:
         if self.octave > other.octave:
@@ -131,23 +162,17 @@ class Note:
         else:
             return False
 
+    # Evaluate duration equality
+
+    def __ge__(self, other) -> bool:
+        if self.dur > other.dur:
+            return True
+        else:
+            return False
+
+    # Pretty printing in terminal output
+
     def __str__(self) -> str:
         return 'Duration: {}, Octave: {}, Pitch Class: {}'.format(
             self.dur, self.octave, self.pc
         )
-
-    def fix_pitch_overflow(self, octave, pitch_class):
-        new_pitch_class, new_octave = None, None
-
-        if pitch_class > 11:
-            new_pitch_class = pitch_class % 12
-            new_octave = octave + pitch_class // 12
-            return new_octave, new_pitch_class
-
-        elif pitch_class < 0:
-            new_pitch_class = pitch_class % 12
-            new_octave = octave + pitch_class // 12
-            return new_octave, new_pitch_class
-
-        else:
-            return octave, pitch_class
