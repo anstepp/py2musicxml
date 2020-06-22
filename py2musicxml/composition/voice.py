@@ -1,3 +1,31 @@
+"""
+Voice is a file that contains classes that represent voices and instruments.
+
+To use one of the voices, you import:
+
+from py2musicxml.composition import [chosen_voice]
+
+The score then has access to creating an instrument:
+
+first_trumpet = Trumpet()
+
+Which you can then call methods that are either generic
+or instrument specific. These methods allow for various
+prototyping/score production functionality.
+
+All instruments have the following methods. The necessary
+arguments are given as well:
+
+Voice.extend_pitches(List[int])
+Voice.extend_durations(List[int])
+Voice.make_note_list(int)
+Voice.extend_note_list(List[Note, Rest])
+Voice.insert_rest(int: duration, int: index)
+Voice.make_part(Time_Signature)
+Voice.check_range()
+Voice.clear_list()
+"""
+
 from py2musicxml.notation import Note, Rest, Part
 
 from typing import List, Tuple, Iterable, Union
