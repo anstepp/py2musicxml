@@ -53,7 +53,9 @@ class Note:
 
     # measure defaults
     measure_factor, measure_flag = 1, False
-    is_rest = True
+
+    # chord
+    is_chord_member = False
 
     def __init__(self, duration: int, octave: int, pitch_class: int) -> None:
 
@@ -65,7 +67,9 @@ class Note:
         # force starting_pitch to be keyless
         self.step_name, self.alter, self.accidental = self._get_step_name(0)
 
-    def _fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
+        self.articulation = None
+
+    def fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
         new_pitch_class, new_octave = None, None
 
         if pitch_class > 11:
@@ -137,7 +141,22 @@ class Note:
 
         return step_names[self.pc]
 
-    # Evaluate pitch equality.
+    def add_articulation(self, notation: str) -> None:
+
+        """FIX ME: Create possible notation list"""
+
+        self.articulation = notation
+
+    def set_as_tie(self, tie_type: str) -> None:
+
+        if tie_type is 'tie_start':
+            self.tie_start = True
+        if tie_type is 'tie_continue':
+            self.tie_continue = True
+            self.articulation = None
+        if tie_type is 'tie_end':
+            self.tie_end = True
+            self.articulation = None
 
     def __eq__(self, other) -> bool:
         if (

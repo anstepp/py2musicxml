@@ -14,9 +14,9 @@ class RiemannGenerator:
         self.voice_leading = False
 
         self.transformation_replacement = {
-            'P': 'LPL',
-            'L': 'SPS',
-            'R': 'PSP',
+            'P': 'RL',
+            'L': 'LRLP',
+            'R': 'PR',
             'S': 'LSL',
             'N': 'PLR',
             'H': 'LPL',
