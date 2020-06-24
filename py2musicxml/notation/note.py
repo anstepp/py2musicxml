@@ -21,11 +21,11 @@ than or equal test for duration relationships. As follows:
 note_1 = Note(4,4,0) # Whole note middle C
 note_2 = Note(2,4,1) # Half note middle C#
 
->>> note_1 == note_2
+>>> note_1 == note_2 # Middle C is not Middle C#
 False
->>> note_1 > note_2
+>>> note_1 > note_2 # Middle C is lower than Middle C#
 False
->>> note_1 >= note_2
+>>> note_1 >= note_2 # A whole note is longer than a half note
 True
 
 """
