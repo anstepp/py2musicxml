@@ -20,6 +20,9 @@ METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 class Measure:
     def __init__(self, time_signature: Tuple, factor: int):
 
+        """Init a measure with a time signature and factor. This
+        sets all the relevant information about a measure."""
+
         self.time_signature = time_signature
 
         # A Measure contains a list of Beat objects
@@ -46,12 +49,16 @@ class Measure:
         self.measure_factor = None
 
     def is_empty(self) -> bool:
+        """Tests for an empty measure"""
         if len(self.beats) == 0:
             return True
         else:
             return False
 
     def _cumulative_beat_generator(self) -> None:
+        """Using the measure map, creates a list of the values for each beat
+        that is cummulative. This is used in the Part.get_internal_measures
+        method."""
         count = 0
         for beat in self.measure_map:
             count += beat

@@ -21,9 +21,9 @@ than or equal test for duration relationships. As follows:
 note_1 = Note(4,4,0) # Whole note middle C
 note_2 = Note(2,4,1) # Half note middle C#
 
->>> note_1 == note_2 # Middle C is not Middle C#
+>>> note_1 == note_2 # Middle C is not Middle C-sharp
 False
->>> note_1 > note_2 # Middle C is lower than Middle C#
+>>> note_1 > note_2 # Middle C is lower than Middle C-sharp
 False
 >>> note_1 >= note_2 # A whole note is longer than a half note
 True
@@ -189,7 +189,8 @@ class Note:
         else:
             return False
 
-    # Pretty printing in terminal output
+
+    # Pretty printing in output
 
     def __str__(self) -> str:
         return 'Duration: {}, Octave: {}, Pitch Class: {}'.format(
