@@ -379,3 +379,32 @@ class Score:
             encoding="UTF-8",
             xml_declaration=True,
         )
+
+    def convert_to_mei(self) -> etree.ElementTree:
+        """writes an MEI xml etree"""
+        root = etree.Element("xml", {version="1.0"}, encoding="UTF-8", standalone="no")
+
+        mei_tree = ElementTree(root)
+
+        model = SubElement("xml-model", href="http://music-encoding.org/schema/4.0.0/mei-all.rng", type="application/xml", schematypens="http://relaxng.org/ns/structure/1.0")
+
+        mei_section = SubElement(root, "section")
+
+        section_number = SubElement(mei_section, {"n": 1})
+
+        for staff in self.staff:
+
+            mei_staff = SubElement(mei_section, staff.)
+
+
+
+
+
+
+
+
+
+
+
+
+

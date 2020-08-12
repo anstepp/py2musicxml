@@ -4,6 +4,7 @@ from typing import Iterable
 
 class Beat:
     def __init__(self, subdivisions: int) -> None:
+        """init a Beat"""
         self.notes = []
         self.tuplet = False
         self.subdivisions = subdivisions
@@ -11,6 +12,7 @@ class Beat:
         self.actual_notes = 0
 
     def _make_beams(self) -> None:
+        """Create Beam flags for consituient notes"""
         for location, note in enumerate(self.notes):
             if location == 0:
                 note.beam_start = True
@@ -18,10 +20,12 @@ class Beat:
                 note.beam_continue = True
 
     def add_note(self, note: Note) -> None:
+        """Input a note to add to the list for the beat"""
         self.notes.append(note)
         self._make_beams()
 
     def extend_beat(self, notes: Iterable[Note]) -> None:
+        """Input a list of notes to add to the beat"""
         self.notes.extend(notes)
         self._make_beams()
 
