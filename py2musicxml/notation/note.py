@@ -46,6 +46,53 @@ from typing import Tuple
 
 
 class Note:
+    """
+    A class to represent a musical note.
+
+    Attributes:
+    -----------
+    dur : float
+    represents the duration of the note
+
+    octave : int
+    the octave of the note
+
+    pc : int (0-11)
+    the pitch class of the note
+
+    step_name : str
+    letter name of pitch
+
+    alter : int
+    alteration up/down of pitch
+
+    accidental : str
+    string representation of accidental for the note
+
+    tie_start, tie_continue, tie_end : bool
+    flags for ties on the note
+
+    tuplet_start, tuplet_continue, tuplet_end : bool
+    flags for tuplet presentation (not actual values)
+
+    beam_start, beam_continue : bool
+    beaming flags for the note
+
+    is_chord_member : bool
+    flag for chord membership
+
+    Methods:
+    --------
+
+    fix_pitch_overflow(self, octave: int, pitch_class: int)
+
+    _get_step_name(self, starting_pitch: int)
+
+    add_articulation(self, notation: str)
+
+    set_as_tie(self, tie_type: str)
+
+    """
     # default flags for ties & tuplets
     tie_start, tie_continue, tie_end = False, False, False
     tuplet_start, tuplet_continue, tuplet_end = False, False, False
@@ -59,6 +106,10 @@ class Note:
 
     def __init__(self, duration: int, octave: int, pitch_class: int) -> None:
 
+        """Init a note with duration, octave and pc. Sets additional
+        data members step_name, alter and accidental with _get_step_name
+        as well as initing articulation."""
+
         self.dur = duration
 
         # called to correct any errant pitch classes
@@ -70,6 +121,9 @@ class Note:
         self.articulation = None
 
     def fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
+        """Called on init to make sure pitch_class is mod12. If not, does
+        math to corret pitch_class and octave. Because this is called on init,
+        end user may need to call if a Note object is changed."""
         new_pitch_class, new_octave = None, None
 
         if pitch_class > 11:
@@ -86,6 +140,11 @@ class Note:
             return octave, pitch_class
 
     def _get_step_name(self, starting_pitch: int) -> Tuple[str, int, str]:
+
+        """Used to get detailed information about a Note object's
+        letter name, pitch class, and accidental. 
+        """
+
         flat_keys = [1, 3, 5, 8, 10]
         sharp_keys = [2, 4, 6, 7, 9, 11]
 
@@ -93,48 +152,48 @@ class Note:
 
         if starting_pitch == 0:
             step_names = {
-                0: ['C', '0', 'natural'],
-                1: ['C', '1', 'sharp'],
-                2: ['D', '0', 'natural'],
-                3: ['E', '-1', 'flat'],
-                4: ['E', '0', 'natural'],
-                5: ['F', '0', 'natural'],
-                6: ['F', '1', 'sharp'],
-                7: ['G', '0', 'natural'],
-                8: ['A', '-1', 'flat'],
-                9: ['A', '0', 'natural'],
-                10: ['B', '-1', 'flat'],
-                11: ['B', '0', 'natural'],
+                0: ['c', '0', 'natural'],
+                1: ['c', '1', 'sharp'],
+                2: ['d', '0', 'natural'],
+                3: ['e', '-1', 'flat'],
+                4: ['e', '0', 'natural'],
+                5: ['f', '0', 'natural'],
+                6: ['f', '1', 'sharp'],
+                7: ['g', '0', 'natural'],
+                8: ['a', '-1', 'flat'],
+                9: ['a', '0', 'natural'],
+                10: ['b', '-1', 'flat'],
+                11: ['b', '0', 'natural'],
             }
         elif starting_pitch in flat_keys:
             step_names = {
-                0: ['C', '0', 'natural'],
-                1: ['D', '-1', 'flat'],
-                2: ['D', '0', 'natural'],
-                3: ['E', '-1', 'flat'],
-                4: ['E', '0', 'natural'],
-                5: ['F', '0', 'natural'],
-                6: ['G', '-1', 'flat'],
-                7: ['G', '0', 'natural'],
-                8: ['A', '-1', 'flat'],
-                9: ['A', '0', 'natural'],
-                10: ['B', '-1', 'flat'],
-                11: ['B', '0', 'natural'],
+                0: ['c', '0', 'natural'],
+                1: ['d', '-1', 'flat'],
+                2: ['d', '0', 'natural'],
+                3: ['e', '-1', 'flat'],
+                4: ['e', '0', 'natural'],
+                5: ['f', '0', 'natural'],
+                6: ['g', '-1', 'flat'],
+                7: ['g', '0', 'natural'],
+                8: ['a', '-1', 'flat'],
+                9: ['a', '0', 'natural'],
+                10: ['b', '-1', 'flat'],
+                11: ['b', '0', 'natural'],
             }
         elif starting_pitch in sharp_keys:
             step_names = {
-                0: ['C', '0', 'natural'],
-                1: ['C', '1', 'sharp'],
-                2: ['D', '0', 'natural'],
-                3: ['D', '1', 'sharp'],
-                4: ['E', '0', 'natural'],
-                5: ['F', '0', 'natural'],
-                6: ['F', '1', 'sharp'],
-                7: ['G', '0', 'natural'],
-                8: ['G', '1', 'sharp'],
-                9: ['A', '0', 'natural'],
-                10: ['A', '1', 'sharp'],
-                11: ['B', '0', 'natural'],
+                0: ['c', '0', 'natural'],
+                1: ['c', '1', 'sharp'],
+                2: ['d', '0', 'natural'],
+                3: ['d', '1', 'sharp'],
+                4: ['e', '0', 'natural'],
+                5: ['f', '0', 'natural'],
+                6: ['f', '1', 'sharp'],
+                7: ['g', '0', 'natural'],
+                8: ['g', '1', 'sharp'],
+                9: ['a', '0', 'natural'],
+                10: ['a', '1', 'sharp'],
+                11: ['b', '0', 'natural'],
             }
         else:
             raise Exception('starting_pitch must be zero, a flat key, or sharp key')
