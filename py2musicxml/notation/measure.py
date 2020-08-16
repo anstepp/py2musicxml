@@ -18,6 +18,21 @@ METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 
 
 class Measure:
+
+    """
+    A class to represent a musical measure.
+
+    Attributes:
+
+    time_signature : Tuple(int, int)
+    The time signature for the measure, with the first int representing
+    the top note.
+
+    beats : List(float)
+    A list of the values of the beats in the measure. 
+
+    """
+
     def __init__(self, time_signature: Tuple, factor: int):
 
         """Init a measure with a time signature and factor. This

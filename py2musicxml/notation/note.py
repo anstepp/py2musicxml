@@ -58,7 +58,7 @@ class Note:
     the octave of the note
 
     pc : int (0-11)
-    the pitch class of the note
+    the pitch class of the note, gets corrected if outside the 0-11 interval
 
     step_name : str
     letter name of pitch
@@ -91,6 +91,11 @@ class Note:
     add_articulation(self, notation: str)
 
     set_as_tie(self, tie_type: str)
+
+    Overloaded Operators:
+    ---------------------
+
+
 
     """
     # default flags for ties & tuplets
