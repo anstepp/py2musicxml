@@ -29,7 +29,42 @@ class Measure:
     the top note.
 
     beats : List(float)
-    A list of the values of the beats in the measure. 
+    Collection of beat objects
+
+    equal_divisions : bool
+    Flag for if the measure is additive meter or not
+
+    measure_number : int
+    The measure's index + 1 in a part object.
+
+    meter_division : 
+    subdivision of the meter by beat
+
+    meter_type :
+    The type of meter: simple, compound, etc
+
+    measure_map : list
+    A list of the values of the beats in the measure.
+
+    cumulative_beats: list
+    Additive list of the values of the beats in the measure.
+
+    total_cumulative_beats : int
+    Total addtitive beat count.
+
+    Methods:
+    --------
+
+    is_empty()
+    Tests for any beats in self.beats. Returns a bool.
+
+    add_beat(Beat)
+    Appends beat to the end of self.beats. You should append Notes to a
+    Beat object, then append the Beat object.
+
+
+
+
 
     """
 
@@ -127,11 +162,11 @@ class Measure:
         else:
             # meter_division remains None
             meter_type = "Additive"
-            measure_map = self.bjorklund()
+            measure_map = self._bjorklund()
 
         return meter_division, meter_type, measure_map
 
-    def bjorklund(self, subdivisions: int, divisions: int) -> Tuple:
+    def _bjorklund(self, subdivisions: int, divisions: int) -> Tuple:
         '''Evenly spaces two numbers that are not divisible by each other'''
 
         return_list = []
