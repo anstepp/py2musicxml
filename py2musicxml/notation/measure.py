@@ -61,11 +61,7 @@ class Measure:
     add_beat(Beat)
     Appends beat to the end of self.beats. You should append Notes to a
     Beat object, then append the Beat object.
-
-
-
-
-
+    
     """
 
     def __init__(self, time_signature: Tuple, factor: int):
