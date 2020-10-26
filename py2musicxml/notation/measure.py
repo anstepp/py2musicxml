@@ -8,6 +8,7 @@ from .rest import Rest
 
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
+TimeSignature = Tuple[int, int]
 
 
 class Measure:
@@ -53,6 +54,14 @@ class Measure:
     def add_beat(self, beat: Beat) -> None:
         self.beats.append(beat)
 
+    def set_time_signature(self, time_signature: TimeSignature) -> None:
+        """For future use - eventally this should trigger a cascade
+        measure rewrite in a part object that contains the re-sig'd 
+        measure."""
+
+        self.time_signature = time_signature
+        self._create_measure_map(1)
+
     def _create_measure_map(self, factor: int) -> Tuple[Optional[str], str, List[int]]:
         '''
         1. Determines the measure division and type
@@ -92,46 +101,29 @@ class Measure:
 
                 # meter_division remains None
                 meter_type = "Additive"
-                measure_map = self.bjorklund(
+                measure_map = self._front_load_measure(
                     self.time_signature[1], self.time_signature[0]
                 )
         else:
             # meter_division remains None
             meter_type = "Additive"
-            measure_map = self.bjorklund()
+            measure_map = self._front_load_measure(
+                    self.time_signature[1], self.time_signature[0]
+                )
 
         return meter_division, meter_type, measure_map
 
-    def bjorklund(self, subdivisions: int, divisions: int) -> Tuple:
+    def _front_load_measure(self, subdivisions: int, divisions: int):
         '''Evenly spaces two numbers that are not divisible by each other'''
 
-        return_list = []
+        return_list = [1 for x in range(divisions)]
         remainder = subdivisions - divisions
 
-        return_list = [1 for x in range(divisions)] + [
-            0 for x in range(subdivisions - divisions)
-        ]
+        idx = 0
 
-        minimum_length = 0
-        list_counter = 0
-        temp_list = return_list
-        while remainder > 1:
-            list_counter = 0
-            if minimum_length == 0:
-                if list_counter < divisions:
-                    temp_list[list_counter] += 1
-                    list_counter += 1
-            else:
-                for item in return_list:
-                    if len(item) is minimum_length:
-                        if len(item) is minimum_length:
-                            temp_list[list_counter] += item
-                            temp_list[temp_list.index(item)] = []
-                            list_counter += 1
-            temp_list = [x for x in temp_list if x != []]
-            return_list = temp_list
-            list_counter = 0
-            counter = 0
+        while remainder > 0:
+            return_list[idx] += 1
+            idx = (idx + 1) % len(return_list)
+            remainder -= 1
 
-        measure_map = (2, 3)
-        return measure_map
+        return return_list
