@@ -95,9 +95,12 @@ class Note:
     Overloaded Operators:
     ---------------------
 
-
+    == : absolute equality (dur, pc, octave)
+    >/< : pitch greater than/less than
+    >=/<= : duration greater than/less than
 
     """
+
     # default flags for ties & tuplets
     tie_start, tie_continue, tie_end = False, False, False
     tuplet_start, tuplet_continue, tuplet_end = False, False, False
@@ -109,11 +112,25 @@ class Note:
     # chord
     is_chord_member = False
 
-    def __init__(self, duration: int, octave: int, pitch_class: int) -> None:
+    def __init__(self, duration: float, octave: int, pitch_class: int) -> None:
 
         """Init a note with duration, octave and pc. Sets additional
         data members step_name, alter and accidental with _get_step_name
-        as well as initing articulation."""
+        as well as initing articulation.
+
+        Arguments:
+
+        duration (float): note duration
+
+        octave (int): scientific octave of pitch
+
+        pitch_class (int): pitch class of note (0-11)
+
+        Returns:
+
+        None
+
+        """
 
         self.dur = duration
 
@@ -126,9 +143,20 @@ class Note:
         self.articulation = None
 
     def fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
-        """Called on init to make sure pitch_class is mod12. If not, does
+        """
+        Addresses pitch classes below 0 or above 11.
+
+        Called on init to make sure pitch_class is mod12. If not, does
         math to corret pitch_class and octave. Because this is called on init,
-        end user may need to call if a Note object is changed."""
+        end user may need to call if a Note object is changed.
+
+        Arguments:
+
+        octave (int): octave of note
+
+        pitch_class (int): pitch class of note
+
+        """
         new_pitch_class, new_octave = None, None
 
         if pitch_class > 11:
@@ -147,7 +175,22 @@ class Note:
     def _get_step_name(self, starting_pitch: int) -> Tuple[str, int, str]:
 
         """Used to get detailed information about a Note object's
-        letter name, pitch class, and accidental. 
+        letter name, pitch class, and accidental.
+
+        Uses lookup tables to get various nomeclature for representing
+        pitch in XML. Key can be selected to default to simple spellings
+        in key signature (dense chromaticism will not necessarily be 
+        correct). Neutral between MusicXML and MEI.
+
+        Arguments:
+
+        starting_pitch (int): pitch class to represent major key of
+        key signature.
+
+        Returns:
+
+        Tuple: str (pitch class), int (accidental), str (accidental name)
+
         """
 
         flat_keys = [1, 3, 5, 8, 10]
@@ -212,6 +255,22 @@ class Note:
         self.articulation = notation
 
     def set_as_tie(self, tie_type: str) -> None:
+        """Sets note as a tied note of a specific type.
+
+        By feeding a type of tie: start, continue, or end, add a tie to the note both
+        in Py2MusicXML and the resulting XML. This can be called by an end user, or 
+        internally when breaking notes into measure groupings.
+
+        Arguments:
+
+        tie_type: either tie_start, tie_continue, or tie_end. Flags that specific note as
+        that type of tie.
+
+        Returns:
+
+        None
+
+        """
 
         if tie_type is 'tie_start':
             self.tie_start = True
@@ -221,8 +280,26 @@ class Note:
         if tie_type is 'tie_end':
             self.tie_end = True
             self.articulation = None
+        else:
+            pass
+            #throw error eventually
 
     def __eq__(self, other) -> bool:
+        """
+        Absolute equality test for two notes.
+
+        Tests equality of duration, octave, and pitch class for two
+        notes. Testing Note == Note is expected usage.
+
+        Arguments:
+
+        other (Note): a note to test equality.
+
+        Returns:
+
+        bool
+        """
+
         if (
             (self.dur == other.dur)
             and (self.octave == other.octave)
@@ -235,6 +312,14 @@ class Note:
     # Evaluate pitch relative to another
 
     def __gt__(self, other) -> bool:
+        """
+        Tests for pitch inequality.
+
+        Arguments:
+
+        other (Note): a Note object.
+        """
+
         if self.octave > other.octave:
             return True
         elif self.octave == other.octave:
@@ -248,6 +333,13 @@ class Note:
     # Evaluate duration equality
 
     def __ge__(self, other) -> bool:
+        """
+        Tests for duration inequality.
+
+        Arguments:
+
+        other (Note): a Note object
+        """
         if self.dur > other.dur:
             return True
         else:
@@ -257,6 +349,18 @@ class Note:
     # Pretty printing in output
 
     def __str__(self) -> str:
+        """
+        Pretty print for core data members of the Note object
+
+        Arguments:
+
+        None (operates on self).
+
+        Returns:
+
+        string to stdout.
+        """
+        
         return 'Duration: {}, Octave: {}, Pitch Class: {}'.format(
             self.dur, self.octave, self.pc
         )

@@ -24,6 +24,19 @@ class CurrentCountDivisions(NamedTuple):
 
 
 class Part:
+
+    """
+    The part class represents a musical part. A Part can contain more than
+    one staff.
+
+    A part object can be invoked inside an instrument.
+
+    Attributes:
+    -----------
+
+    
+    """
+
     def __init__(self, 
         input_list: Iterable[Note], 
         time_signatures: TimeSignatures, 

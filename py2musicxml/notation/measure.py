@@ -67,7 +67,17 @@ class Measure:
     def __init__(self, time_signature: Tuple, factor: int):
 
         """Init a measure with a time signature and factor. This
-        sets all the relevant information about a measure."""
+        sets all the relevant information about a measure.
+
+        Arguments:
+        ----------
+
+        time_signature (Time Signature): a Time Signature tuple
+
+        factor (int): unused scaling factor
+
+
+        """
 
         self.time_signature = time_signature
 
@@ -75,7 +85,7 @@ class Measure:
         self.beats = []
 
         # default to non-additive meter, this self corrects
-        # equal divisions means all beats are the same, eg. 4/4, 3/4, but not 5/8
+        # equal divisions means all beats are the same, eg. 4/4, 6/8, but not 5/8
         self.equal_divisions = True
 
         # Measure number relative to order in Part()
@@ -95,7 +105,17 @@ class Measure:
         self.measure_factor = None
 
     def is_empty(self) -> bool:
-        """Tests for an empty measure"""
+        """Tests for an empty measure.
+    
+        Arguments:
+
+        None.
+
+        Returns:
+
+        Bool.
+
+        """
         if len(self.beats) == 0:
             return True
         else:
@@ -104,13 +124,36 @@ class Measure:
     def _cumulative_beat_generator(self) -> None:
         """Using the measure map, creates a list of the values for each beat
         that is cummulative. This is used in the Part.get_internal_measures
-        method."""
+        method.
+
+        Arguments:
+
+        None
+
+        Returns:
+
+        None
+
+        """
         count = 0
         for beat in self.measure_map:
             count += beat
             yield count
 
     def add_beat(self, beat: Beat) -> None:
+        """
+        Add a beat to Measure.Beats, adding the notes inside the beat.
+
+        Arguments:
+        ----------
+
+        beat: a Beat object with or without consitiuent notes.
+
+        Returns:
+
+        None
+
+        """
         self.beats.append(beat)
 
     def _create_measure_map(self, factor: int) -> Tuple[Optional[str], str, List[int]]:
@@ -118,8 +161,18 @@ class Measure:
         1. Determines the measure division and type
             (measure_type will always be Simple, Compound, or Additive)
 
-        2. Creates the measure map.
+        2. Creates and returns the measure map.
             measure map is a list of the beat durations in the measure; it maps out the beats of a measure
+
+        Arguments:
+        ----------
+
+        factor: scaling factor for the internal notes.
+
+        Returns:
+
+        Tuple
+
         '''
 
         meter_division = None
@@ -163,7 +216,19 @@ class Measure:
         return meter_division, meter_type, measure_map
 
     def _bjorklund(self, subdivisions: int, divisions: int) -> Tuple:
-        '''Evenly spaces two numbers that are not divisible by each other'''
+        """Evenly spaces two numbers that are not divisible by each other
+
+        Arguments:
+
+        subdivisions (int): how many subdivsions in measure
+
+        divisions (int): how many beats/attacks are in measure
+
+        Returns:
+
+        Tuple
+
+        """
 
         return_list = []
         remainder = subdivisions - divisions
