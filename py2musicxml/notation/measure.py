@@ -57,7 +57,11 @@ class Measure:
     def set_time_signature(self, time_signature: TimeSignature) -> None:
         """For future use - eventally this should trigger a cascade
         measure rewrite in a part object that contains the re-sig'd 
-        measure."""
+        measure.
+        
+        This should also consider allowing a rewrite of just the measure
+        with rests to fill, or deletion of notes.
+        """
 
         self.time_signature = time_signature
         self._create_measure_map(1)
@@ -82,14 +86,18 @@ class Measure:
 
                 beats_in_measure = int(self.time_signature[0] / 3)
 
+                print("Triple", beats_in_measure)
+
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Compound"
                 measure_map = [factor * 1.5 for x in range(beats_in_measure)]
 
             # time sig denominator is divisible by 2
-            elif self.time_signature[1] % 2 == 0:
+            elif ((self.time_signature[0] % 2) == 0) and (self.time_signature[0] > 2):
 
                 beats_in_measure = self.time_signature[0]
+
+                print("Duple", beats_in_measure)
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"
@@ -97,24 +105,31 @@ class Measure:
 
             # time sig denominator is not divisible by 2 or 3
             else:
+                print("non div")
                 self.equal_divisions = False
+
+                beats_in_measure = self.time_signature[0]
+
+                denominator = self.time_signature[1]
+
+                if denominator > 4:
+                    scale = (denominator / 4)
+                else:
+                    pass
 
                 # meter_division remains None
                 meter_type = "Additive"
-                measure_map = self._front_load_measure(
-                    self.time_signature[1], self.time_signature[0]
-                )
+                measure_map = [factor / scale for x in range(beats_in_measure)]
         else:
+            print("bail out")
             # meter_division remains None
             meter_type = "Additive"
-            measure_map = self._front_load_measure(
-                    self.time_signature[1], self.time_signature[0]
-                )
+            
 
         return meter_division, meter_type, measure_map
 
     def _front_load_measure(self, subdivisions: int, divisions: int):
-        '''Evenly spaces two numbers that are not divisible by each other'''
+        '''front loads divisions on two numbers that are not divisible by each other'''
 
         return_list = [1 for x in range(divisions)]
         remainder = subdivisions - divisions
@@ -122,6 +137,7 @@ class Measure:
         idx = 0
 
         while remainder > 0:
+            print("_front_load_measure, remainder", remainder)
             return_list[idx] += 1
             idx = (idx + 1) % len(return_list)
             remainder -= 1
