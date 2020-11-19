@@ -145,7 +145,7 @@ class Flute(Woodwind):
 class Oboe(Woodwind):
     def __init__(self):
         super(Oboe, self).__init__()
-        self.inst_range = [(,),(,)]
+        self.inst_range = [(4,10),(7,9)]
         self.clef = "G"
 
 class Clarinet(Woodwind):
@@ -168,7 +168,7 @@ class Clarinet(Woodwind):
 class BassClarinet(Woodwind):
     def __init__(self):
         super(BassClarinet, self).__init__()
-        self.inst_range = [(,),(,)]
+        self.inst_range = [(3,4),(3,6)]
         self.clef = "G"
         self.transposition = 16 # major 9th up
 
@@ -187,19 +187,22 @@ class Brass(Voice):
 class Trumpet(Brass):
     def __init__(self):
         super(Trumpet, self).__init__()
-        self.inst_range = [()()]
+        self.inst_range = [(3,6),(6,0)]
 
 class Horn(Brass):
     def __init__(self):
         super(Horn, self).__init__()
+        self.inst_range[(2,6),(6,0)]
 
 class Trombone(Brass):
     def __init__(self):
         super(Trombone, self).__init__()
+        self.inst_range[(2,4),(5,7)]
 
 class Tuba(Brass):
     def __init__(self):
         super(Tuba, self).__init__()
+        self.inst_range[(0,2),(4,7)]
 
 
 # Strings -----------------------------------------------------

@@ -86,18 +86,28 @@ class Measure:
 
                 beats_in_measure = int(self.time_signature[0] / 3)
 
-                print("Triple", beats_in_measure)
+                #print("Triple", beats_in_measure)
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Compound"
                 measure_map = [factor * 1.5 for x in range(beats_in_measure)]
 
-            # time sig denominator is divisible by 2
+            # time sig denominator is divisible by 4, but not 2
+            elif ((self.time_signature[0] % 4) == 0) and (self.time_signature[0] > 2):
+
+                beats_in_measure = self.time_signature[0]
+
+                #print("Quadruple", beats_in_measure)
+
+                meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
+                meter_type = "Simple"
+                measure_map = [factor for x in range(beats_in_measure)]
+
             elif ((self.time_signature[0] % 2) == 0) and (self.time_signature[0] > 2):
 
                 beats_in_measure = self.time_signature[0]
 
-                print("Duple", beats_in_measure)
+                #print("Duple", beats_in_measure)
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"
@@ -105,7 +115,7 @@ class Measure:
 
             # time sig denominator is not divisible by 2 or 3
             else:
-                print("non div")
+                #print("non div")
                 self.equal_divisions = False
 
                 beats_in_measure = self.time_signature[0]
@@ -115,13 +125,13 @@ class Measure:
                 if denominator > 4:
                     scale = (denominator / 4)
                 else:
-                    pass
+                    scale = 1
 
                 # meter_division remains None
                 meter_type = "Additive"
                 measure_map = [factor / scale for x in range(beats_in_measure)]
         else:
-            print("bail out")
+            #print("bail out")
             # meter_division remains None
             meter_type = "Additive"
             
@@ -137,7 +147,7 @@ class Measure:
         idx = 0
 
         while remainder > 0:
-            print("_front_load_measure, remainder", remainder)
+            #print("_front_load_measure, remainder", remainder)
             return_list[idx] += 1
             idx = (idx + 1) % len(return_list)
             remainder -= 1

@@ -71,14 +71,10 @@ class Part:
 
     def _test_for_low_bottom_time_sig(self, time_sig: TimeSignature, measure_factor: int) -> int:
         if time_sig[1] < 3:
-            print("less than 3")
             new_measure_factor = measure_factor * time_sig[1]
-            print("nmf", new_measure_factor)
             return new_measure_factor
         elif time_sig[1] > 4:
-            print("bigger than 4")
             new_measure_factor = (4 / time_sig[1])
-            print("nmf", new_measure_factor)
             return new_measure_factor
         else:
             return measure_factor
@@ -197,9 +193,6 @@ class Part:
         self._advance_time_signature_index()
         self.current_measure_factor = self.measure_factor
 
-
-        print("cmf", self.current_measure_factor)
-
         self.current_measure = Measure(
             self.time_signatures[self.time_signature_index], self.current_measure_factor
         )
@@ -220,16 +213,7 @@ class Part:
         and advance to a new measure. Otherwise, just advance the current
         count"""
 
-        print(
-            "advance current_beat_count\n",
-            "   cmf", self.current_measure_factor,
-            "cbt", self.current_beat_count,
-            "cumbeats", self.current_measure.cumulative_beats,
-            "ts", self.current_measure.time_signature
-            )
-
         self.current_beat_count += 1
-        print("self current beat count ", self.current_beat_count, "cum beats ", len(self.current_measure.cumulative_beats))
         if self.current_beat_count >= len(self.current_measure.cumulative_beats):
             pass
         else:
@@ -284,13 +268,10 @@ class Part:
         first = post_tie
 
         if self.current_count > 0:
-            print('running in get_internal_measures', self.max_subdivisions, self.current_count)               
             old_measure_dur = self.max_subdivisions - self.current_count
-            print('old measure dur:', old_measure_dur)
             if old_measure_dur:
                 old_measure_note = copy.deepcopy(note)
                 old_measure_note.dur = old_measure_dur
-                print("old measure note", old_measure_note)
                 self.current_beat.add_note(old_measure_note)
                 self.append_and_increment_measure()
                 first = False
@@ -371,14 +352,7 @@ class Part:
 
         # FIXME: break for asymmetric meter - ANS
         else:
-            print("this will barf")
-            time_sig = self.current_measure.time_signature
-            measure_map = self.current_measure.measure_map
-            factor = self._test_for_low_bottom_time_sig(time_sig)
-            if self._full_measure_tie_check():
-                self.make_whole_measure_note(div, div, True, first)
-            else:
-                print("die")
+            pass
             
         last_current_count = self.current_count
         return last_current_count, None
@@ -535,11 +509,11 @@ class Part:
                 else:
                     non_chord = True
                     self.current_count += round(note.dur * self.current_measure_factor)
-                    print("current count",self.current_count)
+                    #print("current count",self.current_count)
                     
                 if non_chord:
 
-                    print("new iteration", self.current_count, self.current_beat.notes)
+                    #print("new iteration", self.current_count, self.current_beat.notes)
 
                     """We call this function now, and when current count changes
                     to set variables to measure the relationship of the current count
@@ -555,7 +529,7 @@ class Part:
                         # print("less than a measure, location {}, note {}, remainder {}, current_count {}, current_measure_floor {}, current_measure_mod {}, max_subdivisions {}".format(location, note, remainder, self.current_count, self.current_measure_floor, self.current_measure_mod, self.max_subdivisions))
                         note_to_add = copy.deepcopy(note)
                         note_to_add.dur = self.current_measure_factor * note_to_add.dur
-                        print("adding note", note_to_add)
+                        #print("adding note", note_to_add)
                         self.current_beat.add_note(note_to_add)
                         if self.current_count >= self.subdivisions:
                             self.advance_current_beat_count()
@@ -569,11 +543,7 @@ class Part:
                             remainder = 0
 
                     if self.current_measure_floor >= 1:
-                        print(
-                            "over a measure, location {}, note {}, remainder {}, current_measure_floor {}, current_measure_mod {}, current_count {}, max_subdivisions {}".format(
-                                location, note, remainder, self.current_measure_floor, self.current_measure_mod, self.current_count, self.max_subdivisions
-                                )
-                            )
+                        #print("over a measure, location {}, note {}, remainder {}, current_measure_floor {}, current_measure_mod {}, current_count {}, max_subdivisions {}".format(location, note, remainder, self.current_measure_floor, self.current_measure_mod, self.current_count, self.max_subdivisions))
                         if remainder > 0:
                             """In this case, we have leftover note duration from the previous
                             measure. We write that note, then decrement current_count to reflect
@@ -612,7 +582,7 @@ class Part:
                             self.current_measure_floor >= 1
                             and self.current_count >= self.max_subdivisions
                         ):
-                            print("get_internal_measures, ")
+                            #print("get_internal_measures, ")
                             # use this to clean up the measures that exist
 
                             # there is at least one measure to be filled
@@ -629,7 +599,7 @@ class Part:
                             # would need to pass current_beat_count
 
                         elif self.current_count > 0:
-                            print("tail, location {}, dur {}, current_count {}".format(location, note.dur, self.current_count))
+                            #print("tail, location {}, dur {}, current_count {}".format(location, note.dur, self.current_count))
                             note_to_add_to_old_measure = copy.deepcopy(note)
                             note_to_add_to_old_measure.dur = self.current_count
                             self.current_beat.add_note(note_to_add_to_old_measure)
