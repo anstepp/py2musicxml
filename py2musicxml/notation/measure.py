@@ -15,6 +15,7 @@ from .rest import Rest
 
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
+TimeSignature = Tuple[int, int]
 
 
 class Measure:
@@ -156,6 +157,18 @@ class Measure:
         """
         self.beats.append(beat)
 
+    def set_time_signature(self, time_signature: TimeSignature) -> None:
+        """For future use - eventally this should trigger a cascade
+        measure rewrite in a part object that contains the re-sig'd 
+        measure.
+        
+        This should also consider allowing a rewrite of just the measure
+        with rests to fill, or deletion of notes.
+        """
+
+        self.time_signature = time_signature
+        self._create_measure_map(1)
+
     def _create_measure_map(self, factor: int) -> Tuple[Optional[str], str, List[int]]:
         '''
         1. Determines the measure division and type
@@ -186,14 +199,28 @@ class Measure:
 
                 beats_in_measure = int(self.time_signature[0] / 3)
 
+                #print("Triple", beats_in_measure)
+
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Compound"
                 measure_map = [factor * 1.5 for x in range(beats_in_measure)]
 
-            # time sig denominator is divisible by 2
-            elif self.time_signature[1] % 2 == 0:
+            # time sig denominator is divisible by 4, but not 2
+            elif ((self.time_signature[0] % 4) == 0) and (self.time_signature[0] > 2):
 
                 beats_in_measure = self.time_signature[0]
+
+                #print("Quadruple", beats_in_measure)
+
+                meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
+                meter_type = "Simple"
+                measure_map = [factor for x in range(beats_in_measure)]
+
+            elif ((self.time_signature[0] % 2) == 0) and (self.time_signature[0] > 2):
+
+                beats_in_measure = self.time_signature[0]
+
+                #print("Duple", beats_in_measure)
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"
@@ -201,62 +228,41 @@ class Measure:
 
             # time sig denominator is not divisible by 2 or 3
             else:
+                #print("non div")
                 self.equal_divisions = False
+
+                beats_in_measure = self.time_signature[0]
+
+                denominator = self.time_signature[1]
+
+                if denominator > 4:
+                    scale = (denominator / 4)
+                else:
+                    scale = 1
 
                 # meter_division remains None
                 meter_type = "Additive"
-                measure_map = self.bjorklund(
-                    self.time_signature[1], self.time_signature[0]
-                )
+                measure_map = [factor / scale for x in range(beats_in_measure)]
         else:
+            #print("bail out")
             # meter_division remains None
             meter_type = "Additive"
-            measure_map = self._bjorklund()
+            
 
         return meter_division, meter_type, measure_map
 
-    def _bjorklund(self, subdivisions: int, divisions: int) -> Tuple:
-        """Evenly spaces two numbers that are not divisible by each other
+    def _front_load_measure(self, subdivisions: int, divisions: int):
+        '''front loads divisions on two numbers that are not divisible by each other'''
 
-        Arguments:
-
-        subdivisions (int): how many subdivsions in measure
-
-        divisions (int): how many beats/attacks are in measure
-
-        Returns:
-
-        Tuple
-
-        """
-
-        return_list = []
+        return_list = [1 for x in range(divisions)]
         remainder = subdivisions - divisions
 
-        return_list = [1 for x in range(divisions)] + [
-            0 for x in range(subdivisions - divisions)
-        ]
+        idx = 0
 
-        minimum_length = 0
-        list_counter = 0
-        temp_list = return_list
-        while remainder > 1:
-            list_counter = 0
-            if minimum_length == 0:
-                if list_counter < divisions:
-                    temp_list[list_counter] += 1
-                    list_counter += 1
-            else:
-                for item in return_list:
-                    if len(item) is minimum_length:
-                        if len(item) is minimum_length:
-                            temp_list[list_counter] += item
-                            temp_list[temp_list.index(item)] = []
-                            list_counter += 1
-            temp_list = [x for x in temp_list if x != []]
-            return_list = temp_list
-            list_counter = 0
-            counter = 0
+        while remainder > 0:
+            #print("_front_load_measure, remainder", remainder)
+            return_list[idx] += 1
+            idx = (idx + 1) % len(return_list)
+            remainder -= 1
 
-        measure_map = (2, 3)
-        return measure_map
+        return return_list
