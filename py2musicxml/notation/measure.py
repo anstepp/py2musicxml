@@ -70,7 +70,6 @@ class Measure:
         '''
         1. Determines the measure division and type
             (measure_type will always be Simple, Compound, or Additive)
-
         2. Creates the measure map.
             measure map is a list of the beat durations in the measure; it maps out the beats of a measure
         '''

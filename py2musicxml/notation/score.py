@@ -22,6 +22,8 @@ class Score:
         composer: Optional[str] = None,
     ):
 
+        [measure.clean_up_measure() for part in parts for measure in part.measures]
+
         self.title = title
         self.composer = composer
 

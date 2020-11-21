@@ -46,7 +46,6 @@ class Part:
         self.subdivisions, self.max_subdivisions = None, None
 
         # where we are in the cumulative beats
-        self.current_beat_count = None
         self.current_measure = None
         # value of note duration that needs to be written
         # current count gets incremented when we intake the next note
@@ -186,8 +185,6 @@ class Part:
             current_beat_count is full, or the subdivisions are full.
         '''
 
-        self.current_measure.add_beat(self.current_beat)
-
         self.measures.append(self.current_measure)
 
         self._advance_time_signature_index()
@@ -197,31 +194,21 @@ class Part:
             self.time_signatures[self.time_signature_index], self.current_measure_factor
         )
 
-        self.max_subdivisions = self.current_measure.total_cumulative_beats
-        self.current_beat_count = 0
-        self.subdivisions = self.current_measure.cumulative_beats[
-            self.current_beat_count
-        ]
 
-        self.current_beat = Beat(self.subdivisions)
+    # def advance_current_beat_count(self) -> None:
+    #     """If the measure is full of beats, we need to append the measure
+    #     and advance to a new measure. Otherwise, just advance the current
+    #     count"""
 
-        self.current_beat_count = 0
-
-
-    def advance_current_beat_count(self) -> None:
-        """If the measure is full of beats, we need to append the measure
-        and advance to a new measure. Otherwise, just advance the current
-        count"""
-
-        self.current_beat_count += 1
-        if self.current_beat_count >= len(self.current_measure.cumulative_beats):
-            pass
-        else:
-            self.current_measure.add_beat(self.current_beat)
-            self.subdivisions = self.current_measure.cumulative_beats[
-                self.current_beat_count
-            ]
-            self.current_beat = Beat(self.subdivisions * self.current_measure_factor)
+    #     self.current_beat_count += 1
+    #     if self.current_beat_count >= len(self.current_measure.cumulative_beats):
+    #         pass
+    #     else:
+    #         self.current_measure.add_beat(self.current_beat)
+    #         self.subdivisions = self.current_measure.cumulative_beats[
+    #             self.current_beat_count
+    #         ]
+    #         self.current_beat = Beat(self.subdivisions * self.current_measure_factor)
 
     def make_whole_measure_note(self, 
         note: Note, 
@@ -245,16 +232,13 @@ class Part:
         else:
             pass
         # print(note_to_add)
-        self.current_beat.add_note(note_to_add)
-        self.current_beat.multi_beat = True
+        self.current_measure.add_note(note_to_add)
         self.append_and_increment_measure()
 
-    def make_multi_beat_rest(self, rest: Rest, advance: int) -> None:
-        multi_beat = Beat(self.subdivisions)
-        multi_beat.add_note(rest)
-        self.current_measure.add_beat(multi_beat)
-        for index in range(advance):
-            self.advance_current_beat_count()
+    # def make_multi_beat_rest(self, rest: Rest, advance: int) -> None:
+    #     multi_beat = Beat(self.subdivisions)
+    #     multi_beat.add_note(rest)
+    #     self.current_measure.add_beat(multi_beat)
 
     def _full_measure_tie_check(self) -> bool:
         if self.current_measure_floor >= 1:
@@ -272,7 +256,7 @@ class Part:
             if old_measure_dur:
                 old_measure_note = copy.deepcopy(note)
                 old_measure_note.dur = old_measure_dur
-                self.current_beat.add_note(old_measure_note)
+                self.current_measure.add_note(old_measure_note)
                 self.append_and_increment_measure()
                 first = False
         else:
@@ -358,8 +342,8 @@ class Part:
         return last_current_count, None
 
     def set_current_count_adjacencies(self) -> None:
-        self.current_count_floor = self.current_count // self.subdivisions
-        self.current_count_mod = self.current_count % self.subdivisions
+        #self.current_count_floor = self.current_count // self.subdivisions
+        #self.current_count_mod = self.current_count % self.subdivisions
         self.current_measure_floor = self.current_count // self.max_subdivisions
         self.current_measure_mod = self.current_count % self.max_subdivisions
 
@@ -378,47 +362,44 @@ class Part:
 
     def wrap_up(self, remainder: int) -> None:
         the_final_rest = Rest(remainder)
-        the_final_rest.is_measure = False
-        final_beat = Beat(remainder)
-        final_beat.add_note(the_final_rest)
-        self.current_measure.add_beat(final_beat)
+        self.current_measure.add_note(the_final_rest)
         self.measures.append(self.current_measure)
 
-    def _break_beats(self, note: Note):
+    # def _break_beats(self, note: Note):
 
-        """Break notes into beats if necessary"""
+    #     """Break notes into beats if necessary"""
 
-        note_duration_plus_current_count = (
-            note.dur * self.current_measure_factor
-        ) + self.current_count
+    #     note_duration_plus_current_count = (
+    #         note.dur * self.current_measure_factor
+    #     ) + self.current_count
 
-        if self.current_count == 0:
-            if (note.dur in self.current_measure.cumulative_beats) and (
-                note_duration_plus_current_count
-                < self.current_measure.total_cumulative_beats
-            ):
-                note.dur = note.dur * self.current_measure_factor
-                note.tie_start = True
-                self.current_beat.add_note(note)
-                self.append_and_increment_measure()
-                return None
+    #     if self.current_count == 0:
+    #         if (note.dur in self.current_measure.cumulative_beats) and (
+    #             note_duration_plus_current_count
+    #             < self.current_measure.total_cumulative_beats
+    #         ):
+    #             note.dur = note.dur * self.current_measure_factor
+    #             note.tie_start = True
+    #             self.current_measure.add_note(note)
+    #             self.append_and_increment_measure()
+    #             return None
 
-        elif (
-            note_duration_plus_current_count in self.current_measure.cumulative_beats
-            and note_duration_plus_current_count
-            < self.current_measure.total_cumulative_beats
-        ):
-            new_note_beat = copy.deepcopy(note)
-            new_note_next_beat = copy.deepcopy(note)
-            new_note_next_beat.set_as_tie('tie_end')
-            new_note_beat.dur = self.current_beat.subdivisions - self.current_count
-            new_note_next_beat.dur = note.dur - new_note_beat.dur
-            self.current_beat.add_note(new_note_beat)
-            self.advance_current_beat_count()
-            return new_note_next_beat
+    #     elif (
+    #         note_duration_plus_current_count in self.current_measure.cumulative_beats
+    #         and note_duration_plus_current_count
+    #         < self.current_measure.total_cumulative_beats
+    #     ):
+    #         new_note_beat = copy.deepcopy(note)
+    #         new_note_next_beat = copy.deepcopy(note)
+    #         new_note_next_beat.set_as_tie('tie_end')
+    #         new_note_beat.dur = self.current_beat.subdivisions - self.current_count
+    #         new_note_next_beat.dur = note.dur - new_note_beat.dur
+    #         self.current_measure.add_note(new_note_beat)
+    #         self.advance_current_beat_count()
+    #         return new_note_next_beat
 
-        else:
-            return note
+    #     else:
+    #         return note
 
     def _test_for_chord(
         self, 
@@ -434,7 +415,7 @@ class Part:
 
                     """Do not advance current count if note is member of a chord."""
 
-                    self.current_beat.add_note(note)
+                    self.current_measure.add_note(note)
                     return False
 
                 else:
@@ -469,14 +450,14 @@ class Part:
                 pass
 
         # how many beats in measure we have traveled
-        self.current_beat_count = 0
+        # self.current_beat_count = 0
 
         # keep track of how full the beat is
 
         # MEASURE subdivisions and max subdivisions
-        self.subdivisions = self.current_measure.cumulative_beats[
-            self.current_beat_count
-        ]
+        # self.subdivisions = self.current_measure.cumulative_beats[
+        #     self.current_beat_count
+        # ]
 
         self.current_beat = Beat(self.subdivisions)
 
@@ -530,9 +511,9 @@ class Part:
                         note_to_add = copy.deepcopy(note)
                         note_to_add.dur = self.current_measure_factor * note_to_add.dur
                         #print("adding note", note_to_add)
-                        self.current_beat.add_note(note_to_add)
-                        if self.current_count >= self.subdivisions:
-                            self.advance_current_beat_count()
+                        self.current_measure.add_note(note_to_add)
+                        # if self.current_count >= self.subdivisions:
+                        #     self.advance_current_beat_count()
                         if self.current_count < self.max_subdivisions:
                             remainder = self.current_count
 
@@ -564,7 +545,7 @@ class Part:
                                 else:
                                     pass
                                 # print(note_to_add_to_old_measure)
-                                self.current_beat.add_note(note_to_add_to_old_measure)
+                                self.current_measure.add_note(note_to_add_to_old_measure)
                                 self.current_count -= self.max_subdivisions
                                 # print(self.current_count)
                                 self.append_and_increment_measure()
@@ -573,7 +554,7 @@ class Part:
                                 remainder = 0
 
                             else:
-                                self.current_beat.add_note(note)
+                                self.current_measure.add_note(note)
                                 remainder = self.max_subdivisions - self.current_count
                                 self.set_current_count_adjacencies()
 
@@ -593,7 +574,7 @@ class Part:
                                 first = True
                             remainder, leftover_note = self.get_internal_measures(note, first)
                             if leftover_note:
-                                self.current_beat.add_note(leftover_note)
+                                self.current_measure.add_note(leftover_note)
                             else:
                                 pass
                             # would need to pass current_beat_count
@@ -602,8 +583,7 @@ class Part:
                             #print("tail, location {}, dur {}, current_count {}".format(location, note.dur, self.current_count))
                             note_to_add_to_old_measure = copy.deepcopy(note)
                             note_to_add_to_old_measure.dur = self.current_count
-                            self.current_beat.add_note(note_to_add_to_old_measure)
-                            self.advance_current_beat_count()
+                            self.current_measure.add_note(note_to_add_to_old_measure)
                             remainder = self.current_count
 
                     else:
@@ -613,7 +593,7 @@ class Part:
                     pass
 
         if remainder:
-            self.current_measure.add_beat(self.current_beat)
+            self.current_measure.add_note(note)
             self.wrap_up(self.max_subdivisions - remainder)
         else:
             self.measures.append(self.current_measure)
