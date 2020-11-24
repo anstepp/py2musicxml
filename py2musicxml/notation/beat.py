@@ -10,20 +10,21 @@ class Beat:
         self.multi_beat = False
         self.actual_notes = 0
 
-    def _make_beams(self) -> None:
+    def make_beams(self) -> None:
         for location, note in enumerate(self.notes):
             if location == 0:
                 note.beam_start = True
+            elif location == len(self.notes):
+                note.beam_end = True
             else:
                 note.beam_continue = True
 
+
     def add_note(self, note: Note) -> None:
         self.notes.append(note)
-        self._make_beams()
 
     def extend_beat(self, notes: Iterable[Note]) -> None:
         self.notes.extend(notes)
-        self._make_beams()
 
     #     self._tuplet_test()
 

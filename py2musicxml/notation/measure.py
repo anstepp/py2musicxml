@@ -1,4 +1,5 @@
 import copy
+import itertools
 
 from typing import Iterable, List, Optional, Tuple, Union
 
@@ -15,6 +16,8 @@ class Measure:
     def __init__(self, time_signature: Tuple, factor: int):
 
         self.time_signature = time_signature
+
+        self.notes = []
 
         # A Measure contains a list of Beat objects
         self.beats = []
@@ -51,6 +54,9 @@ class Measure:
             count += beat
             yield count
 
+    def add_note(self, note: Note) -> None:
+        self.notes.append(note)
+
     def add_beat(self, beat: Beat) -> None:
         self.beats.append(beat)
 
@@ -70,6 +76,7 @@ class Measure:
         '''
         1. Determines the measure division and type
             (measure_type will always be Simple, Compound, or Additive)
+
         2. Creates the measure map.
             measure map is a list of the beat durations in the measure; it maps out the beats of a measure
         '''
@@ -152,3 +159,101 @@ class Measure:
             remainder -= 1
 
         return return_list
+
+    def clean_up_measure(self) -> None:
+        """
+        Called to group beats in measure and check ties and accidentals.
+
+        Arguments:
+        ----------
+
+        None
+
+        Returns:
+        --------
+
+        None
+        """
+
+        notes = self.notes
+        notes.reverse()
+        beats = self.cumulative_beats
+        beats.reverse()
+        if notes and beats:
+            current_count = 0
+            current_note = notes.pop()
+            beat_breakpoint = beats.pop()
+            print("init bp", beat_breakpoint)
+            current_beat = Beat(beat_breakpoint)
+            old_dur = 0
+            note_for_next_beat = None
+
+            # break 
+
+            print("pre-loop", current_note, beat_breakpoint)
+
+            while beats and notes:
+
+                print('new breakpoint', beat_breakpoint)
+
+                # check for multi-beat note
+                if current_note.dur in self.cumulative_beats:
+                    print('it worked')
+
+                # cleanup any leftover note stuff from the last iteration
+                if note_for_next_beat:
+                    beat_breakpoint = beats.pop()
+                    current_beat = Beat(beat_breakpoint)
+                    current_beat.add_note(note_for_next_beat)
+                    note_for_next_beat = None
+                    self.add_beat(current_beat)
+                else:
+                    self.add_beat(current_beat)
+                    beat_breakpoint = beats.pop()
+                    current_beat = Beat(beat_breakpoint)
+
+                # keep adding notes until we hit or break the breakpoint
+                while current_count < beat_breakpoint:
+                    old_dur = current_note.dur
+                    current_beat.add_note(current_note)
+                    if notes:
+                        current_note = notes.pop()
+                        current_count += current_note.dur
+                    else:
+                        break
+                    self.add_beat(current_beat)
+
+                # add note and beat as we equal the breakpoint
+                if current_count == beat_breakpoint:
+                    print('equal', current_count, beat_breakpoint)
+                    old_dur = current_note.dur
+                    current_beat.add_note(current_note)
+                    beat_breakpoint = beats.pop()
+                    current_beat = Beat(beat_breakpoint)
+
+                # divide note into two parts - one for current beat, one for next beat
+                elif current_count > beat_breakpoint:
+
+                    print("current count", current_count, 'beat_breakpoint', beat_breakpoint)
+
+                    overflow = current_note.dur - beat_breakpoint
+                    remainder = beat_breakpoint - old_dur
+                    old_beat_note = copy.deepcopy(current_note)
+                    old_beat_note.dur = remainder
+                    old_beat_note.tie_start = True
+                    current_beat.add_note(old_beat_note)
+                    note_for_next_beat = copy.deepcopy(current_note)
+                    note_for_next_beat.dur = overflow
+                    old_dur = overflow
+
+                else:
+                    # eventually throw error
+                    pass
+
+                if notes:
+                    current_note = notes.pop()
+                    current_count += current_note.dur
+
+
+        [beat.make_beams() for beat in self.beats]
+
