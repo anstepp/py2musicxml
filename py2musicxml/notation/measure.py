@@ -90,15 +90,25 @@ class Measure:
         if self.equal_divisions:
 
             # time sig denominator is divisible by 3
-            if ((self.time_signature[0] % 3) == 0) and (self.time_signature[0] > 3):
+            if ((self.time_signature[0] % 3) == 0):
 
-                beats_in_measure = int(self.time_signature[0] / 3)
+                if (self.time_signature[0] > 3):
 
-                #print("Triple", beats_in_measure)
+                    beats_in_measure = self.time_signature[0]
 
-                meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
-                meter_type = "Compound"
-                measure_map = [factor * 1.5 for x in range(beats_in_measure)]
+                    meter_division = self.time_signature[0]
+                    meter_type = "Simple"
+                    measure_map = [factor * 2 for x in range(beats_in_measure)]
+
+                else:
+
+                    beats_in_measure = int(self.time_signature[0] / 3)
+
+                    #print("Triple", beats_in_measure)
+
+                    meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
+                    meter_type = "Compound"
+                    measure_map = [factor * 1.5 for x in range(beats_in_measure)]
 
             # time sig denominator is divisible by 4, but not 2
             elif ((self.time_signature[0] % 4) == 0) and (self.time_signature[0] > 2):

@@ -62,14 +62,16 @@ def test_assert_unique():
                 )
 
 
-test_score = Score(score_parts=[test_part])
+test_score = Score([test_part])
 test_score.convert_to_xml("test_score_cases.xml")
 
 
 def test_long_durs():
     # fmt: off
     long_durs = [4,4,4,4,7,1,4,6,7,3,8,6,7,1,5,6,1]
+    long_durs_corrected = [4 * dur for dur in long_durs]
     long_durs_after_break = [4,4,4,4,4,3,1,4,4,2,2,4,1,3,4,4,4,2,2,4,1,1,2,3,1,4,1,1,2]
+    long_durs_after_break_corr = [4 * dur for dur in long_durs_after_break]
     # fmt: on
 
     long_durs_list = [Note(x, 4, x) for x in long_durs]
@@ -81,12 +83,12 @@ def test_long_durs():
     for index, measure in enumerate(long_durs_part.measures):
         for beat in measure.beats:
             for note in beat.notes:
-                expected_note_duration = long_durs_after_break[note_count]
+                expected_note_duration = long_durs_after_break_corr[note_count]
                 print(note_count, note.dur, expected_note_duration)
                 assert note.dur == expected_note_duration
                 note_count += 1
 
-    long_durs_score = Score(score_parts=[long_durs_part])
+    long_durs_score = Score([long_durs_part])
     long_durs_score.convert_to_xml("test_score_long.xml")
 
 
@@ -105,7 +107,7 @@ def test_frere_jacques():
                 assert fj_durs[counter] == note.dur
                 counter += 1
 
-    score = Score(score_parts=[fj_part])
+    score = Score([fj_part])
     score.convert_to_xml("test_score_fj.xml")
 
 
@@ -113,6 +115,7 @@ def test_fj_three_four():
 
     # fmt: off
     fj_durs_34 = [2,1,1,2,2,1,1,2,2,1,1,2,2,1,3,2,1,1,2,2,1,1,1,1,2,1,1,1,1,1,1,1,1,2,2,1,1,2,2,1,1,2,3,1,2]
+    fj_durs_34_corrected = [dur * 4 for dur in fj_durs_34]
     # fmt: on
     fj_ts = [[3, 4]]
     fj_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
@@ -124,7 +127,7 @@ def test_fj_three_four():
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
                 print(counter, fj_durs_34[counter], note.dur)
-                assert fj_durs_34[counter] == note.dur
+                assert fj_durs_34_corrected[counter] == note.dur
                 counter += 1
 
     score = Score(score_parts=[fj_part])
@@ -148,7 +151,7 @@ def test_fj_shifting_ts():
                 assert fj_durs_shift[counter] == note.dur
                 counter += 1
 
-    score = Score(score_parts=[fj_part])
+    score = Score([fj_part])
     score.convert_to_xml("test_score_fj_shifting.xml")
 
 
