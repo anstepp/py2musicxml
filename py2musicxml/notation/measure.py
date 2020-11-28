@@ -94,7 +94,7 @@ class Measure:
 
                 if (self.time_signature[0] > 3):
 
-                    beats_in_measure = self.time_signature[0]
+                    beats_in_measure = METER_DIVISION_TYPES.get(beats_in_measure, None)
 
                     meter_division = self.time_signature[0]
                     meter_type = "Simple"
