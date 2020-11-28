@@ -1,5 +1,6 @@
 import copy
 import itertools
+import logging
 
 from typing import Iterable, List, Optional, Tuple, Union
 
@@ -7,6 +8,7 @@ from .note import Note
 from .beat import Beat
 from .rest import Rest
 
+logging.basicConfig(level=logging.DEBUG)
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 TimeSignature = Tuple[int, int]
@@ -161,59 +163,92 @@ class Measure:
         return return_list
 
     def clean_up_measure(self) -> None:
+        """ Beams notes in the measure.
+
+            To correctly beam notes, the function:
+                * makes and groups beats in the measure
+                * makes ties adds accidentals as necessary
+
+
+
+            Arguments:
+            ----------
+            None
+
+            Returns:
+            --------
+            None
         """
-        Called to group beats in measure and check ties and accidentals.
 
-        Arguments:
-        ----------
+        # If we give a measure a set of notes, then this function will create the beats
+        # and beam the notes correctly.
+        # Beaming shows the beats in the measure, so it is easier to read for musicians
+        # https://blogs.iu.edu/jsomcomposition/music-notation-style-guide/
 
-        None
+        new_beats = []
 
-        Returns:
-        --------
+        # Reverse the notes and beats so that pop() takes them off
+        # in order of appearance in the measure.
+        notes = list(reversed(self.notes))
+        beat_divisions = list(reversed(self.measure_map))
 
-        None
-        """
+        # cumulative beat count
+        cumulative_beats = list(reversed(self.cumulative_beats))
 
-        notes = self.notes
-        notes.reverse()
-        beats = self.cumulative_beats
-        beats.reverse()
-        if notes and beats:
-            current_count = 0
+        # If measure is not empty
+        if notes:
+
             current_note = notes.pop()
-            beat_breakpoint = beats.pop()
-            print("init bp", beat_breakpoint)
+            current_beat_divisions = beat_divisions.pop()
+            beat_breakpoint = cumulative_beats.pop()
+
+            # current_count is the cumulative total of note durations.
+            current_count = current_note.dur
+
+            logging.debug(f"init bp: {beat_breakpoint}")
             current_beat = Beat(beat_breakpoint)
+
+            # previous note duration
             old_dur = 0
             note_for_next_beat = None
 
-            # break 
+            logging.debug(f"pre-loop {current_note} {beat_breakpoint}")
 
-            print("pre-loop", current_note, beat_breakpoint)
+            loop = 0
+            while cumulative_beats and notes:
+                loop += 1
 
-            while beats and notes:
-
-                print('new breakpoint', beat_breakpoint)
+                print(f"- loop {loop} {'-'*20}")
+                logging.debug(f"new breakpoint: {beat_breakpoint}")
+                
+                logging.debug(f"cumulative_beats: {cumulative_beats}")
+                logging.debug(f"beat_divisions: {beat_divisions}")
+                logging.debug(f"current_note: {current_note}")
+                logging.debug(f"current_beat: {current_beat}")
+                logging.debug(f"self.beats: {self.beats}")
 
                 # check for multi-beat note
-                if current_note.dur in self.cumulative_beats:
-                    print('it worked')
+                if current_note.dur in cumulative_beats:
+                    logging.debug("current note is in cumulative beats")
 
                 # cleanup any leftover note stuff from the last iteration
                 if note_for_next_beat:
-                    beat_breakpoint = beats.pop()
-                    current_beat = Beat(beat_breakpoint)
+                    current_beat_divisions = beat_divisions.pop()
+                    beat_breakpoint = cumulative_beats.pop()
+                    current_beat = Beat(current_beat_divisions)
                     current_beat.add_note(note_for_next_beat)
                     note_for_next_beat = None
                     self.add_beat(current_beat)
+                
                 else:
                     self.add_beat(current_beat)
-                    beat_breakpoint = beats.pop()
-                    current_beat = Beat(beat_breakpoint)
+                    current_beat_divisions = beat_divisions.pop()
+                    beat_breakpoint = cumulative_beats.pop()
+                    current_beat = Beat(current_beat_divisions)
 
                 # keep adding notes until we hit or break the breakpoint
                 while current_count < beat_breakpoint:
+                    print("current_count < beat_breakpoint")
                     old_dur = current_note.dur
                     current_beat.add_note(current_note)
                     if notes:
@@ -228,8 +263,12 @@ class Measure:
                     print('equal', current_count, beat_breakpoint)
                     old_dur = current_note.dur
                     current_beat.add_note(current_note)
-                    beat_breakpoint = beats.pop()
-                    current_beat = Beat(beat_breakpoint)
+                    if cumulative_beats:
+                        current_beat_divisions = beat_divisions.pop()                        
+                        beat_breakpoint = cumulative_beats.pop()
+                        current_beat = Beat(current_beat_divisions)
+                    else:
+                        break
 
                 # divide note into two parts - one for current beat, one for next beat
                 elif current_count > beat_breakpoint:

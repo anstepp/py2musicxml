@@ -35,3 +35,6 @@ class Beat:
     #     print(value)
     #     value_set = set(value)
     #     if self.subdivisions % 3 == 0:
+
+    def __str__(self) -> str:
+        return f"Beat{{Subdivisions: {self.subdivisions}, Notes: {len(self.notes)}}}" 

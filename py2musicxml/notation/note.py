@@ -153,9 +153,7 @@ class Note:
             return False
 
     def __str__(self) -> str:
-        return 'Duration: {}, Octave: {}, Pitch Class: {}'.format(
-            self.dur, self.octave, self.pc
-        )
+        return f"Note{{Duration: {self.dur}, Octave: {self.octave}, Pitch Class: {self.pc}}}"
 
     def fix_pitch_overflow(self, octave, pitch_class):
         new_pitch_class, new_octave = None, None
