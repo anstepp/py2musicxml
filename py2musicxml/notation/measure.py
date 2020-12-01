@@ -103,11 +103,19 @@ class Measure:
                 meter_type = "Simple"
                 measure_map = [factor for x in range(beats_in_measure)]
 
-            elif ((self.time_signature[0] % 2) == 0) and (self.time_signature[0] > 2):
+            elif ((self.time_signature[0] % 2) == 0):
 
                 beats_in_measure = self.time_signature[0]
 
                 #print("Duple", beats_in_measure)
+
+                meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
+                meter_type = "Simple"
+                measure_map = [factor for x in range(beats_in_measure)]
+
+            elif self.time_signature[0] == 3:
+
+                beats_in_measure = self.time_signature[0]
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"

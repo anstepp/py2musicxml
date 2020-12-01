@@ -2,7 +2,7 @@ import copy
 import fractions, math
 
 from lxml import etree
-from typing import Iterable, List, NamedTuple, Tuple, Union
+from typing import Iterable, List, Optional, NamedTuple, Tuple, Union
 
 from .measure import Measure
 from .note import Note
@@ -231,8 +231,11 @@ class Part:
         first: bool, 
     ) -> None:
 
+        print("in make whole measure")
         note_to_add = copy.deepcopy(note)
-        note_to_add.dur = duration
+        print("dur is", duration)
+        note_to_add.dur = duration * self.current_measure_factor
+        #print(note_to_add)
         if isinstance(note_to_add, Note):
             if tie and first:
                 note_to_add.set_as_tie('tie_start')
@@ -262,9 +265,51 @@ class Part:
         else:
             return False
 
+    def _sub_measure_divisions(self, note: Note, div: int, first: bool) -> Optional[Note]:
+        """
+            Args:
+                div: current beat divisions
+        """
+
+        print('in sub measure divisions')
+        #div *= self.current_measure_factor
+        leftover_note = None
+
+        if self.current_count > div:
+            print("first div", self.current_count, div)
+            self.make_whole_measure_note(note, div, div, True, first)
+            print('pre minus', div, self.current_count)
+            self.current_count -= div * self.current_measure_factor
+            self.set_current_count_adjacencies()
+            print('post minus', div, self.current_count)
+        
+        elif self.current_count == div:
+            print('second div', self.current_count, div)
+            self.make_whole_measure_note(div, div, False, first)
+            self.current_count = 0
+            self.set_current_count_adjacencies()
+            #self.current_count -= div
+        
+        elif self.current_count < div:
+            print('third div', self.current_count, div)
+            leftover_note = copy.deepcopy(note)
+            print("current", self.current_count)
+            leftover_note.dur = self.current_count
+            if isinstance(leftover_note, Note):
+                leftover_note.set_as_tie('tie_end')
+        
+        if leftover_note:
+            print('leftover')
+            return leftover_note
+        else:
+            print('no leftover_note')
+            return None
+
+
     def get_internal_measures(self, note: Note, post_tie: bool) -> int:
         # Get any remainder of the note that belongs in the last measure
 
+        leftover_note = None
         first = post_tie
 
         if self.current_count > 0:
@@ -285,77 +330,30 @@ class Part:
             counter = 0
             # how many measures do we need to write
             while self.current_measure_floor >= 0 and self.current_count > 0:
+                print('while both are greater', self.current_measure_floor, self.current_count)
                 """This uses the type of measure to write a whole measure.
                 Eventually, we need to take cases of dotted notes that cross
                 one level of subdivisions, as well as half notes in 3 and 4/4"""
                 if self.current_measure.meter_division == "Duple":
                     div = 2
-                    if self._full_measure_tie_check():
-                        self.make_whole_measure_note(note, div, div, True, first)
-                        self.current_count -= div * self.current_measure_factor
-                    elif self.current_count == div * self.current_measure_factor:
-                        self.make_whole_measure_note(div, div, False, first)
-                        self.current_count == 0
-                        self.set_current_count_adjacencies()
-                        self.current_count -= div * self.current_measure_factor
-                    elif self.current_count < div * self.current_measure_factor:
-                        self.set_current_count_adjacencies()
-                        leftover_note = copy.deepcopy(note)
-                        leftover_note.dur = self.current_count
-                        if isinstance(leftover_note, Note):
-                            leftover_note.set_as_tie('tie_end')
-                        return self.current_count, leftover_note
-                    else:
-                        pass
+                    leftover_note = self._sub_measure_divisions(note, div, first)
 
                 elif self.current_measure.meter_division == "Triple":
                     div = 3
-                    if self._full_measure_tie_check():
-                        self.make_whole_measure_note(note, div, div, True, first)
-                        self.current_count -= div * self.current_measure_factor
-                    elif self.current_count == div * self.current_measure_factor:
-                        self.make_whole_measure_note(div, div, False, first)
-                        self.current_count == 0
-                        self.set_current_count_adjacencies()
-                        self.current_count -= div * self.current_measure_factor
-                    elif self.current_count < div * self.current_measure_factor:
-                        self.set_current_count_adjacencies()
-                        leftover_note = copy.deepcopy(note)
-                        leftover_note.dur = self.current_count
-                        if isinstance(leftover_note, Note):
-                            leftover_note.set_as_tie('tie_end')
-                        return self.current_count, leftover_note
-                    else:
-                        pass
+                    leftover_note = self._sub_measure_divisions(note, div, first)
 
                 elif self.current_measure.meter_division == "Quadruple":
                     div = 4
-                    if self._full_measure_tie_check():
-                        self.make_whole_measure_note(note, div, div, True, first)
-                        self.current_count -= div * self.current_measure_factor
-                    elif self.current_count == div * self.current_measure_factor:
-                        self.make_whole_measure_note(div, div, False, first)
-                        self.current_count == 0
-                        self.set_current_count_adjacencies()
-                        self.current_count -= div * self.current_measure_factor
-                    elif self.current_count < div * self.current_measure_factor:
-                        self.set_current_count_adjacencies()
-                        leftover_note = copy.deepcopy(note)
-                        leftover_note.dur = self.current_count
-                        if isinstance(leftover_note, Note):
-                            leftover_note.set_as_tie('tie_end')
-                        return self.current_count, leftover_note
-                    else:
-                        pass
-                self.set_current_count_adjacencies()
-                first = False         
+                    leftover_note = self._sub_measure_divisions(note, div, first)
+
+                first = False
 
         # FIXME: break for asymmetric meter - ANS
         else:
             pass
             
         last_current_count = self.current_count
-        return last_current_count, None
+        return last_current_count, leftover_note
 
     def set_current_count_adjacencies(self) -> None:
         self.current_count_floor = self.current_count // self.subdivisions
@@ -549,6 +547,7 @@ class Part:
                             measure. We write that note, then decrement current_count to reflect
                             that note being written."""
                             if self.current_count >= self.max_subdivisions:
+                                print('current count bigger than max subdivisions')
                                 last_measure_remaining_duration = (
                                     self.max_subdivisions - remainder
                                 )
@@ -566,6 +565,7 @@ class Part:
                                 # print(note_to_add_to_old_measure)
                                 self.current_beat.add_note(note_to_add_to_old_measure)
                                 self.current_count -= self.max_subdivisions
+                                print("cc", self.current_count)
                                 # print(self.current_count)
                                 self.append_and_increment_measure()
                                 self.set_current_count_adjacencies()
