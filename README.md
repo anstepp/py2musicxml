@@ -19,5 +19,5 @@ These are:
 
 You can then convert these objects into a .musicxml file to be opened in engraving software.
 
-The wiki is available here:
-https://github.com/anstepp/py2musicxml/wiki
+The wiki is available [here](https://github.com/anstepp/py2musicxml/wiki).
+
