@@ -17,4 +17,6 @@ These are:
 * Part
 * Score
 
-(The Wiki is available here.)[https://github.com/anstepp/py2musicxml/wiki]
+
+The wiki is available here:
+https://github.com/anstepp/py2musicxml/wiki
