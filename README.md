@@ -17,27 +17,4 @@ These are:
 * Part
 * Score
 
-## "Hello, World!"
-
-A smiple score that produces a middle C would be as follows:
-
-```python
-from py2musicxml.notation import Note, Part, Score
-
-duration = 4
-octave = 4
-pitch_class = 0
-
-middle_c = Note(duration, octave, pitch_class)
-
-note_list = [middle_c]
-
-time_signature = [(4,4)]
-
-our_first_part = Part(note_list, time_signature)
-
-part_list = [our_first_part]
-
-our_first_score = Score(part_list)
-our_first_score.convert_to_xml("middlec.musicxml")
-```
+(The Wiki is available here.)[https://github.com/anstepp/py2musicxml/wiki]
