@@ -1,4 +1,5 @@
 import copy
+import logging
 
 from typing import Iterable, List, Optional, Tuple, Union
 
@@ -6,6 +7,7 @@ from .note import Note
 from .beat import Beat
 from .rest import Rest
 
+logging.basicConfig(level=logging.DEBUG)
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 TimeSignature = Tuple[int, int]
@@ -52,6 +54,7 @@ class Measure:
             yield count
 
     def add_beat(self, beat: Beat) -> None:
+        logging.debug(f"Appending beat and len: {beat} {len(beat.notes)}")
         self.beats.append(beat)
 
     def set_time_signature(self, time_signature: TimeSignature) -> None:
