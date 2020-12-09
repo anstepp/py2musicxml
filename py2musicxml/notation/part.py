@@ -387,12 +387,13 @@ class Part:
         )
 
     def wrap_up(self, remainder: int) -> None:
-        the_final_rest = Rest(remainder)
-        the_final_rest.is_measure = False
-        final_beat = Beat(remainder)
-        final_beat.add_note(the_final_rest)
-        self.current_measure.add_beat(final_beat)
-        self.measures.append(self.current_measure)
+        if remainder:
+            the_final_rest = Rest(remainder)
+            the_final_rest.is_measure = False
+            final_beat = Beat(remainder)
+            final_beat.add_note(the_final_rest)
+            self.current_measure.add_beat(final_beat)
+            self.measures.append(self.current_measure)
 
 
     def _test_for_chord(
@@ -506,8 +507,6 @@ class Part:
                         note_to_add.dur = self.current_measure_factor * note_to_add.dur
                         #print("adding note", note_to_add)
                         self.current_beat.add_note(note_to_add)
-                        if self.current_count >= self.subdivisions:
-                            self.advance_current_beat_count()
                         if self.current_count < self.max_subdivisions:
                             remainder = self.current_count
 
@@ -582,7 +581,6 @@ class Part:
                             note_to_add_to_old_measure = copy.deepcopy(note)
                             note_to_add_to_old_measure.dur = self.current_count
                             self.current_beat.add_note(note_to_add_to_old_measure)
-                            self.advance_current_beat_count()
                             remainder = self.current_count
 
                     else:
