@@ -149,12 +149,12 @@ class Note:
 
     def set_as_tie(self, tie_type: str) -> None:
 
-        if tie_type is 'tie_start':
+        if tie_type == 'tie_start':
             self.tie_start = True
-        if tie_type is 'tie_continue':
+        if tie_type == 'tie_continue':
             self.tie_continue = True
             self.articulation = None
-        if tie_type is 'tie_end':
+        if tie_type == 'tie_end':
             self.tie_end = True
             self.articulation = None
 
