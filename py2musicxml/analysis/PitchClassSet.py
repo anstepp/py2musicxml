@@ -35,7 +35,7 @@ class PitchClassSet:
                 current_set.append(next_cycled_set)
 
             zeroed_set = self._get_zero_start(current_set)
-            zeroed_set_reversed = self._reverse_TI(zeroed_set)
+            zeroed_set_reversed = self._retrograde_TI(zeroed_set)
 
             potential_set_orders.append(zeroed_set)
 

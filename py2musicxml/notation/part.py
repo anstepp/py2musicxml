@@ -275,27 +275,28 @@ class Part:
                 div: current beat divisions
         """
 
-        print('in sub measure divisions')
+        print('in sub measure divisions', self.current_count, div)
         leftover_note = None
 
-        if self.current_count > div:
+        if self.current_count > div * self.current_measure_factor:
             print("first div", self.current_count, div)
             self.make_whole_measure_note(note, div, div, True, first)
             print('pre minus', div, self.current_count)
             self.current_count -= div * self.current_measure_factor
             self.set_current_count_adjacencies()
             print('post minus', div, self.current_count)
-            leftover_note = copy.deepcopy(note)
-            leftover_note.dur = self.current_count
+            # This seems impossible, but there's zero value notes somehow...
+            if self.current_count > 0:
+                leftover_note = copy.deepcopy(note)
+                leftover_note.dur = self.current_count
         
-        elif self.current_count == div:
+        elif self.current_count == div * self.current_measure_factor:
             print('second div', self.current_count, div)
             self.make_whole_measure_note(note, div, div, False, first)
             self.current_count = 0
             self.set_current_count_adjacencies()
-            self.current_count -= div
         
-        elif self.current_count < div:
+        elif self.current_count < div * self.current_measure_factor:
             print('third div', self.current_count, div)
             leftover_note = copy.deepcopy(note)
             print("current", self.current_count)
@@ -307,12 +308,14 @@ class Part:
             print('leftover')
             return leftover_note
         else:
-            print('no leftover_note')
+            print('no leftover_note', self.current_count)
             return None
 
 
     def get_internal_measures(self, note: Note, remainder: float, post_tie: bool) -> int:
         # Get any remainder of the note that belongs in the last measure
+
+        print("current_count", self.current_count)
 
         leftover_note = None
         first = post_tie
@@ -489,7 +492,7 @@ class Part:
                     
                 if non_chord:
 
-                    #print("new iteration", self.current_count, self.current_beat.notes)
+                    print("new iteration", note, self.current_count, self.current_beat.notes)
 
                     """We call this function now, and when current count changes
                     to set variables to measure the relationship of the current count
@@ -573,7 +576,6 @@ class Part:
                             if leftover_note:
                                 print("adding leftovers", leftover_note, remainder)
                                 self.current_beat.add_note(leftover_note)
-                                self.current_measure.add_beat(self.current_beat)
                                 self.current_count = leftover_note.dur
 
                         elif self.current_count > 0:
