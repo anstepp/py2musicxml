@@ -186,8 +186,6 @@ class Part:
             This should only be called when a measure is full, that is,
             current_beat_count is full, or the subdivisions are full.
         '''
-        if len(self.current_beat.notes) > 0:
-            self.current_measure.add_beat(self.current_beat)
 
         logging.debug(f"Appending measure: {len(self.current_measure.beats)}")
 
@@ -390,9 +388,7 @@ class Part:
         if remainder:
             the_final_rest = Rest(remainder)
             the_final_rest.is_measure = False
-            final_beat = Beat(remainder)
-            final_beat.add_note(the_final_rest)
-            self.current_measure.add_beat(final_beat)
+            self.current_measure.add_note(the_final_rest)
             self.measures.append(self.current_measure)
 
     def _test_for_chord(

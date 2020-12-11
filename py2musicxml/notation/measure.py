@@ -1,8 +1,5 @@
 import copy
-<<<<<<< HEAD
 import itertools
-=======
->>>>>>> master
 import logging
 
 from typing import Iterable, List, Optional, Tuple, Union
@@ -211,14 +208,19 @@ class Measure:
 
         # Reverse the notes and beats so that pop() takes them off
         # in order of appearance in the measure.
-        notes = list(reversed(self.notes))
-        beat_divisions = list(reversed(self.measure_map))
+        notes = self.notes
+        notes.reverse()        
+        beat_divisions = self.measure_map
+        beat_divisions.reverse()
 
         # cumulative beat count
-        cumulative_beats = list(reversed(self.cumulative_beats))
+        cumulative_beats = self.cumulative_beats
+        cumulative_beats.reverse()
 
         # If measure is not empty
         if notes:
+
+            #get initial states
 
             current_note = notes.pop()
             current_beat_divisions = beat_divisions.pop()
