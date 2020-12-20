@@ -1,4 +1,5 @@
 # Py2MusicXML
+![](https://github.com/anstepp/py2musicxml/workflows/tests/badge.svg)
 
 Convert Python Algorithms to Notation via MusicXML.
 
