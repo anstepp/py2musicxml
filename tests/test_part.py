@@ -284,10 +284,6 @@ def test_assert_unique(notes_that_cause_duration_split):
                 )
 
 
-test_score = Score([test_part])
-test_score.convert_to_xml("test_score_cases.xml")
-
-
 def test_long_durs():
     # fmt: off
     long_durs = [4,4,4,4,7,1,4,6,7,3,8,6,7,1,5,6,1]

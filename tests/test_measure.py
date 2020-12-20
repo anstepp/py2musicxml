@@ -20,7 +20,7 @@ def test_object_init_success_with_args():
 @pytest.mark.parametrize(
     "time_signature, expected_meter_division, expected_meter_type, expected_meter_map",
     [
-        ((4, 4), 'Quadruple', 'Simple', [4, 4, 4, 4]),
+        ((4, 4), 'Quadruple', 'Simple', [1, 1, 1, 1]),
         ((3, 4), 'Triple', 'Simple', [1, 1, 1]),
         ((2, 4), 'Duple', 'Simple', [1, 1]),
         ((12, 8), 'Quadruple', 'Compound', [1.5, 1.5, 1.5, 1.5]),
