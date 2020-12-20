@@ -35,7 +35,7 @@ class PitchClassSet:
                 current_set.append(next_cycled_set)
 
             zeroed_set = self._get_zero_start(current_set)
-            zeroed_set_reversed = self._reverse_TI(zeroed_set)
+            zeroed_set_reversed = self._retrograde_TI(zeroed_set)
 
             potential_set_orders.append(zeroed_set)
 
@@ -115,14 +115,12 @@ class PitchClassSet:
             last_pc = pc
             yield interval
 
-    def _reverse(self, reverse_me: Iterable[int]) -> Iterable[int]:
-        reversed_list = []
-        for var in reverse_me[::-1]:
-            reversed_list.append(var)
+    def _retrograde(self, reverse_me: Iterable[int]) -> Iterable[int]:
+        reversed_list = reverse_me.reverse()
 
         return reversed_list
 
-    def _reverse_TI(self, reverse_me: Iterable[int]) -> Iterable[int]:
+    def _retrograde_TI(self, reverse_me: Iterable[int]) -> Iterable[int]:
         reversed_list = []
 
         for var in reverse_me[::-1]:
