@@ -1,3 +1,49 @@
+"""
+Voice is a file that contains classes that represent voices and instruments.
+
+To use one of the voices, you import:
+
+from py2musicxml.composition import [chosen_voice]
+
+The score then has access to creating an instrument:
+
+first_trumpet = Trumpet()
+
+Which you can then call methods that are either generic
+or instrument specific. These methods allow for various
+prototyping/score production functionality.
+
+All instruments have the following methods. The necessary
+arguments are given as well:
+
+To extend pitch values:
+Voice.extend_pitches(List[int])
+
+To extend duration values:
+Voice.extend_durations(List[int])
+
+To convert pitch and duration values to Note objects:
+Voice.make_note_list(int)
+
+To add Note objects to the list of Note objects:
+Voice.extend_note_list(List[Note, Rest])
+
+To insert a Rest object of a given duration in the Note object list:
+Voice.insert_rest(int: duration, int: index)
+
+To insert a Note object or list of Note objects in the Note object list:
+Voice.insert_note_list(List[Note, Rest], int: index)
+
+Convert list of Note objects to a Part object:
+Voice.make_part(Time_Signature)
+
+Check range of the instrument:
+Voice.check_range()
+
+To clear out the note list:
+Voice.clear_list()
+"""
+
 from py2musicxml.notation import Note, Rest, Part
 
 from typing import List, Tuple, Iterable, Union
@@ -59,6 +105,11 @@ class Voice:
 
     def insert_rest(self, duration: int, index: int) -> None:
         self.note_list.insert(index, Rest(duration))
+
+    def insert_note_list(self, input_list: Iterable[Union[Note, Rest]], index: int) -> None:
+        first_chunk = self.note_list[0:index]
+        last_chunk = self.note_list[index:]
+        self.note_list = first_chunk + input_list + last_chunk
 
     def make_part(self, time_signature: Time_Signature) -> Part:
         checked_list = self._check_range(self.note_list)
