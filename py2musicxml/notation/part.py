@@ -432,10 +432,12 @@ class Part:
         --------
 
         None.
-        """
+
         Call this function to advance to the next measure.
             This should only be called when a measure is full, that is,
             current_beat_count is full, or the subdivisions are full.
+
+        """
 
         if len(self.current_beat.notes) > 0:
             self.current_measure.add_beat(self.current_beat)
