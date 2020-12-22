@@ -701,7 +701,7 @@ class Part:
         )
 
 
-    def wrap_up(self, remainder: int) -> None:
+    def _wrap_up(self, remainder: int) -> None:
         if remainder:
             the_final_rest = Rest(remainder)
             the_final_rest.is_measure = False
