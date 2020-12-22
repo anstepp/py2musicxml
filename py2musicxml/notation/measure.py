@@ -21,10 +21,66 @@ TimeSignature = Tuple[int, int]
 
 
 class Measure:
+
+    """
+    A class to represent a musical measure.
+
+    Attributes:
+
+    time_signature : Tuple(int, int)
+    The time signature for the measure, with the first int representing
+    the top note.
+
+    beats : List(float)
+    Collection of beat objects
+
+    equal_divisions : bool
+    Flag for if the measure is additive meter or not
+
+    measure_number : int
+    The measure's index + 1 in a part object.
+
+    meter_division : 
+    subdivision of the meter by beat
+
+    meter_type :
+    The type of meter: simple, compound, etc
+
+    measure_map : list
+    A list of the values of the beats in the measure.
+
+    cumulative_beats: list
+    Additive list of the values of the beats in the measure.
+
+    total_cumulative_beats : int
+    Total addtitive beat count.
+
+    Methods:
+    --------
+
+    is_empty()
+    Tests for any beats in self.beats. Returns a bool.
+
+    add_beat(Beat)
+    Appends beat to the end of self.beats. You should append Notes to a
+    Beat object, then append the Beat object.
+    
+    """
+
     def __init__(self, time_signature: Tuple, factor: int):
 
         """Init a measure with a time signature and factor. This
-        sets all the relevant information about a measure."""
+        sets all the relevant information about a measure.
+
+        Arguments:
+        ----------
+
+        time_signature (Time Signature): a Time Signature tuple
+
+        factor (int): unused scaling factor
+
+
+        """
 
         self.time_signature = time_signature
 
@@ -32,7 +88,7 @@ class Measure:
         self.beats = []
 
         # default to non-additive meter, this self corrects
-        # equal divisions means all beats are the same, eg. 4/4, 3/4, but not 5/8
+        # equal divisions means all beats are the same, eg. 4/4, 6/8, but not 5/8
         self.equal_divisions = True
 
         # Measure number relative to order in Part()
@@ -52,7 +108,19 @@ class Measure:
         self.measure_factor = None
 
     def is_empty(self) -> bool:
-        """Tests for an empty measure"""
+
+        """Tests for an empty measure.
+    
+        Arguments:
+
+        None.
+
+        Returns:
+
+        Bool.
+
+        """
+
         if len(self.beats) == 0:
             return True
         else:
@@ -61,14 +129,39 @@ class Measure:
     def _cumulative_beat_generator(self) -> None:
         """Using the measure map, creates a list of the values for each beat
         that is cummulative. This is used in the Part.get_internal_measures
-        method."""
+
+        method.
+
+        Arguments:
+
+        None
+
+        Returns:
+
+        None
+
+        """
         count = 0
         for beat in self.measure_map:
             count += beat
             yield count
 
     def add_beat(self, beat: Beat) -> None:
+        """
+        Add a beat to Measure.Beats, adding the notes inside the beat.
+
+        Arguments:
+        ----------
+
+        beat: a Beat object with or without consitiuent notes.
+
+        Returns:
+
+        None
+
+        """
         logging.debug(f"Appending beat and len: {beat} {len(beat.notes)}")
+
         self.beats.append(beat)
 
     def set_time_signature(self, time_signature: TimeSignature) -> None:
@@ -88,8 +181,18 @@ class Measure:
         1. Determines the measure division and type
             (measure_type will always be Simple, Compound, or Additive)
 
-        2. Creates the measure map.
+        2. Creates and returns the measure map.
             measure map is a list of the beat durations in the measure; it maps out the beats of a measure
+
+        Arguments:
+        ----------
+
+        factor: scaling factor for the internal notes.
+
+        Returns:
+
+        Tuple
+
         '''
 
         meter_division = None

@@ -33,7 +33,7 @@ def test_get_step_name():
             'pitch_class': 9,
             'starting_pitch': 11,
             'expected_result': ['A', '0', 'natural'],
-        },
+        }
     }
 
     for test_case in test_cases.keys():
