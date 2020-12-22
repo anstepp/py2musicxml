@@ -142,7 +142,7 @@ class Note:
 
         self.articulation = None
 
-    def fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
+    def _fix_pitch_overflow(self, octave: int, pitch_class: int) -> Tuple[int, int]:
         """
         Addresses pitch classes below 0 or above 11.
 
