@@ -592,7 +592,7 @@ class Part:
             self.make_whole_measure_note(note, div, div, True, first)
             logging.debug('pre minus', div, self.current_count)
             self.current_count -= div * self.current_measure_factor
-            self.set_current_count_adjacencies()
+            self._set_current_count_adjacencies()
             logging.debug('post minus', div, self.current_count)
             # This seems impossible, but there's zero value notes somehow...
             if self.current_count > 0:
@@ -603,7 +603,7 @@ class Part:
             logging.debug('second div', self.current_count, div)
             self.make_whole_measure_note(note, div, div, False, first)
             self.current_count = 0
-            self.set_current_count_adjacencies()
+            self._set_current_count_adjacencies()
         
         elif self.current_count < div * self.current_measure_factor:
             logging.debug('third div', self.current_count, div)
@@ -870,7 +870,7 @@ class Part:
                                 remainder = self.max_subdivisions - self.current_count
 
                                 logging.debug('remainder', remainder)
-                                self.set_current_count_adjacencies()
+                                self._set_current_count_adjacencies()
 
                         # Our current count exceeds the max duration of the current measure
                         if (
