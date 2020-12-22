@@ -692,9 +692,7 @@ class Part:
         measure_subdivisions: int,
         measure_max_subdivisions: int,
     ) -> CurrentCountDivisions:
-    """
-    
-    """
+
         return CurrentCountDivisions(
             beat_floor=current_count // measure_subdivisions,
             beat_mod=current_count % measure_subdivisions,
