@@ -10,7 +10,7 @@ from .note import Note
 from .beat import Beat
 from .rest import Rest
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 # from collections import namedtuple
 
@@ -804,7 +804,7 @@ class Part:
                     
                 if non_chord:
 
-                    logging.debug("new iteration", note, self.current_count, self.current_beat.notes)
+                    logging.debug(f"new iteration", note, self.current_count, self.current_beat.notes)
 
                     """We call this function now, and when current count changes
                     to set variables to measure the relationship of the current count
