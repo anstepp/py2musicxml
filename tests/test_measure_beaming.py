@@ -81,3 +81,26 @@ def test_half_note_multibeat():
 
     assert m.beats[0].multi_beat == True
     assert m.beats[0].notes[0].dur == 2
+
+def test_quarter_half_multibeat():
+
+    quarter_note_c = Note(1, 4, 0)
+    half_note_d = Note(2, 4, 2)
+
+    time_sig = (4,4)
+    measure_factor = 4
+
+    m = Measure(time_sig, measure_factor)
+
+    m.add_note(quarter_note_c)
+    m.add_note(half_note_d)
+
+    m.clean_up_measure()
+
+    assert m.beats[0].multi_beat == False
+    assert m.beats[0].notes[0].dur == 1
+    assert m.beats[0].notes[0].pc == 0
+
+    assert m.beats[1].multi_beat == True
+    assert m.beats[1].notes[0].dur == 2
+    assert m.beats[1].notes[0].pc == 2

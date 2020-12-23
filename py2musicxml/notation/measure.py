@@ -9,7 +9,7 @@ import copy
 import itertools
 import logging
 
-from typing import Iterable, List, Optional, Tuple, Union
+from typing import Iterable, List, Optional, Tuple, Union, List
 
 from .note import Note
 from .beat import Beat
@@ -308,6 +308,18 @@ class Measure:
         if rest_value > 0:  
             self.add_note(Rest(rest_value))
 
+
+    def _test_multibeat(self, current_count: float, cumulative_beats: List[float]) --> Union[int, None]:
+
+        if (current_count * self.measure_factor in cumulative_beats):
+
+            return True
+
+        else:
+
+            return False
+
+
     def clean_up_measure(self) -> None:
         """ Beams notes in the measure.
 
@@ -380,20 +392,7 @@ class Measure:
                 logging.debug(f"current_note: {current_note}")
                 logging.debug(f"current_beat: {current_beat}")
                 logging.debug(f"self.beats: {self.beats}")
-
-                # check for multi-beat note
-                if ((current_note.dur * self.measure_factor) in cumulative_beats):
-                    logging.debug("current note is in cumulative beats")
-                    current_beat.multi_beat = True
-                    current_beat.add_note(current_note)
-                    self.add_beat(current_beat)
-                    current_note = notes.pop()
-                    while current_beat_divisions <= current_count * self.measure_factor:
-                        if beat_divisions and cumulative_beats:
-                            current_beat_divisions = beat_divisions.pop()
-                            beat_breakpoint = cumulative_beats.pop() 
-                        else:
-                            break            
+            
 
                 # keep adding notes until we hit or break the breakpoint
                 while (current_count * self.measure_factor) < beat_breakpoint:
