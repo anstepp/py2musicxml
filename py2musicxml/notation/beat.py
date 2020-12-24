@@ -4,7 +4,8 @@ from typing import Iterable
 
 from py2musicxml.notation import Note
 
-logging.basicConfig(level=logging.DEBUG)
+beat_logger = logging.getLogger('Beat').setLevel(logging.INFO)
+
 
 
 class Beat:
@@ -23,7 +24,7 @@ class Beat:
                 note.beam_continue = True
 
     def add_note(self, note: Note) -> None:
-        logging.debug(f"Appending note: {note}")
+        beat_logger.debug(f"Appending note: {note}")
         self.notes.append(note)
         self._make_beams()
 
