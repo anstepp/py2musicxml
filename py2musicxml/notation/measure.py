@@ -14,12 +14,7 @@ from .note import Note
 from .beat import Beat
 from .rest import Rest
 
-measure_logger = logging.getLogger('Measure').setLevel('info')
-
-consoleHandler = logging.StreamHandler()
-consoleHandler.setLevel(logging.INFO)
-
-measure_logger.addHandler(consoleHandler)
+measure_logger = logging.getLogger('Measure').setLevel(logging.INFO)
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 TimeSignature = Tuple[int, int]
@@ -162,7 +157,7 @@ class Measure:
         None
 
         """
-        measure_logger.debug(f"Appending beat and len: {beat} {len(beat.notes)}")
+        logging.debug(f"Appending beat and len: {beat} {len(beat.notes)}")
 
         self.beats.append(beat)
 

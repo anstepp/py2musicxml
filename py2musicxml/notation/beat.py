@@ -24,7 +24,7 @@ class Beat:
                 note.beam_continue = True
 
     def add_note(self, note: Note) -> None:
-        beat_logger.debug(f"Appending note: {note}")
+        logging.debug(f"Appending note: {note}")
         self.notes.append(note)
         self._make_beams()
 
