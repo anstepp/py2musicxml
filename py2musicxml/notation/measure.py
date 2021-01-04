@@ -309,15 +309,24 @@ class Measure:
             self.add_note(Rest(rest_value))
 
 
-    def _test_multibeat(self, current_count: float, cumulative_beats: List[float]) --> Union[int, None]:
+    def _test_multibeat(self, current_count: float, cumulative_beats: List[float]) -> Union[bool, int]:
 
-        if (current_count * self.measure_factor in cumulative_beats):
+        adj_count = (current_count * self.measure_factor)
 
-            return True
+        if (adj_count in cumulative_beats):
+
+            counter = 0
+            for item in cumulative_beats:
+                if item == adj_count:
+                    break
+                else:
+                    counter += 1
+
+            return True, counter
 
         else:
 
-            return False
+            return False, 0
 
 
     def clean_up_measure(self) -> None:
@@ -373,6 +382,15 @@ class Measure:
             logging.debug(f"init bp: {beat_breakpoint}")
             current_beat = Beat(beat_breakpoint)
 
+            multi_beat, pops = self._test_multibeat(current_count, cumulative_beats)
+            logging.debug(f"pops are {pops}")
+            if multi_beat:
+                current_beat.multi_beat = multi_beat
+                while pops:
+                    current_beat_divisions = beat_divisions.pop()
+                    beat_breakpoint = cumulative_beats.pop()
+                    pops -= 1
+
             # previous note duration
             old_dur = 0
             note_for_next_beat = None
@@ -410,6 +428,8 @@ class Measure:
                     logging.debug(f'equal, {current_count * self.measure_factor}, {beat_breakpoint}')
                     old_dur = current_note.dur
 
+                    logging.debug(f"appending: {current_note}")
+
                     current_beat.add_note(current_note)
 
                     self.add_beat(current_beat)
@@ -430,7 +450,7 @@ class Measure:
                     remainder = current_note.dur * self.measure_factor - overflow
                     logging.debug(f"remainder, {remainder}, {current_note.dur}")
                     old_beat_note = copy.deepcopy(current_note)
-                    old_beat_note.dur = remainder
+                    old_beat_note.change_duration(remainder)
                     old_beat_note.tie_start = True
                     current_beat.add_note(old_beat_note)
                     self.add_beat(current_beat)
@@ -445,6 +465,15 @@ class Measure:
                 if notes:
                     current_note = notes.pop()
                     current_count += current_note.dur
+                    multi_beat, pops = self._test_multibeat(current_count, cumulative_beats)
+                    logging.debug(f"pops are {pops}")
+                    if multi_beat:
+                        current_beat.multi_beat = multi_beat
+                        while pops:
+                            current_beat_divisions = beat_divisions.pop()
+                            beat_breakpoint = cumulative_beats.pop()
+                            pops -= 1
+
                 else:
                     break
 

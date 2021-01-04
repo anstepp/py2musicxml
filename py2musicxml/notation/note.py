@@ -132,7 +132,13 @@ class Note:
 
         """
 
-        self.dur = duration
+        try:
+            duration >= 0
+        except ValueError as e:
+            logging.error("Negative Duration")
+            raise
+        finally:
+            self.dur = duration
 
         # called to correct any errant pitch classes
         self.octave, self.pc = self._fix_pitch_overflow(octave, pitch_class)
@@ -283,6 +289,16 @@ class Note:
         else:
             pass
             #throw error eventually
+
+
+    def change_duration(self, new_duration: float) -> None:
+        try:
+            new_duration >= 0
+        except ValueError as e:
+            logging.error(e)
+            raise
+        finally:
+            self.dur = new_duration
 
     def __eq__(self, other) -> bool:
         """

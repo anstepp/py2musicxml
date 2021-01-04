@@ -79,6 +79,9 @@ def test_half_note_multibeat():
 
     m.clean_up_measure()
 
+    for beat in m.beats:
+        assert beat.subdivisions == 4
+
     assert m.beats[0].multi_beat == True
     assert m.beats[0].notes[0].dur == 2
 
@@ -96,6 +99,9 @@ def test_quarter_half_multibeat():
     m.add_note(half_note_d)
 
     m.clean_up_measure()
+
+    for beat in m.beats:
+        assert beat.subdivisions == 4
 
     assert m.beats[0].multi_beat == False
     assert m.beats[0].notes[0].dur == 1
