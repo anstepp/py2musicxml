@@ -9,12 +9,11 @@ class Rest:
 
     def change_duration(self, new_duration: float) -> None:
         try:
-            new_duration >= 0
+            if new_duration >= 0:
+                self.dur = new_duration
         except ValueError as e:
             logging.error(e)
             raise
-        finally:
-            self.dur = new_duration
 
     def __str__(self):
         return 'Duration: {}, is_measure {}'.format(self.dur, self.is_measure)
