@@ -100,15 +100,18 @@ class Measure:
         # hypermetric weight of measure
         # self.weight = None
 
+        #factor for divisions
+        self.measure_factor = factor
+
         (
             self.meter_division,
             self.meter_type,
             self.measure_map,
-        ) = self._create_measure_map(factor)
+        ) = self._create_measure_map(self.measure_factor)
 
         self.cumulative_beats = list((x for x in self._cumulative_beat_generator()))
         self.total_cumulative_beats = self.cumulative_beats[-1]
-        self.measure_factor = factor
+        
 
     def is_empty(self) -> bool:
         """Tests for an empty measure.
@@ -311,18 +314,20 @@ class Measure:
 
     def _test_multibeat(self, current_count: float, cumulative_beats: List[float]) -> Union[bool, int]:
 
-        adj_count = (current_count * self.measure_factor)
+        adj_count = current_count
+        beats = cumulative_beats.reverse()
+
+        print(f"In multi_beat: adj_count {adj_count} and cumulative_beats {cumulative_beats}")
 
         if (adj_count in cumulative_beats):
 
             counter = 0
             for item in cumulative_beats:
                 if item == adj_count:
-                    break
+                    counter += 1
+                    return True, counter
                 else:
                     counter += 1
-
-            return True, counter
 
         else:
 
@@ -373,23 +378,24 @@ class Measure:
             #get initial states
 
             current_note = notes.pop()
+            logging.debug(f"current_note {current_note}")
             current_beat_divisions = beat_divisions.pop()
             beat_breakpoint = cumulative_beats.pop()
 
             # current_count is the cumulative total of note durations.
             current_count = current_note.dur
 
-            logging.debug(f"init bp: {beat_breakpoint}")
+            logging.debug(f"init bp: {beat_breakpoint}, current_count {current_count}")
             current_beat = Beat(beat_breakpoint)
 
             multi_beat, pops = self._test_multibeat(current_count, cumulative_beats)
-            logging.debug(f"pops are {pops}")
+            logging.debug(f"multi_beat is {multi_beat}, pops are {pops}")
             if multi_beat:
                 current_beat.multi_beat = multi_beat
-                while pops:
+                for x in range(pops):
                     current_beat_divisions = beat_divisions.pop()
                     beat_breakpoint = cumulative_beats.pop()
-                    pops -= 1
+                    print("POP!", current_beat_divisions, beat_breakpoint)
 
             # previous note duration
             old_dur = 0
@@ -441,9 +447,19 @@ class Measure:
                     was_equal = True
 
                 # divide note into two parts - one for current beat, one for next beat
-                elif (current_count * self.measure_factor) > beat_breakpoint:
+                elif (current_count > beat_breakpoint):
+
+                    tf, pops = self._test_multibeat(current_count, cumulative_beats)
+                    if tf:
+                        for x in range(pops):
+                            current_beat_divisions = beat_divisions.pop()
+                            beat_breakpoint = cumulative_beats.pop()
+                    else:
+                        pass 
 
                     logging.debug(f"current count > beat_breakpoint, {current_count * self.measure_factor}, {beat_breakpoint}")
+
+ 
 
                     overflow = current_count * self.measure_factor - beat_breakpoint
                     logging.debug(f"overflow, {overflow}, {current_count * self.measure_factor}, {beat_breakpoint}")

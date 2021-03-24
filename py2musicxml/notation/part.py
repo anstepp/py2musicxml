@@ -159,6 +159,7 @@ class Part:
         dur_uniques = self.get_note_uniques()
         denominator_uniques = self.get_ts_uniques()
         self.measure_factor = self._get_factor(dur_uniques) * max(denominator_uniques)
+        print(self.measure_factor)
 
         self.create_part()
 
@@ -438,10 +439,10 @@ class Part:
 
         """
 
-        if len(self.current_beat.notes) > 0:
-            self.current_measure.add_note(self.current_beat)
+        # if len(self.current_beat.notes) > 0:
+        #     self.current_measure.add_note(self.current_beat)
 
-        logging.debug(f"Appending measure: {len(self.current_measure.beats)}")
+        logging.debug(f"Appending measure: {len(self.current_measure.notes)}")
 
         self.measures.append(self.current_measure)
 
@@ -692,6 +693,9 @@ class Part:
         # self.current_count_mod = self.current_count % self.subdivisions
         self.current_measure_floor = self.current_count // self.max_subdivisions
         self.current_measure_mod = self.current_count % self.max_subdivisions
+        logging.debug(
+            f"current measure floor {self.current_measure_floor}, current measure mod {self.current_measure_mod}"
+            )
 
     def _get_current_count_divisions(
         self,
@@ -816,11 +820,17 @@ class Part:
                     self._set_current_count_adjacencies()
 
                     if self.current_measure_floor == 1 and self.current_measure_mod == 0:
-                        measure_or_less_test = True
+                        measure_test = True
                     else:
-                        measure_or_less_test = False
+                        measure_test = False
 
-                    if measure_or_less_test or self.current_measure_floor == 0:
+                    if measure_test:
+                        logging.debug("Measure equal")
+                        self.current_measure.add_note(note)
+                        self._append_and_increment_measure()
+                        self._set_current_count_adjacencies()
+
+                    elif self.current_measure_floor == 0:
                         logging.debug("less than a measure, location {}, note {}, remainder {}, current_count {}, current_measure_floor {}, current_measure_mod {}, max_subdivisions {}".format(location, note, remainder, self.current_count, self.current_measure_floor, self.current_measure_mod, self.max_subdivisions))
                         note_to_add = copy.deepcopy(note)
                         note_to_add.change_duration(self.current_measure_factor * note_to_add.dur)
@@ -836,7 +846,7 @@ class Part:
                             self._set_current_count_adjacencies()
                             remainder = 0
 
-                    if self.current_measure_floor >= 1:
+                    elif self.current_measure_floor >= 1:
                         logging.debug("over a measure, location {}, note {}, remainder {}, current_measure_floor {}, current_measure_mod {}, current_count {}, max_subdivisions {}".format(location, note, remainder, self.current_measure_floor, self.current_measure_mod, self.current_count, self.max_subdivisions))
                         if remainder > 0:
                             """In this case, we have leftover note duration from the previous

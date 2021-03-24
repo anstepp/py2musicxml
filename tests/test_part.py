@@ -32,6 +32,8 @@ def test_measure_equals_note():
 
     test_part = Part([test_note], time_sig)
 
+    #assert len(test_part.measures) == 1
+
     for measure_idx, measure in enumerate(test_part.measures):
         for beat_idx, beat in enumerate(measure.beats):
             for note_idx, note in enumerate(beat.notes):
