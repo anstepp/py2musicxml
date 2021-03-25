@@ -42,14 +42,13 @@ class CurrentCountDivisions(NamedTuple):
     Methods:
     --------
 
-    None.
+    set_and_return_adjacencies
 
     """
     beat_floor: int
     beat_mod: int
     measure_floor: int
     measure_mod: int
-
 
 class Part:
 
@@ -159,9 +158,8 @@ class Part:
         dur_uniques = self.get_note_uniques()
         denominator_uniques = self.get_ts_uniques()
         self.measure_factor = self._get_factor(dur_uniques) * max(denominator_uniques)
-        print(self.measure_factor)
 
-        self.create_part()
+        self.create_part(self.current_list, self.measure_factor)
 
     """default behavior is to simply clean an input list to 4/4
        it's also an option to feed extra arguments with keywords to 
@@ -189,7 +187,7 @@ class Part:
             return measure_factor
 
 
-    def create_part(self):
+    def create_part(self, current_list: Iterable[Union[Note, Rest]], measure_factor: int) -> None:
         """
         Transform input list of notes into a list of measures.
 
@@ -206,7 +204,11 @@ class Part:
 
         Nothing. List is handled internally.
         """
-        self._group_list_to_measures()
+
+        # set all durations to be factored
+        [note.change_duration(note.dur * measure_factor) for note in current_list]
+
+        self._group_list_to_measures(current_list, measure_factor)
 
     def get_note_uniques(self) -> list:
         """
@@ -415,7 +417,7 @@ class Part:
             self.time_signatures
         )
 
-    def _append_and_increment_measure(self) -> None:
+    def _append_and_increment_measure(self, measure_factor: int) -> None:
         """
         Called when a measure is full to clean up last Measure and instantiate new
         Measure object.
@@ -447,10 +449,9 @@ class Part:
         self.measures.append(self.current_measure)
 
         self._advance_time_signature_index()
-        self.current_measure_factor = self.measure_factor
 
         self.current_measure = Measure(
-            self.time_signatures[self.time_signature_index], self.current_measure_factor
+            self.time_signatures[self.time_signature_index], measure_factor
         )
 
 
@@ -481,6 +482,7 @@ class Part:
         advance: int, 
         tie: bool, 
         first: bool, 
+        measure_factor: int
     ) -> None:
         """
         Invoked when a current_note or a subdivsion thereof is a complete measure to flag a
@@ -507,7 +509,7 @@ class Part:
 
         logging.debug(f"dur is, {duration}")
 
-        note_to_add.change_duration(duration * self.current_measure_factor)
+        note_to_add.change_duration(duration * measure_factor)
         #print(note_to_add)
 
         if isinstance(note_to_add, Note):
@@ -526,7 +528,7 @@ class Part:
         # self.current_beat.add_note(note_to_add)
         # self.current_beat.multi_beat = True
         self.current_measure.add_note(note_to_add)
-        self._append_and_increment_measure()
+        self._append_and_increment_measure(measure_factor)
 
     def _make_multi_beat_rest(self, rest: Rest, advance: int) -> None:
         """
@@ -574,7 +576,13 @@ class Part:
         else:
             return False
 
-    def _sub_measure_divisions(self, note: Note, remiainder: float, div: int, first: bool) -> Optional[Note]:
+    def _sub_measure_divisions(self, 
+        note: Note, 
+        remiainder: float, 
+        div: int, 
+        first: bool, 
+        measure_factor: int
+    ) -> Optional[Note]:
         """
             Args:
                 div: current beat divisions
@@ -583,11 +591,11 @@ class Part:
         logging.debug(f'in sub measure divisions, {self.current_count}, {div}')
         leftover_note = None
 
-        if self.current_count > div * self.current_measure_factor:
+        if self.current_count > div * measure_factor:
             logging.debug(f"first div, {self.current_count}, {div}")
-            self.make_whole_measure_note(note, div, div, True, first)
+            self.make_whole_measure_note(note, div, div, True, first, measure_factor)
             logging.debug(f'pre minus, {self.current_count}, {div}')
-            self.current_count -= div * self.current_measure_factor
+            self.current_count -= div * self.measure_factor
 
             self._set_current_count_adjacencies()
             logging.debug(f'post minus, {self.current_count}, {div}')
@@ -597,13 +605,13 @@ class Part:
                 leftover_note = copy.deepcopy(note)
                 leftover_note.change_duration(self.current_count)
         
-        elif self.current_count == div * self.current_measure_factor:
+        elif self.current_count == div * measure_factor:
             logging.debug(f'second div, {self.current_count}, {div}')
-            self.make_whole_measure_note(note, div, div, False, first)
+            self.make_whole_measure_note(note, div, div, False, first, measure_factor)
             self.current_count = 0
             self._set_current_count_adjacencies()
         
-        elif self.current_count < div * self.current_measure_factor:
+        elif self.current_count < div * measure_factor:
             logging.debug(f'third div, {self.current_count}, {div}')
             leftover_note = copy.deepcopy(note)
             logging.debug(f"current, {self.current_count}")
@@ -619,7 +627,7 @@ class Part:
             return None
 
 
-    def get_internal_measures(self, note: Note, remainder: float, post_tie: bool) -> int:
+    def get_internal_measures(self, note: Note, remainder: float, post_tie: bool, measure_factor: int) -> int:
 
         # Get any remainder of the note that belongs in the last measure
 
@@ -631,7 +639,7 @@ class Part:
                 old_measure_note = copy.deepcopy(note)
                 old_measure_note.change_duration(old_measure_dur)
                 self.current_measure.add_note(old_measure_note)
-                self._append_and_increment_measure()
+                self._append_and_increment_measure(measure_factor)
                 first = False
         else:
             pass
@@ -649,7 +657,7 @@ class Part:
             note_to_add_to_old_measure.set_as_tie('tie_start')
             self.current_measure.add_note(note_to_add_to_old_measure)
             self.current_count -= self.measure_max_subdivisions
-            self._append_and_increment_measure()
+            self._append_and_increment_measure(measure_factor)
 
         if self.current_measure.equal_divisions:
 
@@ -664,15 +672,15 @@ class Part:
                 one level of subdivisions, as well as half notes in 3 and 4/4"""
                 if self.current_measure.meter_division == "Duple":
                     div = 2
-                    leftover_note = self._sub_measure_divisions(note, remainder, div, first)
+                    leftover_note = self._sub_measure_divisions(note, remainder, div, first, measure_factor)
 
                 elif self.current_measure.meter_division == "Triple":
                     div = 3
-                    leftover_note = self._sub_measure_divisions(note, remainder, div, first)
+                    leftover_note = self._sub_measure_divisions(note, remainder, div, first, measure_factor)
 
                 elif self.current_measure.meter_division == "Quadruple":
                     div = 4
-                    leftover_note = self._sub_measure_divisions(note, remainder, div, first)
+                    leftover_note = self._sub_measure_divisions(note, remainder, div, first, measure_factor)
 
                 first = False
 
@@ -713,6 +721,7 @@ class Part:
 
 
     def _wrap_up(self, remainder: int) -> None:
+        logging.debug(f"remainder: {remainder}")
         if remainder:
             the_final_rest = Rest(remainder)
             the_final_rest.is_measure = False
@@ -723,6 +732,7 @@ class Part:
         self, 
         note: Union[Note, Rest], 
         advance_note: Union[Note, Rest], 
+        measure_factor: int,
     ) -> bool:
 
         if not isinstance(note, Rest):
@@ -738,32 +748,30 @@ class Part:
 
                 else:
 
-                    self.current_count += round(note.dur * self.current_measure_factor)
+                    self.current_count += round(note.dur * measure_factor)
                     return True
 
             else:
-                self.current_count += round(note.dur * self.current_measure_factor)
+                self.current_count += round(note.dur * measure_factor)
                 return True
 
         else:
 
-            self.current_count += round(note.dur * self.current_measure_factor)
+            self.current_count += round(note.dur * measure_factor)
             return True
 
 
 
-    def _group_list_to_measures(self) -> None:
-
-        self.current_measure_factor = self.measure_factor
+    def _group_list_to_measures(self, note_list: Iterable[Union[Note, Rest]], measure_factor: int) -> None:
 
         self.current_measure = Measure(
-            self.time_signatures[self.time_signature_index], self.current_measure_factor
+            self.time_signatures[self.time_signature_index], measure_factor
         )
 
         if self.current_measure.equal_divisions is False:
             denominator = self.current_measure.time_signature[1]
             if denominator > 4:
-                self.current_measure_factor = self.current_measure_factor * (denominator / 2)
+                measure_factor = measure_factor * (denominator / 2)
             else:
                 pass
 
@@ -782,7 +790,7 @@ class Part:
         self.max_subdivisions = self.current_measure.total_cumulative_beats
 
         remainder = 0
-        for location, note in enumerate(self.current_list):
+        for location, note in enumerate(note_list):
 
             if location + 1 < len(self.current_list):
                 advance_location = location + 1
@@ -802,12 +810,12 @@ class Part:
 
                 if advance_note:
                     non_chord = self._test_for_chord(
-                        note, advance_note
+                        note, advance_note, measure_factor
                     )
 
                 else:
                     non_chord = True
-                    self.current_count += round(note.dur * self.current_measure_factor)
+                    self.current_count += note.dur
                     #print("current count",self.current_count)
                     
                 if non_chord:
@@ -827,21 +835,19 @@ class Part:
                     if measure_test:
                         logging.debug("Measure equal")
                         self.current_measure.add_note(note)
-                        self._append_and_increment_measure()
+                        self._append_and_increment_measure(measure_factor)
                         self._set_current_count_adjacencies()
 
                     elif self.current_measure_floor == 0:
                         logging.debug("less than a measure, location {}, note {}, remainder {}, current_count {}, current_measure_floor {}, current_measure_mod {}, max_subdivisions {}".format(location, note, remainder, self.current_count, self.current_measure_floor, self.current_measure_mod, self.max_subdivisions))
-                        note_to_add = copy.deepcopy(note)
-                        note_to_add.change_duration(self.current_measure_factor * note_to_add.dur)
                         #print("adding note", note_to_add)
-                        self.current_measure.add_note(note_to_add)
+                        self.current_measure.add_note(note)
 
                         if self.current_count < self.max_subdivisions:
                             remainder = self.current_count
 
                         else:
-                            self._append_and_increment_measure()
+                            self._append_and_increment_measure(measure_factor)
                             self.current_count = 0
                             self._set_current_count_adjacencies()
                             remainder = 0
@@ -873,7 +879,7 @@ class Part:
                                 self.current_count -= self.max_subdivisions
                                 logging.debug(f"cc, {self.current_count}")
                                 # print(self.current_count)
-                                self._append_and_increment_measure()
+                                self._append_and_increment_measure(measure_factor)
                                 self._set_current_count_adjacencies()
                                 # print("over a measure adj, location {}, note {}, current_measure_floor {}, current_measure_mod {}, current_count {}, max_subdivisions {}".format(location, note, self.current_measure_floor, self.current_measure_mod, self.current_count, self.max_subdivisions))
                                 remainder = 0
@@ -900,7 +906,7 @@ class Part:
                             else:
                                 first = True
 
-                            remainder, leftover_note = self.get_internal_measures(note, remainder, first)
+                            remainder, leftover_note = self.get_internal_measures(note, remainder, first, measure_factor)
 
                             if leftover_note:
                                 logging.debug(f"adding leftovers, {leftover_note}, {remainder}")
@@ -922,11 +928,7 @@ class Part:
                     pass
 
         if remainder:
-
-            self.current_measure.add_note(note)
+            logging.debug(f"Remainder")
             self._wrap_up(self.max_subdivisions - remainder)
-
-        else:
-            self.measures.append(self.current_measure)
 
         [measure.clean_up_measure() for measure in self.measures]

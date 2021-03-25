@@ -28,17 +28,19 @@ def test_measure_equals_note():
 
     test_note = Note(4,4,0)
 
+    measure_factor = 4
+
     time_sig = [(4,4)]
 
     test_part = Part([test_note], time_sig)
 
-    #assert len(test_part.measures) == 1
+    assert len(test_part.measures) == 1
 
     for measure_idx, measure in enumerate(test_part.measures):
         for beat_idx, beat in enumerate(measure.beats):
             for note_idx, note in enumerate(beat.notes):
                 if isinstance(note, Note):
-                    assert note.dur == 4
+                    assert note.dur == 4 * measure_factor
                     assert note.octave == 4
                     assert note.pc == 0
 
@@ -48,17 +50,22 @@ def test_note_less_than_measure():
     octave = 4
     pc = 0
 
+    measure_factor = 4
+
     test_note = Note(dur,octave,pc)
 
     time_sig = [(4,4)]
 
     test_part = Part([test_note], time_sig)
 
-    #assert len(test_part.measures[0].beats) == 2
+    assert len(test_part.measures[0].beats) == 2
 
-    assert test_part.measures[0].beats[0].notes[0].dur == dur
+    assert test_part.measures[0].beats[0].notes[0].dur == dur * measure_factor
     assert test_part.measures[0].beats[0].notes[0].octave == octave
     assert test_part.measures[0].beats[0].notes[0].pc == 0
+
+    assert test_part.measures[0].beats[1].notes[0].dur == 1 * measure_factor
+    assert test_part.measures[0].beats[1].notes[0].is_measure == False
 
 # def test_note_greater_than_measure():
 
