@@ -15,7 +15,7 @@ from .note import Note
 from .beat import Beat
 from .rest import Rest
 
-logging.basicConfig(level=logging.DEBUG)
+measure_logger = logging.getLogger('Measure').setLevel(logging.INFO)
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 TimeSignature = Tuple[int, int]

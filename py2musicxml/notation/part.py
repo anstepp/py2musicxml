@@ -10,7 +10,9 @@ from .note import Note
 from .beat import Beat
 from .rest import Rest
 
-logging.basicConfig(level=logging.DEBUG)
+part_logger = logging.getLogger('Part')
+
+logging.basicConfig(level=logging.WARNING)
 
 # from collections import namedtuple
 
@@ -510,6 +512,7 @@ class Part:
         logging.debug(f"dur is, {duration}")
 
         note_to_add.change_duration(duration * measure_factor)
+
         #print(note_to_add)
 
         if isinstance(note_to_add, Note):
@@ -605,6 +608,7 @@ class Part:
                 leftover_note = copy.deepcopy(note)
                 leftover_note.change_duration(self.current_count)
         
+<<<<<<< HEAD
         elif self.current_count == div * measure_factor:
             logging.debug(f'second div, {self.current_count}, {div}')
             self.make_whole_measure_note(note, div, div, False, first, measure_factor)
@@ -616,6 +620,7 @@ class Part:
             leftover_note = copy.deepcopy(note)
             logging.debug(f"current, {self.current_count}")
             leftover_note.change_duration(self.current_count)
+
             if isinstance(leftover_note, Note):
                 leftover_note.set_as_tie('tie_end')
         
@@ -623,7 +628,9 @@ class Part:
             logging.debug('leftover')
             return leftover_note
         else:
+
             logging.debug(f'no leftover_note, {self.current_count}')
+
             return None
 
 
@@ -666,6 +673,7 @@ class Part:
             counter = 0
             # how many measures do we need to write
             for x in range(int(self.current_measure_floor)):
+
                 logging.debug(f'while both are greater, {self.current_measure_floor}, {self.current_count}')
                 """This uses the type of measure to write a whole measure.
                 Eventually, we need to take cases of dotted notes that cross
@@ -822,6 +830,7 @@ class Part:
 
                     logging.debug(f"new iteration, {note}, {self.current_count}")
 
+
                     """We call this function now, and when current count changes
                     to set variables to measure the relationship of the current count
                     to the measure length."""
@@ -886,8 +895,10 @@ class Part:
 
                             else:
                                 logging.debug(f'in over else, {note}')
+
                                 self.current_measure.add_note(note)
                                 remainder = self.max_subdivisions - self.current_count
+
                                 logging.debug(f'remainder, {remainder}')
                                 self._set_current_count_adjacencies()
 
@@ -910,7 +921,9 @@ class Part:
 
                             if leftover_note:
                                 logging.debug(f"adding leftovers, {leftover_note}, {remainder}")
+
                                 self.current_measure.add_note(leftover_note)
+
                                 self.current_count = leftover_note.dur
 
                         elif self.current_count > 0:

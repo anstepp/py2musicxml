@@ -4,7 +4,8 @@ from typing import Iterable
 
 from py2musicxml.notation import Note
 
-logging.basicConfig(level=logging.DEBUG)
+beat_logger = logging.getLogger('Beat').setLevel(logging.INFO)
+
 
 
 class Beat:

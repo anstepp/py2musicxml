@@ -1,5 +1,11 @@
+import py2musicxml.log as logger
+
+log = logger.get_logger()
+
 class Rest:
     def __init__(self, duration):
+
+        log.debug(f"Creating New Rest with duration {duration}")
 
         self.dur = duration
         if self.dur > 0:
