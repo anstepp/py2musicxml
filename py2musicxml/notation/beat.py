@@ -1,12 +1,9 @@
-import logging
-
 from typing import Iterable
 
 from py2musicxml.notation import Note
+import py2musicxml.log as logger
 
-beat_logger = logging.getLogger('Beat').setLevel(logging.INFO)
-
-
+logging = logger.get_logger()
 
 class Beat:
     def __init__(self, subdivisions: int) -> None:

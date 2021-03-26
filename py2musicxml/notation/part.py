@@ -1,6 +1,5 @@
 import copy
 import fractions, math
-import logging
 
 from lxml import etree
 from typing import Iterable, List, Optional, NamedTuple, Tuple, Union
@@ -9,10 +8,9 @@ from .measure import Measure
 from .note import Note
 from .beat import Beat
 from .rest import Rest
+import py2musicxml.log as logger
 
-part_logger = logging.getLogger('Part')
-
-logging.basicConfig(level=logging.WARNING)
+logging = logger.get_logger()
 
 # from collections import namedtuple
 
@@ -509,9 +507,9 @@ class Part:
         logging.debug("in make whole measure")
         note_to_add = copy.deepcopy(note)
 
-        logging.debug(f"dur is, {duration}")
+        logging.debug(f"dur is: {duration}")
 
-        note_to_add.change_duration(duration * measure_factor)
+        note_to_add.change_duration(duration)
 
         #print(note_to_add)
 
@@ -530,6 +528,7 @@ class Part:
 
         # self.current_beat.add_note(note_to_add)
         # self.current_beat.multi_beat = True
+        logging.debug(f"Note to add: {note_to_add}")
         self.current_measure.add_note(note_to_add)
         self._append_and_increment_measure(measure_factor)
 
@@ -608,7 +607,6 @@ class Part:
                 leftover_note = copy.deepcopy(note)
                 leftover_note.change_duration(self.current_count)
         
-<<<<<<< HEAD
         elif self.current_count == div * measure_factor:
             logging.debug(f'second div, {self.current_count}, {div}')
             self.make_whole_measure_note(note, div, div, False, first, measure_factor)
@@ -634,17 +632,26 @@ class Part:
             return None
 
 
-    def get_internal_measures(self, note: Note, remainder: float, post_tie: bool, measure_factor: int) -> int:
+    def get_internal_measures(
+        self, 
+        note: Note, 
+        last_dur: int, 
+        remainder: float, 
+        post_tie: bool, 
+        measure_factor: int
+    ) -> int:
 
         # Get any remainder of the note that belongs in the last measure
 
-        logging.debug(f"current_count, {self.current_count}")
+        logging.debug(f"current_count: {self.current_count}, max_subdivisions {self.max_subdivisions}")
 
         if self.current_count > 0:
             old_measure_dur = self.max_subdivisions - self.current_count
+            logging.debug(f"old measure dur: {old_measure_dur}")
             if old_measure_dur:
                 old_measure_note = copy.deepcopy(note)
                 old_measure_note.change_duration(old_measure_dur)
+                logging.debug(f"old_measure_note: {old_measure_note}")
                 self.current_measure.add_note(old_measure_note)
                 self._append_and_increment_measure(measure_factor)
                 first = False
@@ -909,7 +916,6 @@ class Part:
                         ):
                             logging.debug("get_internal_measures")
                             # use this to clean up the measures that exist
-
                             # there is at least one measure to be filled
                             # ie break into measures and beats
                             if note.dur > self.current_count:

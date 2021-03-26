@@ -68,11 +68,12 @@ def test_eighth_note_beams():
     counter = 0
     for beat in m.beats:
         counter += 1
-        print(counter)
         assert beat.subdivisions == 4
         assert len(beat.notes) == 2
         for idx, note in enumerate(beat.notes):
-            assert note == eighth_note_c
+            assert note.dur == 2
+            assert note.octave == 4
+            assert note.pc == 0
             if idx % 2 == 0:
                 assert note.beam_start
             else:
@@ -80,65 +81,85 @@ def test_eighth_note_beams():
 
     assert len(m.beats) == m.time_signature[0]
 
-# def test_five_sixteenths():
+def test_five_sixteenths():
 
-#     five_sixteenths_c = Note(1.25, 4, 0)
+    five_sixteenths_c = Note(1.25, 4, 0)
+    remaining_rest = Rest(2.75)
 
-#     time_sig = (4,4)
-#     measure_factor = 4
+    time_sig = (4,4)
+    measure_factor = 4
 
-#     m = Measure(time_sig, measure_factor)
+    m = Measure(time_sig, measure_factor)
 
-#     m.add_note(five_sixteenths_c)
+    m.add_note(five_sixteenths_c)
+    m.add_note(remaining_rest)
 
-#     m.clean_up_measure()
+    for note in m.notes:
+        note.dur *= measure_factor
 
-#     assert m.beats[0].notes[0].dur == 4
-#     assert m.beats[1].notes[0].dur == 1
 
-# def test_half_note_multibeat():
+    m.clean_up_measure()
 
-#     half_note_c = Note(2, 4, 0)
+    assert m.beats[0].notes[0].dur == 4
+    assert m.beats[1].notes[0].dur == 1
 
-#     time_sig = (4,4)
-#     measure_factor = 4
+def test_half_note_multibeat():
 
-#     m = Measure(time_sig, measure_factor)
+    half_note_c = Note(2, 4, 0)
+    remaining_rest = Rest(2)
 
-#     m.add_note(half_note_c)
+    time_sig = (4,4)
+    measure_factor = 4
 
-#     m.clean_up_measure()
+    m = Measure(time_sig, measure_factor)
 
-#     for beat in m.beats:
-#         assert beat.subdivisions == 4
+    m.add_note(half_note_c)
+    m.add_note(remaining_rest)
 
-#     assert m.beats[0].multi_beat == True
-#     assert m.beats[0].notes[0].dur == 2
+    for note in m.notes:
+        note.dur *= measure_factor
 
-# def test_quarter_half_multibeat():
+    m.clean_up_measure()
 
-#     quarter_note_c = Note(1, 4, 0)
-#     half_note_d = Note(2, 4, 2)
-#     remaining_rest = Rest(1)
+    for beat in m.beats:
+        assert beat.subdivisions == 4
 
-#     time_sig = (4,4)
-#     measure_factor = 4
+    assert m.beats[0].multi_beat == True
+    assert m.beats[0].notes[0].dur == 8
 
-#     m = Measure(time_sig, measure_factor)
+    assert m.beats[1].multi_beat == True
+    assert m.beats[1].notes[0].dur == 8
 
-#     m.add_note(quarter_note_c)
-#     m.add_note(half_note_d)
-#     m.add_note(remaining_rest)
+def test_quarter_half_multibeat():
 
-#     m.clean_up_measure()
+    quarter_note_c = Note(1, 4, 0)
+    half_note_d = Note(2, 4, 2)
+    remaining_rest = Rest(1)
 
-#     for beat in m.beats:
-#         assert beat.subdivisions == 4
+    time_sig = (4,4)
+    measure_factor = 4
 
-#     assert m.beats[0].multi_beat == False
-#     assert m.beats[0].notes[0].dur == 1
-#     assert m.beats[0].notes[0].pc == 0
+    m = Measure(time_sig, measure_factor)
 
-#     assert m.beats[1].multi_beat == True
-#     assert m.beats[1].notes[0].dur == 2
-#     assert m.beats[1].notes[0].pc == 2
+    m.add_note(quarter_note_c)
+    m.add_note(half_note_d)
+    m.add_note(remaining_rest)
+
+    for note in m.notes:
+        note.dur *= measure_factor
+
+    m.clean_up_measure()
+
+    for beat in m.beats:
+        assert beat.subdivisions == 4
+
+    assert m.beats[0].multi_beat == False
+    assert m.beats[0].notes[0].dur == 4
+    assert m.beats[0].notes[0].pc == 0
+
+    assert m.beats[1].multi_beat == True
+    assert m.beats[1].notes[0].dur == 8
+    assert m.beats[1].notes[0].pc == 2
+
+    assert m.beats[2].multi_beat == False
+    assert m.beats[2].notes[0].dur == 4

@@ -1,25 +1,26 @@
 import py2musicxml.log as logger
 
-log = logger.get_logger()
+logging = logger.get_logger()
 
 class Rest:
     def __init__(self, duration):
+        self.dur = self._check_duration(duration)
 
-        log.debug(f"Creating New Rest with duration {duration}")
+        self.is_measure = False
 
-        self.dur = duration
-        if self.dur > 0:
-            self.is_measure = True
+    def _check_duration(self, duration: float) -> float:
+
+        if duration < 0:
+            logging.error(f"Negative rest duration: {new_duration}")
+            raise ValueError(f"Rest duration ({new_duration}) must be positive")
         else:
-            self.is_measure = False
+            return duration
 
     def change_duration(self, new_duration: float) -> None:
-        try:
-            if new_duration >= 0:
-                self.dur = new_duration
-        except ValueError as e:
-            logging.error(e)
-            raise
+        
+        self.dur = self._check_duration(new_duration)
+
+
 
     def __str__(self):
         return 'Duration: {}, is_measure {}'.format(self.dur, self.is_measure)
