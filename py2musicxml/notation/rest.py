@@ -11,8 +11,8 @@ class Rest:
     def _check_duration(self, duration: float) -> float:
 
         if duration < 0:
-            logging.error(f"Negative rest duration: {new_duration}")
-            raise ValueError(f"Rest duration ({new_duration}) must be positive")
+            logging.error(f"Negative rest duration: {duration}")
+            raise ValueError(f"Rest duration ({duration}) must be positive")
         else:
             return duration
 
