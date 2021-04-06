@@ -244,7 +244,7 @@ class Note:
                 11: ['B', '0', 'natural'],
             }
         else:
-            raise Exception('starting_pitch must be zero, a flat key, or sharp key')
+            raise ValueError('starting_pitch must be zero, a flat key, or sharp key')
 
         return step_names[self.pc]
 
@@ -254,11 +254,11 @@ class Note:
 
         if articulation in valid_articulations:
 
-            self.articulation = notation
+            self.articulation = articulation
 
         else:
 
-            raise Exception(f"Articulation {articulation} must be a valid articulation: {valid_articulations}")
+            raise ValueError(f"Articulation {articulation} must be a valid articulation: {valid_articulations}")
 
     def set_as_tie(self, tie_type: str) -> None:
         """Sets note as a tied note of a specific type.
