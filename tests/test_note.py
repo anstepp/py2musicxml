@@ -63,3 +63,46 @@ def test_note_equality():
 
     assert note_a == note_b
     assert note_a != note_c
+
+def test_articulations():
+
+    note = Note(4,4,0)
+
+    note.add_articulation("accent")
+
+    assert note.articulation == "accent"
+
+    with pytest.raises(ValueError):
+        note.add_articulation("slur")
+
+def test_ties():
+
+    note = Note(4,4,0)
+    note.add_articulation("accent")
+
+    note.set_as_tie("tie_start")
+
+    assert note.tie_start == True
+    assert note.articulation == "accent"
+    assert note.tie_continue == False
+    assert note.tie_end == False
+
+    note = Note(4,4,0)
+    note.set_as_tie("tie_continue")
+
+    assert note.tie_start == False
+    assert note.tie_continue == True
+    assert note.articulation is None
+    assert note.tie_end == False
+
+    note = Note(4,4,0)
+    note.add_articulation("accent")
+    note.set_as_tie("tie_end")
+
+    assert note.tie_start == False
+    assert note.tie_continue == False
+    assert note.tie_end == True
+    assert note.articulation is None
+
+    
+

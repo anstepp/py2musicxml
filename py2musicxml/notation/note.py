@@ -244,15 +244,21 @@ class Note:
                 11: ['b', '0', 'natural'],
             }
         else:
-            raise Exception('starting_pitch must be zero, a flat key, or sharp key')
+            raise ValueError('starting_pitch must be zero, a flat key, or sharp key')
 
         return step_names[self.pc]
 
-    def add_articulation(self, notation: str) -> None:
+    def add_articulation(self, articulation: str) -> None:
 
-        """FIX ME: Create possible notation list"""
+        valid_articulations = ["accent", "breath-mark", "caesura", "detached-legato", "doit", "falloff", "plop", "scoop", "spiccato", "staccatissimo", "staccato", "stress", "strong-accent", "tenuto", "unstress"]
 
-        self.articulation = notation
+        if articulation in valid_articulations:
+
+            self.articulation = articulation
+
+        else:
+
+            raise ValueError(f"Articulation {articulation} must be a valid articulation: {valid_articulations}")
 
     def set_as_tie(self, tie_type: str) -> None:
         """Sets note as a tied note of a specific type.
@@ -274,15 +280,14 @@ class Note:
 
         if tie_type == 'tie_start':
             self.tie_start = True
-        if tie_type == 'tie_continue':
+        elif tie_type == 'tie_continue':
             self.tie_continue = True
             self.articulation = None
-        if tie_type == 'tie_end':
+        elif tie_type == 'tie_end':
             self.tie_end = True
             self.articulation = None
         else:
-            pass
-            #throw error eventually
+            raise Exception(f"Wrong Tie Type: tie_start, tie_continue, tie_end accepted, not {tie_type}")
 
     def __eq__(self, other) -> bool:
         """
