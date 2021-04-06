@@ -10,8 +10,6 @@ from .beat import Beat
 
 EMPTY_MEASURE_FACTOR = 1
 
-ARTICULATIONS = ["stacatto", "tenuto", "accent"]
-
 class Score:
     """Generates a MusicXML score from a list of parts (NoteLists) and outputs score to file"""
 
