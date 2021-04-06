@@ -92,7 +92,7 @@ def test_ties():
 
     assert note.tie_start == False
     assert note.tie_continue == True
-    assert note.articulation == None
+    assert note.articulation is None
     assert note.tie_end == False
 
     note = Note(4,4,0)
@@ -102,7 +102,7 @@ def test_ties():
     assert note.tie_start == False
     assert note.tie_continue == False
     assert note.tie_end == True
-    assert note.articulation == None
+    assert note.articulation is None
 
     
 
