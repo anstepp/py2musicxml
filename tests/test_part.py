@@ -74,11 +74,10 @@ def test_note_greater_than_measure():
     pc = 0
 
     test_note = Note(dur, octave, pc)
-    end_rest = Rest(3)
 
     time_sig = [(4,4)]
 
-    test_part = Part([test_note, end_rest], time_sig)
+    test_part = Part([test_note], time_sig)
 
     assert len(test_part.measures[0].beats) == 1
     assert len(test_part.measures[1].beats) == 2
