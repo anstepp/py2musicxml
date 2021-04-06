@@ -20,7 +20,5 @@ class Rest:
         
         self.dur = self._check_duration(new_duration)
 
-
-
     def __str__(self):
         return 'Duration: {}, is_measure {}'.format(self.dur, self.is_measure)

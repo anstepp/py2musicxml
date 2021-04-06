@@ -32,6 +32,10 @@ True
 
 from typing import Tuple
 
+import py2musicxml.log as logger
+
+logging = logger.get_logger()
+
 # The Life of a Note
 
 # in a tuplet, we change the subdivision of the beat
@@ -44,6 +48,7 @@ from typing import Tuple
 # by 3, compound
 # 4 is outgrowth of 2, can be reduced into 2
 
+ARTICULATIONS = ["accent", "breath-mark", "caesura", "detached-legato", "doit", "falloff", "plop", "scoop", "spiccato", "staccatissimo", "staccato", "stress", "strong-accent", "tenuto", "unstress"]
 
 class Note:
     """
@@ -258,7 +263,13 @@ class Note:
 
         """FIX ME: Create possible notation list"""
 
-        self.articulation = notation
+        if notation in ARTICULATIONS:
+
+            self.articulation = notation
+
+        else:
+
+            raise Exception(f"Unknown Articulation. Supported articulations are: {ARTICULATIONS}")
 
     def set_as_tie(self, tie_type: str) -> None:
         """Sets note as a tied note of a specific type.
@@ -287,8 +298,7 @@ class Note:
             self.tie_end = True
             self.articulation = None
         else:
-            pass
-            #throw error eventually
+            raise Exception("Tie must be tie_start, tie_continue, tie_end")
 
 
     def change_duration(self, new_duration: float) -> None:
