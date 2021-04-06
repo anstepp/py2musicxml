@@ -248,17 +248,17 @@ class Note:
 
         return step_names[self.pc]
 
-    def add_articulation(self, notation: str) -> None:
+    def add_articulation(self, articulation: str) -> None:
 
-        articulations = ["accent", "breath-mark", "caesura", "detached-legato", "doit", "falloff", "plop", "scoop", "spiccato", "staccatissimo", "staccato", "stress", "strong-accent", "tenuto", "unstress"]
+        valid_articulations = ["accent", "breath-mark", "caesura", "detached-legato", "doit", "falloff", "plop", "scoop", "spiccato", "staccatissimo", "staccato", "stress", "strong-accent", "tenuto", "unstress"]
 
-        if notation in articulations:
+        if articulation in valid_articulations:
 
             self.articulation = notation
 
         else:
 
-            raise Exception(f"Articulation must be on of these: {articulations}")
+            raise Exception(f"Articulation {articulation} must be a valid articulation: {valid_articulations}")
 
     def set_as_tie(self, tie_type: str) -> None:
         """Sets note as a tied note of a specific type.
