@@ -12,7 +12,7 @@ from .rest import Rest
 
 part_logger = logging.getLogger('Part')
 
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig()
 
 # from collections import namedtuple
 
