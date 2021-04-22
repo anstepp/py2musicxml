@@ -17,5 +17,4 @@ def test_whole_note_chord_in_XML():
         [middle_c, middle_e, middle_g]
         )
 
-
     

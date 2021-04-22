@@ -13,8 +13,9 @@ from typing import Iterable, List, Optional, Tuple, Union
 from .note import Note
 from .beat import Beat
 from .rest import Rest
+import py2musicxml.log as logger
 
-measure_logger = logging.getLogger('Measure').setLevel(logging.INFO)
+log = logger.get_logger()
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 TimeSignature = Tuple[int, int]

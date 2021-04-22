@@ -105,4 +105,28 @@ def test_ties():
     assert note.articulation is None
 
     
+def test_split():
 
+    dur = 8
+    octave = 4
+    pc = 0
+
+    note_to_split = Note(dur,octave,pc)
+
+    old_note, new_note = note_to_split.split(4)
+
+    assert old_note.dur == 4
+    assert old_note.octave == 4
+    assert old_note.pc == 0
+    assert new_note.dur == 4
+    assert new_note.octave == 4
+    assert new_note.pc == 0
+
+    old_note, new_note = note_to_split.split(3)
+
+    assert old_note.dur == 5
+    assert old_note.octave == 4
+    assert old_note.pc == 0
+    assert new_note.dur == 3
+    assert new_note.octave == 4
+    assert new_note.pc == 0

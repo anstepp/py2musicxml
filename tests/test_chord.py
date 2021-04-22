@@ -50,8 +50,6 @@ def test_notes_ascending():
 
     assert len(chord.notes) == 3
 
-    for note in chord.notes:
-        print(note)
 
     for idx, note in enumerate(chord.notes):
         if idx > 0:
@@ -69,3 +67,23 @@ def test_notes_ascending():
     assert chord.notes[2].octave == 4
     assert chord.notes[2].pc == 4
     assert chord.notes[2].is_chord_member == True
+
+def test_split():
+
+    dur = 8
+
+    c = Note(dur,4,0)
+    e = Note(dur,4,4)
+    g = Note(dur,4,7)
+
+    c_major = Chord([c,e,g])
+
+    old_chord, new_chord = c_major.split(4)
+
+    assert old_chord.dur == 4
+    assert new_chord.dur == 4
+
+    old_chord, new_chord = c_major.split(3)
+
+    assert old_chord.dur == 5
+    assert new_chord.dur == 3

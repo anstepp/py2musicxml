@@ -1,4 +1,5 @@
-from typing import Iterable
+import copy
+from typing import Iterable, Tuple
 
 from py2musicxml.notation import Note
 import py2musicxml.log as logger
@@ -81,3 +82,19 @@ class Chord:
             idx_shift -= 1
         note_list.insert(idx_shift + 1, note_list.pop(note_list.index(note)))
         return note_list
+
+    def _set_note_durs(self, duration) -> None:
+        self.dur = duration
+        for note in self.notes:
+            note.dur = duration
+
+    def split(self, diff) -> Tuple['__class__', '__class__']:
+        old_chord = copy.deepcopy(self)
+        new_chord = copy.deepcopy(self)
+
+        old_chord._set_note_durs(self.dur - diff)
+        new_chord._set_note_durs(diff)
+
+        return old_chord, new_chord
+
+
