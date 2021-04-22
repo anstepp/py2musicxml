@@ -2,10 +2,11 @@ import pytest
 
 from py2musicxml.notation import Chord, Note, Rest
 
+
 def test_chord_init():
 
-    middle_c = Note(4,4,0)
-    octave_up_c = Note(4,5,0)
+    middle_c = Note(4, 4, 0)
+    octave_up_c = Note(4, 5, 0)
 
     simple_octave = Chord([middle_c, octave_up_c])
 
@@ -18,28 +19,32 @@ def test_chord_init():
     assert simple_octave.notes[1].octave == 5
     assert simple_octave.notes[1].pc == 0
     assert simple_octave.notes[1].is_chord_member == True
+    assert simple_octave.dur == 4
+
 
 def test_chord_init_fail_with_rest():
 
     rest = Rest(4)
-    middle_c = Note(4,4,0)
+    middle_c = Note(4, 4, 0)
 
     with pytest.raises(ValueError) as e:
         failed_chord = Chord([rest, middle_c])
 
+
 def test_chord_init_fail_with_diff_durs():
 
-    whole_note_c = Note(4,4,0)
-    half_note_d = Note(2,4,2)
+    whole_note_c = Note(4, 4, 0)
+    half_note_d = Note(2, 4, 2)
 
     with pytest.raises(ValueError) as e:
         failed_chord = Chord([whole_note_c, half_note_d])
 
+
 def test_notes_ascending():
 
-    middle_c = Note(4,4,0)
-    middle_d = Note(4,4,2)
-    middle_e = Note(4,4,4)
+    middle_c = Note(4, 4, 0)
+    middle_d = Note(4, 4, 2)
+    middle_e = Note(4, 4, 4)
 
     chord = Chord([middle_e, middle_d, middle_c])
 
@@ -64,4 +69,3 @@ def test_notes_ascending():
     assert chord.notes[2].octave == 4
     assert chord.notes[2].pc == 4
     assert chord.notes[2].is_chord_member == True
-    
