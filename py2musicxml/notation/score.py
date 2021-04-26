@@ -7,6 +7,10 @@ from .part import Part
 from .rest import Rest
 from .measure import Measure
 from .beat import Beat
+from .chord import Chord
+import py2musicxml.log as logger
+
+log = logger.get_logger()
 
 EMPTY_MEASURE_FACTOR = 1
 
@@ -239,6 +243,10 @@ class Score:
                                 xml_rest = etree.SubElement(xml_note, "rest")
                                 xml_rest_duration = etree.SubElement(xml_note, "duration")
                                 xml_rest_duration.text = str(current_note.dur)
+
+                            elif type(current_note) == Chord:
+                                log.debug("CHORD")
+                                pass
 
                             else:
                                 # note

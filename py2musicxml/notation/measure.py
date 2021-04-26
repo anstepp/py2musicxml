@@ -15,7 +15,7 @@ from .beat import Beat
 from .rest import Rest
 import py2musicxml.log as logger
 
-logging = logger.get_logger() 
+log = logger.get_logger()
 
 METER_DIVISION_TYPES = {2: "Duple", 3: "Triple", 4: "Quadruple"}
 TimeSignature = Tuple[int, int]
@@ -150,7 +150,7 @@ class Measure:
             yield count
 
     def add_note(self, note: Note) -> None:
-        logging.debug(f"Adding note to measure: {note}")
+        log.debug(f"Adding note to measure: {note}")
         self.notes.append(note)
 
     def add_beat(self, beat: Beat) -> None:
@@ -169,7 +169,7 @@ class Measure:
 
         """
         self.beats.append(beat)
-        logging.debug(f"Appending beat and len: {beat} {len(beat.notes)}")
+        log.debug(f"Appending beat and len: {beat} {len(beat.notes)}")
 
     def set_time_signature(self, time_signature: TimeSignature) -> None:
         """For future use - eventally this should trigger a cascade
@@ -310,8 +310,8 @@ class Measure:
 
         if adj_count in beats:
             for idx, val in enumerate(beats):
-                logging.debug(f"idx: {idx}, val: {val}, adj_count: {adj_count}")
-                logging.debug(f"beats sliced: {beats[:idx]}")
+                log.debug(f"idx: {idx}, val: {val}, adj_count: {adj_count}")
+                log.debug(f"beats sliced: {beats[:idx]}")
                 if val == adj_count:
                     return True, beats[:idx+1], beat_divisions[:idx+1]           
         else:
@@ -355,7 +355,7 @@ class Measure:
         cumulative_beats.reverse()
         beat_breakpoint = cumulative_beats.pop()
 
-        logging.debug(f"notes: {notes}, beat_divisions: {beat_divisions}, cumulative_beats: {cumulative_beats}")
+        log.debug(f"notes: {notes}, beat_divisions: {beat_divisions}, cumulative_beats: {cumulative_beats}")
 
         # While there are notes to add
         current_count = 0
@@ -365,7 +365,7 @@ class Measure:
             #get initial states
 
             current_count += note.dur
-            logging.debug(f"Top: idx {idx}, note {note}, current count: {current_count}, current_beats: {self.beats}")
+            log.debug(f"Top: idx {idx}, note {note}, current count: {current_count}, current_beats: {self.beats}")
 
             # inital test for multi-beat note (whole measure, etc.)
             if current_count in cumulative_beats:

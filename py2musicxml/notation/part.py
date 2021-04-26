@@ -1,6 +1,7 @@
 import pdb
 import copy
 import fractions, math
+from itertools import accumulate
 
 from lxml import etree
 from typing import Iterable, List, Optional, NamedTuple, Tuple, Union
@@ -9,9 +10,10 @@ from .measure import Measure
 from .note import Note
 from .beat import Beat
 from .rest import Rest
+from .chord import Chord
 import py2musicxml.log as logger
 
-logging = logger.get_logger()
+log = logger.get_logger()
 
 # from collections import namedtuple
 
@@ -751,6 +753,20 @@ class Part:
             return True
 
 
+    def _flatten_chords(
+        self, 
+        note_list: Iterable[Union[Note, Rest, Chord]]) -> Iterable[Union[Note, Rest]]:
+
+        flat_list = []
+
+        for idx, entry in enumerate(note_list):
+            if type(entry) == Chord:
+                flat_list.extend(entry.notes)
+            else:
+                flat_list.append(entry)
+
+        return flat_list
+
 
     def _group_list_to_measures(self, note_list: Iterable[Union[Note, Rest]], measure_factor: int) -> None:
 
@@ -782,11 +798,14 @@ class Part:
         self.max_subdivisions = (self.current_measure.total_cumulative_beats * self.measure_factor)
 
         remainder = 0
-        for location, note in enumerate(note_list):
 
-            if location + 1 < len(self.current_list):
+        flat_list = self._flatten_chords(self.current_list)
+
+        for location, note in enumerate(flat_list):
+
+            if location + 1 < len(flat_list):
                 advance_location = location + 1
-                advance_note = self.current_list[advance_location]
+                advance_note = flat_list[advance_location]
             else:
                 advance_location = False
                 advance_note = False
@@ -930,3 +949,59 @@ class Part:
             self._wrap_up((self.max_subdivisions * self.measure_factor) - remainder)
 
         [measure.clean_up_measure() for measure in self.measures]
+
+
+
+    def _accum_note_durs(self, note_list: Iterable[Union[Note, Rest, Chord]]):
+
+        dur_list = [entry.dur for entry in note_list]
+
+        accumulated_durs = itertools.accumulate(dur_list, operator.add)
+
+        return accumulated_durs
+    
+    def _make_new_measure(
+        self, 
+        time_signatures: TimeSignatures,
+        current_measure: Measure,
+        ) -> Measure:
+
+        next_ts = next(time_signatures)
+        current_beat_count += next_ts[0]
+        self.measures.append(current_measure)
+        current_measure = self.make_new_measure(next_ts)
+
+        return current_measure, current_beat_count
+
+    def get_measures(self, note_list: Iterable[Union[Note, Rest, Chord]], time_sigs: TimeSignatures):
+
+        accumulated_durs = self._accum_note_durs(note_list)
+
+        next_ts = next(time_sigs)
+        current_beat_count = next_ts[0]
+        current_measure = self._make_new_measure(next_ts)
+
+        for current_count, note in zip(accumulated_durs, note_list):
+            if current_beat_count > current_count:
+                current_measure.add_note(note)
+            elif current_beat_count == current_count:
+                current_measure.add_note(note)
+                current_measure, current_beat_count = self._make_new_measure(time_sigs, current_measure)
+            elif current_beat_count < current_count:
+                diff = current_count - current_beat_count
+                counter = 0
+                while diff > current_beat_count:
+                    old_note, new_note = note.split(diff)
+                    if counter == 0:
+                        if type(note) is not Rest:
+                            old_note.set_as_tie("tie_start")
+                    else:
+                        if type(note) is not Rest:
+                            old_note.set_as_tie("tie_continue")
+                    current_measure.add_note(old_note)
+                    current_measure, current_beat_count = self._make_new_measure(time_sigs, current_measure)
+                    diff = new_note.dur
+                if type(note) is not Rest:
+                    new_note.set_as_tie("tie_end")
+        if current_measure.notes is not None:
+            self.measures.append(current_measure)

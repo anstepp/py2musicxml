@@ -1,6 +1,6 @@
 import pytest
 
-from py2musicxml.notation import Measure, Note, Beat, Part, Score, Rest
+from py2musicxml.notation import Measure, Note, Beat, Part, Score, Rest, Chord
 
 MEASURE_BASE_FACTOR = 4
 
@@ -500,4 +500,34 @@ def test_note_greater_than_measure():
     #             assert fj_durs_shift[counter] == note.dur
     #             counter += 1
 
+def test_chord_parsed():
 
+    c = Note(4,4,0)
+    e = Note(4,4,4)
+    g = Note(4,4,7)
+
+    c_major = Chord([c,e,g])
+
+    ts = [(4,4)]
+
+    test_chord_part = Part([c_major], ts)
+
+    # assert len(test_chord_part.measures[0].beats) == 1
+    # assert test_chord_part.measures[0].beats[0].notes[0].dur == 4
+    # assert test_chord_part.measures[0].beats[0].notes[1].dur == 4
+    # assert test_chord_part.measures[0].beats[0].notes[2].dur == 4
+
+def test_chord_split_simple():
+    
+    c = Note(8,4,0)
+    e = Note(8,4,4)
+    g = Note(8,4,7)
+
+    c_major = Chord([c,e,g])
+
+    ts = [(4,4)]
+
+    test_chord_part = Part([c_major], ts)
+
+    assert len(test_chord_part.measures[0].beats) == 1
+    assert len(test_chord_part.measures[1].beats) == 1

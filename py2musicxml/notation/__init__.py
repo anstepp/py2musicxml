@@ -4,3 +4,4 @@ from .measure import Measure
 from .part import Part
 from .rest import Rest
 from .score import Score
+from .chord import Chord

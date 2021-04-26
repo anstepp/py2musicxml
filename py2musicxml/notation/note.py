@@ -30,7 +30,12 @@ True
 
 """
 
+import copy
 from typing import Tuple
+
+import py2musicxml.log as logger
+
+log = logger.get_logger()
 
 # The Life of a Note
 
@@ -295,7 +300,6 @@ class Note:
         else:
             raise Exception(f"Wrong Tie Type: tie_start, tie_continue, tie_end accepted, not {tie_type}")
 
-
     def change_duration(self, new_duration: float) -> None:
         try:
             if new_duration >= 0:
@@ -303,6 +307,17 @@ class Note:
         except ValueError as e:
             logging.error(e)
             raise
+
+    def split(self, diff: int) -> Tuple['__class__', '__class__']:
+        old_note = copy.deepcopy(self)
+        new_note = copy.deepcopy(self)
+
+        old_note.dur = self.dur - diff
+
+        new_note.dur = diff
+
+        return old_note, new_note
+
 
     def __eq__(self, other) -> bool:
         """
