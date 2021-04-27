@@ -5,6 +5,7 @@ import py2musicxml.log as logger
 
 logging = logger.get_logger()
 
+
 class Beat:
     def __init__(self, subdivisions: int) -> None:
         self.notes = []
@@ -21,7 +22,6 @@ class Beat:
                 note.beam_end = True
             else:
                 note.beam_continue = True
-
 
     def add_note(self, note: Note) -> None:
         logging.debug(f"Appending note: {note}")
@@ -41,4 +41,4 @@ class Beat:
     #     if self.subdivisions % 3 == 0:
 
     def __str__(self) -> str:
-        return f"Beat{{Subdivisions: {self.subdivisions}, Notes: {len(self.notes)}}}" 
+        return f"Beat{{Subdivisions: {self.subdivisions}, Notes: {len(self.notes)}}}"

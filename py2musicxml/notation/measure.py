@@ -6,13 +6,14 @@ track of metric structure.
 """
 
 import copy
-import itertools
+from itertools import accumulate
 
 from typing import Iterable, List, Optional, Tuple, Union, List
 
 from .note import Note
 from .beat import Beat
 from .rest import Rest
+from .chord import Chord
 import py2musicxml.log as logger
 
 log = logger.get_logger()
@@ -112,6 +113,20 @@ class Measure:
         self.cumulative_beats = list((x for x in self._cumulative_beat_generator()))
         self.total_cumulative_beats = self.cumulative_beats[-1]
         
+    def _factorize_notes(self):
+
+        note_durs = [note.dur for beat in self.beats for note in beat.notes]
+
+        min_dur = min(note_durs)
+
+        if min_dur < 1:
+            factor = 1 / min_dur
+            for beat in self.beats:
+                beat.subdivisions *= factor
+                for note in beat.notes:
+                    note.change_duration(note.dur * factor)
+        else:
+            pass
 
     def is_empty(self) -> bool:
         """Tests for an empty measure.
@@ -150,6 +165,19 @@ class Measure:
             yield count
 
     def add_note(self, note: Note) -> None:
+        """
+        Add a beat to Measure.Beats, adding the notes inside the beat.
+
+        Arguments:
+        ----------
+
+        beat: a Beat object with or without consitiuent notes.
+
+        Returns:
+
+        None
+
+        """
         log.debug(f"Adding note to measure: {note}")
         self.notes.append(note)
 
@@ -218,7 +246,7 @@ class Measure:
                     meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
 
                     meter_type = "Compound"
-                    measure_map = [factor * 1.5 for x in range(beats_in_measure)]
+                    measure_map = [1.5 for x in range(beats_in_measure)]
 
                 else:
 
@@ -228,7 +256,7 @@ class Measure:
 
                     meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                     meter_type = "Simple"
-                    measure_map = [factor * 1 for x in range(beats_in_measure)]
+                    measure_map = [1 for x in range(beats_in_measure)]
 
             # time sig denominator is divisible by 4, but not 2
             elif ((self.time_signature[0] % 4) == 0) and (self.time_signature[0] > 2):
@@ -239,7 +267,7 @@ class Measure:
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"
-                measure_map = [factor for x in range(beats_in_measure)]
+                measure_map = [1 for x in range(beats_in_measure)]
 
             elif ((self.time_signature[0] % 2) == 0):
 
@@ -249,7 +277,7 @@ class Measure:
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"
-                measure_map = [factor for x in range(beats_in_measure)]
+                measure_map = [1 for x in range(beats_in_measure)]
 
             elif self.time_signature[0] == 3:
 
@@ -257,7 +285,7 @@ class Measure:
 
                 meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
                 meter_type = "Simple"
-                measure_map = [factor for x in range(beats_in_measure)]
+                measure_map = [1 for x in range(beats_in_measure)]
 
             # time sig denominator is not divisible by 2 or 3
             else:
@@ -318,7 +346,20 @@ class Measure:
             return False, 0
 
 
-    def clean_up_measure(self) -> None:
+    def _fill_measure(
+        self, 
+        note_list: Iterable[Union[Note, Rest, Chord]],
+        total_cumulative_beats: int,
+        ) -> Iterable[Union[Note, Rest, Chord]]:
+
+        #import pdb; pdb.set_trace()
+
+        if note_list[-1].dur != total_cumulative_beats:
+            note_list.append(Rest(total_cumulative_beats - note_list[-1].dur))
+
+        return note_list
+
+    def clean_up_measure(self, note_list=None, total_cumulative_beats=None) -> None:
         """ Beams notes in the measure.
 
             To correctly beam notes, the function:
@@ -341,11 +382,20 @@ class Measure:
         # Beaming shows the beats in the measure, so it is easier to read for musicians
         # https://blogs.iu.edu/jsomcomposition/music-notation-style-guide/
 
+        # Verify the measure is full
+
+        if note_list is None:
+            note_list = self.notes
+        if total_cumulative_beats is None:
+            total_cumulative_beats = self.total_cumulative_beats
+
+        full_measure = self._fill_measure(note_list, total_cumulative_beats)
+
         new_beats = []
 
         # Reverse the notes and beats so that pop() takes them off
         # in order of appearance in the measure.
-        notes = self.notes  
+        notes = full_measure  
         note_counter = len(notes)      
         beat_divisions = self.measure_map
         current_beat_divisions = beat_divisions.pop()
@@ -385,14 +435,14 @@ class Measure:
 
             # keep adding notes until we hit or break the breakpoint
             if current_count < beat_breakpoint:
-                logging.debug(f"Less Than: cc: {current_count}, bb: {beat_breakpoint}")
+                log.debug(f"Less Than: cc: {current_count}, bb: {beat_breakpoint}")
                 current_beat.add_note(note) 
 
             # add note and beat as we equal the breakpoint
             if current_count == beat_breakpoint:
-                logging.debug(f'Equal: cc: {current_count}, bb: {beat_breakpoint}')
+                log.debug(f'Equal: cc: {current_count}, bb: {beat_breakpoint}')
 
-                logging.debug(f"appending: {note}")
+                log.debug(f"appending: {note}")
 
                 current_beat.add_note(note)
 
@@ -415,29 +465,30 @@ class Measure:
                 # else:
                 #     pass 
 
-                logging.debug(f"current count > beat_breakpoint, {current_count}, {beat_breakpoint}")
+                log.debug(f"current count > beat_breakpoint, {current_count}, {beat_breakpoint}")
 
 
 
                 overflow = current_count - beat_breakpoint
-                logging.debug(f"overflow, {overflow}, {current_count}, {beat_breakpoint}")
+                log.debug(f"overflow, {overflow}, {current_count}, {beat_breakpoint}")
                 remainder = note.dur - overflow
-                logging.debug(f"remainder, {remainder}, {note.dur}")
-                old_beat_note = copy.deepcopy(note)
-                old_beat_note.change_duration(remainder)
-                old_beat_note.tie_start = True
-                current_beat.add_note(old_beat_note)
-                self.add_beat(current_beat)
-                if beat_divisions and cumulative_beats:
-                    current_beat_divisions = beat_divisions.pop()
-                    beat_breakpoint = cumulative_beats.pop()
-                    current_beat = Beat(current_beat_divisions)
-                note_for_next_beat = copy.deepcopy(note)
-                note_for_next_beat.dur = overflow
-                current_beat.add_note(note_for_next_beat)
+                if remainder > 0:
+                    log.debug(f"remainder, {remainder}, {note.dur}")
+                    old_beat_note = copy.deepcopy(note)
+                    old_beat_note.change_duration(remainder)
+                    old_beat_note.tie_start = True
+                    current_beat.add_note(old_beat_note)
+                    self.add_beat(current_beat)
+                    if beat_divisions and cumulative_beats:
+                        current_beat_divisions = beat_divisions.pop()
+                        beat_breakpoint = cumulative_beats.pop()
+                        current_beat = Beat(current_beat_divisions)
+                    note_for_next_beat = copy.deepcopy(note)
+                    note_for_next_beat.dur = overflow
+                    current_beat.add_note(note_for_next_beat)
 
 
 
-
+        self._factorize_notes()
         [beat.make_beams() for beat in self.beats]
 

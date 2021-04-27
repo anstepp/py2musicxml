@@ -4,6 +4,7 @@ write tests that are complete measures in this module.
 """
 
 import pytest
+import copy
 
 from py2musicxml.notation import Measure, Note, Rest
 
@@ -17,14 +18,14 @@ def test_measure_whole_note():
 
     time_signature = (4,4)
 
-    m = Measure(time_signature, 4)
+    m = Measure(time_signature, 1)
 
     m.add_note(middle_c)
 
     m.clean_up_measure()
 
     for beat in m.beats:
-        assert beat.subdivisions == 4
+        assert beat.subdivisions == 1
 
         for note in beat.notes:
             assert note.dur == dur
@@ -37,7 +38,7 @@ def test_measure_quarter_note():
 
     time_signature = (4,4)
 
-    m = Measure(time_signature, 4)
+    m = Measure(time_signature, 1)
 
     for n in [middle_c for x in range(4)]:
         m.add_note(n)
@@ -45,21 +46,21 @@ def test_measure_quarter_note():
     m.clean_up_measure()
 
     for beat in m.beats:
-        assert beat.subdivisions == 4
+        assert beat.subdivisions == 1
 
         for note in beat.notes:
             assert note.dur == dur
 
 def test_eighth_note_beams():
 
-    eighth_note_c = Note(0.5 * BASE_MEASURE_FACTOR,4,0)
+    eighth_note_c = Note(0.5,4,0)
 
     time_sig = (4,4)
 
-    m = Measure(time_sig, BASE_MEASURE_FACTOR)
+    m = Measure(time_sig, 1)
 
     for note in [eighth_note_c for x in range(8)]:
-        m.add_note(note)
+        m.add_note(copy.deepcopy(note))
 
     [print(note.dur) for note in m.notes]
 
@@ -68,10 +69,10 @@ def test_eighth_note_beams():
     counter = 0
     for beat in m.beats:
         counter += 1
-        assert beat.subdivisions == 4
+        assert beat.subdivisions == 2
         assert len(beat.notes) == 2
         for idx, note in enumerate(beat.notes):
-            assert note.dur == 2
+            assert note.dur == 1
             assert note.octave == 4
             assert note.pc == 0
             if idx % 2 == 0:
@@ -93,9 +94,6 @@ def test_five_sixteenths():
 
     m.add_note(five_sixteenths_c)
     m.add_note(remaining_rest)
-
-    for note in m.notes:
-        note.dur *= measure_factor
 
 
     m.clean_up_measure()

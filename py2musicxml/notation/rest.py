@@ -5,6 +5,7 @@ import py2musicxml.log as logger
 
 logging = logger.get_logger()
 
+
 class Rest:
     def __init__(self, duration):
         self.dur = self._check_duration(duration)
@@ -17,13 +18,13 @@ class Rest:
         else:
             return duration
 
-    def change_duration(self, new_duration: float) -> None:        
+    def change_duration(self, new_duration: float) -> None:
         self.dur = self._check_duration(new_duration)
 
     def __str__(self):
-        return 'Duration: {}, is_measure {}'.format(self.dur, self.is_measure)
+        return "Duration: {}, is_measure {}".format(self.dur, self.is_measure)
 
-    def split(self, diff) -> Tuple['__class__', '__class__']:
+    def split(self, diff) -> Tuple["__class__", "__class__"]:
         old_rest = copy.deepcopy(self)
         new_rest = copy.deepcopy(self)
 

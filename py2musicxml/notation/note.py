@@ -143,7 +143,6 @@ class Note:
         except ValueError as e:
             logging.error(e)
             raise
-            
 
         # called to correct any errant pitch classes
         self.octave, self.pc = self._fix_pitch_overflow(octave, pitch_class)
@@ -190,7 +189,7 @@ class Note:
 
         Uses lookup tables to get various nomeclature for representing
         pitch in XML. Key can be selected to default to simple spellings
-        in key signature (dense chromaticism will not necessarily be 
+        in key signature (dense chromaticism will not necessarily be
         correct). Neutral between MusicXML and MEI.
 
         Arguments:
@@ -211,57 +210,73 @@ class Note:
 
         if starting_pitch == 0:
             step_names = {
-                0: ['C', '0', 'natural'],
-                1: ['C', '1', 'sharp'],
-                2: ['D', '0', 'natural'],
-                3: ['E', '-1', 'flat'],
-                4: ['E', '0', 'natural'],
-                5: ['F', '0', 'natural'],
-                6: ['F', '1', 'sharp'],
-                7: ['G', '0', 'natural'],
-                8: ['A', '-1', 'flat'],
-                9: ['A', '0', 'natural'],
-                10: ['B', '-1', 'flat'],
-                11: ['B', '0', 'natural'],
+                0: ["C", "0", "natural"],
+                1: ["C", "1", "sharp"],
+                2: ["D", "0", "natural"],
+                3: ["E", "-1", "flat"],
+                4: ["E", "0", "natural"],
+                5: ["F", "0", "natural"],
+                6: ["F", "1", "sharp"],
+                7: ["G", "0", "natural"],
+                8: ["A", "-1", "flat"],
+                9: ["A", "0", "natural"],
+                10: ["B", "-1", "flat"],
+                11: ["B", "0", "natural"],
             }
         elif starting_pitch in flat_keys:
             step_names = {
-                0: ['C', '0', 'natural'],
-                1: ['D', '-1', 'flat'],
-                2: ['D', '0', 'natural'],
-                3: ['E', '-1', 'flat'],
-                4: ['E', '0', 'natural'],
-                5: ['F', '0', 'natural'],
-                6: ['G', '-1', 'flat'],
-                7: ['G', '0', 'natural'],
-                8: ['A', '-1', 'flat'],
-                9: ['A', '0', 'natural'],
-                10: ['B', '-1', 'flat'],
-                11: ['B', '0', 'natural'],
+                0: ["C", "0", "natural"],
+                1: ["D", "-1", "flat"],
+                2: ["D", "0", "natural"],
+                3: ["E", "-1", "flat"],
+                4: ["E", "0", "natural"],
+                5: ["F", "0", "natural"],
+                6: ["G", "-1", "flat"],
+                7: ["G", "0", "natural"],
+                8: ["A", "-1", "flat"],
+                9: ["A", "0", "natural"],
+                10: ["B", "-1", "flat"],
+                11: ["B", "0", "natural"],
             }
         elif starting_pitch in sharp_keys:
             step_names = {
-                0: ['C', '0', 'natural'],
-                1: ['C', '1', 'sharp'],
-                2: ['D', '0', 'natural'],
-                3: ['D', '1', 'sharp'],
-                4: ['E', '0', 'natural'],
-                5: ['F', '0', 'natural'],
-                6: ['F', '1', 'sharp'],
-                7: ['G', '0', 'natural'],
-                8: ['G', '1', 'sharp'],
-                9: ['A', '0', 'natural'],
-                10: ['A', '1', 'sharp'],
-                11: ['B', '0', 'natural'],
+                0: ["C", "0", "natural"],
+                1: ["C", "1", "sharp"],
+                2: ["D", "0", "natural"],
+                3: ["D", "1", "sharp"],
+                4: ["E", "0", "natural"],
+                5: ["F", "0", "natural"],
+                6: ["F", "1", "sharp"],
+                7: ["G", "0", "natural"],
+                8: ["G", "1", "sharp"],
+                9: ["A", "0", "natural"],
+                10: ["A", "1", "sharp"],
+                11: ["B", "0", "natural"],
             }
         else:
-            raise ValueError('starting_pitch must be zero, a flat key, or sharp key')
+            raise ValueError("starting_pitch must be zero, a flat key, or sharp key")
 
         return step_names[self.pc]
 
     def add_articulation(self, articulation: str) -> None:
 
-        valid_articulations = ["accent", "breath-mark", "caesura", "detached-legato", "doit", "falloff", "plop", "scoop", "spiccato", "staccatissimo", "staccato", "stress", "strong-accent", "tenuto", "unstress"]
+        valid_articulations = [
+            "accent",
+            "breath-mark",
+            "caesura",
+            "detached-legato",
+            "doit",
+            "falloff",
+            "plop",
+            "scoop",
+            "spiccato",
+            "staccatissimo",
+            "staccato",
+            "stress",
+            "strong-accent",
+            "tenuto",
+            "unstress",
+        ]
 
         if articulation in valid_articulations:
 
@@ -269,13 +284,15 @@ class Note:
 
         else:
 
-            raise ValueError(f"Articulation {articulation} must be a valid articulation: {valid_articulations}")
+            raise ValueError(
+                f"Articulation {articulation} must be a valid articulation: {valid_articulations}"
+            )
 
     def set_as_tie(self, tie_type: str) -> None:
         """Sets note as a tied note of a specific type.
 
         By feeding a type of tie: start, continue, or end, add a tie to the note both
-        in Py2MusicXML and the resulting XML. This can be called by an end user, or 
+        in Py2MusicXML and the resulting XML. This can be called by an end user, or
         internally when breaking notes into measure groupings.
 
         Arguments:
@@ -289,16 +306,18 @@ class Note:
 
         """
 
-        if tie_type == 'tie_start':
+        if tie_type == "tie_start":
             self.tie_start = True
-        elif tie_type == 'tie_continue':
+        elif tie_type == "tie_continue":
             self.tie_continue = True
             self.articulation = None
-        elif tie_type == 'tie_end':
+        elif tie_type == "tie_end":
             self.tie_end = True
             self.articulation = None
         else:
-            raise Exception(f"Wrong Tie Type: tie_start, tie_continue, tie_end accepted, not {tie_type}")
+            raise Exception(
+                f"Wrong Tie Type: tie_start, tie_continue, tie_end accepted, not {tie_type}"
+            )
 
     def change_duration(self, new_duration: float) -> None:
         try:
@@ -308,7 +327,7 @@ class Note:
             logging.error(e)
             raise
 
-    def split(self, diff: int) -> Tuple['__class__', '__class__']:
+    def split(self, diff: int) -> Tuple["__class__", "__class__"]:
         old_note = copy.deepcopy(self)
         new_note = copy.deepcopy(self)
 
@@ -317,7 +336,6 @@ class Note:
         new_note.dur = diff
 
         return old_note, new_note
-
 
     def __eq__(self, other) -> bool:
         """
@@ -380,7 +398,6 @@ class Note:
         else:
             return False
 
-
     # Pretty printing in output
 
     def __str__(self) -> str:
@@ -396,7 +413,7 @@ class Note:
 
         string to stdout.
         """
-        
-        return 'Duration: {}, Octave: {}, Pitch Class: {}'.format(
+
+        return "Duration: {}, Octave: {}, Pitch Class: {}".format(
             self.dur, self.octave, self.pc
         )

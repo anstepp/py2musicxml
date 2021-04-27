@@ -28,8 +28,6 @@ def test_measure_equals_note():
 
     test_note = Note(4,4,0)
 
-    measure_factor = 4
-
     time_sig = [(4,4)]
 
     test_part = Part([test_note], time_sig)
@@ -40,7 +38,7 @@ def test_measure_equals_note():
         for beat_idx, beat in enumerate(measure.beats):
             for note_idx, note in enumerate(beat.notes):
                 if isinstance(note, Note):
-                    assert note.dur == 4 * measure_factor
+                    assert note.dur == 4
                     assert note.octave == 4
                     assert note.pc == 0
 
