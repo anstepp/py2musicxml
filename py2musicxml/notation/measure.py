@@ -354,12 +354,18 @@ class Measure:
 
         #import pdb; pdb.set_trace()
 
-        if note_list[-1].dur != total_cumulative_beats:
+        tot_durs = list(accumulate([note.dur for note in note_list]))[-1]
+
+        if tot_durs < total_cumulative_beats:
             note_list.append(Rest(total_cumulative_beats - note_list[-1].dur))
 
         return note_list
 
-    def clean_up_measure(self, note_list=None, total_cumulative_beats=None) -> None:
+    def clean_up_measure(
+        self, 
+        note_list:Optional[Iterable[Union[Note, Rest, Chord]]]=None, 
+        total_cumulative_beats: Optional[float]=None,
+        ) -> None:
         """ Beams notes in the measure.
 
             To correctly beam notes, the function:

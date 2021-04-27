@@ -58,11 +58,11 @@ def test_note_less_than_measure():
 
     assert len(test_part.measures[0].beats) == 2
 
-    assert test_part.measures[0].beats[0].notes[0].dur == dur * measure_factor
+    assert test_part.measures[0].beats[0].notes[0].dur == dur
     assert test_part.measures[0].beats[0].notes[0].octave == octave
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[0].beats[1].notes[0].dur == 1 * measure_factor
+    assert test_part.measures[0].beats[1].notes[0].dur == 1
     assert test_part.measures[0].beats[1].notes[0].is_measure == False
 
 def test_note_greater_than_measure():
