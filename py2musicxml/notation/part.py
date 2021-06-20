@@ -13,6 +13,8 @@ from .rest import Rest
 from .chord import Chord
 import py2musicxml.log as logger
 
+from py2musicxml.notation import measure
+
 log = logger.get_logger()
 
 # from collections import namedtuple
@@ -1031,11 +1033,12 @@ class Part:
         time_sigs = cycle(time_signatures)
 
         next_ts = next(time_sigs)
+        measure_max = next_ts[0]
         current_beat_count += next_ts[0]
         self.measures.append(current_measure)
         current_measure = Measure(next_ts, 1)
 
-        return current_measure, current_beat_count
+        return current_measure, current_beat_count, measure_max
 
     def get_measures(
         self, note_list: Iterable[Union[Note, Rest, Chord]], time_sigs: TimeSignatures
@@ -1047,21 +1050,27 @@ class Part:
 
         next_ts = next(time_sigs)
         current_beat_count = next_ts[0]
+        measure_max = next_ts[0]
         current_measure = Measure(next_ts, 1)
 
         for current_count, note in zip(accumulated_durs, note_list):
+
             if current_beat_count > current_count:
                 current_measure.add_note(note)
             elif current_beat_count == current_count:
                 current_measure.add_note(note)
-                current_measure, current_beat_count = self._make_new_measure(
+                current_measure, current_beat_count, measure_max = self._make_new_measure(
                     time_sigs, current_measure, current_beat_count
                 )
             elif current_beat_count < current_count:
                 diff = current_count - current_beat_count
                 counter = 0
                 old_note, new_note = note.split(diff)
-                while diff > current_beat_count:
+                current_measure.add_note(old_note)
+                current_measure, current_beat_count, measure_max = self._make_new_measure(
+                    time_sigs, current_measure, current_beat_count
+                )
+                while diff > measure_max:
                     if counter == 0:
                         if type(note) is not Rest:
                             old_note.set_as_tie("tie_start")
@@ -1069,12 +1078,14 @@ class Part:
                         if type(note) is not Rest:
                             old_note.set_as_tie("tie_continue")
                     current_measure.add_note(old_note)
-                    current_measure, current_beat_count = self._make_new_measure(
+                    current_measure, current_beat_count, measure_max = self._make_new_measure(
                         time_sigs, current_measure, current_beat_count
                     )
+                    diff = diff - measure_max
                     old_note, new_note = note.split(diff)
-                    diff = new_note.dur
+                    counter += 1
                 if type(new_note) is not Rest:
                     new_note.set_as_tie("tie_end")
+                current_measure.add_note(new_note)
         if current_measure.notes:
             self.measures.append(current_measure)

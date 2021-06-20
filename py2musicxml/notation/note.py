@@ -138,7 +138,7 @@ class Note:
         """
 
         try:
-            if duration >= 0:
+            if duration > 0:
                 self.dur = duration
         except ValueError as e:
             logging.error(e)
@@ -321,7 +321,7 @@ class Note:
 
     def change_duration(self, new_duration: float) -> None:
         try:
-            if new_duration >= 0:
+            if new_duration > 0:
                 self.dur = new_duration
         except ValueError as e:
             logging.error(e)
@@ -331,9 +331,9 @@ class Note:
         old_note = copy.deepcopy(self)
         new_note = copy.deepcopy(self)
 
-        old_note.dur = self.dur - diff
+        old_note.change_duration(self.dur - diff)
 
-        new_note.dur = diff
+        new_note.change_duration(diff)
 
         return old_note, new_note
 

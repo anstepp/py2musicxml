@@ -1,7 +1,6 @@
-"""
-NB: Because the Part object adds rests to cover an incomplete measure,
-write tests that are complete measures in this module.
-"""
+# NB: Because the Part object adds rests to cover an incomplete measure,
+# write tests that are complete measures in this module.
+
 
 import pytest
 import copy
@@ -59,10 +58,7 @@ def test_eighth_note_beams():
 
     m = Measure(time_sig, 1)
 
-    for note in [eighth_note_c for x in range(8)]:
-        m.add_note(copy.deepcopy(note))
-
-    [print(note.dur) for note in m.notes]
+    m.extend_measure([Note(0.5,4,0) for x in range(8)])
 
     m.clean_up_measure()
 
@@ -139,21 +135,20 @@ def test_quarter_half_multibeat():
     m.add_note(half_note_d)
     m.add_note(remaining_rest)
 
-    for note in m.notes:
-        note.dur *= measure_factor
-
     m.clean_up_measure()
 
     for beat in m.beats:
         assert beat.subdivisions == 1
 
+    assert len(m.beats) == 3
+
     #assert m.beats[0].multi_beat == False
-    assert m.beats[0].notes[0].dur == 4
+    assert m.beats[0].notes[0].dur == 1
     assert m.beats[0].notes[0].pc == 0
 
     #assert m.beats[1].multi_beat == True
-    assert m.beats[1].notes[0].dur == 8
+    assert m.beats[1].notes[0].dur == 2
     assert m.beats[1].notes[0].pc == 2
 
     #assert m.beats[2].multi_beat == False
-    assert m.beats[2].notes[0].dur == 4
+    assert m.beats[2].notes[0].dur == 1

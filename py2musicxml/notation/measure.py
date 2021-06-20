@@ -180,6 +180,9 @@ class Measure:
         """
         log.debug(f"Adding note to measure: {note}")
         self.notes.append(note)
+    
+    def extend_measure(self, note_list: Iterable[Union[Note, Rest, Chord]]):
+        self.notes.extend(note_list)
 
     def add_beat(self, beat: Beat) -> None:
 
@@ -389,6 +392,9 @@ class Measure:
         # https://blogs.iu.edu/jsomcomposition/music-notation-style-guide/
 
         # Verify the measure is full
+
+        #import pdb; pdb.set_trace()
+
 
         if note_list is None:
             note_list = self.notes
