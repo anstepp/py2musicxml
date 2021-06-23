@@ -393,8 +393,6 @@ class Measure:
 
         # Verify the measure is full
 
-        #import pdb; pdb.set_trace()
-
 
         if note_list is None:
             note_list = self.notes
@@ -479,8 +477,6 @@ class Measure:
 
                 log.debug(f"current count > beat_breakpoint, {current_count}, {beat_breakpoint}")
 
-
-
                 overflow = current_count - beat_breakpoint
                 log.debug(f"overflow, {overflow}, {current_count}, {beat_breakpoint}")
                 remainder = note.dur - overflow
@@ -499,8 +495,5 @@ class Measure:
                     note_for_next_beat.dur = overflow
                     current_beat.add_note(note_for_next_beat)
 
-
-
         self._factorize_notes()
         [beat.make_beams() for beat in self.beats]
-
