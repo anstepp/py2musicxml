@@ -120,11 +120,11 @@ class Measure:
         min_dur = min(note_durs)
 
         if min_dur < 1:
-            factor = 1 / min_dur
+            self.measure_factor = 1 / min_dur
             for beat in self.beats:
-                beat.subdivisions *= factor
+                beat.subdivisions *= self.measure_factor
                 for note in beat.notes:
-                    note.change_duration(note.dur * factor)
+                    note.change_duration(note.dur * self.measure_factor)
         else:
             pass
 
@@ -360,7 +360,7 @@ class Measure:
         tot_durs = list(accumulate([note.dur for note in note_list]))[-1]
 
         if tot_durs < total_cumulative_beats:
-            note_list.append(Rest(total_cumulative_beats - note_list[-1].dur))
+            note_list.append(Rest(total_cumulative_beats - tot_durs))
 
         return note_list
 

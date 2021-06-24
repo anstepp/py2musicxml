@@ -195,20 +195,32 @@ class Score:
                             staff_count,
                         )
 
+                        xml_measure_attributes = etree.SubElement(
+                            xml_measure, "attributes"
+                        )
+                        xml_measure_divisions = etree.SubElement(
+                            xml_measure_attributes, "divisions"
+                        )
+                        xml_measure_divisions.text = str(current_measure.measure_factor)
+
                     standard_subdivisions = []
                     if current_measure_count != 1:
                         # xml_measure = etree.SubElement(
                         #     xml_part, "measure", {"number": str(current_measure_count)}
                         # )
                         if measure_index > 0:
+                            xml_measure_attributes = etree.SubElement(
+                                xml_measure, "attributes"
+                            )
+                            xml_measure_divisions = etree.SubElement(
+                                xml_measure_attributes, "divisions"
+                            )
+                            xml_measure_divisions.text = str(current_measure.measure_factor)
                             # if time signature changes, reset attributes
                             if (
                                 current_measure.time_signature
                                 != staff.measures[measure_index - 1].time_signature
                             ):
-                                xml_measure_attributes = etree.SubElement(
-                                    xml_measure, "attributes"
-                                )
                                 xml_measure_time_signature = etree.SubElement(
                                     xml_measure_attributes, "time"
                                 )

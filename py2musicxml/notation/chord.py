@@ -84,14 +84,23 @@ class Chord:
         note_list.insert(idx_shift + 1, note_list.pop(note_list.index(note)))
         return note_list
 
-    def change_duration(self, duration) -> None:
-        self.dur = duration
-        for note in self.notes:
-            note.dur = duration
+    def change_duration(self, new_duration) -> None:
+        try:
+            if new_duration > 0:
+                self.dur = new_duration
+                for note in self.notes:
+                    note.dur = new_duration
+        except ValueError as e:
+            logging.error(e)
+            raise
+
 
     def split(self, diff) -> Tuple["__class__", "__class__"]:
         old_chord = copy.deepcopy(self)
         new_chord = copy.deepcopy(self)
+
+        for note in old_chord.notes:
+            note.set_as_tie("tie_start")
 
         old_chord.change_duration(self.dur - diff)
         new_chord.change_duration(diff)

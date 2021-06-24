@@ -328,10 +328,11 @@ class Note:
             raise
 
     def split(self, diff: int) -> Tuple["__class__", "__class__"]:
-        old_note = copy.deepcopy(self)
-        new_note = copy.deepcopy(self)
+        old_note = copy.copy(self)
+        new_note = copy.copy(self)
 
         old_note.change_duration(self.dur - diff)
+        old_note.set_as_tie("tie_start")
 
         new_note.change_duration(diff)
 
