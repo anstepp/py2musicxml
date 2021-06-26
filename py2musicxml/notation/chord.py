@@ -52,7 +52,7 @@ class Chord:
         for note in self.notes[1:]:
             note.is_chord_member = True
 
-    def _sort_notes(self, note_list: Iterable[Note]) -> Iterable[Note]:
+    def _sort_notes(self, note_list: Iterable[Note]) -> list:
 
         """Wrapper Function for Insertion sorting the notes by
         pitch."""
@@ -95,7 +95,7 @@ class Chord:
             raise
 
 
-    def split(self, diff) -> Tuple["__class__", "__class__"]:
+    def split(self, diff) -> Tuple["Chord", "Chord"]:
         old_chord = copy.deepcopy(self)
         new_chord = copy.deepcopy(self)
 
