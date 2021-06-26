@@ -52,7 +52,7 @@ class Chord:
         for note in self.notes[1:]:
             note.is_chord_member = True
 
-    def _sort_notes(self, note_list: Iterable[Note]) -> list:
+    def _sort_notes(self, note_list: Iterable[Note]) -> List[Note]:
 
         """Wrapper Function for Insertion sorting the notes by
         pitch."""

@@ -31,7 +31,7 @@ True
 """
 
 import copy
-from typing import Tuple
+from typing import List, Tuple
 
 import py2musicxml.log as logger
 
@@ -327,7 +327,7 @@ class Note:
             logging.error(e)
             raise
 
-    def split(self, diff: int) -> Tuple["__class__", "__class__"]:
+    def split(self, diff: int) -> List["Note", "Note"]:
         old_note = copy.copy(self)
         new_note = copy.copy(self)
 
