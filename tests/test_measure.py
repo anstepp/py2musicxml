@@ -1,6 +1,6 @@
 import pytest
 
-from py2musicxml.notation import Measure
+from py2musicxml.notation import Measure, Note
 
 
 def test_object_init_fail_without_args():
@@ -61,6 +61,19 @@ def test_cumulative_beats(
     assert m.cumulative_beats == expected_cumulative_beats
     assert m.total_cumulative_beats == expected_total_cumulative_beats
 
+def test_rest_padding():
+
+    short_note = Note(3,4,0)
+
+    m = Measure((4,4), 1)
+
+    m.add_note(short_note)
+
+    m.clean_up_measure()
+
+    assert len(m.beats) == 2
+    assert m.beats[0].notes[0].dur == 3
+    assert m.beats[1].notes[0].dur == 1
 
 # def test_additive_meter():
 
