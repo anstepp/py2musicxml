@@ -2,12 +2,14 @@ import pytest
 
 from py2musicxml.notation import Rest
 
+
 def test_init():
 
     rest = Rest(4)
 
     assert rest.dur == 4
     # assert rest.is_measure == True
+
 
 def test_init_fail_on_negative():
 
@@ -16,6 +18,7 @@ def test_init_fail_on_negative():
 
     with pytest.raises(ValueError) as e:
         rest = Rest(-9)
+
 
 def test_split():
 
