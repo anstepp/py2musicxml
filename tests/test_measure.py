@@ -75,11 +75,29 @@ def test_rest_padding():
     assert m.beats[0].notes[0].dur == 3
     assert m.beats[1].notes[0].dur == 1
 
-# def test_additive_meter():
+def test_additive_meter_five_eight():
 
-#     time_signature = (5,8)
+    time_signature = (5,8)
 
-#     m = Measure(time_signature, 1)
+    m = Measure(time_signature, 1)
 
-#     assert m.meter_type == 'Additive'
-#     assert m.measure_map == [3,2]
+    assert m.meter_type == 'Additive'
+    assert m.measure_map == [3,2]
+
+def test_additive_meter_seven_eight():
+
+    time_signature = (7,8)
+
+    m = Measure(time_signature, 1)
+
+    assert m.meter_type == "Additive"
+    assert m.measure_map == [3,2,2]
+
+def test_additive_meter_eight_eight():
+
+    time_signature = (8,8)
+
+    m = Measure(time_signature, 1)
+
+    assert m.meter_type == 'Additive'
+    assert m.measure_map == [3,3,2]

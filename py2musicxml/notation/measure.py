@@ -299,18 +299,16 @@ class Measure:
 
                 denominator = self.time_signature[1]
 
-                if denominator > 4:
-                    scale = (denominator / 4)
-                else:
-                    scale = 1
+                divisions = int(beats_in_measure / 2)
 
                 # meter_division remains None
                 meter_type = "Additive"
-                measure_map = [factor / scale for x in range(beats_in_measure)]
+                measure_map = self._front_load_measure(beats_in_measure, divisions)
+                #measure_map = [factor / scale for x in range(beats_in_measure)]
         else:
-            #print("bail out")
             # meter_division remains None
             meter_type = "Additive"
+            print("In Asymmetric")
             
 
         return meter_division, meter_type, measure_map
