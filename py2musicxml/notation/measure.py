@@ -240,7 +240,7 @@ class Measure:
         if self.equal_divisions:
 
             # time sig denominator is divisible by 3
-            if (self.time_signature[0] % 3) == 0:
+            if (self.time_signature[0] % self.time_signature[1]) == 0:
 
                 if self.time_signature[0] > 3:
 
@@ -308,7 +308,6 @@ class Measure:
         else:
             # meter_division remains None
             meter_type = "Additive"
-            print("In Asymmetric")
 
         return meter_division, meter_type, measure_map
 

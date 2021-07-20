@@ -14,7 +14,6 @@ log = logger.get_logger()
 
 EMPTY_MEASURE_FACTOR = 1
 
-
 class Score:
     """Generates a MusicXML score from a list of parts (NoteLists) and outputs score to file"""
 
@@ -24,7 +23,7 @@ class Score:
         title: Optional[str] = None,
         composer: Optional[str] = None,
     ):
-
+    
         self.title = title
         self.composer = composer
 
@@ -215,9 +214,7 @@ class Score:
                             xml_measure_divisions = etree.SubElement(
                                 xml_measure_attributes, "divisions"
                             )
-                            xml_measure_divisions.text = str(
-                                current_measure.measure_factor
-                            )
+                            xml_measure_divisions.text = str(current_measure.measure_factor)
                             # if time signature changes, reset attributes
                             if (
                                 current_measure.time_signature

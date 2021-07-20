@@ -97,11 +97,11 @@ def test_additive_meter_seven_eight():
     assert m.measure_map == [3, 2, 2]
 
 
-def test_additive_meter_eight_eight():
+# def test_additive_meter_eight_eight():
 
-    time_signature = (8, 8)
+#     time_signature = (8, 8)
 
-    m = Measure(time_signature, 1)
+#     m = Measure(time_signature, 1)
 
-    assert m.meter_type == "Additive"
-    assert m.measure_map == [3, 3, 2]
+#     assert m.meter_type == "Additive"
+#     assert m.measure_map == [3, 3, 2]
