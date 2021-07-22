@@ -1,6 +1,6 @@
 import pytest
 
-from py2musicxml.notation import Tempo, Measure
+from py2musicxml.notation import Tempo, Measure, Score
 
 @pytest.fixture
 def basic_tempo():
@@ -8,6 +8,14 @@ def basic_tempo():
     note = 1 # quarter
     tempo = Tempo(bpm, note)
     return tempo, bpm, note
+
+@pytest.fixture
+def basic_score():
+    time_sig = [(4,4)]
+    measures = [m.Measure(time_sig, 1) for x in range(5)]
+    test_part = Part(measures)
+    score = Score([test_part])
+
 
 def test_tempo_init(basic_tempo):
     tempo, bpm, note = basic_tempo
