@@ -39,26 +39,26 @@ def test_supply_audio(basic_tempo):
 
     at.supply_audio("test_audio/sine440.wav")
 
-def test_fft_one_pitch():
+# def test_fft_one_pitch():
     
-    N = 4096
-    auto_transcribe = AutoTranscribe(N, Tempo(30, 1))
+#     N = 4096
+#     auto_transcribe = AutoTranscribe(N, Tempo(30, 1))
 
-    auto_transcribe.supply_audio("test_audio/sine440.wav")
+#     auto_transcribe.supply_audio("test_audio/sine440.wav")
 
-    resulting_pitches = auto_transcribe.get_peak_pitches()
+#     resulting_pitches = auto_transcribe.get_peak_pitches()
 
-    assert len(resulting_pitches) > 0
-    assert Note(29.907, 4, 9) == resulting_pitches[0]
+#     assert len(resulting_pitches) > 0
+#     assert Note(29.907, 4, 9) == resulting_pitches[0]
 
-    time_sig = [(4,4)]
+#     time_sig = [(4,4)]
 
-    test_part = Part(resulting_pitches, time_sig)
-    for note in resulting_pitches:
-        print(note)
-    test_score = Score([test_part])
+#     test_part = Part(resulting_pitches, time_sig)
+#     for note in resulting_pitches:
+#         print(note)
+#     test_score = Score([test_part])
 
-    test_score.convert_to_xml("scripts/test440.musicxml")
+#     test_score.convert_to_xml("scripts/test440.musicxml")
 
 # def test_viola():
 
