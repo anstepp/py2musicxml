@@ -2,9 +2,6 @@ import pytest
 
 from py2musicxml.notation import Measure, Note, Beat, Part, Score, Rest, Chord
 
-MEASURE_BASE_FACTOR = 4
-
-
 # fmt: off
 fj_pitches = [0, 2, 4, 0, 0, 2, 4, 0, 4, 5, 7, 4, 5, 7, 7, 9, 7, 5, 4, 0, 7, 9, 7, 5, 4, 0, 0, -5, 0, 0, -5, 0]
 fj_durs = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 4, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 4, 2, 2, 4]
@@ -32,19 +29,23 @@ def test_measure_equals_note():
 
     test_part = Part([test_note], time_sig)
 
+    assert len(test_part.measures) == 1
+
     for measure_idx, measure in enumerate(test_part.measures):
         for beat_idx, beat in enumerate(measure.beats):
             for note_idx, note in enumerate(beat.notes):
-
-                assert note.dur == 16
-                assert note.octave == 4
-                assert note.pc == 0
+                if isinstance(note, Note):
+                    assert note.dur == 4
+                    assert note.octave == 4
+                    assert note.pc == 0
 
 def test_note_less_than_measure():
 
     dur = 3
     octave = 4
     pc = 0
+
+    measure_factor = 4
 
     test_note = Note(dur,octave,pc)
 
@@ -54,9 +55,12 @@ def test_note_less_than_measure():
 
     assert len(test_part.measures[0].beats) == 2
 
-    assert test_part.measures[0].beats[0].notes[0].dur == dur * MEASURE_BASE_FACTOR
+    assert test_part.measures[0].beats[0].notes[0].dur == dur
     assert test_part.measures[0].beats[0].notes[0].octave == octave
     assert test_part.measures[0].beats[0].notes[0].pc == 0
+
+    assert test_part.measures[0].beats[1].notes[0].dur == 1
+    assert test_part.measures[0].beats[1].notes[0].is_measure == False
 
 def test_note_greater_than_measure():
 
@@ -71,13 +75,13 @@ def test_note_greater_than_measure():
     test_part = Part([test_note], time_sig)
 
     assert len(test_part.measures[0].beats) == 1
-    #assert len(test_part.measures[1].beats) == 2
+    assert len(test_part.measures[1].beats) == 2
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+    assert test_part.measures[0].beats[0].notes[0].dur == 4
     assert test_part.measures[0].beats[0].notes[0].octave == octave
     assert test_part.measures[0].beats[0].notes[0].pc == pc
 
-    assert test_part.measures[1].beats[0].notes[0].dur == 1 * MEASURE_BASE_FACTOR
+    assert test_part.measures[1].beats[0].notes[0].dur == 1
     assert test_part.measures[1].beats[0].notes[0].octave == octave
     assert test_part.measures[1].beats[0].notes[0].pc == pc
 
@@ -93,11 +97,11 @@ def test_note_exactly_multiple_measures():
 
     test_part = Part([test_note], time_sig)
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+    assert test_part.measures[0].beats[0].notes[0].dur == 4
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[1].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+    assert test_part.measures[1].beats[0].notes[0].dur == 4
     assert test_part.measures[1].beats[0].notes[0].octave == 4
     assert test_part.measures[1].beats[0].notes[0].pc == 0
 
@@ -112,15 +116,15 @@ def test_greater_than_multiple_measures():
 
      test_part = Part([test_note], time_sig)
 
-     assert test_part.measures[0].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+     assert test_part.measures[0].beats[0].notes[0].dur == 4
      assert test_part.measures[0].beats[0].notes[0].octave == 4
      assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-     assert test_part.measures[1].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+     assert test_part.measures[1].beats[0].notes[0].dur == 4
      assert test_part.measures[1].beats[0].notes[0].octave == 4
      assert test_part.measures[1].beats[0].notes[0].pc == 0
 
-     assert test_part.measures[2].beats[0].notes[0].dur == 1 * MEASURE_BASE_FACTOR
+     assert test_part.measures[2].beats[0].notes[0].dur == 1
      assert test_part.measures[2].beats[0].notes[0].octave == 4
      assert test_part.measures[2].beats[0].notes[0].pc == 0
 
@@ -135,11 +139,11 @@ def test_two_notes_equal_two_measures():
 
     test_part = Part(test_note_list, time_sig)
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+    assert test_part.measures[0].beats[0].notes[0].dur == 4
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[1].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+    assert test_part.measures[1].beats[0].notes[0].dur == 4
     assert test_part.measures[1].beats[0].notes[0].octave == 4
     assert test_part.measures[1].beats[0].notes[0].pc == 2
 
@@ -154,13 +158,13 @@ def test_two_notes_equal_one_measure():
 
     test_part = Part(test_note_list, time_sig)
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 2 * MEASURE_BASE_FACTOR
+    assert test_part.measures[0].beats[0].notes[0].dur == 2
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[0].beats[0].notes[1].dur == 2 * MEASURE_BASE_FACTOR
-    assert test_part.measures[0].beats[0].notes[1].octave == 4
-    assert test_part.measures[0].beats[0].notes[1].pc == 2
+    assert test_part.measures[0].beats[1].notes[0].dur == 2
+    assert test_part.measures[0].beats[1].notes[0].octave == 4
+    assert test_part.measures[0].beats[1].notes[0].pc == 2
 
 def test_two_notes_less_than_measure():
 
@@ -173,13 +177,13 @@ def test_two_notes_less_than_measure():
 
     test_part = Part(test_note_list, time_sig)
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 2 * MEASURE_BASE_FACTOR
+    assert test_part.measures[0].beats[0].notes[0].dur == 2 
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[0].beats[0].notes[1].dur == 1 * MEASURE_BASE_FACTOR
-    assert test_part.measures[0].beats[0].notes[1].octave == 4
-    assert test_part.measures[0].beats[0].notes[1].pc == 2
+    assert test_part.measures[0].beats[1].notes[0].dur == 1
+    assert test_part.measures[0].beats[1].notes[0].octave == 4
+    assert test_part.measures[0].beats[1].notes[0].pc == 2
 
 def test_two_notes_greater_than_one_measure():
 
@@ -192,22 +196,22 @@ def test_two_notes_greater_than_one_measure():
 
     test_part = Part(test_note_list, time_sig)
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 3 * MEASURE_BASE_FACTOR
+    assert test_part.measures[0].beats[0].notes[0].dur == 3 
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[0].beats[0].notes[1].dur == 1 * MEASURE_BASE_FACTOR
-    assert test_part.measures[0].beats[0].notes[1].octave == 4
-    assert test_part.measures[0].beats[0].notes[1].pc == 2
+    assert test_part.measures[0].beats[1].notes[0].dur == 1
+    assert test_part.measures[0].beats[1].notes[0].octave == 4
+    assert test_part.measures[0].beats[1].notes[0].pc == 2
 
-    assert test_part.measures[1].beats[0].notes[0].dur == 2 * MEASURE_BASE_FACTOR
+    assert test_part.measures[1].beats[0].notes[0].dur == 2
     assert test_part.measures[1].beats[0].notes[0].octave == 4
     assert test_part.measures[1].beats[0].notes[0].pc == 2
 
 def test_two_notes_one_greater_than_measure_one_less():
 
     middle_c = Note(9, 4, 0)
-    middle_d = Note(1, 4, 2)
+    middle_d = Note(2, 4, 2)
 
     test_note_list = [middle_c, middle_d]
 
@@ -215,28 +219,59 @@ def test_two_notes_one_greater_than_measure_one_less():
 
     test_part = Part(test_note_list, time_sig)
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+    assert test_part.measures[0].beats[0].notes[0].dur == 4
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[1].beats[0].notes[0].dur == 4 * MEASURE_BASE_FACTOR
+    assert test_part.measures[1].beats[0].notes[0].dur == 4 
     assert test_part.measures[1].beats[0].notes[0].octave == 4
     assert test_part.measures[1].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[2].beats[0].notes[0].dur == 1 * MEASURE_BASE_FACTOR
+    assert test_part.measures[2].beats[0].notes[0].dur == 1 
     assert test_part.measures[2].beats[0].notes[0].octave == 4
     assert test_part.measures[2].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[2].beats[0].notes[1].dur == 1 * MEASURE_BASE_FACTOR
-    assert test_part.measures[2].beats[0].notes[1].octave == 4
-    assert test_part.measures[2].beats[0].notes[1].pc == 2
+    assert test_part.measures[2].beats[1].notes[0].dur == 2
+    assert test_part.measures[2].beats[1].notes[0].octave == 4
+    assert test_part.measures[2].beats[1].notes[0].pc == 2
+
+def test_measure_init_on_four_quarters():
+
+    four_quarters = [Note(1,4,0) for x in range(4)]
+
+    time_sig = [(4,4)]
+
+    test_part = Part(four_quarters, time_sig)
+
+    assert len(test_part.measures) == 1
+    assert len(test_part.measures[0].notes) == 4
+    assert len(test_part.measures[0].beats) == 4
+    assert len(test_part.measures[0].beats[0].notes) == 1
+    for measure in test_part.measures:
+        for beat in measure.beats:
+            for note in beat.notes:
+                assert note.dur == 1
+                assert note.pc == 0
+                assert note.octave == 4
+
+def test_three_measure_overflow_change_time_sig():
+
+    long_note = Note(9,4,0)
+
+    time_sig = [(3,4),(2,4),(4,4)]
+
+    test_part = Part([long_note], time_sig)
+
+    assert test_part.measures[0].notes[0].dur == 3
+    assert test_part.measures[1].notes[0].dur == 2
+    assert test_part.measures[2].notes[0].dur == 4
 
 def test_part_durations_are_correct(notes_that_cause_duration_split):
 
     test_list, test_sig = notes_that_cause_duration_split
     test_part = Part(test_list, test_sig)
 
-    expected_note_durations = [12, 12, 4, 8, 4, 8, 12, 4, 8, 8, 4]
+    expected_note_durations = [3, 3, 1, 2, 1, 2, 3, 1, 2, 2, 1]
     expected_note_pitches = [3, 4, 4, 3, 3, 6, 6, 6, 4, 4, None]
     # expected_beat_lens = [1, 1, 2, 2, 1, 2, 2, 1]
 
@@ -273,14 +308,12 @@ def test_assert_unique(notes_that_cause_duration_split):
                 )
 
 
-# # test_score = Score(parts=[test_part])
-# # test_score.convert_to_xml("test_score_cases.xml")
-
-
 def test_long_durs():
     # fmt: off
     long_durs = [4,4,4,4,7,1,4,6,7,3,8,6,7,1,5,6,1]
+    long_durs_corrected = [4 * dur for dur in long_durs]
     long_durs_after_break = [4,4,4,4,4,3,1,4,4,2,2,4,1,3,4,4,4,2,2,4,1,1,2,3,1,4,1,1,2]
+    long_durs_after_break_corr = [4 * dur for dur in long_durs_after_break]
     # fmt: on
 
     long_durs_list = [Note(x, 4, x) for x in long_durs]
@@ -317,13 +350,14 @@ def test_frere_jacques():
                 counter += 1
 
     score = Score(parts=[fj_part])
-    score.convert_to_xml("test_score_fj.xml")
+    score.convert_to_xml("test_score_fj.musicxml")
 
 
 def test_fj_three_four():
 
     # fmt: off
     fj_durs_34 = [2,1,1,2,2,1,1,2,2,1,1,2,2,1,3,2,1,1,2,2,1,1,1,1,2,1,1,1,1,1,1,1,1,2,2,1,1,2,2,1,1,2,3,1,2]
+    fj_durs_34_corrected = [dur * 4 for dur in fj_durs_34]
     # fmt: on
     fj_ts = [[3, 4]]
     fj_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
@@ -339,7 +373,7 @@ def test_fj_three_four():
                 counter += 1
 
     score = Score(parts=[fj_part])
-    score.convert_to_xml("test_score_fj_34.xml")
+    score.convert_to_xml("test_score_fj_34.musicxml")
 
 
 def test_fj_shifting_ts():
@@ -351,6 +385,10 @@ def test_fj_shifting_ts():
 
     fj_part = Part(fj_list, fj_ts)
 
+
+    score = Score(parts=[fj_part])
+    score.convert_to_xml("test_score_fj_shifting.musicxml")
+
     counter = 0
     for measure_index, measure in enumerate(fj_part.measures):
         for beat_index, beat in enumerate(measure.beats):
@@ -358,9 +396,6 @@ def test_fj_shifting_ts():
                 #print(measure_index, fj_durs_shift[counter], note, measure.time_signature)
                 assert note.dur == fj_durs_shift[counter] * MEASURE_BASE_FACTOR
                 counter += 1
-
-    score = Score(parts=[fj_part])
-    score.convert_to_xml("test_score_fj_shifting.xml")
 
 
 def test_frere_jacques_subdiv():
@@ -465,21 +500,33 @@ def test_frere_jacques_subdiv():
     score_two = Score(parts=[fj_quartered_part])
     score_two.convert_to_xml("test_score_fj_only_quarter.musicxml")
 
-    # fmt: off
-    fj_durs_shift = [2,2,2,1,1,1,1,2,1,1,2,2,2,2,2,1,1,1,1,3,1,1,1,1,1,2,2,1,1,1,1,1,1,2,1,1,2,2,2,2,2,1,2,1,3]
-    # fmt: on
-    fj_ts = [(4, 4), (3, 4), (2, 4)]
-    fj_list = [Note(dur * 0.5, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
 
-    fj_part = Part(fj_list, fj_ts)
+def test_chord_parsed():
 
-    # counter = 0
-    # for measure_index, measure in enumerate(fj_part.measures):
-    #     for beat_index, beat in enumerate(measure.beats):
-    #         for note_index, note in enumerate(beat.notes):
-    #             print(counter, fj_durs_shift[counter], note)
-    #             assert fj_durs_shift[counter] == note.dur
-    #             counter += 1
+    c = Note(4,4,0)
+    e = Note(4,4,4)
+    g = Note(4,4,7)
+
+    c_major = Chord([c,e,g])
+
+    ts = [(4,4)]
+
+    test_chord_part = Part([c_major], ts)
+
+    assert len(test_chord_part.measures[0].beats) == 1
+    assert test_chord_part.measures[0].beats[0].notes[0].notes[0].dur == 4
+    assert test_chord_part.measures[0].beats[0].notes[0].notes[1].dur == 4
+    assert test_chord_part.measures[0].beats[0].notes[0].notes[2].dur == 4
+
+def test_chord_split_simple():
+    
+    c = Note(8,4,0)
+    e = Note(8,4,4)
+    g = Note(8,4,7)
+
+    c_major = Chord([c,e,g])
+
+    ts = [(4,4)]
 
 def test_chord_parsed():
 

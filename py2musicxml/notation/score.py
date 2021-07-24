@@ -14,6 +14,7 @@ log = logger.get_logger()
 
 EMPTY_MEASURE_FACTOR = 1
 
+
 class Score:
     """Generates a MusicXML score from a list of parts (NoteLists) and outputs score to file"""
 
@@ -23,7 +24,7 @@ class Score:
         title: Optional[str] = None,
         composer: Optional[str] = None,
     ):
-
+    
         self.title = title
         self.composer = composer
 
@@ -36,7 +37,7 @@ class Score:
 
         # parts is a single Part object.
         if isinstance(parts, Part):
-            parsed_parts =  [ {'staff_count' : 1, 'staves': [parts] } ]
+            parsed_parts = [{"staff_count": 1, "staves": [parts]}]
 
         # parts is a list.
         elif isinstance(parts, list):
@@ -44,30 +45,29 @@ class Score:
 
             for p in parts:
                 if isinstance(p, list):
-                    parsed_parts.append( {'staff_count' : len(p), 'staves': p } )
+                    parsed_parts.append({"staff_count": len(p), "staves": p})
                 else:
-                    parsed_parts.append( {'staff_count' : 1, 'staves': [p] } )
+                    parsed_parts.append({"staff_count": 1, "staves": [p]})
 
         else:
-            raise Exception('Invalid parts argument supplied to Score.')
+            raise Exception("Invalid parts argument supplied to Score.")
 
         return parsed_parts
 
-
     def _pad_with_empty_measures(self) -> int:
-        '''Returns score measure length (ie. max number of measures)'''
+        """Returns score measure length (ie. max number of measures)"""
 
         max_len = 0
 
         # figure out which staff is the longest (largest number of measures)
         for part in self._parts:
-            for staff in part['staves']:
+            for staff in part["staves"]:
                 if len(staff.measures) > max_len:
                     max_len = len(staff.measures)
-                    longest_staff = staff              
+                    longest_staff = staff
 
         for part in self._parts:
-            for staff in part['staves']:            
+            for staff in part["staves"]:
                 if len(staff.measures) < max_len:
                     for idx in range(len(staff.measures), max_len):
                         ts = longest_staff.measures[idx].time_signature
@@ -83,19 +83,18 @@ class Score:
 
     def convert_to_xml(self, output_filepath: str) -> None:
         """Entrypoint to Score class
-            * converts self.parts (list of NoteLists) to a MusicXML tree
-            * writes MusicXML tree to .xml file
+        * converts self.parts (list of NoteLists) to a MusicXML tree
+        * writes MusicXML tree to .xml file
         """
         xml_score = self._convert_score_parts_to_xml()
         self._write_xml_to_file(output_filepath, xml_score)
-
 
     def _set_measure_attributes(
         self,
         xml_measure: etree.SubElement,
         time_sig: Tuple[int, int],
         divisions: int,
-        staff_count: int
+        staff_count: int,
     ) -> etree.SubElement:
 
         # attributes on the measure
@@ -110,7 +109,7 @@ class Score:
         xml_part_fifths = etree.SubElement(xml_part_key, "fifths")
         xml_part_fifths.text = "0"
         xml_part_mode = etree.SubElement(xml_part_key, "mode")
-        xml_part_mode.text = 'none'
+        xml_part_mode.text = "none"
 
         xml_part_time = etree.SubElement(xml_part_attributes, "time")
         xml_part_beats = etree.SubElement(xml_part_time, "beats")
@@ -153,7 +152,7 @@ class Score:
         # create part-list
         #   score-part, part-name
         xml_part_list = etree.SubElement(root, "part-list")
-        
+
         for idx, score_part in enumerate(self._parts):
 
             part_number = idx + 1
@@ -163,19 +162,18 @@ class Score:
             )
             xml_part_name = etree.SubElement(xml_score_part, "part-name")
 
-
         # Write actual part, measures, notes, etc. to xml tree
         for part_idx, part in enumerate(self._parts):
 
             part_number = part_idx + 1
             xml_part = etree.SubElement(root, "part", {"id": "P" + str(part_number)})
 
-            staff_count = part['staff_count']
-            staves = part['staves']
+            staff_count = part["staff_count"]
+            staves = part["staves"]
 
             # Iterate through each Measure of the Part.
             for measure_index in range(self._measure_count):
-                
+
                 # xml measures are 1 indexed, but Measures are 0 indexed
                 current_measure_count = measure_index + 1
 
@@ -194,9 +192,16 @@ class Score:
                             xml_measure,
                             current_measure.time_signature,
                             staff.measure_factor,
-                            staff_count
+                            staff_count,
                         )
 
+                        xml_measure_attributes = etree.SubElement(
+                            xml_measure, "attributes"
+                        )
+                        xml_measure_divisions = etree.SubElement(
+                            xml_measure_attributes, "divisions"
+                        )
+                        xml_measure_divisions.text = str(current_measure.measure_factor)
 
                     standard_subdivisions = []
                     if current_measure_count != 1:
@@ -204,14 +209,18 @@ class Score:
                         #     xml_part, "measure", {"number": str(current_measure_count)}
                         # )
                         if measure_index > 0:
+                            xml_measure_attributes = etree.SubElement(
+                                xml_measure, "attributes"
+                            )
+                            xml_measure_divisions = etree.SubElement(
+                                xml_measure_attributes, "divisions"
+                            )
+                            xml_measure_divisions.text = str(current_measure.measure_factor)
                             # if time signature changes, reset attributes
                             if (
                                 current_measure.time_signature
                                 != staff.measures[measure_index - 1].time_signature
                             ):
-                                xml_measure_attributes = etree.SubElement(
-                                    xml_measure, "attributes"
-                                )
                                 xml_measure_time_signature = etree.SubElement(
                                     xml_measure_attributes, "time"
                                 )
@@ -229,17 +238,19 @@ class Score:
                                 )
                             else:
                                 pass
-                    
+
                     # we add the notes
                     for current_beat in current_measure.beats:
                         beat_subdivisions = current_beat.subdivisions
-                        
+
                         for current_note in current_beat.notes:
 
                             if type(current_note) == Rest:
                                 xml_note = etree.SubElement(xml_measure, "note")
                                 xml_rest = etree.SubElement(xml_note, "rest")
-                                xml_rest_duration = etree.SubElement(xml_note, "duration")
+                                xml_rest_duration = etree.SubElement(
+                                    xml_note, "duration"
+                                )
                                 xml_rest_duration.text = str(current_note.dur)
 
                             elif type(current_note) == Chord:
@@ -281,17 +292,25 @@ class Score:
                                 xml_note_pitch_octave.text = str(current_note.octave)
 
                                 # duration
-                                xml_note_duration = etree.SubElement(xml_note, "duration")
+                                xml_note_duration = etree.SubElement(
+                                    xml_note, "duration"
+                                )
                                 xml_note_duration.text = str(current_note.dur)
 
                                 if current_note.tie_start:
-                                    xml_tie = etree.SubElement(xml_note, "tie", {'type': 'start'})
+                                    xml_tie = etree.SubElement(
+                                        xml_note, "tie", {"type": "start"}
+                                    )
 
                                 if current_note.tie_continue:
-                                    xml_tie = etree.SubElement(xml_note, "tie", {'type': 'start'})
+                                    xml_tie = etree.SubElement(
+                                        xml_note, "tie", {"type": "start"}
+                                    )
 
                                 if current_note.tie_end:
-                                    xml_tie = etree.SubElement(xml_note, "tie", {'type': 'stop'})
+                                    xml_tie = etree.SubElement(
+                                        xml_note, "tie", {"type": "stop"}
+                                    )
 
                                 # accidental
                                 if current_note.alter:
@@ -332,39 +351,53 @@ class Score:
 
                                 # notation ties
                                 if current_note.tie_start:
-                                    xml_notations = etree.SubElement(xml_note, "notations")
+                                    xml_notations = etree.SubElement(
+                                        xml_note, "notations"
+                                    )
                                     xml_notations_tied = etree.SubElement(
                                         xml_notations, "tied", {"type": "start"}
                                     )
                                 if current_note.tie_continue:
-                                    xml_notations = etree.SubElement(xml_note, "notations")
+                                    xml_notations = etree.SubElement(
+                                        xml_note, "notations"
+                                    )
                                     xml_notations_tied = etree.SubElement(
                                         xml_notations, "tied", {"type": "continue"}
                                     )
                                 if current_note.tie_end:
-                                    xml_notations = etree.SubElement(xml_note, "notations")
+                                    xml_notations = etree.SubElement(
+                                        xml_note, "notations"
+                                    )
                                     xml_notations_tied = etree.SubElement(
                                         xml_notations, "tied", {"type": "stop"}
                                     )
 
                                 if current_note.articulation:
                                     if current_note.articulation in ARTICULATIONS:
-                                        xml_notations = etree.SubElement(xml_note, "notations")
-                                        xml_notations_articulation = etree.SubElement(xml_notations, "articulations")
-                                        xml_articulation = etree.SubElement(xml_notations_articulation, current_note.articulation)   
+                                        xml_notations = etree.SubElement(
+                                            xml_note, "notations"
+                                        )
+                                        xml_notations_articulation = etree.SubElement(
+                                            xml_notations, "articulations"
+                                        )
+                                        xml_articulation = etree.SubElement(
+                                            xml_notations_articulation,
+                                            current_note.articulation,
+                                        )
                                 else:
                                     pass
 
                     if (len(staves) > 1) and (staff_idx < len(staves) - 1):
                         xml_backup = etree.SubElement(xml_measure, "backup")
                         xml_backup_duration = etree.SubElement(xml_backup, "duration")
-                        xml_backup_duration.text = str(staff.measure_factor * current_measure.total_cumulative_beats)
-
-
+                        xml_backup_duration.text = str(
+                            staff.measure_factor
+                            * current_measure.total_cumulative_beats
+                        )
 
             serialized = etree.tostring(
                 root,
-                doctype="<!DOCTYPE score-partwise PUBLIC \"-//Recordare//DTD MusicXML 3.0 Partwise//EN\" \"http://www.musicxml.org/dtds/partwise.dtd\">",
+                doctype='<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">',
             )
 
             new_root = etree.XML(serialized)

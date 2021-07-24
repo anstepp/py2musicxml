@@ -14,6 +14,7 @@ identification.
 where one can pass notes outside a list for easy use.
 """
 
+
 class Chord:
     def __init__(self, note_list: Iterable[Note]) -> None:
         """Constructor for Chord object.
@@ -51,7 +52,7 @@ class Chord:
         for note in self.notes[1:]:
             note.is_chord_member = True
 
-    def _sort_notes(self, note_list: Iterable[Note]) -> Iterable[Note]:
+    def _sort_notes(self, note_list: Iterable[Note]) -> List[Note]:
 
         """Wrapper Function for Insertion sorting the notes by
         pitch."""
@@ -83,18 +84,59 @@ class Chord:
         note_list.insert(idx_shift + 1, note_list.pop(note_list.index(note)))
         return note_list
 
-    def _set_note_durs(self, duration) -> None:
-        self.dur = duration
-        for note in self.notes:
-            note.dur = duration
+    def change_duration(self, new_duration) -> None:
+        try:
+            if new_duration > 0:
+                self.dur = new_duration
+                for note in self.notes:
+                    note.dur = new_duration
+        except ValueError as e:
+            logging.error(e)
+            raise
 
-    def split(self, diff) -> Tuple['__class__', '__class__']:
+
+    def split(self, diff) -> Tuple["Chord", "Chord"]:
         old_chord = copy.deepcopy(self)
         new_chord = copy.deepcopy(self)
 
-        old_chord._set_note_durs(self.dur - diff)
-        new_chord._set_note_durs(diff)
+        for note in old_chord.notes:
+            note.set_as_tie("tie_start")
+
+        old_chord.change_duration(self.dur - diff)
+        new_chord.change_duration(diff)
 
         return old_chord, new_chord
 
+    def set_as_tie(self, tie_type: str) -> None:
+        """Sets note as a tied chord of a specific type.
 
+        By feeding a type of tie: start, continue, or end, add a tie to the note both
+        in Py2MusicXML and the resulting XML. This can be called by an end user, or
+        internally when breaking notes into measure groupings.
+
+        Arguments:
+
+        tie_type: either tie_start, tie_continue, or tie_end. Flags that specific note as
+        that type of tie.
+
+        Returns:
+
+        None
+
+        """
+
+        if tie_type == "tie_start":
+            for note in self.notes:
+                note.tie_start = True
+        elif tie_type == "tie_continue":
+            for note in self.notes:
+                self.tie_continue = True
+                self.articulation = None
+        elif tie_type == "tie_end":
+            for note in self.notes:
+                self.tie_end = True
+                self.articulation = None
+        else:
+            raise Exception(
+                f"Wrong Tie Type: tie_start, tie_continue, tie_end accepted, not {tie_type}"
+            )
