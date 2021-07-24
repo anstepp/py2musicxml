@@ -141,7 +141,7 @@ class Note:
             if duration > 0:
                 self.dur = duration
         except ValueError as e:
-            logging.error(e)
+            log.error(e)
             raise
 
         # called to correct any errant pitch classes
@@ -335,16 +335,6 @@ class Note:
         old_note.set_as_tie("tie_start")
 
         new_note.change_duration(diff)
-
-        return old_note, new_note
-
-    def split(self, diff: int) -> Tuple['__class__', '__class__']:
-        old_note = copy.deepcopy(self)
-        new_note = copy.deepcopy(self)
-
-        old_note.dur = self.dur - diff
-
-        new_note.dur = diff
 
         return old_note, new_note
 
