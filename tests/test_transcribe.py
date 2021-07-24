@@ -33,11 +33,11 @@ def test_init_estimator(basic_tempo):
     with pytest.raises(ValueError):
         at_fail = AutoTranscribe(3, 60)
 
-def test_supply_audio(basic_tempo):
+# def test_supply_audio(basic_tempo):
 
-    at = AutoTranscribe(1024, basic_tempo)
+#     at = AutoTranscribe(1024, basic_tempo)
 
-    at.supply_audio("test_audio/sine440.wav")
+#     at.supply_audio("test_audio/sine440.wav")
 
 # def test_fft_one_pitch():
     
