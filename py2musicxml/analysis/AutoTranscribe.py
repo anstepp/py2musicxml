@@ -1,36 +1,102 @@
 from math import log2, ceil, floor, log10
 from bisect import bisect_left
 from collections import namedtuple
+from py2musicxml.notation.score import Score
+from py2musicxml.notation.measure import TimeSignature
 
 import numpy as np
 import scipy.io.wavfile as scwav
 import scipy.signal as scis
 
-from py2musicxml.notation import Note, Tempo
+from py2musicxml.notation import Note, Tempo, Part
 
 import py2musicxml.log as logger
 log = logger.get_logger()
 
-bin_freq_amp = namedtuple("fft_bfa", ["bin", "freq", "amp"])
+peak = namedtuple("peak", ["bin", "freq", "amp", "dur"])
 
-C0 = 8.175
+C0 = 16.35
 
-def twelve_tet_gen(f0):
-    x = 0
+def twelve_tet_gen(f0=C0):
+    """
+        Generator for producing frequency (Hz) for piano
+        key pitches.
+
+        Args:
+            f0: base pitch for frequency (default, C0)
+
+        Returns:
+            
+    """
     starting_pitch = f0
     next_half_step = f0
     while True:
         yield next_half_step
         next_half_step = (starting_pitch) * (2 ** (1/12))
-        x += 1
         starting_pitch = next_half_step
 
-pitchgen = twelve_tet_gen(C0)
+pitchgen = twelve_tet_gen()
 TWELVETET = [next(pitchgen) for x in range(200)]
 
+class Partial:
+    """
+        Class to encode partials for AutoTranscribe.
+
+        You probably shouldn't be calling this directly.
+
+        Methods:
+            __init__:
+            convert_list_to_part:
+    """
+
+    def __init__(self, starting_peak: peak) -> Partial:
+        """
+            Constructor for Partial object.
+
+            Args:
+                starting_peak: a peak namedtuple
+        """
+        self.peaks = (starting_peak,)
+        self.starting_freq = starting_peak.freq
+        self.partial_max = starting_peak.freq + 100
+        self.partial_min = starting_peak.freq = 100
+
+    def convert_list_to_part(self, time_signature):
+        """
+
+        """
+
+        note_list = []
+
+        for peak in self.peaks:
+            note = Note()
+
+        part = Part(note_list, time_signature)
+
+        return part
+
+
 class AutoTranscribe:
+    """
+        Class to code a soundfile into py2musicxml objects.
+
+        Members:
+
+        Methods:
+    """
 
     def __init__(self, N, tempo: Tempo):
+        """
+            Constructor for AutoTranscribe.
+
+            Args:
+                N: fft size (before zero-padding)
+                tempo: a Tempo object
+
+            Returns:
+                an AutoTranscribe object
+
+        """
         self.array = None
 
         # Check if N is a power of 2.
@@ -44,6 +110,15 @@ class AutoTranscribe:
         self.fs = None
 
     def supply_audio(self, fname):
+        """
+            Get an audio file and convert it to NumPy array.
+
+            Args:
+                fname: file name
+
+            returns:
+                None
+        """
         try:
             self.fs, self.audio = scwav.read(fname)
             self.filedur = len(self.audio)
@@ -52,9 +127,33 @@ class AutoTranscribe:
             raise
 
     def _bin_peak_freq(self, bin_no, N, zpf, fs):
+        """
+            Get estimated peak frequency of a bin number(float or int).
+
+            Args:
+                bin_no: bin number
+                N: FFT size
+                zpf: zero padding factor
+                fs: Sampling Rate
+
+            Returns:
+                int: frequency
+
+        """
         return bin_no * fs / (N * zpf)
 
     def _estimate_offset(self, yn1, y0, y1):
+        """
+            Get fractional bin distance to estimated pitch.
+
+            Args:
+                yn1: left bin
+                y0: peak bin
+                y1: right bin
+
+            Returns:
+                p: 
+        """
         p = 0.5*(((yn1-y1)/(yn1-2*y0+yn1)))
         return p
 
@@ -89,7 +188,14 @@ class AutoTranscribe:
         return pitch_array
 
     def _get_nearest_tet(self, freq):
-        """ twelve tone equal temperment
+        """
+            twelve tone equal temperment
+
+            Args:
+                freq: Frequency to convert
+
+            Returns:
+                closest 12-tet frequency
         """
         idx = bisect_left(TWELVETET, freq)
         left = TWELVETET[idx]
@@ -102,19 +208,25 @@ class AutoTranscribe:
             return TWELVETET[idx]
 
     def _get_py_notes(self, fft_note):
-        rpitch = round(12 * log2(fft_note[0] / 8.175))
-        octave = (rpitch // 12) - 1
+        """
+        """
+        rpitch = round(12 * log2(fft_note[0] / C0))
+        octave = (rpitch // 12)
         pc = (rpitch % 12) 
         dur = round(fft_note[1], 3)
         py_note = Note(dur, octave, pc)
         return py_note
 
     def _get_fractional_beats(self, samps):
+        """
+        """
         fractional_beats = (samps * self.tempo.note_value) / 44100
         log.info(f"fractional_beats {fractional_beats}")
         return fractional_beats
 
     def get_peak_pitches(self):
+        """
+        """
         pitches = self._transform_x(4)
         
         tranformed_pitches = []
@@ -144,3 +256,18 @@ class AutoTranscribe:
             py_notes.append(self._get_py_notes(fft_note))
 
         return py_notes
+
+
+    def get_score(self, time_signature: TimeSignature, n_parts: int) --> Score:
+        """
+            Get a Score that is auto-transcribed from a soundfile.
+
+            Args:
+                time_signature: a TimeSignature
+                n_parts: number of parts to return
+        """
+        part_list = []
+        for partial in self.partials[:n_parts]:
+            part = partial.convert_list_to_part(time_signature)
+            part_list.append(part)
+        return Score(part_list)
