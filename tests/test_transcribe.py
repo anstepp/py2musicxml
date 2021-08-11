@@ -1,16 +1,21 @@
 import pytest
 
 import numpy as np
+from collections import namedtuple
+from math import pi
 
 from py2musicxml.notation import Note, Part, Score, Tempo
-from py2musicxml.analysis import AutoTranscribe, Partial
+from py2musicxml.analysis import AutoTranscribe
+
+peak = namedtuple("peak", ["bin", "freq", "amp", "dur"])
 
 @pytest.fixture
 def a_440():
+    a = 1
     T = 2.0
     fs = 44100
     t = np.linspace(0, 2.0, int(T*fs), endpoint=False)
-    sin_440 = a * np.sin(2*np.pi*440*t)
+    sin_440 = a * np.sin(2*pi*440*t)
     return sin_440
 
 @pytest.fixture
@@ -19,9 +24,9 @@ def basic_tempo():
 
 @pytest.fixture
 def basic_at(basic_tempo):
-    fs = 44100
-    N = 4096
+    N = 1024
     at = AutoTranscribe(N, basic_tempo)
+    at.fs = 44100
     return at
 
 def test_init_estimator(basic_tempo):
@@ -33,33 +38,43 @@ def test_init_estimator(basic_tempo):
     with pytest.raises(ValueError):
         at_fail = AutoTranscribe(3, 60)
 
-# def test_supply_audio(basic_tempo):
+def test_parabolic(basic_at, a_440):
+    frames = basic_at._transform_x(1024, np.ones(1024))
+    for frame in frames:
+        for peak in frame:
+            assert peak.freq > 0
+            assert peak.amp < 0
 
-#     at = AutoTranscribe(1024, basic_tempo)
+def test_supply_audio(basic_tempo):
 
-#     at.supply_audio("test_audio/sine440.wav")
+    at = AutoTranscribe(1024, basic_tempo)
+
+    at._supply_audio("test_audio/sine440.wav")
+
+def test_get_pitch(basic_at):
+    assert basic_at._get_pitch(259) == (4,0)
+    assert basic_at._get_pitch(440) == (4,9)
+
+def test_two_way_mismatch(basic_at):
+    basic_at._two_way_mismatch
 
 def test_fft_one_pitch():
     
-    N = 4096
+    N = 2048
     auto_transcribe = AutoTranscribe(N, Tempo(60, 1))
 
-    auto_transcribe.supply_audio("test_audio/sine440.wav")
+    print(auto_transcribe.__dict__)
 
-    resulting_pitches = auto_transcribe.get_peak_pitches()
+    auto_transcribe._supply_audio("test_audio/violinclip1.wav")
+
+    resulting_pitches = auto_transcribe.get_note_list()
 
     assert len(resulting_pitches) > 0
+    resulting_pitches[0].dur = round(resulting_pitches[0].dur, 2)
     print(resulting_pitches[0])
-    assert Note(29.907, 4, 9) == resulting_pitches[0]
+    assert Note(0.93, 4, 3) == resulting_pitches[0]
 
-    time_sig = [(4,4)]
 
-    test_part = Part(resulting_pitches, time_sig)
-    for note in resulting_pitches:
-        print(note)
-    test_score = Score([test_part])
-
-    test_score.convert_to_xml("scripts/test440.musicxml")
 
 # def test_viola():
 
