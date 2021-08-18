@@ -63,18 +63,48 @@ def test_fft_one_pitch():
     N = 2048
     auto_transcribe = AutoTranscribe(N, Tempo(60, 1))
 
-    print(auto_transcribe.__dict__)
+    #print(auto_transcribe.__dict__)
 
     auto_transcribe._supply_audio("test_audio/violinclip1.wav")
 
-    resulting_pitches = auto_transcribe.get_note_list()
+    f0_range = (24, 48)
+
+    resulting_pitches = auto_transcribe.get_note_list(f0_range)
 
     assert len(resulting_pitches) > 0
     resulting_pitches[0].dur = round(resulting_pitches[0].dur, 2)
-    print(resulting_pitches[0])
-    assert Note(0.93, 4, 3) == resulting_pitches[0]
+    print(len(resulting_pitches))
+    assert Note(0.88, 4, 3) == resulting_pitches[0]
 
+def test_smooth_notes():
+    
+    N = 2048
+    auto_transcribe = AutoTranscribe(N, Tempo(60,1))
 
+    auto_transcribe._supply_audio("test_audio/violinclip1.wav")
+
+    f0_range = (24, 48)
+
+    resulting_pitches = auto_transcribe.get_note_list(f0_range)
+
+    indices = auto_transcribe.smooth_notes(resulting_pitches, N)
+
+    assert indices == [3, 7]
+
+    auto_transcribe_2 = AutoTranscribe(N, Tempo(60,1))
+
+    auto_transcribe_2._supply_audio("test_audio/y2monoChunk.wav")
+
+    f0_range = (32, 48)
+
+    resulting_pitches = auto_transcribe_2.get_note_list(f0_range)
+
+    for pitch in resulting_pitches:
+        print(pitch)
+
+    indices = auto_transcribe_2.smooth_notes(resulting_pitches, N)
+
+    assert indices == [1, 5, 7]
 
 # def test_viola():
 

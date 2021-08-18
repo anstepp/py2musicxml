@@ -19,15 +19,18 @@ mtp_peak = namedtuple("mtp_peak", ["freq", "distance", "amp"])
 freq_amp_pair = namedtuple("freq_amp_pair", ["freq", "amp"])
 
 C0 = 16.35
+C1 = 32.7
 
 DEFAULT_ZERO_PADDING_FACTOR = 6
-DEFAULT_F0_RANGE = (36, 60)
+DEFAULT_F0_RANGE = (32, 60)
 DEFAULT_SAMPLING_RATE = 44100
 
 DEFAULT_P = 0.5
 DEFAULT_Q = 1.4
 DEFAULT_R = 0.5
 DEFAULT_NUM_PARTIALS = 8
+
+HOP_SIZE = 2
 
 
 def twelve_tet_gen(f0: float = C0):
@@ -37,7 +40,7 @@ def twelve_tet_gen(f0: float = C0):
         f0: base pitch for frequency (default, C0)
 
     Returns:
-
+        Generator object
     """
     starting_pitch = f0
     next_half_step = f0
@@ -47,7 +50,7 @@ def twelve_tet_gen(f0: float = C0):
         starting_pitch = next_half_step
 
 
-pitchgen = twelve_tet_gen(C0)
+pitchgen = twelve_tet_gen(C1)
 TWELVETET = [next(pitchgen) for x in range(128)]
 
 
@@ -107,14 +110,13 @@ class AutoTranscribe:
             log.error(e)
             raise
 
-    def get_note_list(self):
+    def get_note_list(self, f0_range: Tuple[int, int]):
         start = 0
         notes = []
 
         frames = self._transform_x(self.N, self.audio)
 
         for frame_idx, frame in enumerate(frames):
-            f0_range = DEFAULT_F0_RANGE
 
             best_guess = self._two_way_mismatch(frame, f0_range)
             octave, pc = self._get_pitch(best_guess)
@@ -153,28 +155,31 @@ class AutoTranscribe:
 
         start = 0
         frames = []
-        hann = np.hanning(N)
+        hann = np.hamming(N)
 
-        for stop in range(N, len(audio_array) - 1, N):
+        for stop in range(N, len(audio_array) - 1, int(N/HOP_SIZE)):
 
-            x = audio_array[start:stop]
+            x = audio_array[start:start+N]
+            if len(x) < N:
+                x = np.concatenate([x, np.zeros(N-len(x))])
             xw = x * hann
 
             # Create zero padding and zero pad signal.
             zp = np.zeros(N * (zpf - 1))
             xzp = np.concatenate([xw, zp])
+            xzerophase = np.concatenate([xzp[int(N/HOP_SIZE)+1:], xzp[0:int(N/HOP_SIZE)]])
 
             # Take real FFT.
-            Xr = rfft(xzp)
+            Xr = rfft(xzerophase)
 
             # Get amplitude of bins lower than 800.
-            Xrmag = abs(Xr)[:800]
+            Xrmag = abs(Xr)[:1200]
             max_height = max(Xrmag)
 
             peaks, _ = find_peaks(Xrmag, prominence=max_height * 0.05)
             frame = self._convert_to_frame(start, peaks, Xrmag, N, zpf)
             frames.append(frame)
-            start += N
+            start = stop
 
         return frames
 
@@ -255,11 +260,15 @@ class AutoTranscribe:
                 mtp_mean = self._measured_to_ideal_mismatch(
                     reported_peaks_with_amp, predicted_spectrum, num_partials
                 )
+                mtp_min_distance = min(mtp_mean, key=lambda x: x.distance)
 
                 for this_mean in mtp_mean:
                     fn = this_mean.freq
                     delta_fn = abs(this_mean.distance)
-                    A_n = this_mean.amp
+                    if abs(mtp_min_distance.distance) == delta_fn:
+                        A_n = A_max
+                    else:
+                        A_n = this_mean.amp
                     Err_p_m += delta_fn * pow(fn, -p) + (A_n / A_max) * (
                         q * delta_fn * pow(fn, -p) - r
                     )
@@ -272,7 +281,10 @@ class AutoTranscribe:
                 for k, mean in enumerate(ptm_mean):
                     fk = abs(peaks[k].freq)
                     delta_fk = mean
-                    A_k = peaks[k].amp
+                    if delta_fk == min(ptm_mean):
+                        A_k = A_max
+                    else:
+                        A_k = peaks[k].amp
                     Err_m_p += delta_fk * pow(fk, -p) + (A_k / A_max) * (
                         q * delta_fk * pow(fk, -p) - r
                     )
@@ -297,7 +309,7 @@ class AutoTranscribe:
             starting_freq = overtone
 
     def _get_fractional_beats(self, num_samples: int, note_value: float) -> float:
-        return (num_samples * note_value) / DEFAULT_SAMPLING_RATE
+        return ((num_samples * note_value)/HOP_SIZE) / DEFAULT_SAMPLING_RATE
 
     def _get_pitch(self, freq):
         rounded_pitch = round(12 * log2(freq / C0))
@@ -374,6 +386,15 @@ class AutoTranscribe:
             return differences
         else:
             return [0]
+
+    def smooth_notes(self, note_list: List[Note], N: int):
+        one_frame_indices = []
+        one_frame_dur = self._get_fractional_beats(N, 1)
+        for idx, note in enumerate(note_list):
+            if note.dur == one_frame_dur:
+                one_frame_indices.append(idx)
+
+        return one_frame_indices
 
     def get_score(self, time_signature: TimeSignature, n_parts: int) -> Score:
         """
