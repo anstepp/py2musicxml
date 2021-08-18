@@ -11,11 +11,10 @@ peak = namedtuple("peak", ["bin", "freq", "amp", "dur"])
 
 @pytest.fixture
 def a_440():
-    a = 1
     T = 2.0
     fs = 44100
     t = np.linspace(0, 2.0, int(T*fs), endpoint=False)
-    sin_440 = a * np.sin(2*pi*440*t)
+    sin_440 = a * np.sin(2*np.pi*440*t)
     return sin_440
 
 @pytest.fixture
@@ -24,9 +23,9 @@ def basic_tempo():
 
 @pytest.fixture
 def basic_at(basic_tempo):
-    N = 1024
+    fs = 44100
+    N = 4096
     at = AutoTranscribe(N, basic_tempo)
-    at.fs = 44100
     return at
 
 def test_init_estimator(basic_tempo):
@@ -105,21 +104,3 @@ def test_smooth_notes():
     indices = auto_transcribe_2.smooth_notes(resulting_pitches, N)
 
     assert indices == [1, 5, 7]
-
-# def test_viola():
-
-#     test_tempo = Tempo(250, 0.5)
-
-#     at = AutoTranscribe(1024, test_tempo)
-
-#     at.supply_audio("test_audio/y2monoChunk.wav")
-
-#     time_sig = [(4,4)]
-
-#     resulting_pitches = at.get_peak_pitches()
-
-#     test_part = Part(resulting_pitches, time_sig)
-#     test_score = Score([test_part])
-
-#     test_score.convert_to_xml("scripts/viola.musicxml")
-
