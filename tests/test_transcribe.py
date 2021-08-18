@@ -13,6 +13,7 @@ peak = namedtuple("peak", ["bin", "freq", "amp", "dur"])
 def a_440():
     T = 2.0
     fs = 44100
+    a = 1
     t = np.linspace(0, 2.0, int(T*fs), endpoint=False)
     sin_440 = a * np.sin(2*np.pi*440*t)
     return sin_440
