@@ -16,7 +16,7 @@ where one can pass notes outside a list for easy use.
 
 
 class Chord:
-    def __init__(self, note_list: List[Note]) -> None:
+    def __init__(self, note_list: Iterable[Note]) -> None:
         """Constructor for Chord object.
 
         Take a list of note objects and wraps them in a chord object.

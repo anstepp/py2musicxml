@@ -281,19 +281,8 @@ def test_part_durations_are_correct(notes_that_cause_duration_split):
         for beat_idx, beat in enumerate(measure.beats):
             for note_idx, note in enumerate(beat.notes):
 
-                print()
-                print("*"*30)
-                print(f"Note: {{{note}}}")
-                print(f"measure_idx: {measure_idx}")
-                print(f"beat_idx: {beat_idx}")
-                print(f"note_idx: {note_idx}")
-                print(f"note_count: {note_count}")
-
-
                 expected_note_duration = expected_note_durations[note_count]
                 expected_note_pitch = expected_note_pitches[note_count]
-
-                print(f"expected dur: {expected_note_duration}, pitch: {expected_note_pitch}, Note: {note} ")
 
                 assert note.dur == expected_note_duration
                 
@@ -337,7 +326,7 @@ def test_long_durs():
         for beat in measure.beats:
             for note in beat.notes:
                 expected_note_duration = long_durs_after_break[note_count]
-                print(note_count, note.dur, expected_note_duration)
+                # print(note_count, note.dur, expected_note_duration)
                 assert note.dur == expected_note_duration
                 note_count += 1
 
@@ -356,7 +345,7 @@ def test_frere_jacques():
     for measure_index, measure in enumerate(fj_part.measures):
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
-                print(counter, fj_durs[counter], note.dur)
+                # print(counter, fj_durs[counter], note.dur)
                 assert note.dur == fj_durs[counter]
                 counter += 1
 
@@ -379,7 +368,7 @@ def test_fj_three_four():
     for measure_index, measure in enumerate(fj_part.measures):
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
-                print(counter, fj_durs_34[counter], note.dur)
+                # print(counter, fj_durs_34[counter], note.dur)
                 assert note.dur * fj_durs_34[counter]
                 counter += 1
 
@@ -404,7 +393,7 @@ def test_fj_shifting_ts():
     for measure_index, measure in enumerate(fj_part.measures):
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
-                print(measure_index, fj_durs_shift[counter], note, measure.time_signature)
+                #print(measure_index, fj_durs_shift[counter], note, measure.time_signature)
                 assert note.dur == fj_durs_shift[counter]
                 counter += 1
 
@@ -501,7 +490,7 @@ def test_frere_jacques_subdiv():
     for measure_index, measure in enumerate(fj_part.measures):
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
-                print(counter, fj_durs[counter], note.dur)
+                #print(counter, fj_durs[counter], note.dur)
                 assert note.dur == fj_durs[counter]
                 counter += 1
 
@@ -528,6 +517,33 @@ def test_chord_parsed():
     assert test_chord_part.measures[0].beats[0].notes[0].notes[0].dur == 4
     assert test_chord_part.measures[0].beats[0].notes[0].notes[1].dur == 4
     assert test_chord_part.measures[0].beats[0].notes[0].notes[2].dur == 4
+
+def test_chord_split_simple():
+    
+    c = Note(8,4,0)
+    e = Note(8,4,4)
+    g = Note(8,4,7)
+
+    c_major = Chord([c,e,g])
+
+    ts = [(4,4)]
+
+def test_chord_parsed():
+
+    c = Note(4,4,0)
+    e = Note(4,4,4)
+    g = Note(4,4,7)
+
+    c_major = Chord([c,e,g])
+
+    ts = [(4,4)]
+
+    test_chord_part = Part([c_major], ts)
+
+    # assert len(test_chord_part.measures[0].beats) == 1
+    # assert test_chord_part.measures[0].beats[0].notes[0].dur == 4
+    # assert test_chord_part.measures[0].beats[0].notes[1].dur == 4
+    # assert test_chord_part.measures[0].beats[0].notes[2].dur == 4
 
 def test_chord_split_simple():
     
