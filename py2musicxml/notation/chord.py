@@ -1,5 +1,5 @@
 import copy
-from typing import Iterable, Tuple
+from typing import Iterable, Tuple, List
 
 from py2musicxml.notation import Note
 import py2musicxml.log as logger

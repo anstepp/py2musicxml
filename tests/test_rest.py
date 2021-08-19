@@ -1,3 +1,5 @@
+import pytest
+
 from py2musicxml.notation import Rest
 
 def test_init():

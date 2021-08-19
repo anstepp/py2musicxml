@@ -327,7 +327,7 @@ def test_long_durs():
             for note in beat.notes:
                 expected_note_duration = long_durs_after_break[note_count]
                 # print(note_count, note.dur, expected_note_duration)
-                assert note.dur == expected_note_duration * MEASURE_BASE_FACTOR
+                assert note.dur == expected_note_duration
                 note_count += 1
 
     long_durs_score = Score(parts=[long_durs_part])
@@ -346,7 +346,7 @@ def test_frere_jacques():
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
                 # print(counter, fj_durs[counter], note.dur)
-                assert note.dur == fj_durs[counter] * MEASURE_BASE_FACTOR
+                assert note.dur == fj_durs[counter]
                 counter += 1
 
     score = Score(parts=[fj_part])
@@ -369,7 +369,7 @@ def test_fj_three_four():
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
                 # print(counter, fj_durs_34[counter], note.dur)
-                assert note.dur * fj_durs_34[counter] * MEASURE_BASE_FACTOR
+                assert note.dur * fj_durs_34[counter]
                 counter += 1
 
     score = Score(parts=[fj_part])
@@ -394,7 +394,7 @@ def test_fj_shifting_ts():
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
                 #print(measure_index, fj_durs_shift[counter], note, measure.time_signature)
-                assert note.dur == fj_durs_shift[counter] * MEASURE_BASE_FACTOR
+                assert note.dur == fj_durs_shift[counter]
                 counter += 1
 
 
@@ -491,7 +491,7 @@ def test_frere_jacques_subdiv():
         for beat_index, beat in enumerate(measure.beats):
             for note_index, note in enumerate(beat.notes):
                 #print(counter, fj_durs[counter], note.dur)
-                assert note.dur == fj_durs[counter] * MEASURE_BASE_FACTOR
+                assert note.dur == fj_durs[counter]
                 counter += 1
 
     score = Score(parts=[fj_part, fj_halved_part, fj_quartered_part])
