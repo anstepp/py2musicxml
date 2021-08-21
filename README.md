@@ -1,7 +1,7 @@
 # Py2MusicXML is now lejaren
 Go here: [lejaren GitHub Repository](https://github.com/anstepp/lejaren)
 
-# Py2MusicXML
+# Py2MusicXML (DEPRECATED)
 
 Convert Python Algorithms to Notation via MusicXML.
 
