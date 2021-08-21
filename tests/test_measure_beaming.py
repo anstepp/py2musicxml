@@ -9,13 +9,14 @@ from py2musicxml.notation import Measure, Note, Rest
 
 BASE_MEASURE_FACTOR = 4
 
+
 def test_measure_whole_note():
 
     dur = 4
 
-    middle_c = Note(dur,4,0)
+    middle_c = Note(dur, 4, 0)
 
-    time_signature = (4,4)
+    time_signature = (4, 4)
 
     m = Measure(time_signature, 1)
 
@@ -29,13 +30,14 @@ def test_measure_whole_note():
         for note in beat.notes:
             assert note.dur == dur
 
+
 def test_measure_quarter_note():
 
     dur = 1
 
-    middle_c = Note(dur,4,0)
+    middle_c = Note(dur, 4, 0)
 
-    time_signature = (4,4)
+    time_signature = (4, 4)
 
     m = Measure(time_signature, 1)
 
@@ -50,15 +52,16 @@ def test_measure_quarter_note():
         for note in beat.notes:
             assert note.dur == dur
 
+
 def test_eighth_note_beams():
 
-    eighth_note_c = Note(0.5,4,0)
+    eighth_note_c = Note(0.5, 4, 0)
 
-    time_sig = (4,4)
+    time_sig = (4, 4)
 
     m = Measure(time_sig, 1)
 
-    m.extend_measure([Note(0.5,4,0) for x in range(8)])
+    m.extend_measure([Note(0.5, 4, 0) for x in range(8)])
 
     m.clean_up_measure()
 
@@ -78,12 +81,13 @@ def test_eighth_note_beams():
 
     assert len(m.beats) == m.time_signature[0]
 
+
 def test_five_sixteenths():
 
     five_sixteenths_c = Note(1.25, 4, 0)
     remaining_rest = Rest(2.75)
 
-    time_sig = (4,4)
+    time_sig = (4, 4)
     measure_factor = 4
 
     m = Measure(time_sig, measure_factor)
@@ -91,18 +95,18 @@ def test_five_sixteenths():
     m.add_note(five_sixteenths_c)
     m.add_note(remaining_rest)
 
-
     m.clean_up_measure()
 
     assert m.beats[0].notes[0].dur == 4
     assert m.beats[1].notes[0].dur == 1
+
 
 def test_half_note_multibeat():
 
     half_note_c = Note(2, 4, 0)
     remaining_rest = Rest(2)
 
-    time_sig = (4,4)
+    time_sig = (4, 4)
 
     m = Measure(time_sig, 1)
 
@@ -114,11 +118,12 @@ def test_half_note_multibeat():
     for beat in m.beats:
         assert beat.subdivisions == 1
 
-    #assert m.beats[0].multi_beat == True
+    # assert m.beats[0].multi_beat == True
     assert m.beats[0].notes[0].dur == 2
 
-    #assert m.beats[1].multi_beat == True
+    # assert m.beats[1].multi_beat == True
     assert m.beats[1].notes[0].dur == 2
+
 
 def test_quarter_half_multibeat():
 
@@ -126,7 +131,7 @@ def test_quarter_half_multibeat():
     half_note_d = Note(2, 4, 2)
     remaining_rest = Rest(1)
 
-    time_sig = (4,4)
+    time_sig = (4, 4)
     measure_factor = 4
 
     m = Measure(time_sig, measure_factor)
@@ -142,13 +147,13 @@ def test_quarter_half_multibeat():
 
     assert len(m.beats) == 3
 
-    #assert m.beats[0].multi_beat == False
+    # assert m.beats[0].multi_beat == False
     assert m.beats[0].notes[0].dur == 1
     assert m.beats[0].notes[0].pc == 0
 
-    #assert m.beats[1].multi_beat == True
+    # assert m.beats[1].multi_beat == True
     assert m.beats[1].notes[0].dur == 2
     assert m.beats[1].notes[0].pc == 2
 
-    #assert m.beats[2].multi_beat == False
+    # assert m.beats[2].multi_beat == False
     assert m.beats[2].notes[0].dur == 1

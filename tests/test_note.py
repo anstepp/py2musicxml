@@ -19,33 +19,33 @@ def test_object_init_success_with_args():
 
 def test_get_step_name():
     test_cases = {
-        'no key': {
-            'pitch_class': 2,
-            'starting_pitch': 0,
-            'expected_result': ['D', '0', 'natural'],
+        "no key": {
+            "pitch_class": 2,
+            "starting_pitch": 0,
+            "expected_result": ["D", "0", "natural"],
         },
-        'flat key': {
-            'pitch_class': 6,
-            'starting_pitch': 5,
-            'expected_result': ['G', '-1', 'flat'],
+        "flat key": {
+            "pitch_class": 6,
+            "starting_pitch": 5,
+            "expected_result": ["G", "-1", "flat"],
         },
-        'sharp key': {
-            'pitch_class': 9,
-            'starting_pitch': 11,
-            'expected_result': ['A', '0', 'natural'],
-        }
+        "sharp key": {
+            "pitch_class": 9,
+            "starting_pitch": 11,
+            "expected_result": ["A", "0", "natural"],
+        },
     }
 
     for test_case in test_cases.keys():
         n = Note(
             duration=TEST_DURATION,
             octave=TEST_OCTAVE,
-            pitch_class=test_cases[test_case]['pitch_class'],
+            pitch_class=test_cases[test_case]["pitch_class"],
         )
         result = n._get_step_name(
-            starting_pitch=test_cases[test_case]['starting_pitch']
+            starting_pitch=test_cases[test_case]["starting_pitch"]
         )
-        assert result == test_cases[test_case]['expected_result']
+        assert result == test_cases[test_case]["expected_result"]
 
     try:
         n = Note(
@@ -53,7 +53,7 @@ def test_get_step_name():
         )
         n._get_step_name(starting_pitch=999)
     except Exception as e:
-        assert str(e) == 'starting_pitch must be zero, a flat key, or sharp key'
+        assert str(e) == "starting_pitch must be zero, a flat key, or sharp key"
 
 
 def test_note_equality():
@@ -64,9 +64,10 @@ def test_note_equality():
     assert note_a == note_b
     assert note_a != note_c
 
+
 def test_articulations():
 
-    note = Note(4,4,0)
+    note = Note(4, 4, 0)
 
     note.add_articulation("accent")
 
@@ -75,9 +76,10 @@ def test_articulations():
     with pytest.raises(ValueError):
         note.add_articulation("slur")
 
+
 def test_ties():
 
-    note = Note(4,4,0)
+    note = Note(4, 4, 0)
     note.add_articulation("accent")
 
     note.set_as_tie("tie_start")
@@ -87,7 +89,7 @@ def test_ties():
     assert note.tie_continue == False
     assert note.tie_end == False
 
-    note = Note(4,4,0)
+    note = Note(4, 4, 0)
     note.set_as_tie("tie_continue")
 
     assert note.tie_start == False
@@ -95,7 +97,7 @@ def test_ties():
     assert note.articulation is None
     assert note.tie_end == False
 
-    note = Note(4,4,0)
+    note = Note(4, 4, 0)
     note.add_articulation("accent")
     note.set_as_tie("tie_end")
 
@@ -104,14 +106,14 @@ def test_ties():
     assert note.tie_end == True
     assert note.articulation is None
 
-    
+
 def test_split():
 
     dur = 8
     octave = 4
     pc = 0
 
-    note_to_split = Note(dur,octave,pc)
+    note_to_split = Note(dur, octave, pc)
 
     old_note, new_note = note_to_split.split(4)
 

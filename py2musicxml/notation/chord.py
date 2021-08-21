@@ -94,7 +94,6 @@ class Chord:
             logging.error(e)
             raise
 
-
     def split(self, diff) -> Tuple["Chord", "Chord"]:
         old_chord = copy.deepcopy(self)
         new_chord = copy.deepcopy(self)

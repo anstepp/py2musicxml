@@ -16,16 +16,24 @@ def notes_that_cause_duration_split():
     test_note_c = Note(6, 6, 6)
     test_rest = Rest(1)
 
-    test_sig = [[3, 4]]           
-    test_list = [test_note_b, test_note_a, test_note_b, test_note_c, test_note_a, test_rest]
+    test_sig = [[3, 4]]
+    test_list = [
+        test_note_b,
+        test_note_a,
+        test_note_b,
+        test_note_c,
+        test_note_a,
+        test_rest,
+    ]
 
     return test_list, test_sig
 
+
 def test_measure_equals_note():
 
-    test_note = Note(4,4,0)
+    test_note = Note(4, 4, 0)
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part([test_note], time_sig)
 
@@ -39,6 +47,7 @@ def test_measure_equals_note():
                     assert note.octave == 4
                     assert note.pc == 0
 
+
 def test_note_less_than_measure():
 
     dur = 3
@@ -47,9 +56,9 @@ def test_note_less_than_measure():
 
     measure_factor = 4
 
-    test_note = Note(dur,octave,pc)
+    test_note = Note(dur, octave, pc)
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part([test_note], time_sig)
 
@@ -62,6 +71,7 @@ def test_note_less_than_measure():
     assert test_part.measures[0].beats[1].notes[0].dur == 1
     assert test_part.measures[0].beats[1].notes[0].is_measure == False
 
+
 def test_note_greater_than_measure():
 
     dur = 5
@@ -70,7 +80,7 @@ def test_note_greater_than_measure():
 
     test_note = Note(dur, octave, pc)
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part([test_note], time_sig)
 
@@ -85,6 +95,7 @@ def test_note_greater_than_measure():
     assert test_part.measures[1].beats[0].notes[0].octave == octave
     assert test_part.measures[1].beats[0].notes[0].pc == pc
 
+
 def test_note_exactly_multiple_measures():
 
     dur = 8
@@ -93,7 +104,7 @@ def test_note_exactly_multiple_measures():
 
     test_note = Note(dur, octave, pc)
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part([test_note], time_sig)
 
@@ -105,37 +116,39 @@ def test_note_exactly_multiple_measures():
     assert test_part.measures[1].beats[0].notes[0].octave == 4
     assert test_part.measures[1].beats[0].notes[0].pc == 0
 
+
 def test_greater_than_multiple_measures():
-     dur = 9
-     octave = 4
-     pc = 0
+    dur = 9
+    octave = 4
+    pc = 0
 
-     test_note = Note(dur, octave, pc)
+    test_note = Note(dur, octave, pc)
 
-     time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
-     test_part = Part([test_note], time_sig)
+    test_part = Part([test_note], time_sig)
 
-     assert test_part.measures[0].beats[0].notes[0].dur == 4
-     assert test_part.measures[0].beats[0].notes[0].octave == 4
-     assert test_part.measures[0].beats[0].notes[0].pc == 0
+    assert test_part.measures[0].beats[0].notes[0].dur == 4
+    assert test_part.measures[0].beats[0].notes[0].octave == 4
+    assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-     assert test_part.measures[1].beats[0].notes[0].dur == 4
-     assert test_part.measures[1].beats[0].notes[0].octave == 4
-     assert test_part.measures[1].beats[0].notes[0].pc == 0
+    assert test_part.measures[1].beats[0].notes[0].dur == 4
+    assert test_part.measures[1].beats[0].notes[0].octave == 4
+    assert test_part.measures[1].beats[0].notes[0].pc == 0
 
-     assert test_part.measures[2].beats[0].notes[0].dur == 1
-     assert test_part.measures[2].beats[0].notes[0].octave == 4
-     assert test_part.measures[2].beats[0].notes[0].pc == 0
+    assert test_part.measures[2].beats[0].notes[0].dur == 1
+    assert test_part.measures[2].beats[0].notes[0].octave == 4
+    assert test_part.measures[2].beats[0].notes[0].pc == 0
+
 
 def test_two_notes_equal_two_measures():
 
-    middle_c = Note(4,4,0)
-    middle_d = Note(4,4,2)
+    middle_c = Note(4, 4, 0)
+    middle_d = Note(4, 4, 2)
 
     test_note_list = [middle_c, middle_d]
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part(test_note_list, time_sig)
 
@@ -147,6 +160,7 @@ def test_two_notes_equal_two_measures():
     assert test_part.measures[1].beats[0].notes[0].octave == 4
     assert test_part.measures[1].beats[0].notes[0].pc == 2
 
+
 def test_two_notes_equal_one_measure():
 
     middle_c = Note(2, 4, 0)
@@ -154,7 +168,7 @@ def test_two_notes_equal_one_measure():
 
     test_note_list = [middle_c, middle_d]
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part(test_note_list, time_sig)
 
@@ -166,6 +180,7 @@ def test_two_notes_equal_one_measure():
     assert test_part.measures[0].beats[1].notes[0].octave == 4
     assert test_part.measures[0].beats[1].notes[0].pc == 2
 
+
 def test_two_notes_less_than_measure():
 
     middle_c = Note(2, 4, 0)
@@ -173,17 +188,18 @@ def test_two_notes_less_than_measure():
 
     test_note_list = [middle_c, middle_d]
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part(test_note_list, time_sig)
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 2 
+    assert test_part.measures[0].beats[0].notes[0].dur == 2
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
     assert test_part.measures[0].beats[1].notes[0].dur == 1
     assert test_part.measures[0].beats[1].notes[0].octave == 4
     assert test_part.measures[0].beats[1].notes[0].pc == 2
+
 
 def test_two_notes_greater_than_one_measure():
 
@@ -192,11 +208,11 @@ def test_two_notes_greater_than_one_measure():
 
     test_note_list = [middle_c, middle_d]
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part(test_note_list, time_sig)
 
-    assert test_part.measures[0].beats[0].notes[0].dur == 3 
+    assert test_part.measures[0].beats[0].notes[0].dur == 3
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
@@ -208,6 +224,7 @@ def test_two_notes_greater_than_one_measure():
     assert test_part.measures[1].beats[0].notes[0].octave == 4
     assert test_part.measures[1].beats[0].notes[0].pc == 2
 
+
 def test_two_notes_one_greater_than_measure_one_less():
 
     middle_c = Note(9, 4, 0)
@@ -215,7 +232,7 @@ def test_two_notes_one_greater_than_measure_one_less():
 
     test_note_list = [middle_c, middle_d]
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part(test_note_list, time_sig)
 
@@ -223,11 +240,11 @@ def test_two_notes_one_greater_than_measure_one_less():
     assert test_part.measures[0].beats[0].notes[0].octave == 4
     assert test_part.measures[0].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[1].beats[0].notes[0].dur == 4 
+    assert test_part.measures[1].beats[0].notes[0].dur == 4
     assert test_part.measures[1].beats[0].notes[0].octave == 4
     assert test_part.measures[1].beats[0].notes[0].pc == 0
 
-    assert test_part.measures[2].beats[0].notes[0].dur == 1 
+    assert test_part.measures[2].beats[0].notes[0].dur == 1
     assert test_part.measures[2].beats[0].notes[0].octave == 4
     assert test_part.measures[2].beats[0].notes[0].pc == 0
 
@@ -235,11 +252,12 @@ def test_two_notes_one_greater_than_measure_one_less():
     assert test_part.measures[2].beats[1].notes[0].octave == 4
     assert test_part.measures[2].beats[1].notes[0].pc == 2
 
+
 def test_measure_init_on_four_quarters():
 
-    four_quarters = [Note(1,4,0) for x in range(4)]
+    four_quarters = [Note(1, 4, 0) for x in range(4)]
 
-    time_sig = [(4,4)]
+    time_sig = [(4, 4)]
 
     test_part = Part(four_quarters, time_sig)
 
@@ -254,17 +272,19 @@ def test_measure_init_on_four_quarters():
                 assert note.pc == 0
                 assert note.octave == 4
 
+
 def test_three_measure_overflow_change_time_sig():
 
-    long_note = Note(9,4,0)
+    long_note = Note(9, 4, 0)
 
-    time_sig = [(3,4),(2,4),(4,4)]
+    time_sig = [(3, 4), (2, 4), (4, 4)]
 
     test_part = Part([long_note], time_sig)
 
     assert test_part.measures[0].notes[0].dur == 3
     assert test_part.measures[1].notes[0].dur == 2
     assert test_part.measures[2].notes[0].dur == 4
+
 
 def test_part_durations_are_correct(notes_that_cause_duration_split):
 
@@ -285,11 +305,12 @@ def test_part_durations_are_correct(notes_that_cause_duration_split):
                 expected_note_pitch = expected_note_pitches[note_count]
 
                 assert note.dur == expected_note_duration
-                
+
                 if isinstance(note, Note):
-                    #assert note.pc == expected_note_pitch
+                    # assert note.pc == expected_note_pitch
                     pass
                 note_count += 1
+
 
 def test_assert_unique(notes_that_cause_duration_split):
 
@@ -384,7 +405,6 @@ def test_fj_shifting_ts():
     fj_list = [Note(dur, 4, pitch) for dur, pitch in zip(fj_durs, fj_pitches)]
 
     fj_part = Part(fj_list, fj_ts)
-
 
     score = Score(parts=[fj_part])
     score.convert_to_xml("test_score_fj_shifting.musicxml")
@@ -503,13 +523,13 @@ def test_frere_jacques_subdiv():
 
 def test_chord_parsed():
 
-    c = Note(4,4,0)
-    e = Note(4,4,4)
-    g = Note(4,4,7)
+    c = Note(4, 4, 0)
+    e = Note(4, 4, 4)
+    g = Note(4, 4, 7)
 
-    c_major = Chord([c,e,g])
+    c_major = Chord([c, e, g])
 
-    ts = [(4,4)]
+    ts = [(4, 4)]
 
     test_chord_part = Part([c_major], ts)
 
@@ -518,15 +538,16 @@ def test_chord_parsed():
     assert test_chord_part.measures[0].beats[0].notes[0].notes[1].dur == 4
     assert test_chord_part.measures[0].beats[0].notes[0].notes[2].dur == 4
 
+
 def test_chord_split_simple():
-    
-    c = Note(8,4,0)
-    e = Note(8,4,4)
-    g = Note(8,4,7)
 
-    c_major = Chord([c,e,g])
+    c = Note(8, 4, 0)
+    e = Note(8, 4, 4)
+    g = Note(8, 4, 7)
 
-    ts = [(4,4)]
+    c_major = Chord([c, e, g])
+
+    ts = [(4, 4)]
 
 def test_chord_parsed():
 

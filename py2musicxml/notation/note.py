@@ -324,7 +324,7 @@ class Note:
             if new_duration > 0:
                 self.dur = new_duration
         except ValueError as e:
-            logging.error(e)
+            log.error(e)
             raise
 
     def split(self, diff: int) -> Tuple["__class__", "__class__"]:

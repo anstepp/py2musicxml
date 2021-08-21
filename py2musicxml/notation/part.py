@@ -466,27 +466,39 @@ class Part:
 
         for current_count, note in zip(accumulated_durs, note_list):
 
-            #import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
 
             if current_beat_count > current_count:
                 current_measure.add_note(note)
             elif current_beat_count == current_count:
                 current_measure.add_note(note)
-                current_measure, current_beat_count, measure_max = self._make_new_measure(
+                (
+                    current_measure,
+                    current_beat_count,
+                    measure_max,
+                ) = self._make_new_measure(
                     time_sigs, current_measure, current_beat_count
                 )
             elif current_beat_count < current_count:
                 diff = current_count - current_beat_count
                 old_note, new_note = note.split(diff)
                 current_measure.add_note(old_note)
-                current_measure, current_beat_count, measure_max = self._make_new_measure(
+                (
+                    current_measure,
+                    current_beat_count,
+                    measure_max,
+                ) = self._make_new_measure(
                     time_sigs, current_measure, current_beat_count
                 )
                 while diff > measure_max:
                     diff = diff - measure_max
                     old_note, new_note = new_note.split(diff)
                     current_measure.add_note(old_note)
-                    current_measure, current_beat_count, measure_max = self._make_new_measure(
+                    (
+                        current_measure,
+                        current_beat_count,
+                        measure_max,
+                    ) = self._make_new_measure(
                         time_sigs, current_measure, current_beat_count
                     )
                 if type(new_note) is not Rest:

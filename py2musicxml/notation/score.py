@@ -14,7 +14,6 @@ log = logger.get_logger()
 
 EMPTY_MEASURE_FACTOR = 1
 
-
 class Score:
     """Generates a MusicXML score from a list of parts (NoteLists) and outputs score to file"""
 
