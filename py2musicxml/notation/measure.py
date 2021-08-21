@@ -239,27 +239,22 @@ class Measure:
 
         if self.equal_divisions:
 
-            # time sig denominator is divisible by 3
-            if (self.time_signature[0] % self.time_signature[1]) == 0:
+            if self.time_signature[0] >= 5 and self.time_signature[0] % 3 == 0:
 
-                if self.time_signature[0] > 3:
+                beats_in_measure = int(self.time_signature[0] / 3)
 
-                    beats_in_measure = int(self.time_signature[0] / 3)
+                meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
 
-                    meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
+                meter_type = "Compound"
+                measure_map = [1.5 for x in range(beats_in_measure)]
 
-                    meter_type = "Compound"
-                    measure_map = [1.5 for x in range(beats_in_measure)]
+            elif self.time_signature[0] <= 4:
 
-                else:
+                beats_in_measure = int(self.time_signature[0])
 
-                    beats_in_measure = int(self.time_signature[0])
-
-                    # print("Triple", beats_in_measure)
-
-                    meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
-                    meter_type = "Simple"
-                    measure_map = [1 for x in range(beats_in_measure)]
+                meter_division = METER_DIVISION_TYPES.get(beats_in_measure, None)
+                meter_type = "Simple"
+                measure_map = [1 for x in range(beats_in_measure)]
 
             # time sig denominator is divisible by 4, but not 2
             elif ((self.time_signature[0] % 4) == 0) and (self.time_signature[0] > 2):
